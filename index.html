@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Be English — Абдуррахим Бердиев</title>
+  <meta name="description" content="Индивидуальные и групповые занятия английским. Первый урок бесплатно. Подготовка к ЕГЭ, ОГЭ, IELTS, TOEFL, выход на разговорный за 3 месяца."/>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))'
+            },
+            popover: {
+              DEFAULT: 'hsl(var(--popover))',
+              foreground: 'hsl(var(--popover-foreground))'
+            },
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))'
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))'
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))'
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))'
+            },
+            destructive: {
+              DEFAULT: 'hsl(var(--destructive))',
+              foreground: 'hsl(var(--destructive-foreground))'
+            },
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+          },
+          borderRadius: {
+            lg: '0.5rem',
+            md: 'calc(0.5rem - 2px)',
+            sm: 'calc(0.5rem - 4px)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 0 0% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 0 0% 3.9%;
+      --primary: 0 0% 9%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 96.1%;
+      --secondary-foreground: 0 0% 9%;
+      --muted: 0 0% 96.1%;
+      --muted-foreground: 0 0% 45.1%;
+      --accent: 0 0% 96.1%;
+      --accent-foreground: 0 0% 9%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 0 0% 89.8%;
+      --input: 0 0% 89.8%;
+      --ring: 0 0% 3.9%;
+    }
+    html, body { scroll-behavior: smooth; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.25),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.20),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)] min-h-screen text-white">
+  <!-- Header / Glass Nav -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="mt-4 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+        <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
+          <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner"></div>
+        </a>
+        <nav class="hidden md:flex items-center gap-1 text-sm md:text-base">
+          <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Обо мне</a>
+          <a href="#hero" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Мои ученики</a>
+          <a href="#outcomes" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Что получите</a>
+          <a href="#formats" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Форматы</a>
+          <a href="#reviews" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Отзывы</a>
+          <a href="#develop" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Разработки</a>
+          <a href="#faq" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">FAQ</a>
+          <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Контакты</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-2">
+          <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="bg-white/90 text-black hover:bg-white rounded-xl px-4 py-2">
+            Первый урок
+          </a>
+        </div>
+        <button id="menuBtn" class="md:hidden rounded-xl p-2 text-white/90 hover:bg-white/10" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-[60] md:hidden">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-2xl"></div>
+      <div class="relative mx-auto max-w-6xl px-4 pt-24">
+        <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-xl">
+          <nav class="flex flex-col p-2">
+            <a href="#about" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Обо мне</a>
+            <a href="#hero" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Мои ученики</a>
+            <a href="#outcomes" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Что получите</a>
+            <a href="#formats" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Форматы</a>
+            <a href="#reviews" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Отзывы</a>
+            <a href="#develop" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Разработки</a>
+            <a href="#faq" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">FAQ</a>
+            <a href="#contacts" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Контакты</a>
+            <div class="p-2">
+              <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="block bg-white/90 text-black hover:bg-white rounded-xl text-center px-4 py-2">
+                Первый урок
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <button id="menuClose" class="absolute top-6 right-6 rounded-xl p-3 bg-white/10 border border-white/15">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
+
+  <div id="top"></div>
+  <main class="pt-28 pb-16">
+    <!-- Pain Section -->
+    <section id="pain" class="mx-auto max-w-6xl px-4 mt-6">
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+        <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-white">Что мешает заговорить?</h1>
+        <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <!-- pains -->
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Так и не смог начать говорить на английском?</span>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Тяжело понимать речь на слух?</span>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Думаешь, что английский не для тебя и почти потерял веру?</span>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Застрял на одном уровне и нет роста?</span>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Путаешься в грамматике и временах?</span>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-xl text-white/90 flex items-start gap-3">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300/90"></i>
+            <span>Хочешь сдать экзамены на высокие баллы и поступить/переехать?</span>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="bg-white/90 text-black hover:bg-white rounded-xl px-5 py-3 inline-flex items-center gap-2">
+            <i data-lucide="arrow-right" class="w-5 h-5"></i> Telegram
+          </a>
+          <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="bg-white/15 text-white hover:bg-white/25 rounded-xl px-5 py-3 inline-flex items-center gap-2">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero / Students + Image + Metrics -->
+    <section id="hero" class="mx-auto max-w-6xl px-4 mt-10">
+      <div class="grid gap-6 md:grid-cols-2 items-stretch">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl h-full">
+          <h2 class="text-2xl md:text-4xl font-semibold text-white">Мои ученики</h2>
+          <ul class="mt-4 space-y-2 text-base md:text-lg">
+            <li class="flex items-start gap-3 text-white/90"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдают экзамены (ЕГЭ, ОГЭ, IELTS, TOEFL) на высокие баллы</li>
+            <li class="flex items-start gap-3 text-white/90"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Поступают в лучшие университеты</li>
+            <li class="flex items-start gap-3 text-white/90"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают свободно говорить на английском за 3 месяца</li>
+            <li class="flex items-start gap-3 text-white/90"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Живут и работают за границей</li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="bg-white/90 text-black hover:bg-white rounded-xl px-5 py-3 inline-flex items-center gap-2">
+              Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/15 bg-white/10 backdrop-blur-2xl overflow-hidden">
+          <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-white/85">
+          <div class="text-2xl font-semibold text-white">90+</div>
+          <div class="text-sm opacity-80 mt-1">Человек, которые уже изменили свою жизнь</div>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-white/85">
+          <div class="text-2xl font-semibold text-white">1000+</div>
+          <div class="text-sm opacity-80 mt-1">Проведённых занятий</div>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-white/85">
+          <div class="text-2xl font-semibold text-white">3 месяца</div>
+          <div class="text-sm opacity-80 mt-1">Средний срок до разговорного</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl font-semibold text-white flex items-center gap-2">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-300"></i> Обо мне
+        </h3>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Два высших образования — Филолог зарубежных языков / Переводчик (английский / немецкий)</div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> 100+ довольных учеников</div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты — TEFL, Business English, C2 level of English</div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</div>
+        </div>
+        <div class="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">
+          <div class="mb-2 text-white/90 flex items-center gap-2 text-base md:text-lg">
+            <i data-lucide="rocket" class="w-5 h-5 text-emerald-300"></i> Что я предлагаю
+          </div>
+          <ul class="grid gap-2 sm:grid-cols-2">
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Экспресс‑курс: английский с нуля за 3 месяца (для жизни, работы и путешествий)</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подготовка к ЕГЭ (средний балл у учеников — 80+)</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подготовка к ОГЭ (82% учеников получили 5)</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подготовка к IELTS / TOEFL</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подтягивание уровня до C1+</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Любая другая ваша цель</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section id="outcomes" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl md:text-4xl font-semibold text-white">Что вы получите после занятий</h3>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+          <li class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 text-base md:text-lg"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Получите мотивацию изучать английский</li>
+          <li class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 text-base md:text-lg"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Перестанете бояться и начнёте говорить</li>
+          <li class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 text-base md:text-lg"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Грамматика станет лёгкой</li>
+          <li class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 text-base md:text-lg"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Сдадите экзамены (ЕГЭ, ОГЭ, IELTS, TOEFL) без стресса</li>
+          <li class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 text-base md:text-lg"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Начнёте понимать людей, фильмы, песни и шутки без субтитров</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Formats -->
+    <section id="formats" class="mx-auto max-w-6xl px-4 mt-16">
+      <h3 class="text-2xl font-semibold text-white">Форматы занятий</h3>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Group -->
+        <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
+          <img src="https://optim.tildacdn.pub/tild6666-3034-4336-b632-636635356463/-/format/webp/k-67-ae-01271_1-id-6.jpg.webp" alt="Групповые занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
+          <div class="p-6">
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2">
+              <i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Групповые занятия
+            </div>
+            <p class="mt-2 text-white/80 leading-relaxed text-base md:text-lg">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
+            <div class="mt-3">
+              <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Возможность учиться на ошибках других</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и соревнование в группе</li>
+              </ul>
+            </div>
+            <div class="mt-3">
+              <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания от преподавателя</li>
+              </ul>
+            </div>
+            <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="mt-4 block">
+              <span class="w-full inline-block text-center bg-white/90 text-black hover:bg-white rounded-xl px-4 py-2">Записаться</span>
+            </a>
+          </div>
+        </div>
+        <!-- Solo -->
+        <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
+          <img src="https://optim.tildacdn.pub/tild6264-3666-4537-a333-316362616335/-/format/webp/wes-hicks-480398-uns.jpg.webp" alt="Индивидуальные занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
+          <div class="p-6">
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2">
+              <i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Индивидуальные занятия
+            </div>
+            <p class="mt-2 text-white/80 leading-relaxed text-base md:text-lg">Персональная программа под вашу цель и темп</p>
+            <div class="mt-3">
+              <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уроки подстраиваются под уровень, темп и интересы</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания преподавателя</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Легче преодолеть языковой барьер</li>
+              </ul>
+            </div>
+            <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="mt-4 block">
+              <span class="w-full inline-block text-center bg-white/90 text-black hover:bg-white rounded-xl px-4 py-2">Записаться</span>
+            </a>
+          </div>
+        </div>
+        <!-- Intensive -->
+        <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
+          <img src="https://optim.tildacdn.pub/tild3137-3862-4363-b035-323165386131/-/format/webp/team-of-businesspeop.jpg.webp" alt="Интенсивные занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
+          <div class="p-6">
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2">
+              <i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Интенсивные занятия
+            </div>
+            <p class="mt-2 text-white/80 leading-relaxed text-base md:text-lg">Погружение в язык для быстрого результата</p>
+            <div class="mt-3">
+              <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрые результаты, глубокое погружение</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки к экзаменам, путешествию или переезду</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Меньше шансов «забыть» — практика регулярная</li>
+              </ul>
+            </div>
+            <div class="mt-3">
+              <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Не всегда удобно совмещать с учёбой/работой</li>
+              </ul>
+            </div>
+            <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="mt-4 block">
+              <span class="w-full inline-block text-center bg-white/90 text-black hover:bg-white rounded-xl px-4 py-2">Записаться</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews (Carousel) -->
+    <section id="reviews" class="mx-auto max-w-6xl px-4 mt-16">
+      <h3 class="text-2xl font-semibold text-white">Отзывы</h3>
+      <div class="mt-4 rounded-3xl border border-white/15 bg-white/10 p-4 backdrop-blur-2xl">
+        <div class="relative">
+          <div id="reviewsTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
+            <!-- card -->
+            <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
+              <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5 text-white/90">
+                <div class="flex items-center gap-3 text-white mb-2">
+                  <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий — <span class="text-white/70">Бизнесмен</span>
+                </div>
+                <p class="leading-relaxed">Абдуррахим — большой профессионал, помог преодолеть барьер и неуверенность.</p>
+              </div>
+            </div>
+            <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
+              <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5 text-white/90">
+                <div class="flex items-center gap-3 text-white mb-2">
+                  <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина — <span class="text-white/70">Научный сотрудник</span>
+                </div>
+                <p class="leading-relaxed">Через 2 месяца могу быстро составлять предложения, лучше понимаю речь на слух.</p>
+              </div>
+            </div>
+            <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
+              <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5 text-white/90">
+                <div class="flex items-center gap-3 text-white mb-2">
+                  <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Александр — <span class="text-white/70">Предприниматель</span>
+                </div>
+                <p class="leading-relaxed">Уроки проходят легко и весело, грамотный подход и вовлечённость.</p>
+              </div>
+            </div>
+            <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
+              <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5 text-white/90">
+                <div class="flex items-center gap-3 text-white mb-2">
+                  <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Валерий — <span class="text-white/70">Бизнесмен</span>
+                </div>
+                <p class="leading-relaxed">Результат увидел уже после 3 урока. Рекомендую.</p>
+              </div>
+            </div>
+            <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
+              <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5 text-white/90">
+                <div class="flex items-center gap-3 text-white mb-2">
+                  <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Игорь — <span class="text-white/70">Бизнесмен</span>
+                </div>
+                <p class="leading-relaxed">Логику и грамматику объясняет просто. Пунктуален и внимателен.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center justify-end gap-2">
+            <button id="reviewsPrev" class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 hover:bg-white/15">
+              ‹
+            </button>
+            <button id="reviewsNext" class="rounded-xl border border-white/20 bg-white/10 px-3 py-2 hover:bg-white/15">
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Develop -->
+    <section id="develop" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl font-semibold text-white">Мои разработки</h3>
+        <p class="mt-2 text-white/80">Книги, онлайн‑продукты и методические материалы для ускоренного изучения английского.</p>
+        <a href="https://berdiyev-eng.tilda.ws/mydevelo" target="_blank" rel="noreferrer" class="mt-4 inline-block text-white/80 hover:text-white">Смотреть разработки</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl font-semibold text-white">Вопросы / FAQ</h3>
+        <div class="mt-4 space-y-2">
+          <details class="group rounded-xl border border-white/10 bg-white/5">
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+              <span>Почему нужно работать именно со мной?</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+            </summary>
+            <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, авторские пособия, подтверждённый уровень C2, TEFL.</div>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5">
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+              <span>Как проходит онлайн‑обучение?</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+            </summary>
+            <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разговорная практика на каждом занятии.</div>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5">
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+              <span>Можно ли подготовиться к ЕГЭ/ОГЭ/IELTS/TOEFL?</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+            </summary>
+            <div class="px-4 pb-4 text-white/90">Да. Составлю персональный план и график подготовки до экзамена.</div>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5">
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+              <span>С какого уровня можно начинать?</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+            </summary>
+            <div class="px-4 pb-4 text-white/90">С любого — от A0 до B2+. Программу подстрою под цель и темп.</div>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5">
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+              <span>Есть ли первый бесплатный урок?</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+            </summary>
+            <div class="px-4 pb-4 text-white/90">Да. Нажмите ‘Первый урок’ и оставьте заявку — проведу консультацию.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup CTA -->
+    <section id="signup" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl font-semibold text-white">Первый урок в подарок</h3>
+        <p class="mt-2">Оставьте заявку прямо сейчас — свяжусь с вами и подберу удобный формат.</p>
+        <div class="mt-4 flex gap-3 flex-wrap">
+          <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="bg-white/90 text-black hover:bg-white rounded-xl px-5 py-3 inline-flex items-center gap-2">
+            Оставить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts" class="mx-auto max-w-6xl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl text-white/90">
+        <h3 class="text-2xl font-semibold text-white">Контакты</h3>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
+          <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
+          <a href="https://www.instagram.com/berdiyev_abd?igsh=MmVlMjlkMTBhMg%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
+          <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
+          <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте , хочу записать к вам на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
+          <a href="https://forms.gle/ZrsMmdftSMmhDnhHA" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="arrow-right" class="w-5 h-5"></i> Оставить заявку</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-4 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-white/70">© 2025 To Be English. Все права защищены</p>
+          <div class="flex items-center gap-3 text-white/80">
+            <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="send" class="w-4 h-4"></i> Telegram</a>
+            <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
+            <a href="https://www.instagram.com/berdiyev_abd?igsh=MmVlMjlkMTBhMg%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a>
+            <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="youtube" class="w-4 h-4"></i> YouTube</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuClose = document.getElementById('menuClose');
+    function openMenu() {
+      mobileMenu.classList.remove('hidden');
+    }
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+    menuBtn && menuBtn.addEventListener('click', openMenu);
+    menuClose && menuClose.addEventListener('click', closeMenu);
+    // Close when clicking backdrop
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu.querySelector('.absolute.inset-0')) closeMenu();
+      });
+      // Close when clicking links
+      mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => setTimeout(closeMenu, 100));
+      });
+    }
+
+    // Reviews carousel
+    const track = document.getElementById('reviewsTrack');
+    const prev = document.getElementById('reviewsPrev');
+    const next = document.getElementById('reviewsNext');
+    function scrollByPage(dir = 1) {
+      if (!track) return;
+      const width = track.clientWidth;
+      track.scrollBy({ left: dir * width, behavior: 'smooth' });
+    }
+    prev && prev.addEventListener('click', () => scrollByPage(-1));
+    next && next.addEventListener('click', () => scrollByPage(1));
+
+    // Initialize Lucide icons
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>
