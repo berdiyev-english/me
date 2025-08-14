@@ -119,7 +119,7 @@
   <div id="top"></div>
 
   <main class="pt-28 pb-24">
-    <!-- HERO (fixed desktop layout 7/5 to avoid squeezing) -->
+    <!-- HERO (7/5 columns on desktop to avoid squeeze/empty space) -->
     <section class="mx-auto container-xxl px-4">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
         <div class="md:col-span-7 rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep h-full">
@@ -170,18 +170,22 @@
           <div class="p-2 rounded-xl bg-emerald-400/15 border border-emerald-300/30">
             <i data-lucide="shield-check" class="w-5 h-5 text-emerald-300"></i>
           </div>
-          <div>
+          <div class="flex-1">
             <h2 class="text-2xl md:text-3xl font-semibold">Индивидуальный план и первый урок бесплатно</h2>
             <p class="mt-2 text-white/80">Понять ваши цели, подобрать формат и дать понятный маршрут к результату — всё это сделаем на вводной консультации.</p>
-            <div class="mt-4 flex flex-wrap gap-2 text-white/85">
-              <div class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-300"></i> Под цели: экзамены, переезд, работа, путешествия
+            <!-- Equal-width chips: grid 1 / 3 -->
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm h-full">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i>
+                <span class="text-white/85">Под цели: экзамены, переезд, работа, путешествия</span>
               </div>
-              <div class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-300"></i> Удобный график и темп
+              <div class="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm h-full">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i>
+                <span class="text-white/85">Удобный график и темп</span>
               </div>
-              <div class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-300"></i> Материалы автора и практика на каждом занятии
+              <div class="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm h-full">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i>
+                <span class="text-white/85">Материалы автора и практика на каждом занятии</span>
               </div>
             </div>
           </div>
@@ -206,10 +210,10 @@
             <span class="font-semibold">Результаты учеников</span>
           </div>
           <ul class="mt-2 grid gap-2 sm:grid-cols-2 text-white/90">
-            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдают ЕГЭ, ОГЭ, IELTS, TOEFL на высокие баллы</li>
-            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Поступают в лучшие университеты</li>
-            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Свободно говорят за 3 месяца</li>
-            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Живут и работают за границей</li>
+            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300 shrink-0"></i> Сдают ЕГЭ, ОГЭ, IELTS, TOEFL на высокие баллы</li>
+            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300 shrink-0"></i> Поступают в лучшие университеты</li>
+            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300 shrink-0"></i> Свободно говорят за 3 месяца</li>
+            <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300 shrink-0"></i> Живут и работают за границей</li>
           </ul>
         </div>
 
@@ -220,10 +224,10 @@
             <span class="font-semibold">Что вы получите</span>
           </div>
           <ul class="mt-2 grid gap-2 sm:grid-cols-2 text-white/90">
-            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Мотивацию и уверенность в разговоре</li>
-            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Понятную грамматику без стресса</li>
-            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подготовку к экзаменам с планом</li>
-            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Понимание фильмов, песен и шуток без субтитров</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Мотивацию и уверенность в разговоре</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Понятную грамматику без стресса</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Подготовку к экзаменам с планом</li>
+            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Понимание фильмов, песен и шуток без субтитров</li>
           </ul>
         </div>
       </div>
@@ -235,18 +239,34 @@
       </div>
     </section>
 
-    <!-- TEACHER (About) - image replaced -->
+    <!-- TEACHER (About) - image replaced + uniform icons -->
     <section id="teacher" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <div class="grid gap-6 md:grid-cols-2 items-center">
           <div>
             <h3 class="text-2xl md:text-3xl font-semibold">Преподаватель — Абдуррахим Бердиев</h3>
             <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Два высших образования — Филолог зарубежных языков / Переводчик (английский / немецкий)</div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> 100+ довольных учеников</div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты — TEFL, Business English, C2 level of English</div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-2 sm:col-span-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</div>
+              <!-- uniform row: fixed icon size, shrink-0, consistent leading -->
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-3 leading-relaxed">
+                <i data-lucide="award" class="w-5 h-5 text-cyan-300 shrink-0"></i>
+                <span>Филолог / переводчик</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-3 leading-relaxed">
+                <i data-lucide="award" class="w-5 h-5 text-cyan-300 shrink-0"></i>
+                <span>100+ довольных учеников</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-3 leading-relaxed">
+                <i data-lucide="award" class="w-5 h-5 text-cyan-300 shrink-0"></i>
+                <span>Подтверждённый уровень C2</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-3 leading-relaxed">
+                <i data-lucide="award" class="w-5 h-5 text-cyan-300 shrink-0"></i>
+                <span>Сертификаты — TEFL, Business English, C2 level of English</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-start gap-3 leading-relaxed sm:col-span-2">
+                <i data-lucide="award" class="w-5 h-5 text-cyan-300 shrink-0"></i>
+                <span>Автор пособий и онлайн‑продуктов по английскому</span>
+              </div>
             </div>
             <div class="mt-6 flex flex-wrap gap-3">
               <a href="#signup" class="bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 inline-flex items-center gap-2 font-medium">
@@ -261,7 +281,7 @@
       </div>
     </section>
 
-    <!-- FORMATS (Pricing-like) -->
+    <!-- FORMATS -->
     <section id="formats" class="mx-auto container-xxl px-4 mt-16">
       <h3 class="text-2xl md:text-3xl font-semibold">Форматы занятий</h3>
       <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -269,20 +289,20 @@
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
           <img src="https://optim.tildacdn.pub/tild6666-3034-4336-b632-636635356463/-/format/webp/k-67-ae-01271_1-id-6.jpg.webp" alt="Групповые занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
           <div class="p-6">
-            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Групповые занятия</div>
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90 shrink-0"></i> Групповые занятия</div>
             <p class="mt-2 text-white/80 leading-relaxed">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
             <div class="mt-3">
               <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
               <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Дешевле, чем индивидуальные</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Учимся на ошибках других</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Мотивация и драйв</li>
               </ul>
             </div>
             <div class="mt-3">
               <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Минусы</div>
               <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300 shrink-0"></i> Меньше внимания преподавателя</li>
               </ul>
             </div>
             <a href="#signup" class="mt-4 block">
@@ -294,15 +314,15 @@
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
           <img src="https://optim.tildacdn.pub/tild6264-3666-4537-a333-316362616335/-/format/webp/wes-hicks-480398-uns.jpg.webp" alt="Индивидуальные занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
           <div class="p-6">
-            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Индивидуальные занятия</div>
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90 shrink-0"></i> Индивидуальные занятия</div>
             <p class="mt-2 text-white/80 leading-relaxed">Персональная программа под вашу цель и темп</p>
             <div class="mt-3">
               <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
               <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Уровень, темп и интересы — ваши</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Максимум внимания</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Гибкий график</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Быстрый прогресс</li>
               </ul>
             </div>
             <a href="#signup" class="mt-4 block">
@@ -314,20 +334,20 @@
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl text-white/90 flex flex-col overflow-hidden">
           <img src="https://optim.tildacdn.pub/tild3137-3862-4363-b035-323165386131/-/format/webp/team-of-businesspeop.jpg.webp" alt="Интенсивные занятия" loading="lazy" class="h-44 w-full object-cover border-b border-white/10"/>
           <div class="p-6">
-            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90"></i> Интенсивы</div>
+            <div class="text-lg md:text-xl font-semibold text-white flex items-center gap-2"><i data-lucide="book-open" class="w-5 h-5 text-cyan-300/90 shrink-0"></i> Интенсивы</div>
             <p class="mt-2 text-white/80 leading-relaxed">Погружение в язык для быстрых результатов</p>
             <div class="mt-3">
               <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Плюсы</div>
               <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Глубокое погружение</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Отлично для подготовки</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300 shrink-0"></i> Регулярная практика</li>
               </ul>
             </div>
             <div class="mt-3">
               <div class="mb-1 text-white/70 text-sm uppercase tracking-wide">Минусы</div>
               <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300 shrink-0"></i> Сложнее совмещать с плотным графиком</li>
               </ul>
             </div>
             <a href="#signup" class="mt-4 block">
@@ -351,31 +371,31 @@
           <div id="reviewsTrack" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
             <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
               <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5">
-                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий — <span class="text-white/70">Бизнесмен</span></div>
+                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300 shrink-0"></i> Анатолий — <span class="text-white/70">Бизнесмен</span></div>
                 <p class="leading-relaxed text-white/90">Абдуррахим — большой профессионал, помог преодолеть барьер и неуверенность.</p>
               </div>
             </div>
             <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
               <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5">
-                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина — <span class="text-white/70">Научный сотрудник</span></div>
+                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300 shrink-0"></i> Дина — <span class="text-white/70">Научный сотрудник</span></div>
                 <p class="leading-relaxed text-white/90">Через 2 месяца могу быстро составлять предложения, лучше понимаю речь на слух.</p>
               </div>
             </div>
             <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
               <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5">
-                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Александр — <span class="text-white/70">Предприниматель</span></div>
+                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300 shrink-0"></i> Александр — <span class="text-white/70">Предприниматель</span></div>
                 <p class="leading-relaxed text-white/90">Уроки проходят легко и весело, грамотный подход и вовлечённость.</p>
               </div>
             </div>
             <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
               <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5">
-                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Валерий — <span class="text-white/70">Бизнесмен</span></div>
+                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300 shrink-0"></i> Валерий — <span class="text-white/70">Бизнесмен</span></div>
                 <p class="leading-relaxed text-white/90">Результат увидел уже после 3 урока. Рекомендую.</p>
               </div>
             </div>
             <div class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3">
               <div class="h-full rounded-2xl border border-white/15 bg-white/10 p-5">
-                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Игорь — <span class="text-white/70">Бизнесмен</span></div>
+                <div class="flex items-center gap-3 text-white mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300 shrink-0"></i> Игорь — <span class="text-white/70">Бизнесмен</span></div>
                 <p class="leading-relaxed text-white/90">Логику и грамматику объясняет просто. Пунктуален и внимателен.</p>
               </div>
             </div>
@@ -424,9 +444,9 @@
             <h3 class="text-2xl md:text-3xl font-semibold">Первый урок в подарок</h3>
             <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
             <ul class="mt-4 space-y-2 text-white/85">
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Индивидуальный план</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Удобный график</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Быстрый выход на разговорный</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Индивидуальный план</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Удобный график</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300 shrink-0"></i> Быстрый выход на разговорный</li>
             </ul>
           </div>
           <div>
@@ -483,12 +503,9 @@
       <div class="mx-auto container-xxl px-4 py-10">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <p class="text-white/70">© 2025 To Be English. Все права защищены</p>
-          <div class="flex items-center gap-3 text-white/80">
-            <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="send" class="w-4 h-4"></i> Telegram</a>
-            <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
-            <a href="https://www.instagram.com/berdiyev_abd?igsh=MmVlMjlkMTBhMg%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a>
-            <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="hover:text-white flex items-center gap-1"><i data-lucide="youtube" class="w-4 h-4"></i> YouTube</a>
-          </div>
+          <p class="text-white/60 text-center md:text-right text-sm md:text-base">
+            *WhatsApp и Instagram (принадлежит Meta, признана в России экстремистской организацией и запрещена)
+          </p>
         </div>
       </div>
     </footer>
@@ -547,7 +564,6 @@
       }
 
       function currentIndex() {
-        // find slide closest to current scrollLeft
         let closest = 0;
         let minDelta = Infinity;
         slides.forEach((s, i) => {
@@ -586,7 +602,6 @@
         e.preventDefault();
         status.textContent = '';
         const formData = new FormData(form);
-        // Basic guard: honeypot
         if (formData.get('_gotcha')) return;
 
         const payload = {
