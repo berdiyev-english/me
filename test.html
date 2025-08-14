@@ -4,9 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Английский за 90 дней — бесплатный урок + план | Абдуррахим Бердиев</title>
-  <meta name="description" content="Заговорите на английском уверенно за 90 дней. Первый урок бесплатно + персональный план. Мини‑группы и индивидуально. ЕГЭ/ОГЭ/IELTS/TOEFL.">
+  <!-- CHANGED: meta descriptions reflect the new gift -->
+  <meta name="description" content="Заговорите на английском уверенно за 90 дней. Первый урок бесплатно + персональный план. Квиз 60 сек. Бонус: PDF‑гайд по временам. Мини‑группы и индивидуально. ЕГЭ/ОГЭ/IELTS/TOEFL.">
   <meta property="og:title" content="Английский за 90 дней — бесплатный урок + план | Абдуррахим Бердиев">
-  <meta property="og:description" content="Первый урок бесплатно. Квиз 60 секунд — получите план и бонусы. Лимит мест.">
+  <meta property="og:description" content="Первый урок бесплатно. Квиз 60 секунд — получите план и бонус: PDF‑гайд по временам. Лимит мест.">
   <meta property="og:image" content="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg">
   <meta property="og:type" content="website">
 
@@ -51,7 +52,7 @@
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Абдуррахим Бердиев",
-    "description":"Преподаватель английского языка. Индивидуальные и групповые занятия, подготовка к экзаменам.",
+    "description":"Преподаватель английского языка. Индивидуальные и групповые занятия, подготовка к ЕГЭ/ОГЭ и международным экзаменам.",
     "image":"https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg",
     "sameAs":[
       "https://t.me/m/mjPABJEtYTky",
@@ -70,7 +71,7 @@
     "hasCourseInstance": {
       "@type":"CourseInstance",
       "courseMode":"online",
-      "description":"Мини‑группы и индивидуально. Первый урок бесплатно. Персональный план."
+      "description":"Мини‑группы и индивидуально. Первый урок бесплатно. Персональный план. Подготовка к ЕГЭ/ОГЭ/IELTS/TOEFL."
     },
     "offers": {
       "@type":"Offer",
@@ -86,12 +87,13 @@
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
   <!-- Promo bar with countdown -->
+  <!-- CHANGED: z-index stays, text updated to new gift -->
   <div class="fixed top-0 left-0 right-0 z-[60]">
     <div class="mx-auto container-xxl px-4">
       <div class="mt-2 rounded-2xl border border-white/15 bg-white/10 text-white/90 backdrop-blur-xl shadow-glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-2">
         <div class="flex items-center gap-2 text-sm">
           <i data-lucide="zap" class="w-4 h-4 text-emerald-300"></i>
-          <span class="font-medium">Акция: первый урок + PDF «15 фраз для уверенного старта» — бесплатно</span>
+          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского — просто» — бесплатно</span>
         </div>
         <div class="flex items-center gap-2 text-sm">
           <span class="opacity-80">До конца акции:</span>
@@ -103,7 +105,8 @@
   </div>
 
   <!-- Sticky Glass Navigation -->
-  <header class="fixed top-14 left-0 right-0 z-50">
+  <!-- CHANGED: raise header z-index to be above promo bar; mobile menu will be even higher -->
+  <header class="fixed top-14 left-0 right-0 z-[70]">
     <div class="mx-auto container-xxl px-4">
       <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
@@ -130,7 +133,8 @@
       </div>
     </div>
     <!-- Mobile menu -->
-    <div id="mobileMenu" class="hidden fixed inset-0 z-[60] md:hidden">
+    <!-- CHANGED: increase z-index so it overlays the offer/promo bar on mobile -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-[90] md:hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-2xl"></div>
       <div class="relative mx-auto container-xxl px-4 pt-24">
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-deep">
@@ -186,6 +190,22 @@
               <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i>
               <span>Материалы и доступ в чат 24/7</span>
             </div>
+          </div>
+
+          <!-- CHANGED: New help block -->
+          <div class="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div class="text-white/90 font-medium mb-2 flex items-center gap-2">
+              <i data-lucide="life-buoy" class="w-5 h-5 text-cyan-300"></i>
+              Помогу, если вам нужно:
+            </div>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/85">
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Сдать ЕГЭ/ОГЭ на высокий балл</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Подготовиться к IELTS/TOEFL</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начать говорить с нуля и снять барьер</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Прокачать speaking для работы/интервью</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Подготовиться к переезду и путешествиям</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Разобраться с временами, грамматикой и письмом</li>
+            </ul>
           </div>
 
           <div class="mt-6 flex flex-col sm:flex-row gap-3">
@@ -254,7 +274,8 @@
             <p class="mt-2 text-white/80">Ответьте на 4 вопроса — подберу формат, отправлю PDF‑план на 90 дней и свяжусь для первого бесплатного урока.</p>
             <ul class="mt-4 space-y-2 text-white/85">
               <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Персональный план под цель</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Бонус: PDF «15 фраз для уверенного старта»</li>
+              <!-- CHANGED: gift text -->
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Бонус: PDF‑гайд по временам</li>
               <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Места ограничены</li>
             </ul>
           </div>
@@ -388,7 +409,8 @@
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
             <div class="flex items-center gap-2 text-white/90 mb-2"><i data-lucide="award" class="w-5 h-5 text-emerald-300"></i> Бонусы</div>
             <ul class="space-y-2 text-white/80">
-              <li>PDF «15 фраз для уверенного старта»</li>
+              <!-- CHANGED: bonus gift -->
+              <li>PDF‑гайд по временам</li>
               <li>Доступ в чат 24/7 + разговорный клуб</li>
               <li>Разбор резюме/эссе (для карьеры/экзаменов)</li>
             </ul>
@@ -559,9 +581,10 @@
   </main>
 
   <!-- Sticky CTA (desktop+mobile) -->
+  <!-- CHANGED: explicit gift in CTA -->
   <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
     <a href="#quiz" class="bg-white text-black rounded-full px-6 py-3 shadow-deep font-medium flex items-center gap-2">
-      Бесплатный урок + PDF <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      Бесплатный урок + гайд по временам <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
   </div>
 
@@ -574,7 +597,8 @@
           <i data-lucide="gift" class="w-6 h-6 text-emerald-300"></i>
           <div>
             <div class="text-xl font-semibold">Заберите подарок перед уходом</div>
-            <div class="text-white/80 mt-1">PDF «15 фраз для уверенного старта» + первый урок бесплатно. Куда отправить?</div>
+            <!-- CHANGED: gift text -->
+            <div class="text-white/80 mt-1">PDF‑гайд «Времена английского — просто» + первый урок бесплатно. Куда отправить?</div>
           </div>
         </div>
         <form id="exitForm" class="mt-4 space-y-3">
@@ -665,9 +689,13 @@
       const fill = Math.max(0, Math.min(100, ((total - left) / total) * 100));
       bar && (bar.style.width = `${fill}%`);
 
-      document.getElementById('seatsGroup')?.append(document.createTextNode(String(GROUP_LEFT)));
-      document.getElementById('seatsSolo')?.append(document.createTextNode(String(SOLO_LEFT)));
-      document.getElementById('seatsIntense')?.append(document.createTextNode(String(INTENSE_LEFT)));
+      // CHANGED: set textContent (not append) so no extra "—" remains
+      const sg = document.getElementById('seatsGroup');
+      const ss = document.getElementById('seatsSolo');
+      const si = document.getElementById('seatsIntense');
+      if (sg) sg.textContent = String(GROUP_LEFT);
+      if (ss) ss.textContent = String(SOLO_LEFT);
+      if (si) si.textContent = String(INTENSE_LEFT);
     })();
 
     // ====== Reviews carousel ======
@@ -740,7 +768,6 @@
             if (['Индивидуально','Мини-группа'].includes(val)) answers.format = val;
             if (['Утро','День','Вечер'].includes(val)) answers.time = val;
           }
-          // авто-переход если выбрана опция
           if (step < 3) setStep(step+1);
         });
       });
@@ -781,7 +808,6 @@
             form.reset();
             status.className='text-sm text-emerald-300';
             status.textContent='Готово! Отправил план и бонус. Я свяжусь с вами в ближайшее время.';
-            // optional: redirect/scroll
           } else {
             status.className='text-sm text-red-300';
             status.textContent='Не удалось отправить форму. Попробуйте позже.';
