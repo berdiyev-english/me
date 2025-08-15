@@ -42,6 +42,9 @@
     }
     html, body { scroll-behavior: smooth; }
     .container-xxl { max-width: 1200px; }
+    /* Remove default disclosure marker (the "play" triangle) for FAQ on all devices */
+    details > summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -70,7 +73,7 @@
       <div class="mt-2 relative rounded-2xl border border-white/15 bg-white/10 text-white/90 backdrop-blur-xl shadow-glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-2">
         <div class="flex items-center gap-2 text-sm">
           <i data-lucide="zap" class="w-4 h-4 text-emerald-300"></i>
-          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского» — бесплатно</span>
+          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского — просто» — бесплатно</span>
         </div>
         <div class="flex items-center gap-2 text-sm">
           <span class="opacity-80">До конца акции:</span>
@@ -173,7 +176,7 @@
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
-          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
+          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Боитесь плохо сдать ЕГЭ / ОГЭ</li>
         </ul>
       </div>
     </section>
@@ -183,14 +186,14 @@
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold">Мои студенты</h3>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинали говорить на английском и сняли  барьер за 3 месяца</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдали ЕГЭ/ОГЭ на высокий балл и поступают в лучшие вузы</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переехали жить и работать в другую страну</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разбирались во всех временах и грамматике</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начали понимать английскую речь на слух</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повысли свой уровень английского</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают говорить на английском и снимают барьер за 3 месяца</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдают ЕГЭ/ОГЭ на высокий балл и поступают в лучшие вузы</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переезжают жить и работать в другую страну</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разбираются во всех временах и грамматике</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают понимать английскую речь на слух</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повышают свой уровень английского</li>
           <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Ведут бизнес за границей</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Улучшили свое произношение</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Улучшают произношение</li>
         </ul>
         <div class="mt-6">
           <a href="#quiz" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
@@ -219,13 +222,26 @@
       </div>
     </section>
 
-    <!-- 5) Обо мне -->
+    <!-- 5) Обо мне (updated points) -->
     <section id="about" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <div class="grid gap-6 md:grid-cols-2 items-stretch">
           <div data-about="text" class="rounded-2xl p-0 m-0 h-full">
             <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
-            <p class="mt-3 text-white/90">Репетитор по английскому языку с 4‑летним опытом. За это время избавил от всех этих проблем более 100 человек. Тысячи проведённых занятий.</p>
+
+            <!-- New metric bullets -->
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
+                <span class="text-white/90">Тысячи проведённых занятий</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+                <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
+                <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
+              </div>
+            </div>
+
+            <!-- Certificates and credentials -->
             <ul class="mt-4 grid gap-2">
               <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
               <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
@@ -407,28 +423,28 @@
         <h3 class="text-2xl md:text-3xl font-semibold">Популярные вопросы</h3>
         <div class="mt-4 space-y-2">
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Почему именно со мной?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Какая гарантия результата?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Как проходят занятия онлайн?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>С какого уровня можно начинать?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
@@ -441,7 +457,7 @@
     <!-- 9) Связь со мной -->
     <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl font-semibold text-white">Остались вопросы ? Задайте их мне !</h3>
+        <h3 class="text-2xl font-semibold text-white">Связь со мной</h3>
         <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
           <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
@@ -469,7 +485,7 @@
   <!-- Sticky CTA -->
   <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
     <a href="#quiz" class="bg-white text-black rounded-full px-6 py-3 shadow-deep font-medium flex items-center gap-2">
-      Бесплатный урок <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      Бесплатный урок + гайд по временам <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
   </div>
 
@@ -582,7 +598,7 @@
     window.addEventListener('load', syncAboutHeights);
     window.addEventListener('resize', () => setTimeout(syncAboutHeights, 50));
 
-    // QUIZ logic (delegated clicks, highlight, send all fields)
+    // QUIZ logic (delegated clicks, highlight, auto-advance from step 3, send all fields)
     (function quiz(){
       const form = document.getElementById('quizForm');
       if (!form) return;
@@ -601,7 +617,7 @@
         steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== step));
         backBtn?.classList.toggle('hidden', step === 1);
         nextBtn?.classList.toggle('hidden', step >= 4);
-        progress && (progress.style.width = `${Math.min(100, step*25)}%`);
+        if (progress) progress.style.width = `${Math.min(100, step*25)}%`;
       }
       setStep(1);
 
@@ -618,7 +634,9 @@
         });
         btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
 
-        if (step < 3) setStep(step + 1);
+        // Auto-advance: step 1->2, 2->3, 3->4
+        if (step === 1 || step === 2) setStep(step + 1);
+        else if (step === 3) setStep(4);
       });
 
       nextBtn?.addEventListener('click', () => {
