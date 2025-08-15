@@ -42,7 +42,7 @@
     }
     html, body { scroll-behavior: smooth; }
     .container-xxl { max-width: 1200px; }
-    /* Remove default disclosure marker (the "play" triangle) for FAQ on all devices */
+    /* Remove default disclosure marker for FAQ */
     details > summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
   </style>
@@ -143,57 +143,59 @@
   <div id="top"></div>
 
   <main class="pt-48 pb-24">
-    <!-- 1) Оффер -->
+    <!-- 1) Оффер (single card, equal heights like About) -->
     <section id="offer" class="mx-auto container-xxl px-4">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-        <div class="md:col-span-7 rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep h-full">
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
-          <p class="mt-3 text-white/90 text-lg">Тогда у меня для вас есть супер‑решение!</p>
-          <p class="mt-2 text-white/85 text-base md:text-lg">
-            Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
-            Без зубрёжки — максимум разговорной практики.
-          </p>
-          <div class="mt-6">
-            <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
-              Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+        <div class="grid gap-6 md:grid-cols-2 items-stretch">
+          <div data-offer="text" class="h-full">
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
+            <h2 class="mt-2 text-2xl md:text-3xl font-semibold text-white">Я здесь, чтобы помочь вам!</h2>
+            <p class="mt-3 text-white/85 text-base md:text-lg leading-relaxed">
+              Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
+              Без зубрёжки — максимум разговорной практики.
+            </p>
+            <div class="mt-6">
+              <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
+                Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="md:col-span-5 rounded-3xl border border-white/15 bg-white/10 backdrop-blur-2xl overflow-hidden h-full">
-          <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="w-full h-full object-cover" loading="lazy"/>
+          <div data-offer="img" class="rounded-2xl border border-white/15 bg-white/10 overflow-hidden h-full">
+            <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="w-full h-full object-cover" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 2) Кому помогу -->
+    <!-- 2) Кому помогу (normalized mobile icons/text) -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold">Я помогу вам, если вы</h3>
-        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
-          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Боитесь плохо сдать ЕГЭ / ОГЭ</li>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90 text-base">
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
+          <li class="flex items-start gap-2 leading-relaxed sm:col-span-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Боитесь плохо сдать ЕГЭ / ОГЭ</li>
         </ul>
       </div>
     </section>
 
-    <!-- 3) Что вы получите (Мои студенты) -->
+    <!-- 3) Мои студенты (normalized mobile icons/text) -->
     <section id="students" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold">Мои студенты</h3>
-        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают говорить на английском и снимают барьер за 3 месяца</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдают ЕГЭ/ОГЭ на высокий балл и поступают в лучшие вузы</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переезжают жить и работать в другую страну</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разбираются во всех временах и грамматике</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают понимать английскую речь на слух</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повышают свой уровень английского</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Ведут бизнес за границей</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Улучшают произношение</li>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90 text-base">
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают говорить на английском и снимают барьер за 3 месяца</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдают ЕГЭ/ОГЭ на высокий балл и поступают в лучшие вузы</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переезжают жить и работать в другую страну</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разбираются во всех временах и грамматике</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинают понимать английскую речь на слух</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повышают свой уровень английского</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Ведут бизнес за границей</li>
+          <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Улучшают произношение</li>
         </ul>
         <div class="mt-6">
           <a href="#quiz" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
@@ -222,31 +224,31 @@
       </div>
     </section>
 
-    <!-- 5) Обо мне (updated points) -->
+    <!-- 5) Обо мне (updated points, normalized mobile text/icons) -->
     <section id="about" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <div class="grid gap-6 md:grid-cols-2 items-stretch">
           <div data-about="text" class="rounded-2xl p-0 m-0 h-full">
             <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
 
-            <!-- New metric bullets -->
-            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+            <!-- Metrics -->
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-base">
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 leading-relaxed">
                 <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
                 <span class="text-white/90">Тысячи проведённых занятий</span>
               </div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 leading-relaxed">
                 <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
                 <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
               </div>
             </div>
 
-            <!-- Certificates and credentials -->
-            <ul class="mt-4 grid gap-2">
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
+            <!-- Certificates -->
+            <ul class="mt-4 grid gap-2 text-base">
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
             </ul>
             <div class="mt-6">
               <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
@@ -261,7 +263,7 @@
       </div>
     </section>
 
-    <!-- 6) Виды занятий (единый вывод мест) -->
+    <!-- 6) Виды занятий (unchanged from prior version) -->
     <section id="types" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold">Виды занятий</h3>
@@ -275,14 +277,14 @@
             <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
             <div class="mt-3 text-white/80">
               <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
+              <ul class="space-y-1 text-base">
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
               </ul>
               <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
+              <ul class="space-y-1 text-base">
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
               </ul>
             </div>
             <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
@@ -299,11 +301,11 @@
             <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
             <div class="mt-3 text-white/80">
               <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
+              <ul class="space-y-1 text-base">
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
               </ul>
             </div>
             <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
@@ -320,14 +322,14 @@
             <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
             <div class="mt-3 text-white/80">
               <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
+              <ul class="space-y-1 text-base">
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
               </ul>
               <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
+              <ul class="space-y-1 text-base">
+                <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
               </ul>
             </div>
             <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
@@ -346,11 +348,11 @@
           <div>
             <h3 class="text-2xl md:text-3xl font-semibold">Первый урок бесплатно</h3>
             <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
-            <ul class="mt-4 space-y-2 text-white/85">
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Дам бесплатную консультацию</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам в подарок</li>
+            <ul class="mt-4 space-y-2 text-white/85 text-base">
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Дам бесплатную консультацию</li>
+              <li class="flex items-start gap-2 leading-relaxed"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам в подарок</li>
             </ul>
           </div>
           <div>
@@ -360,7 +362,7 @@
                 <div id="quizProgress" class="h-full bg-gradient-to-r from-emerald-300 to-cyan-300 w-[25%]"></div>
               </div>
 
-              <!-- Шаг 1 -->
+              <!-- Шаги (как в предыдущей версии) -->
               <div class="quiz-step" data-step="1">
                 <label class="block text-sm text-white/80 mb-2">Ваш уровень</label>
                 <div class="grid grid-cols-2 gap-2">
@@ -371,7 +373,6 @@
                 </div>
               </div>
 
-              <!-- Шаг 2 -->
               <div class="quiz-step hidden" data-step="2">
                 <label class="block text-sm text-white/80 mb-2">Цель</label>
                 <div class="grid grid-cols-1 gap-2">
@@ -382,7 +383,6 @@
                 </div>
               </div>
 
-              <!-- Шаг 3 (только формат) -->
               <div class="quiz-step hidden" data-step="3">
                 <label class="block text-sm text-white/80 mb-2">Формат</label>
                 <div class="grid grid-cols-1 gap-2">
@@ -391,7 +391,6 @@
                 </div>
               </div>
 
-              <!-- Шаг 4 -->
               <div class="quiz-step hidden" data-step="4">
                 <label class="block text-sm text-white/80 mb-1">Как с вами связаться?</label>
                 <input id="qName" name="name" type="text" required minlength="2" placeholder="Имя"
@@ -552,7 +551,7 @@
         const n = SEATS[type] ?? 0;
         const textEl = card.querySelector('[data-seat-text]');
         const cta = card.querySelector('[data-seat-cta]');
-        if (!textEl || !cta) return;
+      if (!textEl || !cta) return;
 
         if (n > 0) {
           textEl.textContent = `Доступно мест: ${n}`;
@@ -579,26 +578,37 @@
     // Icons
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
 
-    // Sync About heights on desktop (image = text height)
-    function syncAboutHeights(){
-      const about = document.getElementById('about');
-      if (!about) return;
-      const textCol = about.querySelector('[data-about="text"]');
-      const imgCol = about.querySelector('[data-about="img"]');
-      const img = imgCol?.querySelector('img');
-      if (window.innerWidth >= 768 && textCol && imgCol && img) {
+    // Equalize heights for Offer and About on all breakpoints
+    function syncSectionHeights(sectionId, textAttr, imgAttr) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      const textCol = section.querySelector(`[${textAttr}]`);
+      const imgCol  = section.querySelector(`[${imgAttr}]`);
+      const img     = imgCol?.querySelector('img');
+      if (textCol && imgCol && img) {
         const h = textCol.offsetHeight;
         imgCol.style.height = h + 'px';
         img.style.height = '100%';
-      } else if (imgCol && img) {
-        imgCol.style.height = '';
-        img.style.height = '';
       }
     }
-    window.addEventListener('load', syncAboutHeights);
-    window.addEventListener('resize', () => setTimeout(syncAboutHeights, 50));
+    function syncHeightsAll(){
+      // reset before measure
+      ['about','offer'].forEach(id => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        const imgCol = sec.querySelector('[data-about="img"],[data-offer="img"]');
+        const img = imgCol?.querySelector('img');
+        if (imgCol && img) { imgCol.style.height = ''; img.style.height = ''; }
+      });
+      requestAnimationFrame(() => {
+        syncSectionHeights('about','data-about="text"','data-about="img"');
+        syncSectionHeights('offer','data-offer="text"','data-offer="img"');
+      });
+    }
+    window.addEventListener('load', syncHeightsAll);
+    window.addEventListener('resize', () => setTimeout(syncHeightsAll, 50));
 
-    // QUIZ logic (delegated clicks, highlight, auto-advance from step 3, send all fields)
+    // QUIZ logic (auto-advance from step 3)
     (function quiz(){
       const form = document.getElementById('quizForm');
       if (!form) return;
@@ -634,7 +644,7 @@
         });
         btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
 
-        // Auto-advance: step 1->2, 2->3, 3->4
+        // Auto-advance: 1->2, 2->3, 3->4
         if (step === 1 || step === 2) setStep(step + 1);
         else if (step === 3) setStep(4);
       });
@@ -674,7 +684,7 @@
         };
         submitBtn.disabled = true; submitBtn.classList.add('opacity-70','cursor-not-allowed');
         try {
-          const res = await fetch(FORM_ENDPOINT, {
+          const res = await fetch('https://formspree.io/f/mblkbjve', {
             method:'POST',
             headers:{ 'Accept':'application/json', 'Content-Type':'application/json' },
             body: JSON.stringify(payload)
