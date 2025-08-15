@@ -144,6 +144,7 @@
 
   <main class="pt-48 pb-24">
     <!-- 1) Оффер -->
+
 <section id="offer" class="mx-auto container-xxl px-4">
   <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
@@ -162,13 +163,14 @@
         </div>
       </div>
 
-      <!-- Фото внутри той же карточки -->
+      <!-- Фото -->
       <div class="md:col-span-5">
-        <div class="relative h-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden">
+        <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden
+                    min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
           <img
             src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg"
             alt="Абдуррахим Бердиев"
-            class="absolute inset-0 w-full h-full object-cover object-top"
+            class="absolute inset-0 w-full h-full object-cover object-[center_65%]"
             loading="lazy"
           />
         </div>
@@ -235,6 +237,7 @@
     </section>
 
     <!-- 5) Обо мне (updated points) -->
+
 <section id="about" class="mx-auto container-xxl px-4 mt-16">
   <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
     <div class="grid gap-6 md:grid-cols-2 items-stretch">
@@ -267,12 +270,14 @@
         </div>
       </div>
 
-      <!-- Фото внутри, аккуратный кроп -->
-      <div data-about="img" class="relative rounded-2xl border border-white/15 bg-white/10 overflow-hidden h-full">
+      <!-- Фото -->
+      <div data-about="img"
+           class="relative rounded-2xl border border-white/15 bg-white/10 overflow-hidden
+                  min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
         <img
           src="https://berdiyev-english.github.io/me/diploma.jpg"
           alt="Сертификаты и достижения"
-          class="absolute inset-0 w-full h-full object-cover object-center"
+          class="absolute inset-0 w-full h-full object-cover object-[center_40%]"
           loading="lazy"
         >
       </div>
