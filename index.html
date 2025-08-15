@@ -144,26 +144,40 @@
 
   <main class="pt-48 pb-24">
     <!-- 1) Оффер -->
-    <section id="offer" class="mx-auto container-xxl px-4">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-        <div class="md:col-span-7 rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep h-full">
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
-          <p class="mt-3 text-white/90 text-lg">Я здесь , чтобы помочь вам!</p>
-          <p class="mt-2 text-white/85 text-base md:text-lg">
-            Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
-            Без зубрёжки — максимум разговорной практики.
-          </p>
-          <div class="mt-6">
-            <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
-              Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
-          </div>
-        </div>
-        <div class="md:col-span-5 rounded-3xl border border-white/15 bg-white/10 backdrop-blur-2xl overflow-hidden h-full">
-          <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="w-full h-full object-cover" loading="lazy"/>
+
+<section id="offer" class="mx-auto container-xxl px-4">
+  <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+      <!-- Текст -->
+      <div class="md:col-span-7">
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
+        <p class="mt-3 text-white/90 text-lg">Я здесь , чтобы помочь вам!</p>
+        <p class="mt-2 text-white/85 text-base md:text-lg">
+          Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
+          Без зубрёжки — максимум разговорной практики.
+        </p>
+        <div class="mt-6">
+          <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
+            Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
         </div>
       </div>
-    </section>
+
+      <!-- Фото -->
+      <div class="md:col-span-5">
+        <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden
+                    min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
+          <img
+            src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg"
+            alt="Абдуррахим Бердиев"
+            class="absolute inset-0 w-full h-full object-cover object-[center_45%]"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- 2) Кому помогу -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
@@ -223,43 +237,53 @@
     </section>
 
     <!-- 5) Обо мне (updated points) -->
-    <section id="about" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
-        <div class="grid gap-6 md:grid-cols-2 items-stretch">
-          <div data-about="text" class="rounded-2xl p-0 m-0 h-full">
-            <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
 
-            <!-- New metric bullets -->
-            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
-                <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
-                <span class="text-white/90">Тысячи проведённых занятий</span>
-              </div>
-              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
-                <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
-                <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
-              </div>
-            </div>
+<section id="about" class="mx-auto container-xxl px-4 mt-16">
+  <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+    <div class="grid gap-6 md:grid-cols-2 items-stretch">
+      <div data-about="text" class="rounded-2xl p-0 m-0">
+        <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
 
-            <!-- Certificates and credentials -->
-            <ul class="mt-4 grid gap-2">
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
-              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
-            </ul>
-            <div class="mt-6">
-              <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
-                Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
-              </a>
-            </div>
+        <!-- New metric bullets -->
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
+            <span class="text-white/90">Тысячи проведённых занятий</span>
           </div>
-          <div data-about="img" class="rounded-2xl border border-white/15 bg-white/10 overflow-hidden h-full">
-            <img src="https://berdiyev-english.github.io/me/diploma.jpg" alt="Сертификаты и достижения" class="w-full h-full object-cover" loading="lazy">
+          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+            <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
+            <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
           </div>
         </div>
+
+        <!-- Certificates and credentials -->
+        <ul class="mt-4 grid gap-2">
+          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
+          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
+          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
+          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
+        </ul>
+        <div class="mt-6">
+          <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+            Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
       </div>
-    </section>
+
+      <!-- Фото -->
+      <div data-about="img"
+           class="relative rounded-2xl border border-white/15 bg-white/10 overflow-hidden
+                  min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
+        <img
+          src="https://berdiyev-english.github.io/me/diploma.jpg"
+          alt="Сертификаты и достижения"
+          class="absolute inset-0 w-full h-full object-cover object-[center_35%]"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- 6) Виды занятий (единый вывод мест) -->
     <section id="types" class="mx-auto container-xxl px-4 mt-16">
