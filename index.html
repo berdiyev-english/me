@@ -67,8 +67,26 @@
 
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
+  <!-- Promo bar (mobile: whole bar clickable) -->
+  <div class="fixed top-0 left-0 right-0 z-[60]">
+    <div class="mx-auto container-xxl px-4">
+      <div class="mt-2 relative rounded-2xl border border-white/15 bg-white/10 text-white/90 backdrop-blur-xl shadow-glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-2">
+        <div class="flex items-center gap-2 text-sm">
+          <i data-lucide="zap" class="w-4 h-4 text-emerald-300"></i>
+          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского» — бесплатно</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <span class="opacity-80">До конца акции:</span>
+          <span id="countdown" class="px-2 py-1 rounded-lg bg-white/20 font-semibold">—:—:—</span>
+          <a href="#quiz" class="hidden sm:inline px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-white/90">Забрать бонус</a>
+        </div>
+        <a href="#quiz" class="sm:hidden absolute inset-0" aria-label="Забрать бонус"></a>
+      </div>
+    </div>
+  </div>
+
   <!-- Header / Nav -->
-  <header class="fixed top-10 left-0 right-0 z-[70]">
+  <header class="fixed top-14 left-0 right-0 z-[70]">
     <div class="mx-auto container-xxl px-4">
       <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
@@ -132,7 +150,7 @@
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
       <!-- Текст -->
       <div class="md:col-span-7">
-        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Сделаю английский легким для вас</h1>
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
         <p class="mt-3 text-white/90 text-lg">Я здесь , чтобы помочь вам!</p>
         <p class="mt-2 text-white/85 text-base md:text-lg">
           Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
