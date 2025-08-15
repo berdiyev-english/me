@@ -45,7 +45,6 @@
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -65,27 +64,78 @@
 
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
-  <!-- Promo bar (кликабелен на мобиле) -->
+  <!-- Promo bar (mobile: whole bar clickable) -->
   <div class="fixed top-0 left-0 right-0 z-[60]">
     <div class="mx-auto container-xxl px-4">
       <div class="mt-2 relative rounded-2xl border border-white/15 bg-white/10 text-white/90 backdrop-blur-xl shadow-glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-2">
         <div class="flex items-center gap-2 text-sm">
           <i data-lucide="zap" class="w-4 h-4 text-emerald-300"></i>
-          <span class="font-medium sm:not-italic">Акция: первый урок + PDF‑гайд «Времена английского» — бесплатно</span>
+          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского — просто» — бесплатно</span>
         </div>
         <div class="flex items-center gap-2 text-sm">
           <span class="opacity-80">До конца акции:</span>
           <span id="countdown" class="px-2 py-1 rounded-lg bg-white/20 font-semibold">—:—:—</span>
           <a href="#quiz" class="hidden sm:inline px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-white/90">Забрать бонус</a>
         </div>
-        <!-- На мобиле вся плашка кликабельная -->
         <a href="#quiz" class="sm:hidden absolute inset-0" aria-label="Забрать бонус"></a>
       </div>
     </div>
   </div>
 
   <!-- Header / Nav -->
-  <header class="fixed top-14 left-0 right-0 z-[70]"> <div class="mx-auto container-xxl px-4"> <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass"> <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home"> <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center"> <i data-lucide="home" class="w-4 h-4 text-white/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"></i> </div> <span class="hidden sm:inline text-white/80">To Be English</span> </a> <nav class="hidden md:flex items-center gap-1 text-sm"> <a href="#help" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кому помогу</a> <a href="#students" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Что вы получите</a> <a href="#cases" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кейсы</a> <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Обо мне</a> <a href="#types" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Виды занятий</a> <a href="#faq" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">FAQ</a> <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Связь со мной</a> </nav> <div class="hidden md:flex items-center gap-2"> <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium"> Бесплатный урок </a> </div> <button id="menuBtn" class="md:hidden rounded-xl p-2 text-white/90 hover:bg-white/10" aria-label="Toggle menu"> <i data-lucide="menu" class="w-5 h-5"></i> </button> </div> </div> <!-- Mobile menu --> <div id="mobileMenu" class="hidden fixed inset-0 z-[90] md:hidden"> <div class="absolute inset-0 bg-black/70 backdrop-blur-2xl"></div> <div class="relative mx-auto container-xxl px-4 pt-24"> <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-deep"> <nav class="flex flex-col p-2"> <a href="#help" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кому помогу</a> <a href="#students" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Что вы получите</a> <a href="#cases" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кейсы</a> <a href="#about" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Обо мне</a> <a href="#types" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Виды занятий</a> <a href="#faq" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">FAQ</a> <a href="#contacts" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Связь со мной</a> <div class="p-2"> <a href="#quiz" class="block bg-white text-black hover:bg-white/90 rounded-xl text-center px-4 py-2 font-medium">Бесплатный урок</a> </div> </nav> </div> </div> <button id="menuClose" class="absolute top-6 right-6 rounded-xl p-3 bg-white/10 border border-white/15"> <i data-lucide="x" class="w-5 h-5"></i> </button> </div> </header>
+  <header class="fixed top-14 left-0 right-0 z-[70]">
+    <div class="mx-auto container-xxl px-4">
+      <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
+        <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
+          <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
+            <i data-lucide="home" class="w-4 h-4 text-white/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"></i>
+          </div>
+          <span class="hidden sm:inline text-white/80">To Be English</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1 text-sm">
+          <a href="#help" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кому помогу</a>
+          <a href="#students" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Что вы получите</a>
+          <a href="#cases" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кейсы</a>
+          <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Обо мне</a>
+          <a href="#types" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Виды занятий</a>
+          <a href="#faq" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">FAQ</a>
+          <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Связь со мной</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-2">
+          <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">
+            Бесплатный урок
+          </a>
+        </div>
+        <button id="menuBtn" class="md:hidden rounded-xl p-2 text-white/90 hover:bg-white/10" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-[90] md:hidden">
+      <div class="absolute inset-0 bg-black/70 backdrop-blur-2xl"></div>
+      <div class="relative mx-auto container-xxl px-4 pt-24">
+        <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-deep">
+          <nav class="flex flex-col p-2">
+            <a href="#help" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кому помогу</a>
+            <a href="#students" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Что вы получите</a>
+            <a href="#cases" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кейсы</a>
+            <a href="#about" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Обо мне</a>
+            <a href="#types" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Виды занятий</a>
+            <a href="#faq" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">FAQ</a>
+            <a href="#contacts" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Связь со мной</a>
+            <div class="p-2">
+              <a href="#quiz" class="block bg-white text-black hover:bg-white/90 rounded-xl text-center px-4 py-2 font-medium">Бесплатный урок</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <button id="menuClose" class="absolute top-6 right-6 rounded-xl p-3 bg-white/10 border border-white/15">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
 
   <div id="top"></div>
 
@@ -170,83 +220,110 @@
     </section>
 
     <!-- 5) Обо мне -->
-    <section id="about" class="mx-auto container-xxl px-4 mt-16"> <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl"> <div class="grid gap-6 md:grid-cols-2 items-stretch"> <div class="rounded-2xl p-0 m-0 h-full"> <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3> <p class="mt-3 text-white/90">Репетитор по английскому языку с 4‑летним опытом. За это время избавил от всех этих проблем более 100 человек. Тысячи проведённых занятий.</p> <ul class="mt-4 grid gap-2"> <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li> <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li> <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li> <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li> </ul> <div class="mt-6"> <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium"> Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i> </a> </div> </div> <div class="rounded-2xl border border-white/15 bg-white/10 overflow-hidden h-full"> <img src="https://berdiyev-english.github.io/me/diploma.jpg" alt="Сертификаты и достижения" class="w-full h-full object-cover" loading="lazy"> </div> </div> </div> </section>
+    <section id="about" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+        <div class="grid gap-6 md:grid-cols-2 items-stretch">
+          <div data-about="text" class="rounded-2xl p-0 m-0 h-full">
+            <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
+            <p class="mt-3 text-white/90">Репетитор по английскому языку с 4‑летним опытом. За это время избавил от всех этих проблем более 100 человек. Тысячи проведённых занятий.</p>
+            <ul class="mt-4 grid gap-2">
+              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
+              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
+              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
+              <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
+            </ul>
+            <div class="mt-6">
+              <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+                Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          <div data-about="img" class="rounded-2xl border border-white/15 bg-white/10 overflow-hidden h-full">
+            <img src="https://berdiyev-english.github.io/me/diploma.jpg" alt="Сертификаты и достижения" class="w-full h-full object-cover" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- 6) Виды занятий + набор -->
-    <section id="types" class="mx-auto container-xxl px-4 mt-16"> <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl"> <h3 class="text-2xl md:text-3xl font-semibold">Виды занятий</h3>
-<div class="mt-6 grid gap-4 md:grid-cols-3">
-  <!-- Групповые -->
-  <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="group">
-    <div class="text-lg font-semibold flex items-center gap-2">
-      <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
-    </div>
-    <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
-    <div class="mt-3 text-white/80">
-      <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-      <ul class="space-y-1">
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
-      </ul>
-      <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-      <ul class="space-y-1">
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
-      </ul>
-    </div>
-    <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-    <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-      Записаться
-    </a>
-  </div>
+    <!-- 6) Виды занятий (единый вывод мест) -->
+    <section id="types" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold">Виды занятий</h3>
 
-  <!-- Индивидуально -->
-  <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="solo">
-    <div class="text-lg font-semibold flex items-center gap-2">
-      <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
-    </div>
-    <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
-    <div class="mt-3 text-white/80">
-      <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-      <ul class="space-y-1">
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
-      </ul>
-    </div>
-    <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-    <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-      Записаться
-    </a>
-  </div>
+        <div class="mt-6 grid gap-4 md:grid-cols-3">
+          <!-- Групповые -->
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="group">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
+            </div>
+            <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
+              </ul>
+              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
+              </ul>
+            </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
+            </a>
+          </div>
 
-  <!-- Английский с 0 за 3 месяца -->
-  <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="zero">
-    <div class="text-lg font-semibold flex items-center gap-2">
-      <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
-    </div>
-    <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
-    <div class="mt-3 text-white/80">
-      <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-      <ul class="space-y-1">
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
-      </ul>
-      <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-      <ul class="space-y-1">
-        <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
-      </ul>
-    </div>
-    <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-    <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-      Записаться
-    </a>
-  </div>
-</div>
-</div> </section>
+          <!-- Индивидуально -->
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="solo">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
+            </div>
+            <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
+              </ul>
+            </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
+            </a>
+          </div>
 
-    <!-- 7) Первый урок бесплатно (бывший квиз) -->
+          <!-- Английский с 0 за 3 месяца -->
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="zero">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
+            </div>
+            <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
+              </ul>
+              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
+              </ul>
+            </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) Первый урок бесплатно (квиз) -->
     <section id="quiz" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <div class="grid md:grid-cols-2 gap-6">
@@ -289,7 +366,7 @@
                 </div>
               </div>
 
-              <!-- Шаг 3 (убрали время: только формат) -->
+              <!-- Шаг 3 (только формат) -->
               <div class="quiz-step hidden" data-step="3">
                 <label class="block text-sm text-white/80 mb-2">Формат</label>
                 <div class="grid grid-cols-1 gap-2">
@@ -404,26 +481,33 @@
     <a href="https://wa.me/+79111880148" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
       <i data-lucide="message-circle" class="w-5 h-5"></i>
     </a>
-<button id="toTop" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20 hidden z-[100]" aria-label="Back to top" type="button">
-<i data-lucide="arrow-up" class="w-5 h-5"></i> </button>
+    <button id="toTop" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20 hidden z-[100]" aria-label="Back to top" type="button">
+      <i data-lucide="arrow-up" class="w-5 h-5"></i>
     </button>
   </div>
 
   <script>
     const FORM_ENDPOINT = 'https://formspree.io/f/mblkbjve';
 
+    // Seats configuration (edit here)
+    const SEATS = {
+      group: 0,  // 0 => "Набор закрыт"
+      solo: 3,
+      zero: 1
+    };
+
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuClose = document.getElementById('menuClose');
-    function openMenu(){ mobileMenu.classList.remove('hidden'); }
-    function closeMenu(){ mobileMenu.classList.add('hidden'); }
+    function openMenu(){ mobileMenu?.classList.remove('hidden'); }
+    function closeMenu(){ mobileMenu?.classList.add('hidden'); }
     menuBtn?.addEventListener('click', openMenu);
     menuClose?.addEventListener('click', closeMenu);
     mobileMenu?.querySelector('.absolute.inset-0')?.addEventListener('click', closeMenu);
     mobileMenu?.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => setTimeout(closeMenu, 100)));
 
-    // Countdown (48h per user)
+    // Countdown (48h/user)
     (function initCountdown() {
       const key = 'offerDeadlineTs';
       let deadline = parseInt(localStorage.getItem(key) || '0', 10);
@@ -445,72 +529,155 @@
       tick(); setInterval(tick, 1000);
     })();
 
+    // Apply seats to types cards
+    (function applySeats(){
+      document.querySelectorAll('.format-card').forEach(card => {
+        const type = card.dataset.seatType;
+        const n = SEATS[type] ?? 0;
+        const textEl = card.querySelector('[data-seat-text]');
+        const cta = card.querySelector('[data-seat-cta]');
+        if (!textEl || !cta) return;
+
+        if (n > 0) {
+          textEl.textContent = `Доступно мест: ${n}`;
+          cta.classList.remove('opacity-50','cursor-not-allowed');
+          cta.setAttribute('aria-disabled','false');
+          cta.href = '#quiz';
+        } else {
+          textEl.textContent = 'Набор закрыт';
+          cta.classList.add('opacity-50','cursor-not-allowed');
+          cta.setAttribute('aria-disabled','true');
+          cta.href = '#types';
+        }
+      });
+    })();
+
     // Back to top
-const toTopBtn = document.getElementById('toTop'); toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); window.addEventListener('scroll', () => { if (window.scrollY > 800) toTopBtn?.classList.remove('hidden'); else toTopBtn?.classList.add('hidden'); });
+    const toTopBtn = document.getElementById('toTop');
+    toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 800) toTopBtn?.classList.remove('hidden');
+      else toTopBtn?.classList.add('hidden');
+    });
 
     // Icons
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
 
-    // QUIZ logic (без выбора времени)
-function quiz(){ const form = document.getElementById('quizForm'); if (!form) return; const steps = Array.from(form.querySelectorAll('.quiz-step')); const nextBtn = document.getElementById('quizNext'); const backBtn = document.getElementById('quizBack'); const submitBtn = document.getElementById('quizSubmit'); const status = document.getElementById('quizStatus'); const progress = document.getElementById('quizProgress');
-let step = 1; const answers = { level: '', goalChoice: '', format: '' };
+    // Sync About heights on desktop (image = text height)
+    function syncAboutHeights(){
+      const about = document.getElementById('about');
+      if (!about) return;
+      const textCol = about.querySelector('[data-about="text"]');
+      const imgCol = about.querySelector('[data-about="img"]');
+      const img = imgCol?.querySelector('img');
+      if (window.innerWidth >= 768 && textCol && imgCol && img) {
+        const h = textCol.offsetHeight;
+        imgCol.style.height = h + 'px';
+        img.style.height = '100%';
+      } else if (imgCol && img) {
+        imgCol.style.height = '';
+        img.style.height = '';
+      }
+    }
+    window.addEventListener('load', syncAboutHeights);
+    window.addEventListener('resize', () => setTimeout(syncAboutHeights, 50));
 
-function setStep(n){ step = n; steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== step)); backBtn?.classList.toggle('hidden', step === 1); nextBtn?.classList.toggle('hidden', step >= 4); progress && (progress.style.width = ${Math.min(100, step*25)}%); } setStep(1);
+    // QUIZ logic (delegated clicks, highlight, send all fields)
+    (function quiz(){
+      const form = document.getElementById('quizForm');
+      if (!form) return;
+      const steps = Array.from(form.querySelectorAll('.quiz-step'));
+      const nextBtn = document.getElementById('quizNext');
+      const backBtn = document.getElementById('quizBack');
+      const submitBtn = document.getElementById('quizSubmit');
+      const status = document.getElementById('quizStatus');
+      const progress = document.getElementById('quizProgress');
 
-// Делегирование кликов по вариантам form.addEventListener('click', (e) => { const btn = e.target.closest('.quiz-opt'); if (!btn) return; const field = btn.dataset.field; const val = btn.dataset.value; if (!field || !val) return;
+      let step = 1;
+      const answers = { level: '', goalChoice: '', format: '' };
 
-answers[field] = val;
+      function setStep(n){
+        step = n;
+        steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== step));
+        backBtn?.classList.toggle('hidden', step === 1);
+        nextBtn?.classList.toggle('hidden', step >= 4);
+        progress && (progress.style.width = `${Math.min(100, step*25)}%`);
+      }
+      setStep(1);
 
-// визуально выделим выбор в пределах одного поля
-form.querySelectorAll(`.quiz-opt[data-field="${field}"]`).forEach(el => {
-  el.classList.remove('ring-2','ring-emerald-300/40','bg-white/15');
-});
-btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
+      form.addEventListener('click', (e) => {
+        const btn = e.target.closest('.quiz-opt');
+        if (!btn) return;
+        const field = btn.dataset.field;
+        const val = btn.dataset.value;
+        if (!field || !val) return;
 
-if (step < 3) setStep(step + 1);
-});
+        answers[field] = val;
+        form.querySelectorAll(`.quiz-opt[data-field="${field}"]`).forEach(el => {
+          el.classList.remove('ring-2','ring-emerald-300/40','bg-white/15');
+        });
+        btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
 
-nextBtn?.addEventListener('click', () => { if (step === 1 && !answers.level) return toast('Выберите уровень'); if (step === 2 && !answers.goalChoice) return toast('Выберите цель'); if (step === 3 && !answers.format) return toast('Выберите формат'); setStep(step + 1); });
+        if (step < 3) setStep(step + 1);
+      });
 
-backBtn?.addEventListener('click', () => setStep(Math.max(1, step - 1)));
+      nextBtn?.addEventListener('click', () => {
+        if (step === 1 && !answers.level) return toast('Выберите уровень');
+        if (step === 2 && !answers.goalChoice) return toast('Выберите цель');
+        if (step === 3 && !answers.format) return toast('Выберите формат');
+        setStep(step + 1);
+      });
 
-function toast(msg){ status.className='text-sm text-red-300'; status.textContent = msg; setTimeout(()=>{ status.textContent=''; }, 2000); }
+      backBtn?.addEventListener('click', () => setStep(Math.max(1, step - 1)));
 
-form.addEventListener('submit', async (e) => { e.preventDefault(); status.textContent = ''; const name = (document.getElementById('qName')?.value || '').trim(); const phone = (document.getElementById('qPhone')?.value || '').trim(); const goalText = (document.getElementById('qGoal')?.value || '').trim(); if (!name || !phone) return toast('Заполните имя и телефон');
+      function toast(msg){
+        status.className='text-sm text-red-300';
+        status.textContent = msg;
+        setTimeout(()=>{ status.textContent=''; }, 2000);
+      }
 
-const payload = {
-  name, phone,
-  level: answers.level,
-  study_goal: answers.goalChoice,
-  format: answers.format,
-  goal: goalText,
-  summary: `Уровень: ${answers.level}; Цель: ${answers.goalChoice}; Формат: ${answers.format}; Комментарий: ${goalText || '-'}`,
-  page: document.title,
-  source: 'free_lesson'
-};
-submitBtn.disabled = true; submitBtn.classList.add('opacity-70','cursor-not-allowed');
-try {
-  const res = await fetch(FORM_ENDPOINT, {
-    method:'POST',
-    headers:{ 'Accept':'application/json', 'Content-Type':'application/json' },
-    body: JSON.stringify(payload)
-  });
-  if (res.ok) {
-    form.reset();
-    status.className='text-sm text-emerald-300';
-    status.textContent='Заявка отправлена! Я свяжусь с вами и пришлю бонус.';
-  } else {
-    status.className='text-sm text-red-300';
-    status.textContent='Не удалось отправить форму. Попробуйте позже.';
-  }
-} catch {
-  status.className='text-sm text-red-300';
-  status.textContent='Ошибка сети. Проверьте соединение.';
-} finally {
-  submitBtn.disabled = false; submitBtn.classList.remove('opacity-70','cursor-not-allowed');
-  if (window.lucide?.createIcons) lucide.createIcons();
-}
-}); })();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        const name = (document.getElementById('qName')?.value || '').trim();
+        const phone = (document.getElementById('qPhone')?.value || '').trim();
+        const goalText = (document.getElementById('qGoal')?.value || '').trim();
+        if (!name || !phone) return toast('Заполните имя и телефон');
+
+        const payload = {
+          name, phone,
+          level: answers.level,
+          study_goal: answers.goalChoice,
+          format: answers.format,
+          goal: goalText,
+          summary: `Уровень: ${answers.level}; Цель: ${answers.goalChoice}; Формат: ${answers.format}; Комментарий: ${goalText || '-'}`,
+          page: document.title,
+          source: 'free_lesson'
+        };
+        submitBtn.disabled = true; submitBtn.classList.add('opacity-70','cursor-not-allowed');
+        try {
+          const res = await fetch(FORM_ENDPOINT, {
+            method:'POST',
+            headers:{ 'Accept':'application/json', 'Content-Type':'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (res.ok) {
+            form.reset();
+            status.className='text-sm text-emerald-300';
+            status.textContent='Заявка отправлена! Я свяжусь с вами и пришлю бонус.';
+          } else {
+            status.className='text-sm text-red-300';
+            status.textContent='Не удалось отправить форму. Попробуйте позже.';
+          }
+        } catch {
+          status.className='text-sm text-red-300';
+          status.textContent='Ошибка сети. Проверьте соединение.';
+        } finally {
+          submitBtn.disabled = false; submitBtn.classList.remove('opacity-70','cursor-not-allowed');
+          if (window.lucide?.createIcons) lucide.createIcons();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
