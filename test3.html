@@ -1,3 +1,9 @@
+Plan:
+- Hide the default browser “play” disclosure marker in FAQ on mobile by CSS (actually safe to hide on all devices), leaving only our Lucide arrow.
+- Make quiz auto-advance from Step 3 (format selection) to Step 4 immediately on selecting “Индивидуально”/“Мини‑группа”.
+- Update “Обо мне”: replace the paragraph with two icon bullet points: “Тысячи проведенных занятий” and “Сотни довольных студентов, изменившие свою жизнь”. Keep the certificates list and align image/text heights.
+
+Full HTML (replace your current file completely):
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -42,6 +48,9 @@
     }
     html, body { scroll-behavior: smooth; }
     .container-xxl { max-width: 1200px; }
+    /* Remove default disclosure marker (the "play" triangle) for FAQ on all devices */
+    details > summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -219,13 +228,26 @@
       </div>
     </section>
 
-    <!-- 5) Обо мне -->
+    <!-- 5) Обо мне (updated points) -->
     <section id="about" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <div class="grid gap-6 md:grid-cols-2 items-stretch">
           <div data-about="text" class="rounded-2xl p-0 m-0 h-full">
             <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
-            <p class="mt-3 text-white/90">Репетитор по английскому языку с 4‑летним опытом. За это время избавил от всех этих проблем более 100 человек. Тысячи проведённых занятий.</p>
+
+            <!-- New metric bullets -->
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+                <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
+                <span class="text-white/90">Тысячи проведённых занятий</span>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+                <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
+                <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
+              </div>
+            </div>
+
+            <!-- Certificates and credentials -->
             <ul class="mt-4 grid gap-2">
               <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
               <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
@@ -407,28 +429,28 @@
         <h3 class="text-2xl md:text-3xl font-semibold">Популярные вопросы</h3>
         <div class="mt-4 space-y-2">
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Почему именно со мной?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Какая гарантия результата?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Как проходят занятия онлайн?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between">
+            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>С какого уровня можно начинать?</span>
               <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
             </summary>
@@ -582,7 +604,7 @@
     window.addEventListener('load', syncAboutHeights);
     window.addEventListener('resize', () => setTimeout(syncAboutHeights, 50));
 
-    // QUIZ logic (delegated clicks, highlight, send all fields)
+    // QUIZ logic (delegated clicks, highlight, auto-advance from step 3, send all fields)
     (function quiz(){
       const form = document.getElementById('quizForm');
       if (!form) return;
@@ -601,7 +623,7 @@
         steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== step));
         backBtn?.classList.toggle('hidden', step === 1);
         nextBtn?.classList.toggle('hidden', step >= 4);
-        progress && (progress.style.width = `${Math.min(100, step*25)}%`);
+        if (progress) progress.style.width = `${Math.min(100, step*25)}%`;
       }
       setStep(1);
 
@@ -618,7 +640,9 @@
         });
         btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
 
-        if (step < 3) setStep(step + 1);
+        // Auto-advance: step 1->2, 2->3, 3->4
+        if (step === 1 || step === 2) setStep(step + 1);
+        else if (step === 3) setStep(4);
       });
 
       nextBtn?.addEventListener('click', () => {
