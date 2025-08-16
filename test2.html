@@ -184,6 +184,22 @@
     .toggle button.active {
       background: rgba(255,255,255,.18); opacity: 1;
     }
+
+    /* Пин секции "Узнаете себя?" по центру и временный скролл-лок */
+    body.scroll-lock { overflow: hidden; height: 100vh; }
+    #help { min-height: 180vh; }
+    @media (max-height: 740px) { #help { min-height: 200vh; } }
+
+    #help .help-card {
+      position: sticky;
+      top: 50vh;
+      transform: translateY(-50%);
+    }
+    #help .pin-results {
+      position: sticky;
+      top: 50vh;
+      transform: translateY(-50%);
+    }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -289,7 +305,7 @@
       </div>
     </section>
 
-    <!-- 2) Узнаете себя здесь? (двойной удар на скролле) -->
+    <!-- 2) Узнаете себя здесь? (двойной удар с пином по центру) -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
       <div class="help-card rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl relative overflow-hidden" data-broken="idle">
         <div class="help-content">
@@ -357,8 +373,8 @@
       </div>
     </section>
 
-    <!-- 4+) Весь контент ниже блокируем до завершения анимации -->
-    <div id="below" hidden>
+    <!-- 4+) Весь контент ниже виден, но недостижим до завершения анимации -->
+    <div id="below">
       <!-- 4) Кейсы: карусель "до/после" -->
       <section id="cases" class="mx-auto container-xxl px-4 mt-10">
         <h3 class="text-2xl md:text-3xl font-semibold reveal">Кейсы учеников</h3>
@@ -854,22 +870,23 @@
       });
     })();
 
-    // ====== Двойной удар с контролем чтения и поэтапным скроллом ======
-    (function twoHitScrollSequence() {
-      const card = document.querySelector('#help .help-card');
+    // ====== ПИН + Двойной удар с блокировкой прокрутки ======
+    (function twoHitPinnedSequence() {
+      const helpSection = document.getElementById('help');
+      const card = helpSection?.querySelector('.help-card');
       const overlay = card?.querySelector('[data-glass]');
       const helpContent = card?.querySelector('.help-content');
       const resultsSrc = document.querySelector('#students [data-results]');
-      const below = document.getElementById('below');
       const crackAudio = document.getElementById('sfxCrack');
       const shatterAudio = document.getElementById('sfxShatter');
-      if (!card || !overlay || !helpContent || !resultsSrc || !below) return;
+
+      if (!helpSection || !card || !overlay || !helpContent || !resultsSrc) return;
 
       // Генерация осколков
       function createPieces() {
         const rect = overlay.getBoundingClientRect();
         const w = rect.width, h = rect.height;
-        const cx = w / 2, cy = h / 2;
+        const cx = w/2, cy = h/2;
         const R = Math.sqrt(w*w + h*h) * 1.1;
         const count = Math.min(34, Math.max(22, Math.round((w*h) / 22000)));
         let angle = -Math.PI / 2 + (Math.random() - .5) * .5;
@@ -907,25 +924,16 @@
       }
       window.addEventListener('load', createPieces);
 
-      let readReady = false;          // Пользователь "прочитал" секцию (контент полностью увиден)
-      let hammersShown = false;       // Молоты показаны с надписью до удара
-      let cracked = false;            // Первая стадия — трещины
-      let smashed = false;            // Вторая стадия — полное разбитие
-      let replaced = false;           // Контент заменён на "После занятий"
-      let lastY = window.scrollY;
-
-      function play(aud, vol=0.7){ try { if (aud) { aud.currentTime = 0; aud.volume = vol; aud.play().catch(()=>{}); } } catch(e){} }
-      function impactPing(where = overlay){
+      // Вспомогательные
+      function play(aud, vol=0.7){ try{ if(aud){ aud.currentTime=0; aud.volume=vol; aud.play().catch(()=>{});} }catch(e){} }
+      function impactPing(host = overlay){
         const ping = document.createElement('span');
         ping.className = 'impact';
-        where.appendChild(ping);
+        host.appendChild(ping);
         setTimeout(()=> ping.remove(), 650);
       }
-      function hit() {
-        card.classList.add('hit-anim');
-        setTimeout(() => card.classList.remove('hit-anim'), 450);
-      }
-      function strikeHammer(which, host = overlay) {
+      function hit(){ card.classList.add('hit-anim'); setTimeout(()=>card.classList.remove('hit-anim'), 450); }
+      function strikeHammer(which, host = overlay){
         const hammer = host.querySelector(`.hammer[data-hammer="${which}"]`);
         if (!hammer) return;
         hammer.classList.add('strike');
@@ -933,50 +941,127 @@
           impactPing(host);
           setTimeout(() => hammer.classList.add('fade'), 280);
           setTimeout(() => hammer.classList.remove('strike','fade','show'), 900);
-        }, 180);
+        }, 160);
       }
-
-      function showHammersIdle() {
-        if (hammersShown) return;
+      function showHammersIdle(){
         overlay.querySelectorAll('.hammer').forEach(h => h.classList.add('show'));
-        hammersShown = true;
       }
-
-      function triggerCrack() {
-        if (cracked) return;
-        cracked = true;
-        card.setAttribute('data-broken', 'cracked');
-        play(crackAudio, .55);
-        hit();
+      function triggerCrack(){
+        const state = card.getAttribute('data-broken');
+        if (state === 'cracked' || state === 'smashed') return;
+        card.setAttribute('data-broken','cracked'); play(crackAudio, .55); hit();
       }
-
-      function triggerSmash() {
-        if (smashed) return;
-        smashed = true;
-        if (!cracked) triggerCrack();
-        card.setAttribute('data-broken', 'smashed');
-        play(shatterAudio, .7);
-        hit();
-
+      function triggerSmash(){
+        const state = card.getAttribute('data-broken');
+        if (state === 'smashed') return;
+        if (state !== 'cracked') triggerCrack();
+        card.setAttribute('data-broken','smashed'); play(shatterAudio, .7); hit();
         overlay.querySelectorAll('.piece').forEach(p => {
-          const dx = +p.dataset.dx, dy = +p.dataset.dy, rot = +p.dataset.rot;
           p.style.opacity = '1';
-          p.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${rot}deg)`;
+          p.style.transform = `translate3d(${p.dataset.dx}px, ${p.dataset.dy}px, 0) rotate(${p.dataset.rot}deg)`;
           p.style.filter = 'brightness(1.25)';
         });
       }
 
-      function replaceWithResultsAndUnlock() {
-        if (replaced) return;
-        replaced = true;
+      // Состояния
+      let locked = false;     // скролл заблокирован, секция закреплена по центру
+      let step = 0;           // 0 — ещё нет ударов; 1 — трещины; 2 — разбито; 3 — заменено
+      let progress = 0;       // прогресс вниз в заблокированном состоянии
+      let touchStartY = 0;
+      let pendingUnpin = false;
 
-        // Клонируем блок "После занятий" и вставляем на место карточки
+      // Включить скролл-лок и "прилипнуть" по центру (снэп на центр)
+      function lockScrollToCenter() {
+        if (locked) return;
+
+        // Снэпим точно в центр, без smooth
+        const vh = window.innerHeight;
+        const r = card.getBoundingClientRect();
+        const target = window.scrollY + r.top + r.height/2 - vh/2;
+        const root = document.documentElement;
+        const prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo({ top: Math.max(0, target) });
+        root.style.scrollBehavior = prev;
+
+        document.body.classList.add('scroll-lock');
+        locked = true;
+        progress = 0;
+        showHammersIdle();
+        attachLockHandlers();
+      }
+      function unlockScroll() {
+        document.body.classList.remove('scroll-lock');
+        locked = false;
+        detachLockHandlers();
+      }
+
+      function attachLockHandlers(){
+        window.addEventListener('wheel', onWheel, { passive: false });
+        window.addEventListener('keydown', onKey, { passive: false });
+        window.addEventListener('touchstart', onTouchStart, { passive: false });
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
+      }
+      function detachLockHandlers(){
+        window.removeEventListener('wheel', onWheel);
+        window.removeEventListener('keydown', onKey);
+        window.removeEventListener('touchstart', onTouchStart);
+        window.removeEventListener('touchmove', onTouchMove);
+      }
+
+      // Управляем ударами по прогрессу
+      function advance() {
+        if (step === 0 && progress > 140) {
+          strikeHammer('1'); setTimeout(triggerCrack, 160); step = 1; return;
+        }
+        if (step === 1 && progress > 280) {
+          strikeHammer('2'); setTimeout(() => { triggerSmash(); replaceWithResults(); }, 180); step = 2; return;
+        }
+      }
+
+      // События при локации
+      function onWheel(e){
+        if (!locked) return;
+        if (e.deltaY <= 0) { e.preventDefault(); return; }
+        e.preventDefault();
+        progress += e.deltaY;
+        advance();
+      }
+      function onKey(e){
+        if (!locked) return;
+        if (['ArrowDown','PageDown',' '].includes(e.key)) {
+          e.preventDefault(); progress += 60; advance();
+        } else if (['ArrowUp','PageUp'].includes(e.key)) {
+          e.preventDefault(); progress = Math.max(0, progress - 60);
+        }
+      }
+      function onTouchStart(e){ touchStartY = e.touches?.[0]?.clientY || 0; }
+      function onTouchMove(e){
+        if (!locked) return;
+        const y = e.touches?.[0]?.clientY || 0;
+        const dy = touchStartY - y;
+        if (dy > 4) {
+          e.preventDefault();
+          progress += dy * 2;
+          touchStartY = y;
+          advance();
+        } else {
+          e.preventDefault();
+        }
+      }
+
+      // Замена контента и плавный выход из пина без пустоты
+      function replaceWithResults() {
+        if (step >= 3) return;
+        step = 3;
+
+        // Клонируем "После занятий"
         const cloned = resultsSrc.cloneNode(true);
         cloned.classList.remove('hidden');
-        cloned.style.animation = 'fadeUp .55s ease both';
-        cloned.classList.add('relative');
+        cloned.classList.add('pin-results');
+        cloned.style.animation = 'fadeUp .5s ease both';
 
-        // Небольшой "молот CTA" сверху — единичный показ
+        // Небольшой "молоток CTA" сверху — один раз
         const ctaHammer = document.createElement('div');
         ctaHammer.className = 'hammer';
         ctaHammer.dataset.hammer = 'cta';
@@ -986,91 +1071,42 @@
 
         card.replaceWith(cloned);
         if (window.lucide?.createIcons) lucide.createIcons();
-
         setTimeout(() => {
-          const hammer = cloned.querySelector('[data-hammer="cta"]');
-          if (hammer) { hammer.classList.add('strike'); setTimeout(()=>hammer.classList.add('fade'), 360); }
+          const h = cloned.querySelector('[data-hammer="cta"]');
+          if (h) { h.classList.add('strike'); setTimeout(()=>h.classList.add('fade'), 360); }
         }, 120);
 
-        // Разблокируем нижний контент
-        setTimeout(() => {
-          below.hidden = false;
-          // Плавное проявление нижнего контента
-          below.style.opacity = '0';
-          below.style.transition = 'opacity .6s ease';
-          requestAnimationFrame(() => { below.style.opacity = '1'; });
-        }, 200);
+        // Разблокируем скролл, но оставляем "После занятий" в центре до первого действия
+        unlockScroll();
+        pendingUnpin = true;
+
+        const unpinOnce = () => {
+          if (!pendingUnpin) return;
+          pendingUnpin = false;
+          // Снимаем центрирование и убираем увеличенную высоту секции, чтобы не было пустоты
+          cloned.classList.remove('pin-results');
+          helpSection.style.minHeight = '0';
+          window.removeEventListener('wheel', unpinOnce);
+          window.removeEventListener('touchstart', unpinOnce);
+          window.removeEventListener('keydown', unpinOnce);
+        };
+
+        window.addEventListener('wheel', unpinOnce, { passive: true, once: true });
+        window.addEventListener('touchstart', unpinOnce, { passive: true, once: true });
+        window.addEventListener('keydown', unpinOnce, { passive: true, once: true });
       }
 
-      // IO: пользователь увидел весь текст секции (полное чтение)
-      let readTimer = null;
-      const ioRead = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if (ent.isIntersecting) {
-            if (readTimer) clearTimeout(readTimer);
-            readTimer = setTimeout(()=> { readReady = true; }, 800); // 0.8с удержания
-          }
-        });
-      }, { threshold: 1.0, rootMargin: '0px 0px -12% 0px' });
-      ioRead.observe(helpContent);
-
-      // IO: приближение карточки — включаем "готовность" показать молоты, но не запускаем удар
-      let allowApproach = false;
-      const ioApproach = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if (ent.isIntersecting && ent.intersectionRatio >= 0.6) {
-            setTimeout(() => { allowApproach = true; }, 900);
-          }
-        });
-      }, { threshold: [0, .6, 1] });
-      ioApproach.observe(card);
-
-      // Скролл-пороговая логика
-      function onScroll() {
-        const y = window.scrollY;
-        const down = y > lastY; lastY = y;
+      // Запуск — как только карточка пересекает центральную линию вьюпорта
+      function onScrollCenterLock() {
+        if (locked || step > 0) return;
         const r = card.getBoundingClientRect();
         const vh = window.innerHeight;
-
-        // 1) Показ молотов до удара — как только секция близко и прочитана
-        if (!hammersShown && readReady && allowApproach && r.top < vh * 0.75) {
-          showHammersIdle();
-        }
-
-        // 2) Первый удар → трещины
-        if (!cracked && hammersShown && down && r.top < vh * 0.55) {
-          strikeHammer('1'); setTimeout(triggerCrack, 220);
-        }
-
-        // 3) Второй удар → полное разбитие
-        if (cracked && !smashed && down && r.top < vh * 0.28) {
-          strikeHammer('2'); setTimeout(triggerSmash, 220);
-        }
-
-        // 4) Замена контента на "После занятий" и открытие нижних секций
-        if (smashed && !replaced && down && r.top < vh * 0.12) {
-          replaceWithResultsAndUnlock();
-          // После замены — можно убрать обработчик
-          window.removeEventListener('scroll', onScroll);
+        if (r.top < vh/2 && r.bottom > vh/2) {
+          lockScrollToCenter();
         }
       }
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      // Дополнительно: колёсико и свайпы, но только после readReady
-      card.addEventListener('wheel', (e) => {
-        if (!readReady) return;
-        if (!cracked && hammersShown && e.deltaY > 4) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
-        else if (cracked && !smashed && e.deltaY > 4) { strikeHammer('2'); setTimeout(triggerSmash, 200); }
-      }, { passive: true });
-
-      let tsY = 0;
-      card.addEventListener('touchstart', (e) => { tsY = e.changedTouches?.[0]?.clientY || 0; }, { passive: true });
-      card.addEventListener('touchmove', (e) => {
-        if (!readReady) return;
-        const dy = (e.changedTouches?.[0]?.clientY || 0) - tsY;
-        if (!cracked && hammersShown && dy < -28) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
-        else if (cracked && !smashed && dy < -28) { strikeHammer('2'); setTimeout(triggerSmash, 200); }
-      }, { passive: true });
+      window.addEventListener('scroll', onScrollCenterLock, { passive: true });
+      onScrollCenterLock(); // если сразу попали в центр при перезагрузке
     })();
 
     // Карусель кейсов
