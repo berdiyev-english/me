@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Английский — первый урок бесплатно | Абдуррахим Бердиев</title>
-  <meta name="description" content="Тяжело даётся английский? Мини‑группы и индивидуально под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, для себя. Без зубрёжки — максимум разговорной практики. Первый урок бесплатно.">
-  <meta property="og:title" content="Английский — первый урок бесплатно | Абдуррахим Бердиев">
-  <meta property="og:description" content="Первый урок бесплатно. Индивидуальный план под вашу цель. Без зубрёжки — максимум разговорной практики.">
+  <title>Английский — больше не мечта, а реальность | Абдуррахим Бердиев</title>
+  <meta name="description" content="Снимаю страх говорить, упрощаю грамматику до понятных схем и тренирую понимание живой речи. Первый результат через 3 месяца. Бесплатный первый урок — получите персональный план на 90 дней и гайд по временам.">
+  <meta property="og:title" content="Английский — больше не мечта, а реальность | Абдуррахим Бердиев">
+  <meta property="og:description" content="Первый урок бесплатно. Персональный план на 90 дней и гайд по временам. Разговорная практика без зубрёжки.">
   <meta property="og:image" content="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg">
   <meta property="og:type" content="website">
 
@@ -42,9 +42,148 @@
     }
     html, body { scroll-behavior: smooth; }
     .container-xxl { max-width: 1200px; }
-    /* Remove default disclosure marker (the "play" triangle) for FAQ on all devices */
     details > summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
+
+    /* Reveal на скролле */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+    .reveal[data-delay] { transition-delay: var(--delay, 0ms); }
+
+    /* Стекло + двойной удар */
+    .help-card { position: relative; overflow: hidden; }
+    .help-card .help-content { transition: opacity .55s ease, filter .55s ease, transform .55s ease; }
+    .help-card[data-broken="smashed"] .help-content { opacity: 0; filter: blur(3px); transform: scale(.99); }
+
+    .glass-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 12; }
+    .glass-overlay::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(400px 400px at 50% 50%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
+        radial-gradient(1200px 800px at 20% -20%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%);
+      opacity: 0; transition: opacity .35s ease;
+      mix-blend-mode: screen;
+    }
+    .help-card[data-broken="cracked"] .glass-overlay::before { opacity: 1; }
+
+    .crack-lines { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
+    .crack-lines line {
+      stroke: rgba(255,255,255,.9);
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-dasharray: 110;
+      stroke-dashoffset: 110;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));
+      transition: stroke-dashoffset .7s ease;
+    }
+    .help-card[data-broken="cracked"] .crack-lines { opacity: .98; }
+    .help-card[data-broken="cracked"] .crack-lines line { stroke-dashoffset: 0; }
+
+    .piece {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: 0 10px 22px rgba(0,0,0,.45);
+      backdrop-filter: blur(6px) saturate(1.2);
+      -webkit-backdrop-filter: blur(6px) saturate(1.2);
+      opacity: 0;
+      transform: translate3d(0,0,0) rotate(0);
+      transition: transform .9s cubic-bezier(.16,.9,.22,1), opacity .65s ease, filter .9s ease;
+      will-change: transform, opacity, filter;
+      clip-path: polygon(50% 50%, 50% 0%, 100% 50%);
+    }
+    .help-card[data-broken="smashed"] .piece { opacity: 1; }
+
+    .hit-anim { animation: hit .42s ease; }
+    @keyframes hit {
+      0%{transform:translate3d(0,0,0)}
+      20%{transform:rotate(-.4deg)}
+      45%{transform:rotate(.5deg)}
+      70%{transform:rotate(-.2deg)}
+      100%{transform:translate3d(0,0,0)}
+    }
+
+    .hammer {
+      position: absolute; left: 50%; top: 50%;
+      z-index: 22; pointer-events: none;
+      opacity: 0;
+      transform-origin: 80% 20%;
+      transition: opacity .15s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.5));
+    }
+    /* Показать молот без удара */
+    .hammer.show { opacity: 1; }
+    .hammer i { width: clamp(44px, 6vw, 64px); height: clamp(44px, 6vw, 64px); color: #fff; }
+    .hammer .label {
+      position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 12px; padding: 4px 8px; border-radius: 10px;
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+    .hammer[data-pos="left"]  { transform: translate(-180%, -140%) rotate(-35deg) scale(.9); }
+    .hammer[data-pos="right"] { transform: translate(  90%, -160%) rotate( 35deg) scale(.9); }
+    .hammer[data-pos="top"]   { transform: translate( -50%, -220%) rotate(  0deg) scale(.9); }
+    .hammer.strike { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    .hammer.fade { opacity: 0; transform: translate(-50%, -50%) rotate(8deg) scale(.96); transition-duration: .32s; }
+
+    .impact {
+      position: absolute; left: 50%; top: 50%;
+      width: 22px; height: 22px;
+      transform: translate(-50%,-50%);
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.7);
+      box-shadow: 0 0 18px rgba(255,255,255,.4);
+      opacity: 0; pointer-events: none;
+      animation: ping .6s ease-out forwards;
+    }
+    @keyframes ping {
+      0% { opacity: .9; transform: translate(-50%,-50%) scale(.6); }
+      60% { opacity: .6; transform: translate(-50%,-50%) scale(1.4); }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(1.9); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .piece, .hammer { transition: none; animation: none; }
+      .reveal { transition: none; }
+    }
+
+    /* Карусель кейсов */
+    .cases-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+    .cases-slide { min-width: 100%; padding: 20px; }
+    .cases-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px);
+      width: 42px; height: 42px; border-radius: 999px;
+      display: grid; place-items: center;
+      color: #fff;
+    }
+    .cases-arrow:hover { background: rgba(255,255,255,.2); }
+    .cases-arrow[disabled] { opacity: .4; pointer-events: none; }
+    .cases-arrow.prev { left: 8px; }
+    .cases-arrow.next { right: 8px; }
+
+    .toggle {
+      display: inline-flex; border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08);
+    }
+    .toggle button {
+      padding: 6px 10px; font-size: 13px; color: #fff; opacity: .7;
+    }
+    .toggle button.active {
+      background: rgba(255,255,255,.18); opacity: 1;
+    }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -67,31 +206,13 @@
 
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
-  <!-- Promo bar (mobile: whole bar clickable) -->
-  <div class="fixed top-0 left-0 right-0 z-[60]">
-    <div class="mx-auto container-xxl px-4">
-      <div class="mt-2 relative rounded-2xl border border-white/15 bg-white/10 text-white/90 backdrop-blur-xl shadow-glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-2">
-        <div class="flex items-center gap-2 text-sm">
-          <i data-lucide="zap" class="w-4 h-4 text-emerald-300"></i>
-          <span class="font-medium">Акция: первый урок + PDF‑гайд «Времена английского» — бесплатно</span>
-        </div>
-        <div class="flex items-center gap-2 text-sm">
-          <span class="opacity-80">До конца акции:</span>
-          <span id="countdown" class="px-2 py-1 rounded-lg bg-white/20 font-semibold">—:—:—</span>
-          <a href="#quiz" class="hidden sm:inline px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-white/90">Забрать бонус</a>
-        </div>
-        <a href="#quiz" class="sm:hidden absolute inset-0" aria-label="Забрать бонус"></a>
-      </div>
-    </div>
-  </div>
-
   <!-- Header / Nav -->
   <header class="fixed top-14 left-0 right-0 z-[70]">
     <div class="mx-auto container-xxl px-4">
       <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
           <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
-            <i data-lucide="home" class="w-4 h-4 text-white/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"></i>
+            <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
           </div>
           <span class="hidden sm:inline text-white/80">To Be English</span>
         </a>
@@ -144,366 +265,502 @@
 
   <main class="pt-48 pb-24">
     <!-- 1) Оффер -->
-
-<section id="offer" class="mx-auto container-xxl px-4">
-  <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-      <!-- Текст -->
-      <div class="md:col-span-7">
-        <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Тяжело даётся английский?</h1>
-        <p class="mt-3 text-white/90 text-lg">Я здесь , чтобы помочь вам!</p>
-        <p class="mt-2 text-white/85 text-base md:text-lg">
-          Мини‑группы и индивидуально. Под вашу цель: ЕГЭ/ОГЭ, переезд, карьера, путешествия, английский для себя.
-          Без зубрёжки — максимум разговорной практики.
-        </p>
-        <div class="mt-6">
-          <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
-            Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
-          </a>
+    <section id="offer" class="mx-auto container-xxl px-4">
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+          <div class="md:col-span-7">
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white reveal" data-delay style="--delay:60ms">Английский — больше не мечта, а реальность</h1>
+            <p class="mt-3 text-white/90 text-lg reveal" style="--delay:140ms">Снимаю страх говорить, упрощаю грамматику до понятных схем и тренирую понимание живой речи. Первый результат через 3 месяца.</p>
+            <div class="mt-6 reveal" style="--delay:220ms">
+              <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
+                Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+              <div class="text-sm text-white/80 mt-2">
+                Все начинается с бесплатного первого урока — получите персональный план на 90 дней и гайд по временам.
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-5">
+            <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full reveal" style="--delay:280ms">
+              <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="absolute inset-0 w-full h-full object-cover object-[center_45%]" loading="lazy"/>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Фото -->
-      <div class="md:col-span-5">
-        <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden
-                    min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
-          <img
-            src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg"
-            alt="Абдуррахим Бердиев"
-            class="absolute inset-0 w-full h-full object-cover object-[center_45%]"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- 2) Кому помогу -->
-    <section id="help" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold">Я помогу вам, если вы</h3>
-        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
-          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
-        </ul>
       </div>
     </section>
 
-    <!-- 3) Что вы получите (Мои студенты) -->
-    <section id="students" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold">Мои студенты</h3>
+    <!-- 2) Узнаете себя здесь? (двойной удар на скролле) -->
+    <section id="help" class="mx-auto container-xxl px-4 mt-16">
+      <div class="help-card rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl relative overflow-hidden" data-broken="idle">
+        <div class="help-content">
+          <h3 class="text-2xl md:text-3xl font-semibold reveal" style="--delay:0ms">Узнаете себя здесь?</h3>
+          <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
+            <li class="flex items-start gap-2 reveal" style="--delay:80ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:120ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
+            <li class="flex items-start gap-2 sm:col-span-2 reveal" style="--delay:320ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
+          </ul>
+        </div>
+
+        <div class="glass-overlay" aria-hidden="true" data-glass>
+          <svg class="crack-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <g>
+              <line x1="50" y1="50" x2="2" y2="8"/>
+              <line x1="50" y1="50" x2="20" y2="2"/>
+              <line x1="50" y1="50" x2="1" y2="40"/>
+              <line x1="50" y1="50" x2="50" y2="1"/>
+              <line x1="50" y1="50" x2="96" y2="6"/>
+              <line x1="50" y1="50" x2="99" y2="35"/>
+              <line x1="50" y1="50" x2="95" y2="70"/>
+              <line x1="50" y1="50" x2="75" y2="98"/>
+              <line x1="50" y1="50" x2="45" y2="98"/>
+              <line x1="50" y1="50" x2="5" y2="95"/>
+              <line x1="50" y1="50" x2="2" y2="60"/>
+              <line x1="50" y1="50" x2="85" y2="15"/>
+            </g>
+          </svg>
+
+          <!-- Молоты показываются заранее с надписью "Занятия со мной" -->
+          <div class="hammer" data-hammer="1" data-pos="left">
+            <i data-lucide="hammer"></i>
+            <span class="label">Занятия со мной</span>
+          </div>
+          <div class="hammer" data-hammer="2" data-pos="right">
+            <i data-lucide="hammer"></i>
+            <span class="label">Занятия со мной</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Источник контента "После занятий" (скрыт, только как шаблон) -->
+    <section id="students" class="hidden">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl" data-results>
+        <h3 class="text-2xl md:text-3xl font-semibold">После занятий со мной вы:</h3>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начали говорить на английском и снимают барьер за 3 месяца</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдали ЕГЭ/ОГЭ на высокий балл и поступают в лучшие вузы</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переехали жить и работать в другую страну</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разобрались с временами и остальной грамматикой</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начинали понимать английскую речь на слух</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повысили свой уровень английского</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Ведут бизнес за границей</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Улучшили произношение</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начнете говорить на английском и снимете барьер за 3 месяца</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдадите ЕГЭ/ОГЭ на высокий балл и поступите в лучшие вузы</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переедете жить и работать в другую страну</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разберетесь с временами и остальной грамматикой</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начнете понимать английскую речь на слух</li>
+          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повысите свой уровень английского</li>
+          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сможете вести бизнес за границей</li>
         </ul>
         <div class="mt-6">
           <a href="#quiz" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
-            Хочу также <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            Сделайте английский своей реальностью <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 4) Кейсы учеников -->
-    <section id="cases" class="mx-auto container-xxl px-4 mt-16">
-      <h3 class="text-2xl md:text-3xl font-semibold">Кейсы учеников</h3>
-      <div class="mt-4 grid gap-4 md:grid-cols-3">
-        <div class="rounded-2xl border border-white/15 bg-white/10 p-5">
-          <div class="text-white font-medium flex items-center gap-2 mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий, бизнес</div>
-          <p class="text-white/90">Снял барьер, начал вести созвоны с зарубежными партнёрами через 8 недель.</p>
-        </div>
-        <div class="rounded-2xl border border-white/15 bg-white/10 p-5">
-          <div class="text-white font-medium flex items-center gap-2 mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина, наука</div>
-          <p class="text-white/90">Через 2 месяца — уверенные предложения, выросло понимание на слух.</p>
-        </div>
-        <div class="rounded-2xl border border-white/15 bg-white/10 p-5">
-          <div class="text-white font-medium flex items-center gap-2 mb-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Валерий, бизнес</div>
-          <p class="text-white/90">Результат почувствовал уже после 3 уроков. Рекомендую.</p>
-        </div>
-      </div>
-    </section>
+    <!-- 4+) Весь контент ниже блокируем до завершения анимации -->
+    <div id="below" hidden>
+      <!-- 4) Кейсы: карусель "до/после" -->
+      <section id="cases" class="mx-auto container-xxl px-4 mt-10">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Кейсы учеников</h3>
 
-    <!-- 5) Обо мне (updated points) -->
+        <div class="cases-slider mt-4 relative reveal" style="--delay:120ms">
+          <button class="cases-arrow prev" data-cases-prev aria-label="Предыдущий"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+          <button class="cases-arrow next" data-cases-next aria-label="Следующий"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
 
-<section id="about" class="mx-auto container-xxl px-4 mt-16">
-  <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
-    <div class="grid gap-6 md:grid-cols-2 items-stretch">
-      <div data-about="text" class="rounded-2xl p-0 m-0">
-        <h3 class="text-2xl md:text-3xl font-semibold">Обо мне</h3>
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl">
+            <div class="cases-track" data-cases-track>
+              <!-- Slide 1 -->
+              <article class="cases-slide">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий, предприниматель</div>
+                    <div class="toggle" data-toggle>
+                      <button type="button" class="active" data-show="before">До</button>
+                      <button type="button" data-show="after">После</button>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <div data-view="before">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Боялся созвонов на английском, писал только письма</li>
+                        <li>• Короткие фразы, долгая пауза перед ответом</li>
+                        <li>• Понимал ~50–60% речи</li>
+                      </ul>
+                    </div>
+                    <div data-view="after" class="hidden">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Проводит еженедельные звонки с партнёрами (без переводчика)</li>
+                        <li>• Переходит на свободные фразы, держит темп диалога</li>
+                        <li>• Понимание на слух 80–90%</li>
+                      </ul>
+                      <div class="text-white/70 text-sm mt-2">Срок: 8 недель, 2 занятия/нед.</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
 
-        <!-- New metric bullets -->
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
-            <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
-            <span class="text-white/90">Тысячи проведённых занятий</span>
+              <!-- Slide 2 -->
+              <article class="cases-slide">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина, аспирант</div>
+                    <div class="toggle" data-toggle>
+                      <button type="button" class="active" data-show="before">До</button>
+                      <button type="button" data-show="after">После</button>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <div data-view="before">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Понимала ~45% лекций и подкастов</li>
+                        <li>• Путалась во временах, особенно Perfect</li>
+                      </ul>
+                    </div>
+                    <div data-view="after" class="hidden">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Понимание лекций выросло до 85–90%</li>
+                        <li>• Времена — в системе, уверенно использует Perfect/Continuous</li>
+                      </ul>
+                      <div class="text-white/70 text-sm mt-2">Срок: 7 недель, комбинированный формат</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 3 -->
+              <article class="cases-slide">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Илья, разработчик</div>
+                    <div class="toggle" data-toggle>
+                      <button type="button" class="active" data-show="before">До</button>
+                      <button type="button" data-show="after">После</button>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <div data-view="before">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Заваливал тех. собеседования на английском</li>
+                        <li>• Не хватало словаря по продукту и процессам</li>
+                      </ul>
+                    </div>
+                    <div data-view="after" class="hidden">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Прошёл собеседование в международную компанию</li>
+                        <li>• Уверенно рассказывает о бэклоге, релизах, метриках</li>
+                      </ul>
+                      <div class="text-white/70 text-sm mt-2">Срок: 6 недель, фокус на speaking + vocab</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 4 -->
+              <article class="cases-slide">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Марина, ЕГЭ</div>
+                    <div class="toggle" data-toggle>
+                      <button type="button" class="active" data-show="before">До</button>
+                      <button type="button" data-show="after">После</button>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <div data-view="before">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Пробник: 62 балла</li>
+                        <li>• Слабый writing, ошибки в грамматике</li>
+                      </ul>
+                    </div>
+                    <div data-view="after" class="hidden">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Итоговый ЕГЭ: 86 баллов</li>
+                        <li>• Уверенный writing: структура, связки, проверка по чек‑листу</li>
+                      </ul>
+                      <div class="text-white/70 text-sm mt-2">Срок: 3 месяца, 3 занятия/нед.</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 5 -->
+              <article class="cases-slide">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Светлана, путешествия</div>
+                    <div class="toggle" data-toggle>
+                      <button type="button" class="active" data-show="before">До</button>
+                      <button type="button" data-show="after">После</button>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <div data-view="before">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Тяжело общалась в отелях и аэропорту</li>
+                        <li>• Страх ошибиться в простых фразах</li>
+                      </ul>
+                    </div>
+                    <div data-view="after" class="hidden">
+                      <ul class="text-white/90 space-y-1">
+                        <li>• Уверенно решает все бытовые ситуации за рубежом</li>
+                        <li>• Автоматизировала базовые конструкции, без ступора</li>
+                      </ul>
+                      <div class="text-white/70 text-sm mt-2">Срок: 4 недели, разговорная практика</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
-          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
-            <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
-            <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
+
+          <div class="flex justify-center gap-1 mt-3" data-cases-dots></div>
+        </div>
+      </section>
+
+      <!-- 5) Преимущества — без фото -->
+      <section id="about" class="mx-auto container-xxl px-4 mt-16">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+          <h3 class="text-2xl md:text-3xl font-semibold reveal">Преимущества работы со мной</h3>
+
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:80ms">
+              <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
+              <span class="text-white/90">Тысячи проведённых занятий</span>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:120ms">
+              <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
+              <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
+            </div>
+          </div>
+
+          <ul class="mt-4 grid gap-2">
+            <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
+            <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
+          </ul>
+
+          <div class="mt-6 reveal" style="--delay:320ms">
+            <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+              Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
           </div>
         </div>
+      </section>
 
-        <!-- Certificates and credentials -->
-        <ul class="mt-4 grid gap-2">
-          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
-          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
-          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
-          <li class="flex items-start gap-2"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
-        </ul>
-        <div class="mt-6">
-          <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
-            Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
-          </a>
+      <!-- 6) Виды занятий -->
+      <section id="types" class="mx-auto container-xxl px-4 mt-16">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+          <h3 class="text-2xl md:text-3xl font-semibold reveal">Виды занятий</h3>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:80ms" data-seat-type="group">
+              <div class="text-lg font-semibold flex items-center gap-2">
+                <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
+              </div>
+              <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
+              <div class="mt-3 text-white/80">
+                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+                <ul class="space-y-1">
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
+                </ul>
+                <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+                <ul class="space-y-1">
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
+                </ul>
+              </div>
+              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+                Записаться
+              </a>
+            </div>
+
+            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:120ms" data-seat-type="solo">
+              <div class="text-lg font-semibold flex items-center gap-2">
+                <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
+              </div>
+              <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
+              <div class="mt-3 text-white/80">
+                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+                <ul class="space-y-1">
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
+                </ul>
+              </div>
+              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+                Записаться
+              </a>
+            </div>
+
+            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:160ms" data-seat-type="zero">
+              <div class="text-lg font-semibold flex items-center gap-2">
+                <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
+              </div>
+              <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
+              <div class="mt-3 text-white/80">
+                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+                <ul class="space-y-1">
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
+                </ul>
+                <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+                <ul class="space-y-1">
+                  <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
+                </ul>
+              </div>
+              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+                Записаться
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Фото -->
-      <div data-about="img"
-           class="relative rounded-2xl border border-white/15 bg-white/10 overflow-hidden
-                  min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full">
-        <img
-          src="https://berdiyev-english.github.io/me/diploma.jpg"
-          alt="Сертификаты и достижения"
-          class="absolute inset-0 w-full h-full object-cover object-[center_35%]"
-          loading="lazy"
-        >
-      </div>
+      <!-- 7) Первый урок бесплатно (квиз) -->
+      <section id="quiz" class="mx-auto container-xxl px-4 mt-16">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="reveal">
+              <h3 class="text-2xl md:text-3xl font-semibold">Первый урок бесплатно</h3>
+              <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
+              <ul class="mt-4 space-y-2 text-white/85">
+                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
+                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
+                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Дам бесплатную консультацию</li>
+                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам в подарок</li>
+              </ul>
+            </div>
+            <div class="reveal" style="--delay:120ms">
+              <form id="quizForm" class="space-y-4 rounded-2xl border border-white/15 bg-white/5 p-4">
+                <div class="text-sm text-white/80">Прогресс</div>
+                <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div id="quizProgress" class="h-full bg-gradient-to-r from-emerald-300 to-cyan-300 w-[25%]"></div>
+                </div>
+
+                <div class="quiz-step" data-step="1">
+                  <label class="block text-sm text-white/80 mb-2">Ваш уровень</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" data-field="level" data-value="A0" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A0</button>
+                    <button type="button" data-field="level" data-value="A1-A2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A1-A2</button>
+                    <button type="button" data-field="level" data-value="B1-B2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">B1-B2</button>
+                    <button type="button" data-field="level" data-value="C1+" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">C1+</button>
+                  </div>
+                </div>
+
+                <div class="quiz-step hidden" data-step="2">
+                  <label class="block text-sm text-white/80 mb-2">Цель</label>
+                  <div class="grid grid-cols-1 gap-2">
+                    <button type="button" data-field="goalChoice" data-value="Разговорный" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Разговорный английский</button>
+                    <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ/IELTS/TOEFL</button>
+                    <button type="button" data-field="goalChoice" data-value="Работа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Работа/карьера</button>
+                    <button type="button" data-field="goalChoice" data-value="Переезд/путешествия" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Переезд/путешествия</button>
+                  </div>
+                </div>
+
+                <div class="quiz-step hidden" data-step="3">
+                  <label class="block text-sm text-white/80 mb-2">Формат</label>
+                  <div class="grid grid-cols-1 gap-2">
+                    <button type="button" data-field="format" data-value="Индивидуально" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Индивидуально</button>
+                    <button type="button" data-field="format" data-value="Мини‑группа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Мини‑группа</button>
+                  </div>
+                </div>
+
+                <div class="quiz-step hidden" data-step="4">
+                  <label class="block text-sm text-white/80 mb-1">Как с вами связаться?</label>
+                  <input id="qName" name="name" type="text" required minlength="2" placeholder="Имя"
+                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
+                  <input id="qPhone" name="phone" type="tel" required pattern="^[0-9+() \\-]{6,}$" placeholder="+7 (___) ___-__-__"
+                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
+                  <textarea id="qGoal" name="goal" rows="3" placeholder="Пара слов о цели (по желанию)"
+                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"></textarea>
+                  <div class="text-xs text-white/60 mt-1">Отправляя, вы соглашаетесь на обработку персональных данных</div>
+                  <button id="quizSubmit" type="submit" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-2.5 font-medium w-full">
+                    Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                  </button>
+                  <div id="quizStatus" class="text-sm mt-2"></div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <button id="quizBack" type="button" class="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-white/80 hover:bg-white/15 hidden">Назад</button>
+                  <button id="quizNext" type="button" class="rounded-xl bg-white text-black px-4 py-2 font-medium hover:bg-white/90">Далее</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) FAQ -->
+      <section id="faq" class="mx-auto container-xxl px-4 mt-16">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+          <h3 class="text-2xl md:text-3xl font-semibold reveal">Популярные вопросы</h3>
+          <div class="mt-4 space-y-2">
+            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
+              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
+                <span>Почему именно со мной?</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              </summary>
+              <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
+            </details>
+            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
+              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
+                <span>Какая гарантия результата?</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              </summary>
+              <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
+            </details>
+            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
+              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
+                <span>Как проходят занятия онлайн?</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              </summary>
+              <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
+            </details>
+            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
+              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
+                <span>С какого уровня можно начинать?</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              </summary>
+              <div class="px-4 pb-4 text-white/90">С любого — от A0 до B2+. Анкета поможет определить старт и формат.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9) Связь со мной -->
+      <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
+        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+          <h3 class="text-2xl font-semibold text-white reveal">Остались вопросы ? Задайте их мне !</h3>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
+            <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
+            <a href="https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
+            <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
+            <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
+            <a href="#quiz" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/20 reveal"><i data-lucide="arrow-right" class="w-5 h-5"></i> Первый урок бесплатно</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-20 border-t border-white/10">
+        <div class="mx-auto container-xxl px-4 py-10">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-white/70">© 2025 To Be English. Все права защищены</p>
+            <p class="text-white/60 text-center md:text-right text-sm md:text-base">
+              *WhatsApp и Instagram (Meta, признана в РФ экстремистской организацией и запрещена)
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</section>
-
-    <!-- 6) Виды занятий (единый вывод мест) -->
-    <section id="types" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold">Виды занятий</h3>
-
-        <div class="mt-6 grid gap-4 md:grid-cols-3">
-          <!-- Групповые -->
-          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="group">
-            <div class="text-lg font-semibold flex items-center gap-2">
-              <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
-            </div>
-            <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
-            <div class="mt-3 text-white/80">
-              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
-              </ul>
-              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
-              </ul>
-            </div>
-            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-              Записаться
-            </a>
-          </div>
-
-          <!-- Индивидуально -->
-          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="solo">
-            <div class="text-lg font-semibold flex items-center gap-2">
-              <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
-            </div>
-            <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
-            <div class="mt-3 text-white/80">
-              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
-              </ul>
-            </div>
-            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-              Записаться
-            </a>
-          </div>
-
-          <!-- Английский с 0 за 3 месяца -->
-          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5" data-seat-type="zero">
-            <div class="text-lg font-semibold flex items-center gap-2">
-              <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
-            </div>
-            <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
-            <div class="mt-3 text-white/80">
-              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
-              </ul>
-              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-              <ul class="space-y-1">
-                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
-              </ul>
-            </div>
-            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-              Записаться
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7) Первый урок бесплатно (квиз) -->
-    <section id="quiz" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="text-2xl md:text-3xl font-semibold">Первый урок бесплатно</h3>
-            <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
-            <ul class="mt-4 space-y-2 text-white/85">
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Дам бесплатную консультацию</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам в подарок</li>
-            </ul>
-          </div>
-          <div>
-            <form id="quizForm" class="space-y-4 rounded-2xl border border-white/15 bg-white/5 p-4">
-              <div class="text-sm text-white/80">Прогресс</div>
-              <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                <div id="quizProgress" class="h-full bg-gradient-to-r from-emerald-300 to-cyan-300 w-[25%]"></div>
-              </div>
-
-              <!-- Шаг 1 -->
-              <div class="quiz-step" data-step="1">
-                <label class="block text-sm text-white/80 mb-2">Ваш уровень</label>
-                <div class="grid grid-cols-2 gap-2">
-                  <button type="button" data-field="level" data-value="A0" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A0</button>
-                  <button type="button" data-field="level" data-value="A1-A2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A1-A2</button>
-                  <button type="button" data-field="level" data-value="B1-B2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">B1-B2</button>
-                  <button type="button" data-field="level" data-value="C1+" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">C1+</button>
-                </div>
-              </div>
-
-              <!-- Шаг 2 -->
-              <div class="quiz-step hidden" data-step="2">
-                <label class="block text-sm text-white/80 mb-2">Цель</label>
-                <div class="grid grid-cols-1 gap-2">
-                  <button type="button" data-field="goalChoice" data-value="Разговорный" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Разговорный английский</button>
-                  <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ/IELTS/TOEFL</button>
-                  <button type="button" data-field="goalChoice" data-value="Работа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Работа/карьера</button>
-                  <button type="button" data-field="goalChoice" data-value="Переезд/путешествия" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Переезд/путешествия</button>
-                </div>
-              </div>
-
-              <!-- Шаг 3 (только формат) -->
-              <div class="quiz-step hidden" data-step="3">
-                <label class="block text-sm text-white/80 mb-2">Формат</label>
-                <div class="grid grid-cols-1 gap-2">
-                  <button type="button" data-field="format" data-value="Индивидуально" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Индивидуально</button>
-                  <button type="button" data-field="format" data-value="Мини‑группа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Мини‑группа</button>
-                </div>
-              </div>
-
-              <!-- Шаг 4 -->
-              <div class="quiz-step hidden" data-step="4">
-                <label class="block text-sm text-white/80 mb-1">Как с вами связаться?</label>
-                <input id="qName" name="name" type="text" required minlength="2" placeholder="Имя"
-                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
-                <input id="qPhone" name="phone" type="tel" required pattern="^[0-9+() \\-]{6,}$" placeholder="+7 (___) ___-__-__"
-                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
-                <textarea id="qGoal" name="goal" rows="3" placeholder="Пара слов о цели (по желанию)"
-                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"></textarea>
-                <div class="text-xs text-white/60 mt-1">Отправляя, вы соглашаетесь на обработку персональных данных</div>
-                <button id="quizSubmit" type="submit" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-2.5 font-medium w-full">
-                  Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </button>
-                <div id="quizStatus" class="text-sm mt-2"></div>
-              </div>
-
-              <div class="flex items-center justify-between">
-                <button id="quizBack" type="button" class="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-white/80 hover:bg-white/15 hidden">Назад</button>
-                <button id="quizNext" type="button" class="rounded-xl bg-white text-black px-4 py-2 font-medium hover:bg-white/90">Далее</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8) FAQ -->
-    <section id="faq" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold">Популярные вопросы</h3>
-        <div class="mt-4 space-y-2">
-          <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-              <span>Почему именно со мной?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-            </summary>
-            <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
-          </details>
-          <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-              <span>Какая гарантия результата?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-            </summary>
-            <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
-          </details>
-          <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-              <span>Как проходят занятия онлайн?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-            </summary>
-            <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
-          </details>
-          <details class="group rounded-xl border border-white/10 bg-white/5">
-            <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-              <span>С какого уровня можно начинать?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-            </summary>
-            <div class="px-4 pb-4 text-white/90">С любого — от A0 до B2+. Анкета поможет определить старт и формат.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9) Связь со мной -->
-    <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
-      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl font-semibold text-white">Остались вопросы ? Задайте их мне !</h3>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
-          <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
-          <a href="https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
-          <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
-          <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
-          <a href="#quiz" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/20"><i data-lucide="arrow-right" class="w-5 h-5"></i> Первый урок бесплатно</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="mt-20 border-t border-white/10">
-      <div class="mx-auto container-xxl px-4 py-10">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p class="text-white/70">© 2025 To Be English. Все права защищены</p>
-          <p class="text-white/60 text-center md:text-right text-sm md:text-base">
-            *WhatsApp и Instagram (Meta, признана в РФ экстремистской организацией и запрещена)
-          </p>
-        </div>
-      </div>
-    </footer>
   </main>
 
   <!-- Sticky CTA -->
@@ -526,15 +783,13 @@
     </button>
   </div>
 
+  <!-- SFX -->
+  <audio id="sfxCrack" preload="auto" src="/sfx/glass-crack.mp3"></audio>
+  <audio id="sfxShatter" preload="auto" src="/sfx/glass-shatter.mp3"></audio>
+
   <script>
     const FORM_ENDPOINT = 'https://formspree.io/f/mblkbjve';
-
-    // Seats configuration (edit here)
-    const SEATS = {
-      group: 0,  // 0 => "Набор закрыт"
-      solo: 3,
-      zero: 1
-    };
+    const SEATS = { group: 0, solo: 3, zero: 1 };
 
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
@@ -547,29 +802,7 @@
     mobileMenu?.querySelector('.absolute.inset-0')?.addEventListener('click', closeMenu);
     mobileMenu?.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => setTimeout(closeMenu, 100)));
 
-    // Countdown (48h/user)
-    (function initCountdown() {
-      const key = 'offerDeadlineTs';
-      let deadline = parseInt(localStorage.getItem(key) || '0', 10);
-      const now = Date.now();
-      if (!deadline || deadline < now) {
-        deadline = now + 48 * 60 * 60 * 1000;
-        localStorage.setItem(key, String(deadline));
-      }
-      const el = document.getElementById('countdown');
-      function tick() {
-        const diff = deadline - Date.now();
-        if (diff <= 0) { el.textContent = '00:00:00'; return; }
-        const d = Math.floor(diff / (1000*60*60*24));
-        const h = Math.floor((diff / (1000*60*60)) % 24).toString().padStart(2,'0');
-        const m = Math.floor((diff / (1000*60)) % 60).toString().padStart(2,'0');
-        const s = Math.floor((diff / 1000) % 60).toString().padStart(2,'0');
-        el.textContent = (d>0? d+'д ':'') + `${h}:${m}:${s}`;
-      }
-      tick(); setInterval(tick, 1000);
-    })();
-
-    // Apply seats to types cards
+    // Apply seats
     (function applySeats(){
       document.querySelectorAll('.format-card').forEach(card => {
         const type = card.dataset.seatType;
@@ -603,26 +836,299 @@
     // Icons
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
 
-    // Sync About heights on desktop (image = text height)
-    function syncAboutHeights(){
-      const about = document.getElementById('about');
-      if (!about) return;
-      const textCol = about.querySelector('[data-about="text"]');
-      const imgCol = about.querySelector('[data-about="img"]');
-      const img = imgCol?.querySelector('img');
-      if (window.innerWidth >= 768 && textCol && imgCol && img) {
-        const h = textCol.offsetHeight;
-        imgCol.style.height = h + 'px';
-        img.style.height = '100%';
-      } else if (imgCol && img) {
-        imgCol.style.height = '';
-        img.style.height = '';
-      }
-    }
-    window.addEventListener('load', syncAboutHeights);
-    window.addEventListener('resize', () => setTimeout(syncAboutHeights, 50));
+    // Reveal
+    (function setupReveal(){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(ent=>{
+          if (ent.isIntersecting) {
+            ent.target.classList.add('show');
+            io.unobserve(ent.target);
+          }
+        });
+      }, { threshold:.2, rootMargin:'0px 0px -8% 0px' });
 
-    // QUIZ logic (delegated clicks, highlight, auto-advance from step 3, send all fields)
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const d = el.style.getPropertyValue('--delay');
+        if (d) el.style.setProperty('--delay', d);
+        io.observe(el);
+      });
+    })();
+
+    // ====== Двойной удар с контролем чтения и поэтапным скроллом ======
+    (function twoHitScrollSequence() {
+      const card = document.querySelector('#help .help-card');
+      const overlay = card?.querySelector('[data-glass]');
+      const helpContent = card?.querySelector('.help-content');
+      const resultsSrc = document.querySelector('#students [data-results]');
+      const below = document.getElementById('below');
+      const crackAudio = document.getElementById('sfxCrack');
+      const shatterAudio = document.getElementById('sfxShatter');
+      if (!card || !overlay || !helpContent || !resultsSrc || !below) return;
+
+      // Генерация осколков
+      function createPieces() {
+        const rect = overlay.getBoundingClientRect();
+        const w = rect.width, h = rect.height;
+        const cx = w / 2, cy = h / 2;
+        const R = Math.sqrt(w*w + h*h) * 1.1;
+        const count = Math.min(34, Math.max(22, Math.round((w*h) / 22000)));
+        let angle = -Math.PI / 2 + (Math.random() - .5) * .5;
+        const minArc = (Math.PI * 2) / (count + 6);
+
+        for (let i = 0; i < count; i++) {
+          const delta = minArc * (0.9 + Math.random() * 1.6);
+          const a1 = angle;
+          const a2 = angle + delta;
+          angle = a2;
+
+          const p1x = cx + R * Math.cos(a1), p1y = cy + R * Math.sin(a1);
+          const p2x = cx + R * Math.cos(a2), p2y = cy + R * Math.sin(a2);
+
+          const p = document.createElement('div');
+          p.className = 'piece';
+          p.style.clipPath = `polygon(${cx}px ${cy}px, ${p1x}px ${p1y}px, ${p2x}px ${p2y}px)`;
+
+          const edge = (0.30 + Math.random()*0.35).toFixed(2);
+          p.style.borderColor = `rgba(255,255,255,${edge})`;
+          if (Math.random() < .35) p.style.filter = 'brightness(1.08) saturate(1.05)';
+
+          const mid = (a1 + a2) / 2;
+          const distance = R * (0.45 + Math.random() * 0.7);
+          const dx = Math.cos(mid) * distance;
+          const dy = Math.sin(mid) * distance;
+          const rot = -60 + Math.random()*120;
+
+          p.dataset.dx = dx.toFixed(1);
+          p.dataset.dy = dy.toFixed(1);
+          p.dataset.rot = rot.toFixed(0);
+
+          overlay.appendChild(p);
+        }
+      }
+      window.addEventListener('load', createPieces);
+
+      let readReady = false;          // Пользователь "прочитал" секцию (контент полностью увиден)
+      let hammersShown = false;       // Молоты показаны с надписью до удара
+      let cracked = false;            // Первая стадия — трещины
+      let smashed = false;            // Вторая стадия — полное разбитие
+      let replaced = false;           // Контент заменён на "После занятий"
+      let lastY = window.scrollY;
+
+      function play(aud, vol=0.7){ try { if (aud) { aud.currentTime = 0; aud.volume = vol; aud.play().catch(()=>{}); } } catch(e){} }
+      function impactPing(where = overlay){
+        const ping = document.createElement('span');
+        ping.className = 'impact';
+        where.appendChild(ping);
+        setTimeout(()=> ping.remove(), 650);
+      }
+      function hit() {
+        card.classList.add('hit-anim');
+        setTimeout(() => card.classList.remove('hit-anim'), 450);
+      }
+      function strikeHammer(which, host = overlay) {
+        const hammer = host.querySelector(`.hammer[data-hammer="${which}"]`);
+        if (!hammer) return;
+        hammer.classList.add('strike');
+        setTimeout(() => {
+          impactPing(host);
+          setTimeout(() => hammer.classList.add('fade'), 280);
+          setTimeout(() => hammer.classList.remove('strike','fade','show'), 900);
+        }, 180);
+      }
+
+      function showHammersIdle() {
+        if (hammersShown) return;
+        overlay.querySelectorAll('.hammer').forEach(h => h.classList.add('show'));
+        hammersShown = true;
+      }
+
+      function triggerCrack() {
+        if (cracked) return;
+        cracked = true;
+        card.setAttribute('data-broken', 'cracked');
+        play(crackAudio, .55);
+        hit();
+      }
+
+      function triggerSmash() {
+        if (smashed) return;
+        smashed = true;
+        if (!cracked) triggerCrack();
+        card.setAttribute('data-broken', 'smashed');
+        play(shatterAudio, .7);
+        hit();
+
+        overlay.querySelectorAll('.piece').forEach(p => {
+          const dx = +p.dataset.dx, dy = +p.dataset.dy, rot = +p.dataset.rot;
+          p.style.opacity = '1';
+          p.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${rot}deg)`;
+          p.style.filter = 'brightness(1.25)';
+        });
+      }
+
+      function replaceWithResultsAndUnlock() {
+        if (replaced) return;
+        replaced = true;
+
+        // Клонируем блок "После занятий" и вставляем на место карточки
+        const cloned = resultsSrc.cloneNode(true);
+        cloned.classList.remove('hidden');
+        cloned.style.animation = 'fadeUp .55s ease both';
+        cloned.classList.add('relative');
+
+        // Небольшой "молот CTA" сверху — единичный показ
+        const ctaHammer = document.createElement('div');
+        ctaHammer.className = 'hammer';
+        ctaHammer.dataset.hammer = 'cta';
+        ctaHammer.dataset.pos = 'top';
+        ctaHammer.innerHTML = `<i data-lucide="hammer"></i><span class="label">Занятия со мной</span>`;
+        cloned.appendChild(ctaHammer);
+
+        card.replaceWith(cloned);
+        if (window.lucide?.createIcons) lucide.createIcons();
+
+        setTimeout(() => {
+          const hammer = cloned.querySelector('[data-hammer="cta"]');
+          if (hammer) { hammer.classList.add('strike'); setTimeout(()=>hammer.classList.add('fade'), 360); }
+        }, 120);
+
+        // Разблокируем нижний контент
+        setTimeout(() => {
+          below.hidden = false;
+          // Плавное проявление нижнего контента
+          below.style.opacity = '0';
+          below.style.transition = 'opacity .6s ease';
+          requestAnimationFrame(() => { below.style.opacity = '1'; });
+        }, 200);
+      }
+
+      // IO: пользователь увидел весь текст секции (полное чтение)
+      let readTimer = null;
+      const ioRead = new IntersectionObserver((entries) => {
+        entries.forEach(ent => {
+          if (ent.isIntersecting) {
+            if (readTimer) clearTimeout(readTimer);
+            readTimer = setTimeout(()=> { readReady = true; }, 800); // 0.8с удержания
+          }
+        });
+      }, { threshold: 1.0, rootMargin: '0px 0px -12% 0px' });
+      ioRead.observe(helpContent);
+
+      // IO: приближение карточки — включаем "готовность" показать молоты, но не запускаем удар
+      let allowApproach = false;
+      const ioApproach = new IntersectionObserver((entries) => {
+        entries.forEach(ent => {
+          if (ent.isIntersecting && ent.intersectionRatio >= 0.6) {
+            setTimeout(() => { allowApproach = true; }, 900);
+          }
+        });
+      }, { threshold: [0, .6, 1] });
+      ioApproach.observe(card);
+
+      // Скролл-пороговая логика
+      function onScroll() {
+        const y = window.scrollY;
+        const down = y > lastY; lastY = y;
+        const r = card.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // 1) Показ молотов до удара — как только секция близко и прочитана
+        if (!hammersShown && readReady && allowApproach && r.top < vh * 0.75) {
+          showHammersIdle();
+        }
+
+        // 2) Первый удар → трещины
+        if (!cracked && hammersShown && down && r.top < vh * 0.55) {
+          strikeHammer('1'); setTimeout(triggerCrack, 220);
+        }
+
+        // 3) Второй удар → полное разбитие
+        if (cracked && !smashed && down && r.top < vh * 0.28) {
+          strikeHammer('2'); setTimeout(triggerSmash, 220);
+        }
+
+        // 4) Замена контента на "После занятий" и открытие нижних секций
+        if (smashed && !replaced && down && r.top < vh * 0.12) {
+          replaceWithResultsAndUnlock();
+          // После замены — можно убрать обработчик
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Дополнительно: колёсико и свайпы, но только после readReady
+      card.addEventListener('wheel', (e) => {
+        if (!readReady) return;
+        if (!cracked && hammersShown && e.deltaY > 4) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
+        else if (cracked && !smashed && e.deltaY > 4) { strikeHammer('2'); setTimeout(triggerSmash, 200); }
+      }, { passive: true });
+
+      let tsY = 0;
+      card.addEventListener('touchstart', (e) => { tsY = e.changedTouches?.[0]?.clientY || 0; }, { passive: true });
+      card.addEventListener('touchmove', (e) => {
+        if (!readReady) return;
+        const dy = (e.changedTouches?.[0]?.clientY || 0) - tsY;
+        if (!cracked && hammersShown && dy < -28) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
+        else if (cracked && !smashed && dy < -28) { strikeHammer('2'); setTimeout(triggerSmash, 200); }
+      }, { passive: true });
+    })();
+
+    // Карусель кейсов
+    (function casesCarousel(){
+      const track = document.querySelector('[data-cases-track]');
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const prev = document.querySelector('[data-cases-prev]');
+      const next = document.querySelector('[data-cases-next]');
+      const dotsWrap = document.querySelector('[data-cases-dots]');
+      let index = 0;
+
+      function update() {
+        track.style.transform = `translateX(${-index*100}%)`;
+        dotsWrap.querySelectorAll('button').forEach((d,i)=> {
+          d.classList.toggle('opacity-100', i===index);
+          d.classList.toggle('opacity-50', i!==index);
+        });
+        prev.toggleAttribute('disabled', index===0);
+        next.toggleAttribute('disabled', index===slides.length-1);
+      }
+
+      // Dots
+      slides.forEach((_,i)=>{
+        const b = document.createElement('button');
+        b.className = 'w-2.5 h-2.5 rounded-full bg-white transition-opacity ' + (i===0 ? 'opacity-100' : 'opacity-50');
+        b.addEventListener('click', ()=>{ index=i; update(); });
+        dotsWrap.appendChild(b);
+      });
+
+      prev?.addEventListener('click', ()=>{ if(index>0){ index--; update(); } });
+      next?.addEventListener('click', ()=>{ if(index<slides.length-1){ index++; update(); } });
+
+      // Touch swipe
+      let startX=0, dx=0, isDown=false;
+      track.addEventListener('touchstart', e=>{ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchmove', e=>{ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
+      track.addEventListener('touchend', ()=>{ 
+        if(!isDown) return; isDown=false;
+        if (Math.abs(dx)>50){ if(dx<0 && index<slides.length-1) index++; if(dx>0 && index>0) index--; update(); }
+        dx=0;
+      });
+
+      // Toggle "до/после"
+      track.addEventListener('click', (e)=>{
+        const btn = e.target.closest('[data-show]');
+        if (!btn) return;
+        const wrap = btn.closest('[data-toggle]');
+        const slide = btn.closest('.cases-slide');
+        const view = btn.dataset.show;
+        wrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b===btn));
+        slide.querySelectorAll('[data-view]').forEach(v=>v.classList.toggle('hidden', v.dataset.view !== view));
+      });
+
+      update();
+    })();
+
+    // QUIZ logic
     (function quiz(){
       const form = document.getElementById('quizForm');
       if (!form) return;
@@ -658,7 +1164,6 @@
         });
         btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
 
-        // Auto-advance: step 1->2, 2->3, 3->4
         if (step === 1 || step === 2) setStep(step + 1);
         else if (step === 3) setStep(4);
       });
