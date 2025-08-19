@@ -45,121 +45,12 @@
     details > summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
 
-    /* ========== Reveal (последовательная анимация на скролле) ========== */
+    /* Reveal (плавное появление на скролле) */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.show { opacity: 1; transform: none; }
     .reveal[data-delay] { transition-delay: var(--delay, 0ms); }
 
-    /* ========== Реалистичное стекло с двойным ударом ========== */
-    .help-card { position: relative; overflow: hidden; }
-    .help-card .help-content {
-      transition: opacity .55s ease, filter .55s ease, transform .55s ease;
-    }
-    .help-card[data-broken="smashed"] .help-content {
-      opacity: 0; filter: blur(3px); transform: scale(.99);
-    }
-
-    .glass-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 12; }
-    .glass-overlay::before {
-      content: "";
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(400px 400px at 50% 50%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
-        radial-gradient(1200px 800px at 20% -20%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%);
-      opacity: 0; transition: opacity .35s ease;
-      mix-blend-mode: screen;
-    }
-    .help-card[data-broken="cracked"] .glass-overlay::before { opacity: 1; }
-
-    .crack-lines { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
-    .crack-lines line {
-      stroke: rgba(255,255,255,.9);
-      stroke-width: 1;
-      stroke-linecap: round;
-      stroke-dasharray: 110;
-      stroke-dashoffset: 110;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));
-      transition: stroke-dashoffset .7s ease;
-    }
-    .help-card[data-broken="cracked"] .crack-lines { opacity: .98; }
-    .help-card[data-broken="cracked"] .crack-lines line { stroke-dashoffset: 0; }
-
-    .piece {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.35);
-      box-shadow: 0 10px 22px rgba(0,0,0,.45);
-      backdrop-filter: blur(6px) saturate(1.2);
-      -webkit-backdrop-filter: blur(6px) saturate(1.2);
-      opacity: 0;
-      transform: translate3d(0,0,0) rotate(0);
-      transition: transform .9s cubic-bezier(.16,.9,.22,1), opacity .65s ease, filter .9s ease;
-      will-change: transform, opacity, filter;
-      clip-path: polygon(50% 50%, 50% 0%, 100% 50%);
-    }
-    .help-card[data-broken="smashed"] .piece { opacity: 1; }
-
-    .hit-anim { animation: hit .42s ease; }
-    @keyframes hit {
-      0%{transform:translate3d(0,0,0)}
-      20%{transform:rotate(-.4deg)}
-      45%{transform:rotate(.5deg)}
-      70%{transform:rotate(-.2deg)}
-      100%{transform:translate3d(0,0,0)}
-    }
-
-    .hammer {
-      position: absolute; left: 50%; top: 50%;
-      z-index: 22; pointer-events: none;
-      opacity: 0;
-      transform-origin: 80% 20%;
-      transition: opacity .15s ease, transform .5s cubic-bezier(.2,.8,.2,1);
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.5));
-    }
-    .hammer i { width: clamp(44px, 6vw, 64px); height: clamp(44px, 6vw, 64px); color: #fff; }
-    .hammer .label {
-      position: absolute; top: -12px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.25);
-      color: #fff;
-      font-size: 12px; padding: 4px 8px; border-radius: 10px;
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-    .hammer[data-pos="left"]  { transform: translate(-180%, -140%) rotate(-35deg) scale(.9); }
-    .hammer[data-pos="right"] { transform: translate(  90%, -160%) rotate( 35deg) scale(.9); }
-    .hammer[data-pos="top"]   { transform: translate( -50%, -220%) rotate(  0deg) scale(.9); }
-    .hammer.strike { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    .hammer.fade { opacity: 0; transform: translate(-50%, -50%) rotate(8deg) scale(.96); transition-duration: .32s; }
-
-    .impact {
-      position: absolute; left: 50%; top: 50%;
-      width: 22px; height: 22px;
-      transform: translate(-50%,-50%);
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,.7);
-      box-shadow: 0 0 18px rgba(255,255,255,.4);
-      opacity: 0; pointer-events: none;
-      animation: ping .6s ease-out forwards;
-    }
-    @keyframes ping {
-      0% { opacity: .9; transform: translate(-50%,-50%) scale(.6); }
-      60% { opacity: .6; transform: translate(-50%,-50%) scale(1.4); }
-      100% { opacity: 0; transform: translate(-50%,-50%) scale(1.9); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .piece, .hammer { transition: none; animation: none; }
-      .reveal { transition: none; }
-    }
-
-    /* ========== Карусель кейсов (до/после) ========== */
+    /* Карусель кейсов (до/после) */
     .cases-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); will-change: transform; }
     .cases-slide { min-width: 100%; padding: 20px; }
     .cases-arrow {
@@ -168,7 +59,7 @@
       backdrop-filter: blur(8px);
       width: 42px; height: 42px; border-radius: 999px;
       display: grid; place-items: center;
-      color: #fff;
+      color: #fff; z-index: 5;
     }
     .cases-arrow:hover { background: rgba(255,255,255,.2); }
     .cases-arrow[disabled] { opacity: .4; pointer-events: none; }
@@ -185,6 +76,10 @@
     }
     .toggle button.active {
       background: rgba(255,255,255,.18); opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; }
     }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -291,54 +186,24 @@
       </div>
     </section>
 
-    <!-- 2) Узнаете себя здесь? (двойной удар) -->
+    <!-- 2) Узнаете себя здесь? (без анимации/молотов) -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
-      <div class="help-card rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl relative overflow-hidden" data-broken="idle">
-        <div class="help-content">
-          <h3 class="text-2xl md:text-3xl font-semibold reveal" style="--delay:0ms">Узнаете себя здесь?</h3>
-          <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-            <li class="flex items-start gap-2 reveal" style="--delay:80ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:120ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
-            <li class="flex items-start gap-2 sm:col-span-2 reveal" style="--delay:320ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
-          </ul>
-        </div>
-
-        <div class="glass-overlay" aria-hidden="true" data-glass>
-          <svg class="crack-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <g>
-              <line x1="50" y1="50" x2="2" y2="8"/>
-              <line x1="50" y1="50" x2="20" y2="2"/>
-              <line x1="50" y1="50" x2="1" y2="40"/>
-              <line x1="50" y1="50" x2="50" y2="1"/>
-              <line x1="50" y1="50" x2="96" y2="6"/>
-              <line x1="50" y1="50" x2="99" y2="35"/>
-              <line x1="50" y1="50" x2="95" y2="70"/>
-              <line x1="50" y1="50" x2="75" y2="98"/>
-              <line x1="50" y1="50" x2="45" y2="98"/>
-              <line x1="50" y1="50" x2="5" y2="95"/>
-              <line x1="50" y1="50" x2="2" y2="60"/>
-              <line x1="50" y1="50" x2="85" y2="15"/>
-            </g>
-          </svg>
-
-          <div class="hammer" data-hammer="1" data-pos="left">
-            <i data-lucide="hammer"></i>
-            <span class="label">Первый молот</span>
-          </div>
-          <div class="hammer" data-hammer="2" data-pos="right">
-            <i data-lucide="hammer"></i>
-            <span class="label">Второй молот</span>
-          </div>
-        </div>
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя здесь?</h3>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
+          <li class="flex items-start gap-2 reveal" style="--delay:80ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
+          <li class="flex items-start gap-2 reveal" style="--delay:120ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
+          <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
+          <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
+          <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
+          <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
+          <li class="flex items-start gap-2 sm:col-span-2 reveal" style="--delay:320ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
+        </ul>
       </div>
     </section>
 
-    <!-- 3) Источник контента "После занятий" (скрыт, чтобы не занимал место) -->
-    <section id="students" class="hidden">
+    <!-- 3) После занятий — теперь видно -->
+    <section id="students" class="mx-auto container-xxl px-4 mt-10">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl" data-results>
         <h3 class="text-2xl md:text-3xl font-semibold">После занятий со мной вы:</h3>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
@@ -358,7 +223,7 @@
       </div>
     </section>
 
-    <!-- 4) Кейсы: карусель "до/после" -->
+    <!-- 4) Кейсы: карусель "до/после" (со стрелками) -->
     <section id="cases" class="mx-auto container-xxl px-4 mt-10">
       <h3 class="text-2xl md:text-3xl font-semibold reveal">Кейсы учеников</h3>
 
@@ -781,13 +646,8 @@
     </button>
   </div>
 
-  <!-- SFX -->
-  <audio id="sfxCrack" preload="auto" src="/sfx/glass-crack.mp3"></audio>
-  <audio id="sfxShatter" preload="auto" src="/sfx/glass-shatter.mp3"></audio>
-
   <script>
     const FORM_ENDPOINT = 'https://formspree.io/f/mblkbjve';
-
     const SEATS = { group: 0, solo: 3, zero: 1 };
 
     // Mobile menu
@@ -835,7 +695,7 @@
     // Icons
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
 
-    // ========== Reveal последовательная анимация ==========
+    // Reveal последовательная анимация
     (function setupReveal(){
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(ent=>{
@@ -853,161 +713,7 @@
       });
     })();
 
-    // ========== Двойной удар: читают -> молот 1 -> молот 2 -> показать "После занятий" на месте ==========
-    (function improvedTwoHitShatter() {
-      const card = document.querySelector('#help .help-card');
-      const overlay = card?.querySelector('[data-glass]');
-      const resultsSrc = document.querySelector('#students [data-results]');
-      const crackAudio = document.getElementById('sfxCrack');
-      const shatterAudio = document.getElementById('sfxShatter');
-      if (!card || !overlay || !resultsSrc) return;
-
-      // Осколки-клинья
-      function createPieces() {
-        const rect = overlay.getBoundingClientRect();
-        const w = rect.width, h = rect.height;
-        const cx = w / 2, cy = h / 2;
-        const R = Math.sqrt(w*w + h*h) * 1.1;
-        const count = Math.min(34, Math.max(22, Math.round((w*h) / 22000)));
-        let angle = -Math.PI / 2 + (Math.random() - .5) * .5;
-        const minArc = (Math.PI * 2) / (count + 6);
-
-        for (let i = 0; i < count; i++) {
-          const delta = minArc * (0.9 + Math.random() * 1.6);
-          const a1 = angle;
-          const a2 = angle + delta;
-          angle = a2;
-
-          const p1x = cx + R * Math.cos(a1), p1y = cy + R * Math.sin(a1);
-          const p2x = cx + R * Math.cos(a2), p2y = cy + R * Math.sin(a2);
-
-          const p = document.createElement('div');
-          p.className = 'piece';
-          p.style.clipPath = `polygon(${cx}px ${cy}px, ${p1x}px ${p1y}px, ${p2x}px ${p2y}px)`;
-
-          const edge = (0.30 + Math.random()*0.35).toFixed(2);
-          p.style.borderColor = `rgba(255,255,255,${edge})`;
-          if (Math.random() < .35) p.style.filter = 'brightness(1.08) saturate(1.05)';
-
-          const mid = (a1 + a2) / 2;
-          const distance = R * (0.45 + Math.random() * 0.7);
-          const dx = Math.cos(mid) * distance;
-          const dy = Math.sin(mid) * distance;
-          const rot = -60 + Math.random()*120;
-
-          p.dataset.dx = dx.toFixed(1);
-          p.dataset.dy = dy.toFixed(1);
-          p.dataset.rot = rot.toFixed(0);
-
-          overlay.appendChild(p);
-        }
-      }
-      window.addEventListener('load', createPieces);
-
-      let cracked = false, smashed = false, allowCrack = false, lastY = window.scrollY;
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if (ent.isIntersecting && ent.intersectionRatio >= 0.6) {
-            setTimeout(() => { allowCrack = true; }, 900);
-          }
-        });
-      }, { threshold: [0, .6, 1] });
-      io.observe(card);
-
-      function play(aud, vol=0.7){ try { if (aud) { aud.currentTime = 0; aud.volume = vol; aud.play().catch(()=>{}); } } catch(e){} }
-      function impactPing(where = overlay){
-        const ping = document.createElement('span');
-        ping.className = 'impact';
-        where.appendChild(ping);
-        setTimeout(()=> ping.remove(), 650);
-      }
-      function hit() {
-        card.classList.add('hit-anim');
-        setTimeout(() => card.classList.remove('hit-anim'), 450);
-      }
-      function strikeHammer(which, host = overlay) {
-        const hammer = host.querySelector(`.hammer[data-hammer="${which}"]`);
-        if (!hammer) return;
-        hammer.classList.add('strike');
-        setTimeout(() => {
-          impactPing(host);
-          setTimeout(() => hammer.classList.add('fade'), 280);
-          setTimeout(() => hammer.classList.remove('strike','fade'), 800);
-        }, 180);
-      }
-
-      function triggerCrack() {
-        if (cracked) return;
-        cracked = true; card.setAttribute('data-broken', 'cracked'); play(crackAudio, .55); hit();
-      }
-
-      function triggerSmash() {
-        if (smashed) return;
-        smashed = true; if (!cracked) triggerCrack();
-        card.setAttribute('data-broken', 'smashed'); play(shatterAudio, .7); hit();
-
-        overlay.querySelectorAll('.piece').forEach(p => {
-          const dx = +p.dataset.dx, dy = +p.dataset.dy, rot = +p.dataset.rot;
-          p.style.opacity = '1';
-          p.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${rot}deg)`;
-          p.style.filter = 'brightness(1.25)';
-        });
-
-        // Вставляем "После занятий со мной вы" на место
-        setTimeout(() => {
-          const cloned = resultsSrc.cloneNode(true);
-          cloned.classList.remove('opacity-0','translate-y-4','hidden');
-          cloned.style.animation = 'fadeUp .55s ease both';
-          cloned.classList.add('relative');
-
-          // Молот CTA
-          const ctaHammer = document.createElement('div');
-          ctaHammer.className = 'hammer';
-          ctaHammer.dataset.hammer = 'cta';
-          ctaHammer.dataset.pos = 'top';
-          ctaHammer.innerHTML = `<i data-lucide="hammer"></i><span class="label">Занятия со мной</span>`;
-          cloned.appendChild(ctaHammer);
-
-          card.replaceWith(cloned);
-          if (window.lucide?.createIcons) lucide.createIcons();
-
-          setTimeout(() => {
-            const hammer = cloned.querySelector('[data-hammer="cta"]');
-            if (hammer) { hammer.classList.add('strike'); setTimeout(()=>hammer.classList.add('fade'), 320); }
-          }, 120);
-        }, 650);
-      }
-
-      // Жесты/скролл
-      card.addEventListener('wheel', (e) => {
-        if (!cracked && allowCrack && e.deltaY > 4) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
-      }, { passive: true });
-
-      let tsY = 0;
-      card.addEventListener('touchstart', (e) => { tsY = e.changedTouches?.[0]?.clientY || 0; }, { passive: true });
-      card.addEventListener('touchmove', (e) => {
-        const dy = (e.changedTouches?.[0]?.clientY || 0) - tsY;
-        if (!cracked && allowCrack && dy < -28) { strikeHammer('1'); setTimeout(triggerCrack, 200); }
-      }, { passive: true });
-
-      function onScroll() {
-        const y = window.scrollY;
-        const down = y > lastY; lastY = y;
-        const r = card.getBoundingClientRect();
-        const vh = window.innerHeight;
-
-        if (!cracked && allowCrack && down && r.top < vh * 0.55) {
-          strikeHammer('1'); setTimeout(triggerCrack, 200);
-        }
-        if (cracked && !smashed && down && (r.top < vh * 0.22 || r.bottom < vh * 0.6)) {
-          strikeHammer('2'); setTimeout(triggerSmash, 200);
-        }
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-
-    // ========== Карусель кейсов ==========
+    // Карусель кейсов
     (function casesCarousel(){
       const track = document.querySelector('[data-cases-track]');
       if (!track) return;
