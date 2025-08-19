@@ -40,18 +40,25 @@
       --input: 0 0% 16%;
       --ring: 0 0% 3.9%;
     }
-    html, body { scroll-behavior: smooth; }
+    /* Убираем плавную прокрутку */
+    html, body { scroll-behavior: auto; }
     .container-xxl { max-width: 1200px; }
     details > summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
 
-    /* Reveal (плавное появление на скролле) */
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.show { opacity: 1; transform: none; }
-    .reveal[data-delay] { transition-delay: var(--delay, 0ms); }
+    /* Полное отключение анимаций и переходов */
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
 
-    /* Карусель кейсов (до/после) */
-    .cases-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+    /* Reveal — делаем статичным без анимаций */
+    .reveal { opacity: 1; transform: none; }
+    .reveal.show { opacity: 1; transform: none; }
+    .reveal[data-delay] { --delay: 0ms; }
+
+    /* Карусель кейсов: без анимации передвижения */
+    .cases-track { display: flex; will-change: auto; } /* transition убран */
     .cases-slide { min-width: 100%; padding: 20px; }
     .cases-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -71,12 +78,8 @@
       border: 1px solid rgba(255,255,255,.2);
       background: rgba(255,255,255,.08);
     }
-    .toggle button {
-      padding: 6px 10px; font-size: 13px; color: #fff; opacity: .7;
-    }
-    .toggle button.active {
-      background: rgba(255,255,255,.18); opacity: 1;
-    }
+    .toggle button { padding: 6px 10px; font-size: 13px; color: #fff; opacity: .7; }
+    .toggle button.active { background: rgba(255,255,255,.18); opacity: 1; }
 
     /* Кнопки выбора режима (Для себя / ОГЭ / ЕГЭ) */
     .mode-switch { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -86,7 +89,6 @@
       border: 1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.08);
       color: #fff; opacity: .9; cursor: pointer;
-      transition: background .2s ease, transform .05s ease;
       user-select: none;
     }
     .mode-btn:hover { background: rgba(255,255,255,.14); }
@@ -96,14 +98,13 @@
       box-shadow: 0 12px 30px rgba(255,255,255,.12);
     }
 
-    /* Вариант боковой (включается добавлением класса vertical у .mode-switch на крупных экранах)
-       Пример: <div class="mode-switch vertical lg:fixed lg:left-4 lg:top-1/3">... */
     @media (min-width:1024px){
       .mode-switch.vertical { flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal { transition: none; }
+      /* на всякий случай держим */
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -236,7 +237,7 @@
     <!-- 2) Боли -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя здесь?</h3>
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя ?</h3>
         <ul id="helpList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
           <!-- Заполняется скриптом -->
         </ul>
@@ -246,7 +247,7 @@
     <!-- 2.5) Решения (новая секция) -->
     <section id="solutions" class="mx-auto container-xxl px-4 mt-10">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold">Как мы решаем</h3>
+        <h3 class="text-2xl md:text-3xl font-semibold">Решение</h3>
         <ul id="solutionsList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
           <!-- Заполняется скриптом -->
         </ul>
@@ -420,7 +421,7 @@
               </div>
             </article>
 
-            <!-- Slide 6 (oge) — новый -->
+            <!-- Slide 6 (oge) -->
             <article class="cases-slide" data-tags="oge">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
@@ -459,27 +460,13 @@
       </div>
     </section>
 
-    <!-- 5) Преимущества — без фото -->
+    <!-- 5) Преимущества — динамически по режиму -->
     <section id="about" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold reveal">Преимущества работы со мной</h3>
 
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:80ms">
-            <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
-            <span class="text-white/90">Тысячи проведённых занятий</span>
-          </div>
-          <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:120ms">
-            <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
-            <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
-          </div>
-        </div>
-
-        <ul class="mt-4 grid gap-2">
-          <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
-          <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
-          <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
-          <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
+        <ul id="advantagesList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
+          <!-- Заполняется скриптом -->
         </ul>
 
         <div class="mt-6 reveal" style="--delay:320ms">
@@ -647,28 +634,28 @@
           <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
             <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Почему именно со мной?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
             <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Какая гарантия результата?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
             <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>Как проходят занятия онлайн?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
           </details>
           <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
             <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
               <span>С какого уровня можно начинать?</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </summary>
             <div class="px-4 pb-4 text-white/90">С любого — от A0 до B2+. Анкета поможет определить старт и формат.</div>
           </details>
@@ -764,7 +751,7 @@
 
     // Back to top
     const toTopBtn = document.getElementById('toTop');
-    toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0 })); // без smooth
     window.addEventListener('scroll', () => {
       if (window.scrollY > 800) toTopBtn?.classList.remove('hidden');
       else toTopBtn?.classList.add('hidden');
@@ -772,24 +759,6 @@
 
     // Icons (init)
     window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
-
-    // Reveal последовательная анимация
-    (function setupReveal(){
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(ent=>{
-          if (ent.isIntersecting) {
-            ent.target.classList.add('show');
-            io.unobserve(ent.target);
-          }
-        });
-      }, { threshold:.2, rootMargin:'0px 0px -8% 0px' });
-
-      document.querySelectorAll('.reveal').forEach(el=>{
-        const d = el.style.getPropertyValue('--delay');
-        if (d) el.style.setProperty('--delay', d);
-        io.observe(el);
-      });
-    })();
 
     // Карусель кейсов с фильтром по режиму
     const CasesUI = (function casesCarousel(){
@@ -810,7 +779,7 @@
         dotsWrap.innerHTML = '';
         slides.forEach((_,i)=>{
           const b = document.createElement('button');
-          b.className = 'w-2.5 h-2.5 rounded-full bg-white transition-opacity ' + (i===index ? 'opacity-100' : 'opacity-50');
+          b.className = 'w-2.5 h-2.5 rounded-full bg-white ' + (i===index ? 'opacity-100' : 'opacity-50');
           b.addEventListener('click', ()=>{ index=i; update(); });
           dotsWrap.appendChild(b);
         });
@@ -1005,7 +974,15 @@
           'Дотягиваете уровень до B2–C1',
           'Снимаете языковой барьер и говорите уверенно'
         ],
-        caseTags: ['self']
+        caseTags: ['self'],
+        advantages: [
+          '4+ года практики преподавания',
+          '100+ учеников и тысячи уроков',
+          'Авторские материалы и система обучения',
+          'Международная квалификация: TEFL',
+          'Подтверждённый уровень английского: C2',
+          'Настоящий профессионал, который точно поможет вам'
+        ]
       },
       oge: {
         title: 'ОГЭ больше не проблема',
@@ -1017,10 +994,12 @@
           'Начать говорить на английском или улучшить разговорные навыки'
         ],
         pains: [
-          'Путаетесь в формате и критериях оценивания',
-          'Ошибки в грамматике и орфографии',
-          'Слабое аудирование и устная часть',
-          'Не хватает структуры в письме'
+          'Проблемы с writing и непонимание, что нужно там писать',
+          'Нехватка словарного запаса',
+          'Ошибки в грамматике и трудности с временами',
+          'Тяжело понимать на слух',
+          'Не понимаете, что написано в «ОГЭшных» текстах',
+          'Не до конца понимаете формат экзамена и что от вас требуют в каждом задании'
         ],
         solutions: [
           'Чёткий план подготовки по кодификатору',
@@ -1034,7 +1013,17 @@
           'Грамматика и времена — в системе',
           'Сильная база для 10–11 класса'
         ],
-        caseTags: ['oge']
+        caseTags: ['oge'],
+        advantages: [
+          'Средний балл учеников — «5»',
+          'Два высших образования, аспирант',
+          'Автор множества пособий и гайдов по английскому языку',
+          'Автор бота на основе искусственного интеллекта для подготовки к ЕГЭ',
+          'Автор приложения с ресурсами для подготовки к ЕГЭ',
+          'Международная квалификация: TEFL',
+          'Подтверждённый уровень английского: C2',
+          'Настоящий профессионал, который точно поможет вам'
+        ]
       },
       ege: {
         title: 'Поступи в вуз на бюджет',
@@ -1047,10 +1036,12 @@
           'Поступить в вуз на бюджет'
         ],
         pains: [
-          'Слабый writing: структура и связки',
-          'Ошибки в грамматике (32–38) и лексике',
-          'Просадка в listening/reading на сложных текстах',
-          'Нет тайминга и стратегии по частям'
+          'Проблемы с writing и непонимание, что нужно там писать',
+          'Нехватка словарного запаса',
+          'Ошибки в грамматике и трудности с временами',
+          'Тяжело понимать на слух',
+          'Не понимаете, что написано в «ЕГЭшных» текстах',
+          'Не до конца понимаете формат экзамена и что от вас требуют в каждом задании'
         ],
         solutions: [
           'Стратегии решения для каждого задания ЕГЭ',
@@ -1064,7 +1055,17 @@
           'Навык быстро решать грамматику и лексику',
           'База для учёбы в вузе и олимпиад'
         ],
-        caseTags: ['ege']
+        caseTags: ['ege'],
+        advantages: [
+          'Средний балл учеников — 80+',
+          'Два высших образования, аспирант',
+          'Автор пособий и гайдов по английскому языку',
+          'Автор бота на основе искусственного интеллекта для подготовки к ЕГЭ',
+          'Автор приложения с ресурсами для подготовки к ЕГЭ',
+          'Международная квалификация: TEFL',
+          'Подтверждённый уровень английского: C2',
+          'Настоящий профессионал, который точно поможет вам'
+        ]
       }
     };
 
@@ -1114,6 +1115,9 @@
 
       // Результаты
       renderList(document.getElementById('resultsList'), conf.dreams, 'target', 'text-emerald-300');
+
+      // Преимущества
+      renderList(document.getElementById('advantagesList'), conf.advantages, 'award', 'text-cyan-300');
 
       // Кейсы
       if (CasesUI && conf.caseTags) {
