@@ -126,9 +126,9 @@
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
   <!-- Header / Nav -->
-  <header class="fixed top-14 left-0 right-0 z-[70]">
+  <header class="fixed top-2 md:top-14 left-0 right-0 z-[70]">
     <div class="mx-auto container-xxl px-4">
-      <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
+      <div class="mt-1 md:mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
           <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
             <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
@@ -143,6 +143,13 @@
           <a href="#types" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Виды занятий</a>
           <a href="#faq" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">FAQ</a>
           <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Связь со мной</a>
+
+          <!-- Быстрый выбор режимов (видно только в режиме "Для себя") -->
+          <span id="navModeLinksDesktop" class="hidden items-center gap-1">
+            <span class="mx-1 h-5 w-px bg-white/10"></span>
+            <a href="#offer" data-set-mode="oge" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">ОГЭ</a>
+            <a href="#offer" data-set-mode="ege" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">ЕГЭ</a>
+          </span>
         </nav>
         <div class="hidden md:flex items-center gap-2">
           <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">
@@ -158,7 +165,7 @@
     <!-- Mobile menu -->
     <div id="mobileMenu" class="hidden fixed inset-0 z-[90] md:hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-2xl"></div>
-      <div class="relative mx-auto container-xxl px-4 pt-24">
+      <div class="relative mx-auto container-xxl px-4 pt-16">
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-deep">
           <nav class="flex flex-col p-2">
             <a href="#help" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кому помогу</a>
@@ -171,6 +178,13 @@
             <div class="p-2">
               <a href="#quiz" class="block bg-white text-black hover:bg-white/90 rounded-xl text-center px-4 py-2 font-medium">Бесплатный урок</a>
             </div>
+
+            <!-- Быстрый выбор режимов (видно только в режиме "Для себя") -->
+            <div id="navModeLinksMobile" class="hidden border-t border-white/10 mt-2 pt-2">
+              <div class="text-white/60 px-3 pb-1 text-xs">Быстрый выбор режима</div>
+              <a href="#offer" data-set-mode="oge" class="block px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">ОГЭ</a>
+              <a href="#offer" data-set-mode="ege" class="block px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">ЕГЭ</a>
+            </div>
           </nav>
         </div>
       </div>
@@ -182,7 +196,7 @@
 
   <div id="top"></div>
 
-  <main class="pt-48 pb-24">
+  <main class="pt-28 sm:pt-36 md:pt-48 pb-20 md:pb-24">
     <!-- 1) Оффер + Переключатель -->
     <section id="offer" class="mx-auto container-xxl px-4">
       <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
@@ -226,6 +240,14 @@
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя ?</h3>
         <ul id="helpList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90"></ul>
+
+        <!-- Мобильная CTA сразу после блока "Узнаете себя" -->
+        <div class="mt-4 sm:hidden">
+          <a href="#quiz" class="w-full inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-3 font-medium whitespace-nowrap">
+            Бесплатный урок
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -713,7 +735,35 @@
     <section id="about" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
         <h3 class="text-2xl md:text-3xl font-semibold reveal">Почему люди выбирают меня?</h3>
-        <div id="advantagesGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+        <!-- Fallback-контент на случай проблем с JS -->
+        <div id="advantagesGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="clock" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">4+ лет практики преподавания</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="users" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">100+ учеников и тысячи уроков</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="puzzle" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Авторская система: простые схемы и чек‑листы</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="rocket" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Реальные результаты через 3 месяца</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="badge-check" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Международная квалификация: TEFL</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="languages" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Подтверждённый уровень английского: C2</div>
+          </div>
+        </div>
+
         <div class="mt-6 reveal">
           <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
             Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -832,7 +882,7 @@
                 <label class="block text-sm text-white/80 mb-2">Цель</label>
                 <div class="grid grid-cols-1 gap-2">
                   <button type="button" data-field="goalChoice" data-value="Разговорный" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Разговорный английский</button>
-                  <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ</button">
+                  <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ</button>
                   <button type="button" data-field="goalChoice" data-value="Работа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Работа/карьера</button>
                   <button type="button" data-field="goalChoice" data-value="Переезд/путешествия" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Переезд/путешествия</button>
                 </div>
@@ -931,28 +981,38 @@
     const FORM_ENDPOINT = 'https://formspree.io/f/mblkbjve';
     const SEATS = { group: 0, solo: 3, zero: 1 };
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuClose = document.getElementById('menuClose');
-    function openMenu(){ mobileMenu?.classList.remove('hidden'); }
-    function closeMenu(){ mobileMenu?.classList.add('hidden'); }
-    menuBtn?.addEventListener('click', openMenu);
-    menuClose?.addEventListener('click', closeMenu);
-    mobileMenu?.querySelector('.absolute.inset-0')?.addEventListener('click', closeMenu);
-    mobileMenu?.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => setTimeout(closeMenu, 100)));
+    function createIconsSafe(){
+      if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+    }
 
-    // Apply seats (сделал CTA кликабельным даже если набор закрыт)
+    // Mobile menu
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var menuClose = document.getElementById('menuClose');
+    function openMenu(){ if (mobileMenu) mobileMenu.classList.remove('hidden'); }
+    function closeMenu(){ if (mobileMenu) mobileMenu.classList.add('hidden'); }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (mobileMenu) {
+      var overlay = mobileMenu.querySelector('.absolute.inset-0');
+      if (overlay) overlay.addEventListener('click', closeMenu);
+      var mmAnchors = mobileMenu.querySelectorAll('a[href^="#"]');
+      mmAnchors.forEach(function(a){
+        a.addEventListener('click', function(){ setTimeout(closeMenu, 100); });
+      });
+    }
+
+    // Apply seats (CTA кликабельный даже если набор закрыт)
     (function applySeats(){
-      document.querySelectorAll('.format-card').forEach(card => {
-        const type = card.dataset.seatType;
-        const n = SEATS[type] ?? 0;
-        const textEl = card.querySelector('[data-seat-text]');
-        const cta = card.querySelector('[data-seat-cta]');
+      document.querySelectorAll('.format-card').forEach(function(card){
+        var type = card.dataset.seatType;
+        var n = SEATS[type] !== undefined ? SEATS[type] : 0;
+        var textEl = card.querySelector('[data-seat-text]');
+        var cta = card.querySelector('[data-seat-cta]');
         if (!textEl || !cta) return;
 
         if (n > 0) {
-          textEl.textContent = `Доступно мест: ${n}`;
+          textEl.textContent = 'Доступно мест: ' + n;
           cta.classList.remove('opacity-50','cursor-not-allowed');
           cta.setAttribute('aria-disabled','false');
           cta.href = '#quiz';
@@ -967,62 +1027,63 @@
     })();
 
     // Back to top
-    const toTopBtn = document.getElementById('toTop');
-    toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0 })); // без smooth
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 800) toTopBtn?.classList.remove('hidden');
-      else toTopBtn?.classList.add('hidden');
+    var toTopBtn = document.getElementById('toTop');
+    if (toTopBtn) toTopBtn.addEventListener('click', function(){ window.scrollTo({ top: 0 }); });
+    window.addEventListener('scroll', function(){
+      if (!toTopBtn) return;
+      if (window.scrollY > 800) toTopBtn.classList.remove('hidden');
+      else toTopBtn.classList.add('hidden');
     });
 
-    // Icons
-    window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
+    // Icons initial
+    window.addEventListener('DOMContentLoaded', function(){ createIconsSafe(); });
 
     // Карусель кейсов с фильтром по режиму
-    const CasesUI = (function casesCarousel(){
-      const track = document.querySelector('[data-cases-track]');
+    var CasesUI = (function casesCarousel(){
+      var track = document.querySelector('[data-cases-track]');
       if (!track) return null;
-      const prev = document.querySelector('[data-cases-prev]');
-      const next = document.querySelector('[data-cases-next]');
-      const dotsWrap = document.querySelector('[data-cases-dots]');
-      let index = 0;
+      var prev = document.querySelector('[data-cases-prev]');
+      var next = document.querySelector('[data-cases-next]');
+      var dotsWrap = document.querySelector('[data-cases-dots]');
+      var index = 0;
 
-      const allSlides = Array.from(track.children);
+      var allSlides = Array.prototype.slice.call(track.children);
       function visibleSlides(){
-        return Array.from(track.querySelectorAll(':scope > .cases-slide:not(.hidden)'));
+        return Array.prototype.slice.call(track.querySelectorAll(':scope > .cases-slide:not(.hidden)'));
       }
 
       function rebuildDots(){
-        const slides = visibleSlides();
+        var slides = visibleSlides();
         dotsWrap.innerHTML = '';
-        slides.forEach((_,i)=>{
-          const b = document.createElement('button');
+        slides.forEach(function(_, i){
+          var b = document.createElement('button');
           b.className = 'w-2.5 h-2.5 rounded-full bg-white ' + (i===index ? 'opacity-100' : 'opacity-50');
-          b.addEventListener('click', ()=>{ index=i; update(); });
+          b.addEventListener('click', function(){ index=i; update(); });
           dotsWrap.appendChild(b);
         });
       }
 
       function update(){
-        const slides = visibleSlides();
+        var slides = visibleSlides();
         if (index >= slides.length) index = Math.max(0, slides.length - 1);
-        track.style.transform = `translateX(${-index*100}%)`;
-        const dots = dotsWrap.querySelectorAll('button');
-        dots.forEach((d,i)=> {
+        track.style.transform = 'translateX(' + (-index*100) + '%)';
+        var dots = dotsWrap.querySelectorAll('button');
+        dots.forEach(function(d, i){
           d.classList.toggle('opacity-100', i===index);
           d.classList.toggle('opacity-50', i!==index);
         });
-        prev?.toggleAttribute('disabled', index===0);
-        next?.toggleAttribute('disabled', index===slides.length-1 || slides.length===0);
+        if (prev) prev.toggleAttribute('disabled', index===0);
+        if (next) next.toggleAttribute('disabled', index===slides.length-1 || slides.length===0);
       }
 
-      prev?.addEventListener('click', ()=>{ if(index>0){ index--; update(); } });
-      next?.addEventListener('click', ()=>{ if(index<visibleSlides().length-1){ index++; update(); } });
+      if (prev) prev.addEventListener('click', function(){ if(index>0){ index--; update(); } });
+      if (next) next.addEventListener('click', function(){ if(index<visibleSlides().length-1){ index++; update(); } });
 
       // Touch swipe
-      let startX=0, dx=0, isDown=false;
-      track.addEventListener('touchstart', e=>{ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
-      track.addEventListener('touchmove', e=>{ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
-      track.addEventListener('touchend', ()=>{ 
+      var startX=0, dx=0, isDown=false;
+      track.addEventListener('touchstart', function(e){ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchmove', function(e){ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
+      track.addEventListener('touchend', function(){ 
         if(!isDown) return; isDown=false;
         if (Math.abs(dx)>50){ 
           if(dx<0 && index<visibleSlides().length-1) index++; 
@@ -1033,35 +1094,35 @@
       });
 
       // Toggle "до/после"
-      track.addEventListener('click', (e)=>{
-        const btn = e.target.closest('[data-show]');
+      track.addEventListener('click', function(e){
+        var btn = e.target.closest('[data-show]');
         if (!btn) return;
-        const wrap = btn.closest('[data-toggle]');
-        const slide = btn.closest('.cases-slide');
-        const view = btn.dataset.show;
-        wrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b===btn));
-        slide.querySelectorAll('[data-view]').forEach(v=>v.classList.toggle('hidden', v.dataset.view !== view));
+        var wrap = btn.closest('[data-toggle]');
+        var slide = btn.closest('.cases-slide');
+        var view = btn.getAttribute('data-show');
+        wrap.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b===btn); });
+        slide.querySelectorAll('[data-view]').forEach(function(v){ v.classList.toggle('hidden', v.getAttribute('data-view') !== view); });
       });
 
       // Фильтр по тегам
       function filter(tagsArr){
-        const tags = new Set(tagsArr);
-        allSlides.forEach(sl => {
-          const t = (sl.dataset.tags || '').split(',').map(s=>s.trim()).filter(Boolean);
-          const show = t.some(x => tags.has(x));
+        var tags = new Set(tagsArr);
+        allSlides.forEach(function(sl){
+          var t = (sl.dataset.tags || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+          var show = t.some(function(x){ return tags.has(x); });
           sl.classList.toggle('hidden', !show);
         });
         index = 0;
         rebuildDots();
         update();
-        if (window.lucide?.createIcons) lucide.createIcons();
+        createIconsSafe();
       }
 
       // Инициализация
       rebuildDots();
       update();
 
-      return { filter };
+      return { filter: filter };
     })();
 
     // ===== РЕЖИМЫ: Для себя / ОГЭ / ЕГЭ =====
@@ -1227,62 +1288,51 @@
 
     function renderList(ul, items, icon='check', iconColor='text-emerald-300') {
       if (!ul) return;
-      ul.innerHTML = items.map(it => `
-        <li class="flex items-start gap-2"><i data-lucide="${icon}" class="w-5 h-5 ${iconColor}"></i> ${it}</li>
-      `).join('');
-      if (window.lucide?.createIcons) lucide.createIcons();
+      ul.innerHTML = items.map(function(it){
+        return '<li class="flex items-start gap-2"><i data-lucide="'+icon+'" class="w-5 h-5 '+iconColor+'"></i> '+it+'</li>';
+      }).join('');
+      createIconsSafe();
     }
 
     function renderAdvantages(container, items){
       if (!container) return;
-      container.innerHTML = items.map(it => `
-        <div class="adv-card">
-          <div class="adv-emoji"><i data-lucide="${it.icon}" class="w-5 h-5 text-emerald-300"></i></div>
-          <div class="adv-text">${it.text}</div>
-        </div>
-      `).join('');
-      if (window.lucide?.createIcons) lucide.createIcons();
+      container.innerHTML = items.map(function(it){
+        return '<div class="adv-card"><div class="adv-emoji"><i data-lucide="'+it.icon+'" class="w-5 h-5 text-emerald-300"></i></div><div class="adv-text">'+it.text+'</div></div>';
+      }).join('');
+      createIconsSafe();
     }
 
     function renderFAQ(container, items){
       if (!container) return;
-      container.innerHTML = items.map(it => `
-        <details class="group rounded-xl border border-white/10 bg-white/5">
-          <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-            <span>${it.q}</span>
-            <i data-lucide="chevron-down" class="w-4 h-4"></i>
-          </summary>
-          <div class="px-4 pb-4 text-white/90">${it.a}</div>
-        </details>
-      `).join('');
-      if (window.lucide?.createIcons) lucide.createIcons();
+      container.innerHTML = items.map(function(it){
+        return '<details class="group rounded-xl border border-white/10 bg-white/5"><summary class="cursor-pointer px-4 py-3 flex items-center justify-between"><span>'+it.q+'</span><i data-lucide="chevron-down" class="w-4 h-4"></i></summary><div class="px-4 pb-4 text-white/90">'+it.a+'</div></details>';
+      }).join('');
+      createIconsSafe();
     }
 
     function setMode(mode) {
-      const m = MODES[mode] ? mode : 'self';
-      localStorage.setItem('mode', m);
-      const url = new URL(window.location.href);
+      var m = MODES[mode] ? mode : 'self';
+      try { localStorage.setItem('mode', m); } catch(e){}
+      var url = new URL(window.location.href);
       url.searchParams.set('mode', m);
       history.replaceState(null, '', url.toString());
 
-      const conf = MODES[m];
-      document.querySelectorAll('#modeSwitch .mode-btn').forEach(btn=>{
-        const active = btn.dataset.mode === m;
+      var conf = MODES[m];
+      document.querySelectorAll('#modeSwitch .mode-btn').forEach(function(btn){
+        var active = btn.dataset.mode === m;
         btn.classList.toggle('active', active);
         btn.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
 
-      const t = document.getElementById('offerTitle');
-      const s = document.getElementById('offerSubtitle');
-      const b = document.getElementById('offerBullets');
+      var t = document.getElementById('offerTitle');
+      var s = document.getElementById('offerSubtitle');
+      var b = document.getElementById('offerBullets');
       if (t) t.textContent = conf.title;
       if (s) s.textContent = conf.subtitle;
       if (b) {
-        b.innerHTML = conf.bullets.map(x => `
-          <li class="flex items-start gap-2">
-            <i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> ${x}
-          </li>
-        `).join('');
+        b.innerHTML = conf.bullets.map(function(x){
+          return '<li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> '+x+'</li>';
+        }).join('');
       }
 
       renderList(document.getElementById('helpList'), conf.pains, 'alert-circle', 'text-cyan-300');
@@ -1293,118 +1343,145 @@
       renderFAQ(document.getElementById('faqList'), FAQS[m]);
 
       if (CasesUI && conf.caseTags) CasesUI.filter(conf.caseTags);
-      if (window.lucide?.createIcons) lucide.createIcons();
+      createIconsSafe();
+
+      // Показ/скрытие ссылок "ОГЭ/ЕГЭ" в меню (только в режиме "Для себя")
+      var dLinks = document.getElementById('navModeLinksDesktop');
+      var mLinks = document.getElementById('navModeLinksMobile');
+      var showModeLinks = (m === 'self');
+      if (dLinks) dLinks.classList.toggle('hidden', !showModeLinks);
+      if (mLinks) mLinks.classList.toggle('hidden', !showModeLinks);
     }
 
     (function initMode(){
-      const qs = new URLSearchParams(location.search);
-      const fromQS = qs.get('mode');
-      const fromLS = localStorage.getItem('mode');
-      const initial = MODES[fromQS] ? fromQS : (MODES[fromLS] ? fromLS : 'self');
+      var qs = new URLSearchParams(location.search);
+      var fromQS = qs.get('mode');
+      var fromLS;
+      try { fromLS = localStorage.getItem('mode'); } catch(e){ fromLS = null; }
+      var initial = MODES[fromQS] ? fromQS : (MODES[fromLS] ? fromLS : 'self');
       setMode(initial);
-      document.getElementById('modeSwitch')?.addEventListener('click', (e)=>{
-        const btn = e.target.closest('button[data-mode]');
-        if (!btn) return;
-        setMode(btn.dataset.mode);
-      });
+      var modeSwitch = document.getElementById('modeSwitch');
+      if (modeSwitch) {
+        modeSwitch.addEventListener('click', function(e){
+          var btn = e.target.closest('button[data-mode]');
+          if (!btn) return;
+          setMode(btn.getAttribute('data-mode'));
+        });
+      }
     })();
+
+    // Переключение режима из ссылок меню (ОГЭ/ЕГЭ)
+    document.addEventListener('click', function(e){
+      var link = e.target.closest('[data-set-mode]');
+      if (!link) return;
+      e.preventDefault();
+      var newMode = link.getAttribute('data-set-mode');
+      setMode(newMode);
+      if (typeof closeMenu === 'function') closeMenu();
+      location.hash = '#offer';
+    });
 
     // ===== Квиз: пошаговая логика + отправка =====
     (function quizUI(){
-      const form = document.getElementById('quizForm');
+      var form = document.getElementById('quizForm');
       if (!form) return;
 
-      const steps = Array.from(form.querySelectorAll('.quiz-step'));
-      const progress = document.getElementById('quizProgress');
-      const nextBtn = document.getElementById('quizNext');
-      const backBtn = document.getElementById('quizBack');
-      const statusEl = document.getElementById('quizStatus');
-      const submitBtn = document.getElementById('quizSubmit');
+      var steps = Array.prototype.slice.call(form.querySelectorAll('.quiz-step'));
+      var progress = document.getElementById('quizProgress');
+      var nextBtn = document.getElementById('quizNext');
+      var backBtn = document.getElementById('quizBack');
+      var statusEl = document.getElementById('quizStatus');
+      var submitBtn = document.getElementById('quizSubmit');
 
-      let step = 1;
-      const total = steps.length;
-      const state = { level: '', goalChoice: '', format: '' };
+      var step = 1;
+      var total = steps.length;
+      var state = { level: '', goalChoice: '', format: '' };
 
       // Выбор опций
-      form.addEventListener('click', (e)=>{
-        const opt = e.target.closest('.quiz-opt');
+      form.addEventListener('click', function(e){
+        var opt = e.target.closest('.quiz-opt');
         if (!opt) return;
-        const field = opt.dataset.field;
-        const value = opt.dataset.value;
+        var field = opt.getAttribute('data-field');
+        var value = opt.getAttribute('data-value');
         // Убрать выделение у соседей
-        opt.parentElement.querySelectorAll('.quiz-opt').forEach(o=> o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'));
+        var parent = opt.parentElement;
+        if (parent) parent.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'); });
         // Выделить выбранный
         opt.classList.add('ring-2', 'ring-emerald-300/40', 'bg-white/15');
         // Запомнить
         state[field] = value;
         // Подставим цель в комментарий на 4 шаге (по желанию)
-        const qGoal = document.getElementById('qGoal');
-        if (field === 'goalChoice' && qGoal && !qGoal.value) qGoal.value = `Цель: ${value}`;
+        var qGoal = document.getElementById('qGoal');
+        if (field === 'goalChoice' && qGoal && !qGoal.value) qGoal.value = 'Цель: ' + value;
       });
 
       function showStep(n){
         step = Math.max(1, Math.min(total, n));
-        steps.forEach(s => s.classList.toggle('hidden', s.dataset.step != step));
-        backBtn.classList.toggle('hidden', step === 1);
-        nextBtn.classList.toggle('hidden', step === total);
-        progress.style.width = `${(step/total)*100}%`;
-        statusEl.textContent = '';
-        if (window.lucide?.createIcons) lucide.createIcons();
+        steps.forEach(function(s){ s.classList.toggle('hidden', s.getAttribute('data-step') != step); });
+        if (backBtn) backBtn.classList.toggle('hidden', step === 1);
+        if (nextBtn) nextBtn.classList.toggle('hidden', step === total);
+        if (progress) progress.style.width = ((step/total)*100) + '%';
+        if (statusEl) statusEl.textContent = '';
+        createIconsSafe();
       }
 
-      nextBtn?.addEventListener('click', ()=>{
-        // Простая валидация выбора
-        if (step === 1 && !state.level) { statusEl.textContent = 'Выберите ваш уровень'; return; }
-        if (step === 2 && !state.goalChoice) { statusEl.textContent = 'Выберите цель'; return; }
-        if (step === 3 && !state.format) { statusEl.textContent = 'Выберите формат'; return; }
+      if (nextBtn) nextBtn.addEventListener('click', function(){
+        if (step === 1 && !state.level)  { if (statusEl) statusEl.textContent = 'Выберите ваш уровень'; return; }
+        if (step === 2 && !state.goalChoice) { if (statusEl) statusEl.textContent = 'Выберите цель'; return; }
+        if (step === 3 && !state.format) { if (statusEl) statusEl.textContent = 'Выберите формат'; return; }
         showStep(step + 1);
       });
 
-      backBtn?.addEventListener('click', ()=> showStep(step - 1));
+      if (backBtn) backBtn.addEventListener('click', function(){ showStep(step - 1); });
 
       // Отправка формы
-      form.addEventListener('submit', async (e)=>{
+      form.addEventListener('submit', async function(e){
         e.preventDefault();
-        statusEl.textContent = '';
+        if (statusEl) statusEl.textContent = '';
         if (!form.checkValidity()) {
-          statusEl.textContent = 'Проверьте поля формы';
+          if (statusEl) statusEl.textContent = 'Проверьте поля формы';
           return;
         }
-        submitBtn.disabled = true;
-        submitBtn.classList.add('opacity-60');
-        submitBtn.innerHTML = 'Отправка...';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-60');
+          submitBtn.innerHTML = 'Отправка...';
+        }
 
-        const mode = localStorage.getItem('mode') || 'self';
-        const payload = {
-          mode,
+        var mode;
+        try { mode = localStorage.getItem('mode') || 'self'; } catch(e){ mode = 'self'; }
+        var payload = {
+          mode: mode,
           level: state.level,
           goalChoice: state.goalChoice,
           format: state.format,
-          name: form.qName?.value?.trim(),
-          phone: form.qPhone?.value?.trim(),
-          goal: form.qGoal?.value?.trim()
+          name: form.qName ? form.qName.value.trim() : '',
+          phone: form.qPhone ? form.qPhone.value.trim() : '',
+          goal: form.qGoal ? form.qGoal.value.trim() : ''
         };
 
         try {
-          const r = await fetch(FORM_ENDPOINT, {
+          var r = await fetch(FORM_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(payload)
           });
           if (!r.ok) throw new Error('Network');
-          statusEl.textContent = 'Спасибо! Я свяжусь с вами в ближайшее время.';
+          if (statusEl) statusEl.textContent = 'Спасибо! Я свяжусь с вами в ближайшее время.';
           form.reset();
           // Сбросим выбор
-          Object.keys(state).forEach(k=> state[k]='');
-          form.querySelectorAll('.quiz-opt').forEach(o=> o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'));
+          Object.keys(state).forEach(function(k){ state[k]=''; });
+          form.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'); });
           showStep(1);
         } catch (err) {
-          statusEl.textContent = 'Не удалось отправить. Проверьте интернет или напишите мне в Telegram/WhatsApp.';
+          if (statusEl) statusEl.textContent = 'Не удалось отправить. Проверьте интернет или напишите мне в Telegram/WhatsApp.';
         } finally {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-60');
-          submitBtn.innerHTML = 'Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>';
-          if (window.lucide?.createIcons) lucide.createIcons();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-60');
+            submitBtn.innerHTML = 'Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>';
+          }
+          createIconsSafe();
         }
       });
 
