@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Английский — больше не мечта, а реальность | Абдуррахим Бердиев</title>
+  <title>Английский — больше не мечта, а реальность | T Be English</title>
   <meta name="description" content="Снимаю страх говорить, упрощаю грамматику до понятных схем и тренирую понимание живой речи. Первый результат через 3 месяца. Бесплатный первый урок — получите персональный план на 90 дней и гайд по временам.">
-  <meta property="og:title" content="Английский — больше не мечта, а реальность | Абдуррахим Бердиев">
+  <meta property="og:title" content="Английский — больше не мечта, а реальность | T Be English">
   <meta property="og:description" content="Первый урок бесплатно. Персональный план на 90 дней и гайд по временам. Разговорная практика без зубрёжки.">
   <meta property="og:image" content="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg">
   <meta property="og:type" content="website">
@@ -40,125 +40,16 @@
       --input: 0 0% 16%;
       --ring: 0 0% 3.9%;
     }
-    html, body { scroll-behavior: smooth; }
+    html, body { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+
     .container-xxl { max-width: 1200px; }
     details > summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
-
-    /* Reveal на скролле */
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.show { opacity: 1; transform: none; }
-    .reveal[data-delay] { transition-delay: var(--delay, 0ms); }
-
-    /* Стекло + двойной удар */
-    .help-card { position: relative; overflow: hidden; }
-    .help-card .help-content { transition: opacity .55s ease, filter .55s ease, transform .55s ease; }
-    .help-card[data-broken="smashed"] .help-content { opacity: 0; filter: blur(3px); transform: scale(.99); }
-
-    .glass-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 12; }
-    .glass-overlay::before {
-      content: "";
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(400px 400px at 50% 50%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
-        radial-gradient(1200px 800px at 20% -20%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%);
-      opacity: 0; transition: opacity .35s ease;
-      mix-blend-mode: screen;
-    }
-    .help-card[data-broken="cracked"] .glass-overlay::before { opacity: 1; }
-
-    .crack-lines { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
-    .crack-lines line {
-      stroke: rgba(255,255,255,.9);
-      stroke-width: 1;
-      stroke-linecap: round;
-      stroke-dasharray: 110;
-      stroke-dashoffset: 110;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));
-      transition: stroke-dashoffset .7s ease;
-    }
-    .help-card[data-broken="cracked"] .crack-lines { opacity: .98; }
-    .help-card[data-broken="cracked"] .crack-lines line { stroke-dashoffset: 0; }
-
-    .piece {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.35);
-      box-shadow: 0 10px 22px rgba(0,0,0,.45);
-      backdrop-filter: blur(6px) saturate(1.2);
-      -webkit-backdrop-filter: blur(6px) saturate(1.2);
-      opacity: 0;
-      transform: translate3d(0,0,0) rotate(0);
-      transition: transform .9s cubic-bezier(.16,.9,.22,1), opacity .65s ease, filter .9s ease;
-      will-change: transform, opacity, filter;
-      clip-path: polygon(50% 50%, 50% 0%, 100% 50%);
-    }
-    .help-card[data-broken="smashed"] .piece { opacity: 1; }
-
-    .hit-anim { animation: hit .42s ease; }
-    @keyframes hit {
-      0%{transform:translate3d(0,0,0)}
-      20%{transform:rotate(-.4deg)}
-      45%{transform:rotate(.5deg)}
-      70%{transform:rotate(-.2deg)}
-      100%{transform:translate3d(0,0,0)}
-    }
-
-    .hammer {
-      position: absolute; left: 50%; top: 50%;
-      z-index: 22; pointer-events: none;
-      opacity: 0;
-      transform-origin: 80% 20%;
-      transition: opacity .15s ease, transform .5s cubic-bezier(.2,.8,.2,1);
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.5));
-    }
-    /* Показать молот без удара */
-    .hammer.show { opacity: 1; }
-    .hammer i { width: clamp(44px, 6vw, 64px); height: clamp(44px, 6vw, 64px); color: #fff; }
-    .hammer .label {
-      position: absolute; top: -12px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.25);
-      color: #fff;
-      font-size: 12px; padding: 4px 8px; border-radius: 10px;
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-    .hammer[data-pos="left"]  { transform: translate(-180%, -140%) rotate(-35deg) scale(.9); }
-    .hammer[data-pos="right"] { transform: translate(  90%, -160%) rotate( 35deg) scale(.9); }
-    .hammer[data-pos="top"]   { transform: translate( -50%, -220%) rotate(  0deg) scale(.9); }
-    .hammer.strike { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    .hammer.fade { opacity: 0; transform: translate(-50%, -50%) rotate(8deg) scale(.96); transition-duration: .32s; }
-
-    .impact {
-      position: absolute; left: 50%; top: 50%;
-      width: 22px; height: 22px;
-      transform: translate(-50%,-50%);
-      border-radius: 999px;
-      border: 2px solid rgba(255,255,255,.7);
-      box-shadow: 0 0 18px rgba(255,255,255,.4);
-      opacity: 0; pointer-events: none;
-      animation: ping .6s ease-out forwards;
-    }
-    @keyframes ping {
-      0% { opacity: .9; transform: translate(-50%,-50%) scale(.6); }
-      60% { opacity: .6; transform: translate(-50%,-50%) scale(1.4); }
-      100% { opacity: 0; transform: translate(-50%,-50%) scale(1.9); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .piece, .hammer { transition: none; animation: none; }
-      .reveal { transition: none; }
-    }
+    .reveal { opacity: 1; transform: none; }
 
     /* Карусель кейсов */
-    .cases-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+    .cases-track { display: flex; will-change: auto; }
     .cases-slide { min-width: 100%; padding: 20px; }
     .cases-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -166,7 +57,7 @@
       backdrop-filter: blur(8px);
       width: 42px; height: 42px; border-radius: 999px;
       display: grid; place-items: center;
-      color: #fff;
+      color: #fff; z-index: 5;
     }
     .cases-arrow:hover { background: rgba(255,255,255,.2); }
     .cases-arrow[disabled] { opacity: .4; pointer-events: none; }
@@ -178,28 +69,39 @@
       border: 1px solid rgba(255,255,255,.2);
       background: rgba(255,255,255,.08);
     }
-    .toggle button {
-      padding: 6px 10px; font-size: 13px; color: #fff; opacity: .7;
+    .toggle button { padding: 6px 10px; font-size: 13px; color: #fff; opacity: .7; }
+    .toggle button.active { background: rgba(255,255,255,.18); opacity: 1; }
+
+    /* Переключатель режимов */
+    .mode-switch { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mode-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color: #fff; opacity: .9; cursor: pointer; user-select: none;
     }
-    .toggle button.active {
-      background: rgba(255,255,255,.18); opacity: 1;
+    .mode-btn:hover { background: rgba(255,255,255,.14); }
+    .mode-btn:active { transform: translateY(1px); }
+    .mode-btn.active {
+      background: #fff; color: #000; border-color: transparent;
+      box-shadow: 0 12px 30px rgba(255,255,255,.12);
     }
 
-    /* Пин секции "Узнаете себя?" по центру и временный скролл-лок */
-    body.scroll-lock { overflow: hidden; height: 100vh; }
-    #help { min-height: 180vh; }
-    @media (max-height: 740px) { #help { min-height: 200vh; } }
-
-    #help .help-card {
-      position: sticky;
-      top: 50vh;
-      transform: translateY(-50%);
+    /* Преимущества: карточки с иконками */
+    .adv-card {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
     }
-    #help .pin-results {
-      position: sticky;
-      top: 50vh;
-      transform: translateY(-50%);
+    .adv-emoji {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: grid; place-items: center; font-size: 20px;
+      background: radial-gradient(60% 60% at 40% 35%, rgba(255,255,255,.22), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.18);
     }
+    .adv-text { color: rgba(255,255,255,.92); line-height: 1.35; }
   </style>
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -211,7 +113,7 @@
     "description":"Репетитор английского языка. Индивидуальные и мини‑группы, подготовка к ЕГЭ/ОГЭ и международным экзаменам.",
     "image":"https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg",
     "sameAs":[
-      "https://t.me/m/mjPABJEtYTky",
+      "https://t.me/Spanchmachina",
       "https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr",
       "https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug"
     ],
@@ -223,14 +125,14 @@
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
   <!-- Header / Nav -->
-  <header class="fixed top-14 left-0 right-0 z-[70]">
+  <header class="fixed top-2 md:top-14 left-0 right-0 z-[70]">
     <div class="mx-auto container-xxl px-4">
-      <div class="mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
+      <div class="mt-1 md:mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
           <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
             <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
           </div>
-          <span class="hidden sm:inline text-white/80">To Be English</span>
+          <span class="hidden sm:inline text-white/80">T Be English</span>
         </a>
         <nav class="hidden md:flex items-center gap-1 text-sm">
           <a href="#help" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кому помогу</a>
@@ -238,8 +140,17 @@
           <a href="#cases" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Кейсы</a>
           <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Обо мне</a>
           <a href="#types" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Виды занятий</a>
+          <a href="#app" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Приложение</a>
+          <a href="#bots" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Боты</a>
           <a href="#faq" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">FAQ</a>
           <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Связь со мной</a>
+
+          <!-- Быстрый выбор режимов (видно только в режиме "Для себя") -->
+          <span id="navModeLinksDesktop" class="hidden items-center gap-1">
+            <span class="mx-1 h-5 w-px bg-white/10"></span>
+            <a href="#offer" data-set-mode="oge" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">ОГЭ</a>
+            <a href="#offer" data-set-mode="ege" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">ЕГЭ</a>
+          </span>
         </nav>
         <div class="hidden md:flex items-center gap-2">
           <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">
@@ -255,7 +166,7 @@
     <!-- Mobile menu -->
     <div id="mobileMenu" class="hidden fixed inset-0 z-[90] md:hidden">
       <div class="absolute inset-0 bg-black/70 backdrop-blur-2xl"></div>
-      <div class="relative mx-auto container-xxl px-4 pt-24">
+      <div class="relative mx-auto container-xxl px-4 pt-16">
         <div class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-deep">
           <nav class="flex flex-col p-2">
             <a href="#help" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кому помогу</a>
@@ -263,10 +174,19 @@
             <a href="#cases" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Кейсы</a>
             <a href="#about" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Обо мне</a>
             <a href="#types" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Виды занятий</a>
+            <a href="#app" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Приложение</a>
+            <a href="#bots" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Боты</a>
             <a href="#faq" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">FAQ</a>
             <a href="#contacts" class="px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">Связь со мной</a>
             <div class="p-2">
               <a href="#quiz" class="block bg-white text-black hover:bg-white/90 rounded-xl text-center px-4 py-2 font-medium">Бесплатный урок</a>
+            </div>
+
+            <!-- Быстрый выбор режимов (видно только в режиме "Для себя") -->
+            <div id="navModeLinksMobile" class="hidden border-t border-white/10 mt-2 pt-2">
+              <div class="text-white/60 px-3 pb-1 text-xs">Быстрый выбор режима</div>
+              <a href="#offer" data-set-mode="oge" class="block px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">ОГЭ</a>
+              <a href="#offer" data-set-mode="ege" class="block px-3 py-3 rounded-xl text-white/90 hover:bg-white/10">ЕГЭ</a>
             </div>
           </nav>
         </div>
@@ -279,25 +199,38 @@
 
   <div id="top"></div>
 
-  <main class="pt-48 pb-24">
-    <!-- 1) Оффер -->
+  <main class="pt-28 sm:pt-36 md:pt-48 pb-20 md:pb-24">
+    <!-- 1) Оффер + Переключатель -->
     <section id="offer" class="mx-auto container-xxl px-4">
       <div class="rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl shadow-deep">
+        <div class="mode-switch mb-5" id="modeSwitch" role="tablist" aria-label="Выбор цели">
+          <button type="button" class="mode-btn active" data-mode="self" aria-pressed="true" role="tab">
+            <i data-lucide="user" class="w-4 h-4"></i> Для себя
+          </button>
+          <button type="button" class="mode-btn" data-mode="oge" aria-pressed="false" role="tab">
+            <i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ
+          </button>
+          <button type="button" class="mode-btn" data-mode="ege" aria-pressed="false" role="tab">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ
+          </button>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
           <div class="md:col-span-7">
-            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white reveal" data-delay style="--delay:60ms">Английский — больше не мечта, а реальность</h1>
-            <p class="mt-3 text-white/90 text-lg reveal" style="--delay:140ms">Снимаю страх говорить, упрощаю грамматику до понятных схем и тренирую понимание живой речи. Первый результат через 3 месяца.</p>
-            <div class="mt-6 reveal" style="--delay:220ms">
+            <h1 id="offerTitle" class="text-3xl md:text-5xl font-bold tracking-tight text-white reveal">Английский — ключ к твоим целям</h1>
+            <p id="offerSubtitle" class="mt-3 text-white/90 text-lg reveal">Первые заметные результаты через 3 месяца.</p>
+            <ul id="offerBullets" class="mt-4 space-y-2 text-white/90 reveal"></ul>
+            <div class="mt-6 reveal">
               <a href="#quiz" class="bg-white text-black hover:bg-white/90 rounded-xl px-6 py-3 inline-flex items-center gap-2 font-medium">
                 Первый урок бесплатно <i data-lucide="arrow-right" class="w-5 h-5"></i>
               </a>
               <div class="text-sm text-white/80 mt-2">
-                Все начинается с бесплатного первого урока — получите персональный план на 90 дней и гайд по временам.
+                Все начинается с бесплатного первого урока — получите персональный план на 3 месяца и гайд по временам.
               </div>
             </div>
           </div>
           <div class="md:col-span-5">
-            <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full reveal" style="--delay:280ms">
+            <div class="relative w-full rounded-2xl border border-white/15 bg-white/10 overflow-hidden min-h-[260px] sm:min-h-[320px] md:min-h-0 md:h-full reveal">
               <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" class="absolute inset-0 w-full h-full object-cover object-[center_45%]" loading="lazy"/>
             </div>
           </div>
@@ -305,66 +238,93 @@
       </div>
     </section>
 
-    <!-- 2) Узнаете себя здесь? (двойной удар с пином по центру) -->
-    <section id="help" class="mx-auto container-xxl px-4 mt-16">
-      <div class="help-card rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl relative overflow-hidden" data-broken="idle">
-        <div class="help-content">
-          <h3 class="text-2xl md:text-3xl font-semibold reveal" style="--delay:0ms">Узнаете себя здесь?</h3>
-          <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-            <li class="flex items-start gap-2 reveal" style="--delay:80ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете связать двух слов на английском</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:120ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не понимаете, когда кто‑то говорит на английском</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Думаете, что английский не для вас и почти потеряли веру</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начинали учить и потом бросали</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Застряли на одном уровне и нет роста</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Не можете разобраться со временами и грамматикой</li>
-            <li class="flex items-start gap-2 sm:col-span-2 reveal" style="--delay:320ms"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Хотите сдать ЕГЭ / ОГЭ на высокий балл</li>
-          </ul>
-        </div>
+    <!-- Хаб быстрых ссылок -->
+    <section id="links" class="mx-auto container-xxl px-4 mt-10">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-2xl shadow-deep">
+        <h3 class="text-2xl md:text-3xl font-semibold text-white">Полезные ссылки</h3>
+        <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <a href="#quiz" class="rounded-2xl border border-white/15 bg-white/10 hover:bg-white/15 p-4 flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+              <i data-lucide="calendar-check" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold">Записаться на занятия</div>
+              <div class="text-white/70 text-sm">Первый урок бесплатно, персональный план</div>
+            </div>
+          </a>
 
-        <div class="glass-overlay" aria-hidden="true" data-glass>
-          <svg class="crack-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <g>
-              <line x1="50" y1="50" x2="2" y2="8"/>
-              <line x1="50" y1="50" x2="20" y2="2"/>
-              <line x1="50" y1="50" x2="1" y2="40"/>
-              <line x1="50" y1="50" x2="50" y2="1"/>
-              <line x1="50" y1="50" x2="96" y2="6"/>
-              <line x1="50" y1="50" x2="99" y2="35"/>
-              <line x1="50" y1="50" x2="95" y2="70"/>
-              <line x1="50" y1="50" x2="75" y2="98"/>
-              <line x1="50" y1="50" x2="45" y2="98"/>
-              <line x1="50" y1="50" x2="5" y2="95"/>
-              <line x1="50" y1="50" x2="2" y2="60"/>
-              <line x1="50" y1="50" x2="85" y2="15"/>
-            </g>
-          </svg>
+          <a href="#about" class="rounded-2xl border border-white/15 bg-white/10 hover:bg-white/15 p-4 flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+              <i data-lucide="user" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold">Обо мне</div>
+              <div class="text-white/70 text-sm">Опыт, подход и результаты</div>
+            </div>
+          </a>
 
-          <!-- Молоты показываются заранее с надписью "Занятия со мной" -->
-          <div class="hammer" data-hammer="1" data-pos="left">
-            <i data-lucide="hammer"></i>
-            <span class="label">Занятия со мной</span>
-          </div>
-          <div class="hammer" data-hammer="2" data-pos="right">
-            <i data-lucide="hammer"></i>
-            <span class="label">Занятия со мной</span>
-          </div>
+          <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="rounded-2xl border border-white/15 bg-white/10 hover:bg-white/15 p-4 flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+              <i data-lucide="send" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold">Мой Telegram‑канал</div>
+              <div class="text-white/70 text-sm">Материалы, советы, разборы</div>
+            </div>
+          </a>
+
+          <a href="#app" class="rounded-2xl border border-white/15 bg-white/10 hover:bg-white/15 p-4 flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+              <i data-lucide="smartphone" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold">Моё приложение</div>
+              <div class="text-white/70 text-sm">Тренажёры, карточки, чек‑листы</div>
+            </div>
+          </a>
+
+          <a href="#bots" class="rounded-2xl border border-white/15 bg-white/10 hover:bg-white/15 p-4 flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 border border-white/15 grid place-items-center">
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-semibold">Боты на ChatGPT</div>
+              <div class="text-white/70 text-sm">ЕГЭ, ОГЭ, IELTS, TOEFL, материалы</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 3) Источник контента "После занятий" (скрыт, только как шаблон) -->
-    <section id="students" class="hidden">
+    <!-- 2) Боли -->
+    <section id="help" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя ?</h3>
+        <ul id="helpList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90"></ul>
+
+        <!-- Мобильная CTA сразу после блока "Узнаете себя" -->
+        <div class="mt-4 sm:hidden">
+          <a href="#quiz" class="w-full inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-3 font-medium whitespace-nowrap">
+            Бесплатный урок
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.5) Решение -->
+    <section id="solutions" class="mx-auto container-xxl px-4 mt-10">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold">Решение</h3>
+        <ul id="solutionsList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90"></ul>
+      </div>
+    </section>
+
+    <!-- 3) Результаты -->
+    <section id="students" class="mx-auto container-xxl px-4 mt-10">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl" data-results>
         <h3 class="text-2xl md:text-3xl font-semibold">После занятий со мной вы:</h3>
-        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начнете говорить на английском и снимете барьер за 3 месяца</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сдадите ЕГЭ/ОГЭ на высокий балл и поступите в лучшие вузы</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Переедете жить и работать в другую страну</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Разберетесь с временами и остальной грамматикой</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Начнете понимать английскую речь на слух</li>
-          <li class="flex items-start gap-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Повысите свой уровень английского</li>
-          <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="target" class="w-5 h-5 text-emerald-300"></i> Сможете вести бизнес за границей</li>
-        </ul>
+        <ul id="resultsList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90"></ul>
         <div class="mt-6">
           <a href="#quiz" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
             Сделайте английский своей реальностью <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -373,422 +333,754 @@
       </div>
     </section>
 
-    <!-- 4+) Весь контент ниже виден, но недостижим до завершения анимации -->
-    <div id="below">
-      <!-- 4) Кейсы: карусель "до/после" -->
-      <section id="cases" class="mx-auto container-xxl px-4 mt-10">
-        <h3 class="text-2xl md:text-3xl font-semibold reveal">Кейсы учеников</h3>
+    <!-- 4) Кейсы -->
+    <section id="cases" class="mx-auto container-xxl px-4 mt-10">
+      <h3 class="text-2xl md:text-3xl font-semibold reveal">Кейсы учеников</h3>
+      <div class="cases-slider mt-4 relative reveal">
+        <button class="cases-arrow prev" data-cases-prev aria-label="Предыдущий"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+        <button class="cases-arrow next" data-cases-next aria-label="Следующий"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
 
-        <div class="cases-slider mt-4 relative reveal" style="--delay:120ms">
-          <button class="cases-arrow prev" data-cases-prev aria-label="Предыдущий"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-          <button class="cases-arrow next" data-cases-next aria-label="Следующий"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-
-          <div class="overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl">
-            <div class="cases-track" data-cases-track>
-              <!-- Slide 1 -->
-              <article class="cases-slide">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="flex items-center justify-between gap-2">
-                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий, предприниматель</div>
-                    <div class="toggle" data-toggle>
-                      <button type="button" class="active" data-show="before">До</button>
-                      <button type="button" data-show="after">После</button>
-                    </div>
-                  </div>
-                  <div class="mt-3">
-                    <div data-view="before">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Боялся созвонов на английском, писал только письма</li>
-                        <li>• Короткие фразы, долгая пауза перед ответом</li>
-                        <li>• Понимал ~50–60% речи</li>
-                      </ul>
-                    </div>
-                    <div data-view="after" class="hidden">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Проводит еженедельные звонки с партнёрами (без переводчика)</li>
-                        <li>• Переходит на свободные фразы, держит темп диалога</li>
-                        <li>• Понимание на слух 80–90%</li>
-                      </ul>
-                      <div class="text-white/70 text-sm mt-2">Срок: 8 недель, 2 занятия/нед.</div>
-                    </div>
+        <div class="overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl">
+          <div class="cases-track" data-cases-track>
+            <!-- SELF -->
+            <article class="cases-slide" data-tags="self">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий, предприниматель</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
                   </div>
                 </div>
-              </article>
-
-              <!-- Slide 2 -->
-              <article class="cases-slide">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="flex items-center justify-between gap-2">
-                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина, аспирант</div>
-                    <div class="toggle" data-toggle>
-                      <button type="button" class="active" data-show="before">До</button>
-                      <button type="button" data-show="after">После</button>
-                    </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Боялся созвонов на английском, писал только письма</li>
+                      <li>• Короткие фразы, долгая пауза перед ответом</li>
+                      <li>• Понимал ~50–60% речи</li>
+                    </ul>
                   </div>
-                  <div class="mt-3">
-                    <div data-view="before">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Понимала ~45% лекций и подкастов</li>
-                        <li>• Путалась во временах, особенно Perfect</li>
-                      </ul>
-                    </div>
-                    <div data-view="after" class="hidden">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Понимание лекций выросло до 85–90%</li>
-                        <li>• Времена — в системе, уверенно использует Perfect/Continuous</li>
-                      </ul>
-                      <div class="text-white/70 text-sm mt-2">Срок: 7 недель, комбинированный формат</div>
-                    </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Еженедельные звонки с партнёрами без переводчика</li>
+                      <li>• Свободные фразы, держит темп диалога</li>
+                      <li>• Понимание на слух 80–90%</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 8 недель, 2 занятия/нед.</div>
                   </div>
                 </div>
-              </article>
+              </div>
+            </article>
 
-              <!-- Slide 3 -->
-              <article class="cases-slide">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="flex items-center justify-between gap-2">
-                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Илья, разработчик</div>
-                    <div class="toggle" data-toggle>
-                      <button type="button" class="active" data-show="before">До</button>
-                      <button type="button" data-show="after">После</button>
-                    </div>
-                  </div>
-                  <div class="mt-3">
-                    <div data-view="before">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Заваливал тех. собеседования на английском</li>
-                        <li>• Не хватало словаря по продукту и процессам</li>
-                      </ul>
-                    </div>
-                    <div data-view="after" class="hidden">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Прошёл собеседование в международную компанию</li>
-                        <li>• Уверенно рассказывает о бэклоге, релизах, метриках</li>
-                      </ul>
-                      <div class="text-white/70 text-sm mt-2">Срок: 6 недель, фокус на speaking + vocab</div>
-                    </div>
+            <article class="cases-slide" data-tags="self">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина, аспирант</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
                   </div>
                 </div>
-              </article>
-
-              <!-- Slide 4 -->
-              <article class="cases-slide">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="flex items-center justify-between gap-2">
-                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Марина, ЕГЭ</div>
-                    <div class="toggle" data-toggle>
-                      <button type="button" class="active" data-show="before">До</button>
-                      <button type="button" data-show="after">После</button>
-                    </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Понимала ~45% лекций и подкастов</li>
+                      <li>• Путалась во временах, особенно Perfect</li>
+                    </ul>
                   </div>
-                  <div class="mt-3">
-                    <div data-view="before">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Пробник: 62 балла</li>
-                        <li>• Слабый writing, ошибки в грамматике</li>
-                      </ul>
-                    </div>
-                    <div data-view="after" class="hidden">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Итоговый ЕГЭ: 86 баллов</li>
-                        <li>• Уверенный writing: структура, связки, проверка по чек‑листу</li>
-                      </ul>
-                      <div class="text-white/70 text-sm mt-2">Срок: 3 месяца, 3 занятия/нед.</div>
-                    </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Понимание лекций 85–90%</li>
+                      <li>• Времена — в системе, уверенно Perfect/Continuous</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 7 недель, комбинированный формат</div>
                   </div>
                 </div>
-              </article>
+              </div>
+            </article>
 
-              <!-- Slide 5 -->
-              <article class="cases-slide">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div class="flex items-center justify-between gap-2">
-                    <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Светлана, путешествия</div>
-                    <div class="toggle" data-toggle>
-                      <button type="button" class="active" data-show="before">До</button>
-                      <button type="button" data-show="after">После</button>
-                    </div>
-                  </div>
-                  <div class="mt-3">
-                    <div data-view="before">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Тяжело общалась в отелях и аэропорту</li>
-                        <li>• Страх ошибиться в простых фразах</li>
-                      </ul>
-                    </div>
-                    <div data-view="after" class="hidden">
-                      <ul class="text-white/90 space-y-1">
-                        <li>• Уверенно решает все бытовые ситуации за рубежом</li>
-                        <li>• Автоматизировала базовые конструкции, без ступора</li>
-                      </ul>
-                      <div class="text-white/70 text-sm mt-2">Срок: 4 недели, разговорная практика</div>
-                    </div>
+            <article class="cases-slide" data-tags="self">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Илья, разработчик</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
                   </div>
                 </div>
-              </article>
-            </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Заваливал тех. собеседования на английском</li>
+                      <li>• Не хватало словаря по продукту и процессам</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Прошёл собеседование в международную компанию</li>
+                      <li>• Уверенно рассказывает о бэклоге, релизах, метриках</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 6 недель, фокус speaking + vocab</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="self,travel">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Светлана, путешествия</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Тяжело общалась в отелях и аэропорту</li>
+                      <li>• Страх ошибиться в простых фразах</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Уверенно решает все бытовые ситуации за рубежом</li>
+                      <li>• Автоматизировала базовые конструкции</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 4 недели, разговорная практика</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="self">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Роман, менеджер</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Барьер в разговоре с иностранными коллегами</li>
+                      <li>• Разрозненные знания грамматики</li>
+                      <li>• Слов не хватало на презентациях</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Ведёт демо на английском 2 раза в месяц</li>
+                      <li>• Грамматика по схемам, меньше ошибок</li>
+                      <li>• Тематический словарь под продукт</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 6 недель, 2 занятия/нед.</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- EGE -->
+            <article class="cases-slide" data-tags="ege">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Марина, ЕГЭ</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Пробник: 62 балла</li>
+                      <li>• Слабый writing, ошибки в грамматике</li>
+                      <li>• Нет стратегии на 32–38</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Итоговый ЕГЭ: 86 баллов</li>
+                      <li>• Эссе по шаблону + чек‑лист, связки</li>
+                      <li>• 32–38 решает по алгоритму, быстрее</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 3 месяца, 3 занятия/нед.</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="ege">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Данил, ЕГЭ</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Сложные тексты в reading не «заходили»</li>
+                      <li>• Listening: терялся на быстрых диалогах</li>
+                      <li>• Тайминг «сыпался»</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Понимание сложных текстов — до 85–90%</li>
+                      <li>• Listening — тренажёры + скрипты, 80%+</li>
+                      <li>• Чёткий тайминг по частям</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 7 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="ege">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Полина, ЕГЭ</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Лексика: не хватало коллокаций</li>
+                      <li>• Путаница во временах</li>
+                      <li>• Нестабильные эссе</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Тематический словарь + коллокации ЕГЭ</li>
+                      <li>• Времена — схемы, отработка</li>
+                      <li>• Эссе стабильно по критериям</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 6 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="ege">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Игорь, ЕГЭ</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• 32–38: терял баллы на грамматике</li>
+                      <li>• Сложно формулировать аргументы</li>
+                      <li>• Страх устной части</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Алгоритмы на 32–38, меньше ошибок</li>
+                      <li>• Банк аргументов + связки</li>
+                      <li>• Тренажёры устной части + чек‑лист</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 8 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="ege">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Карина, ЕГЭ</div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Writing: проблемы со структурой</li>
+                      <li>• Плохой тайминг на весь экзамен</li>
+                      <li>• Устная часть «сыпалась»</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Эссе: чёткий план + ввод/заключение</li>
+                      <li>• Тайм‑план под каждую часть</li>
+                      <li>• Устная: фразы‑шаблоны, уверенность</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 5 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- OGE -->
+            <article class="cases-slide" data-tags="oge">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Антон, 9 класс (ОГЭ)
+                  </div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Пробник: «4» на грани, провалы в аудировании</li>
+                      <li>• Ошибки во временах, слабая устная часть</li>
+                      <li>• Неуверенность в формате заданий</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Итоговый ОГЭ: «5», уверенная устная часть</li>
+                      <li>• Грамматика собрана, ошибок в 3 раза меньше</li>
+                      <li>• Чёткое понимание формата и критериев</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 8 недель, 2–3 занятия/нед.</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="oge">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Полина, 9 класс (ОГЭ)
+                  </div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Письмо: не знала, что писать</li>
+                      <li>• Словарный запас очень ограничен</li>
+                      <li>• Аудирование — низкие баллы</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Шаблоны письма + примеры, без воды</li>
+                      <li>• Тематический словарь, активные карточки</li>
+                      <li>• Ежедневная практика listening — рост до 80%</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 6 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="oge">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Егор, 9 класс (ОГЭ)
+                  </div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Грамматика «плыла», путаница во временах</li>
+                      <li>• Формат устной части неясен</li>
+                      <li>• Нерегулярные упражнения</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Схемы по временам + тренажёры</li>
+                      <li>• Чек‑листы по устной части</li>
+                      <li>• Календарь занятий + контроль</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 5 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="oge">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Алина, 9 класс (ОГЭ)
+                  </div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• «ОГЭшные» тексты: понимание 50–60%</li>
+                      <li>• Недописанное письмо, не уложилась во время</li>
+                      <li>• Страх устного ответа</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Чтение — стратегии сканирования/скамминга</li>
+                      <li>• Тайминг письма + шаблоны</li>
+                      <li>• Ролевая практика устной части</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 6 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cases-slide" data-tags="oge">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Никита, 9 класс (ОГЭ)
+                  </div>
+                  <div class="toggle" data-toggle>
+                    <button type="button" class="active" data-show="before">До</button>
+                    <button type="button" data-show="after">После</button>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <div data-view="before">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• Низкий словарный запас</li>
+                      <li>• Ошибки в орфографии</li>
+                      <li>• Нет плана подготовки</li>
+                    </ul>
+                  </div>
+                  <div data-view="after" class="hidden">
+                    <ul class="text-white/90 space-y-1">
+                      <li>• SRS‑карточки + темы из кодификатора</li>
+                      <li>• Орфо‑тренажёры и диктанты</li>
+                      <li>• Поквартальный план + пробники</li>
+                    </ul>
+                    <div class="text-white/70 text-sm mt-2">Срок: 8 недель</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
           </div>
-
-          <div class="flex justify-center gap-1 mt-3" data-cases-dots></div>
         </div>
-      </section>
 
-      <!-- 5) Преимущества — без фото -->
-      <section id="about" class="mx-auto container-xxl px-4 mt-16">
-        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
-          <h3 class="text-2xl md:text-3xl font-semibold reveal">Преимущества работы со мной</h3>
+        <div class="flex justify-center gap-1 mt-3" data-cases-dots></div>
+      </div>
+    </section>
 
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:80ms">
-              <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-300"></i>
-              <span class="text-white/90">Тысячи проведённых занятий</span>
+    <!-- 5) Преимущества — иконки -->
+    <section id="about" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Почему люди выбирают меня?</h3>
+
+        <!-- Fallback-контент на случай проблем с JS -->
+        <div id="advantagesGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="clock" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">4+ лет практики преподавания</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="users" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">100+ учеников и тысячи уроков</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="puzzle" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Авторская система: простые схемы и чек‑листы</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="rocket" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Реальные результаты через 3 месяца</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="badge-check" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Международная квалификация: TEFL</div>
+          </div>
+          <div class="adv-card">
+            <div class="adv-emoji"><i data-lucide="languages" class="w-5 h-5 text-emerald-300"></i></div>
+            <div class="adv-text">Подтверждённый уровень английского: C2</div>
+          </div>
+        </div>
+
+        <div class="mt-6 reveal">
+          <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+            Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) Виды занятий -->
+    <section id="types" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Виды занятий</h3>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-3">
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" data-seat-type="group">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
             </div>
-            <div class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-3 reveal" style="--delay:120ms">
-              <i data-lucide="smile" class="w-5 h-5 text-emerald-300"></i>
-              <span class="text-white/90">Сотни довольных студентов, изменившие свою жизнь</span>
+            <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
+              </ul>
+              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
+              </ul>
             </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
+            </a>
           </div>
 
-          <ul class="mt-4 grid gap-2">
-            <li class="flex items-start gap-2 reveal" style="--delay:160ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Международная квалификация: TEFL</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:200ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Подтверждённый уровень C2</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:240ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Сертификаты: Business English, C2 level of English</li>
-            <li class="flex items-start gap-2 reveal" style="--delay:280ms"><i data-lucide="award" class="w-5 h-5 text-cyan-300"></i> Автор пособий и онлайн‑продуктов по английскому</li>
-          </ul>
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" data-seat-type="solo">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
+            </div>
+            <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
+              </ul>
+            </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
+            </a>
+          </div>
 
-          <div class="mt-6 reveal" style="--delay:320ms">
-            <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
-              Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" data-seat-type="zero">
+            <div class="text-lg font-semibold flex items-center gap-2">
+              <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
+            </div>
+            <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
+            <div class="mt-3 text-white/80">
+              <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
+              </ul>
+              <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
+              <ul class="space-y-1">
+                <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
+              </ul>
+            </div>
+            <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
+            <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
+              Записаться
             </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 6) Виды занятий -->
-      <section id="types" class="mx-auto container-xxl px-4 mt-16">
-        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-          <h3 class="text-2xl md:text-3xl font-semibold reveal">Виды занятий</h3>
-
-          <div class="mt-6 grid gap-4 md:grid-cols-3">
-            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:80ms" data-seat-type="group">
-              <div class="text-lg font-semibold flex items-center gap-2">
-                <i data-lucide="users" class="w-5 h-5 text-cyan-300"></i> Групповые занятия
-              </div>
-              <p class="mt-2 text-white/80">Учимся в мини‑группах, делимся опытом и двигаемся вместе</p>
-              <div class="mt-3 text-white/80">
-                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-                <ul class="space-y-1">
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Дешевле, чем индивидуальные</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Учимся на ошибках других</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Мотивация и драйв</li>
-                </ul>
-                <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-                <ul class="space-y-1">
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Меньше внимания преподавателя</li>
-                </ul>
-              </div>
-              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-                Записаться
-              </a>
-            </div>
-
-            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:120ms" data-seat-type="solo">
-              <div class="text-lg font-semibold flex items-center gap-2">
-                <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Индивидуальные занятия
-              </div>
-              <p class="mt-2 text-white/80">Персональная программа под вашу цель и темп</p>
-              <div class="mt-3 text-white/80">
-                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-                <ul class="space-y-1">
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Уровень, темп и интересы — ваши</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Максимум внимания</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Гибкий график</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Быстрый прогресс</li>
-                </ul>
-              </div>
-              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-                Записаться
-              </a>
-            </div>
-
-            <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" style="--delay:160ms" data-seat-type="zero">
-              <div class="text-lg font-semibold flex items-center gap-2">
-                <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
-              </div>
-              <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
-              <div class="mt-3 text-white/80">
-                <div class="uppercase text-xs text-white/60 mb-1">Плюсы</div>
-                <ul class="space-y-1">
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Глубокое погружение</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Отлично для подготовки</li>
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-up" class="w-5 h-5 text-emerald-300"></i> Регулярная практика</li>
-                </ul>
-                <div class="uppercase text-xs text-white/60 mt-3 mb-1">Минусы</div>
-                <ul class="space-y-1">
-                  <li class="flex items-start gap-2"><i data-lucide="thumbs-down" class="w-5 h-5 text-cyan-300"></i> Сложнее совмещать с плотным графиком</li>
-                </ul>
-              </div>
-              <div class="mt-4 text-white/80" data-seat-text>Доступно мест: —</div>
-              <a href="#quiz" class="mt-3 inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium w-full" data-seat-cta>
-                Записаться
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7) Первый урок бесплатно (квиз) -->
-      <section id="quiz" class="mx-auto container-xxl px-4 mt-16">
-        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="reveal">
-              <h3 class="text-2xl md:text-3xl font-semibold">Первый урок бесплатно</h3>
-              <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
-              <ul class="mt-4 space-y-2 text-white/85">
-                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
-                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
-                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Дам бесплатную консультацию</li>
-                <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам в подарок</li>
-              </ul>
-            </div>
-            <div class="reveal" style="--delay:120ms">
-              <form id="quizForm" class="space-y-4 rounded-2xl border border-white/15 bg-white/5 p-4">
-                <div class="text-sm text-white/80">Прогресс</div>
-                <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                  <div id="quizProgress" class="h-full bg-gradient-to-r from-emerald-300 to-cyan-300 w-[25%]"></div>
-                </div>
-
-                <div class="quiz-step" data-step="1">
-                  <label class="block text-sm text-white/80 mb-2">Ваш уровень</label>
-                  <div class="grid grid-cols-2 gap-2">
-                    <button type="button" data-field="level" data-value="A0" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A0</button>
-                    <button type="button" data-field="level" data-value="A1-A2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A1-A2</button>
-                    <button type="button" data-field="level" data-value="B1-B2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">B1-B2</button>
-                    <button type="button" data-field="level" data-value="C1+" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">C1+</button>
-                  </div>
-                </div>
-
-                <div class="quiz-step hidden" data-step="2">
-                  <label class="block text-sm text-white/80 mb-2">Цель</label>
-                  <div class="grid grid-cols-1 gap-2">
-                    <button type="button" data-field="goalChoice" data-value="Разговорный" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Разговорный английский</button>
-                    <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ/IELTS/TOEFL</button>
-                    <button type="button" data-field="goalChoice" data-value="Работа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Работа/карьера</button>
-                    <button type="button" data-field="goalChoice" data-value="Переезд/путешествия" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Переезд/путешествия</button>
-                  </div>
-                </div>
-
-                <div class="quiz-step hidden" data-step="3">
-                  <label class="block text-sm text-white/80 mb-2">Формат</label>
-                  <div class="grid grid-cols-1 gap-2">
-                    <button type="button" data-field="format" data-value="Индивидуально" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Индивидуально</button>
-                    <button type="button" data-field="format" data-value="Мини‑группа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Мини‑группа</button>
-                  </div>
-                </div>
-
-                <div class="quiz-step hidden" data-step="4">
-                  <label class="block text-sm text-white/80 mb-1">Как с вами связаться?</label>
-                  <input id="qName" name="name" type="text" required minlength="2" placeholder="Имя"
-                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
-                  <input id="qPhone" name="phone" type="tel" required pattern="^[0-9+() \\-]{6,}$" placeholder="+7 (___) ___-__-__"
-                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
-                  <textarea id="qGoal" name="goal" rows="3" placeholder="Пара слов о цели (по желанию)"
-                    class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"></textarea>
-                  <div class="text-xs text-white/60 mt-1">Отправляя, вы соглашаетесь на обработку персональных данных</div>
-                  <button id="quizSubmit" type="submit" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-2.5 font-medium w-full">
-                    Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                  </button>
-                  <div id="quizStatus" class="text-sm mt-2"></div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                  <button id="quizBack" type="button" class="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-white/80 hover:bg-white/15 hidden">Назад</button>
-                  <button id="quizNext" type="button" class="rounded-xl bg-white text-black px-4 py-2 font-medium hover:bg-white/90">Далее</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 8) FAQ -->
-      <section id="faq" class="mx-auto container-xxl px-4 mt-16">
-        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-          <h3 class="text-2xl md:text-3xl font-semibold reveal">Популярные вопросы</h3>
-          <div class="mt-4 space-y-2">
-            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
-              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-                <span>Почему именно со мной?</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-              </summary>
-              <div class="px-4 pb-4 text-white/90">4+ года практики, 100+ учеников, тысячи уроков, уровень C2, TEFL, авторские материалы.</div>
-            </details>
-            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
-              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-                <span>Какая гарантия результата?</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-              </summary>
-              <div class="px-4 pb-4 text-white/90">Первый урок бесплатный. План на 90 дней с контролем выполнения. Темп и результат зависят от посещаемости и домашних заданий.</div>
-            </details>
-            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
-              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-                <span>Как проходят занятия онлайн?</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-              </summary>
-              <div class="px-4 pb-4 text-white/90">Видеосвязь, интерактивные материалы, разбор ваших задач, разговорная практика на каждом занятии.</div>
-            </details>
-            <details class="group rounded-xl border border-white/10 bg-white/5 reveal">
-              <summary class="cursor-pointer px-4 py-3 flex items-center justify-between">
-                <span>С какого уровня можно начинать?</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
-              </summary>
-              <div class="px-4 pb-4 text-white/90">С любого — от A0 до B2+. Анкета поможет определить старт и формат.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- 9) Связь со мной -->
-      <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
-        <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-          <h3 class="text-2xl font-semibold text-white reveal">Остались вопросы ? Задайте их мне !</h3>
-          <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
-            <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
-            <a href="https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
-            <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
-            <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
-            <a href="#quiz" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/20 reveal"><i data-lucide="arrow-right" class="w-5 h-5"></i> Первый урок бесплатно</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="mt-20 border-t border-white/10">
-        <div class="mx-auto container-xxl px-4 py-10">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-white/70">© 2025 To Be English. Все права защищены</p>
-            <p class="text-white/60 text-center md:text-right text-sm md:text-base">
-              *WhatsApp и Instagram (Meta, признана в РФ экстремистской организацией и запрещена)
+    <!-- Приложение -->
+    <section id="app" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-2xl shadow-deep">
+        <div class="grid md:grid-cols-2 gap-6 items-stretch">
+          <div class="flex flex-col">
+            <h3 class="text-2xl md:text-3xl font-semibold text-white">Моё приложение “T Be English”</h3>
+            <p class="mt-3 text-white/85">
+              Карманный тренажёр английского: ежедневные микро‑уроки, чек‑листы по временам,
+              тренажёры listening/reading, SRS‑карточки, трекер прогресса и шаблоны для writing
+              (ЕГЭ/ОГЭ). Интеграция с моими ИИ‑ботами, напоминания и тёмная тема.
             </p>
+            <ul class="mt-4 space-y-2 text-white/90">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Быстрые тренировки 10–15 минут в день</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Карточки SRS + свои наборы слов</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Чек‑листы ЕГЭ/ОГЭ и готовые фразы</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Интеграция с ботами и напоминания</li>
+            </ul>
+            <div class="mt-5 flex gap-3 flex-wrap">
+              <a href="https://clck.ru/3MDn4t" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+                Скачать приложение <i data-lucide="arrow-down-circle" class="w-5 h-5"></i>
+              </a>
+              <a href="#bots" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 hover:bg-white/15">
+                Посмотреть ботов <i data-lucide="bot" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          <div class="relative rounded-2xl border border-white/15 bg-white/10 overflow-hidden min-h-[260px]">
+            <img src="https://berdiyev-eng.ru/app1.jpg" alt="Скриншот приложения T Be English" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </section>
+
+    <!-- Боты -->
+    <section id="bots" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-2xl shadow-deep">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <h3 class="text-2xl md:text-3xl font-semibold">Мои боты на основе ChatGPT</h3>
+          <div id="botsTabs" class="mode-switch" role="tablist" aria-label="Выбор бота">
+            <button type="button" class="mode-btn active" data-bot="ege" role="tab" aria-pressed="true"><i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ</button>
+            <button type="button" class="mode-btn" data-bot="oge" role="tab" aria-pressed="false"><i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ</button>
+            <button type="button" class="mode-btn" data-bot="ielts" role="tab" aria-pressed="false"><i data-lucide="globe-2" class="w-4 h-4"></i> IELTS</button>
+            <button type="button" class="mode-btn" data-bot="toefl" role="tab" aria-pressed="false"><i data-lucide="globe" class="w-4 h-4"></i> TOEFL</button>
+            <button type="button" class="mode-btn" data-bot="materials" role="tab" aria-pressed="false"><i data-lucide="folder-kanban" class="w-4 h-4"></i> ЕГЭ материалы</button>
+            <button type="button" class="mode-btn" data-bot="free" role="tab" aria-pressed="false"><i data-lucide="bot" class="w-4 h-4"></i> Репетитор GPT</button>
+          </div>
+        </div>
+
+        <div id="botsCards" class="grid grid-cols-1 mt-5">
+          <!-- Карточка бота рендерится через JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) Квиз -->
+    <section id="quiz" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-10 backdrop-blur-2xl">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="reveal">
+            <h3 class="text-2xl md:text-3xl font-semibold">Первый урок бесплатно</h3>
+            <p class="mt-2 text-white/80">Оставьте заявку — свяжусь с вами и подберу удобный формат под вашу цель.</p>
+            <ul class="mt-4 space-y-2 text-white/85">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Составлю индивидуальный план</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подберём график занятий</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Проведем тест вашего английского</li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Гайд по временам и доступ к боту на базе ИИ в подарок</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <form id="quizForm" class="space-y-4 rounded-2xl border border-white/15 bg-white/5 p-4">
+              <div class="text-sm text-white/80">Прогресс</div>
+              <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                <div id="quizProgress" class="h-full bg-gradient-to-r from-emerald-300 to-cyan-300 w-[25%]"></div>
+              </div>
+
+              <div class="quiz-step" data-step="1">
+                <label class="block text-sm text-white/80 mb-2">Ваш уровень</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <button type="button" data-field="level" data-value="A0" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A0</button>
+                  <button type="button" data-field="level" data-value="A1-A2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">A1-A2</button>
+                  <button type="button" data-field="level" data-value="B1-B2" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">B1-B2</button>
+                  <button type="button" data-field="level" data-value="C1+" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">C1+</button>
+                </div>
+              </div>
+
+              <div class="quiz-step hidden" data-step="2">
+                <label class="block text-sm text-white/80 mb-2">Цель</label>
+                <div class="grid grid-cols-1 gap-2">
+                  <button type="button" data-field="goalChoice" data-value="Разговорный" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Разговорный английский</button>
+                  <button type="button" data-field="goalChoice" data-value="Экзамен" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">ЕГЭ/ОГЭ</button>
+                  <button type="button" data-field="goalChoice" data-value="Работа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Работа/карьера</button>
+                  <button type="button" data-field="goalChoice" data-value="Переезд/путешествия" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Переезд/путешествия</button>
+                </div>
+              </div>
+
+              <div class="quiz-step hidden" data-step="3">
+                <label class="block text-sm text-white/80 mb-2">Формат</label>
+                <div class="grid grid-cols-1 gap-2">
+                  <button type="button" data-field="format" data-value="Индивидуально" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Индивидуально</button>
+                  <button type="button" data-field="format" data-value="Мини‑группа" class="quiz-opt rounded-xl border border-white/20 bg-white/10 px-3 py-2">Мини‑группа</button>
+                </div>
+              </div>
+
+              <div class="quiz-step hidden" data-step="4">
+                <label class="block text-sm text-white/80 mb-1">Как с вами связаться?</label>
+                <input id="qName" name="name" type="text" required minlength="2" placeholder="Имя"
+                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
+                <input id="qPhone" name="phone" type="tel" required pattern="^[0-9+() \\-]{6,}$" placeholder="+7 (___) ___-__-__"
+                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 mb-2">
+                <textarea id="qGoal" name="goal" rows="3" placeholder="Пара слов о цели (по желанию)"
+                  class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"></textarea>
+                <div class="text-xs text-white/60 mt-1">Отправляя, вы соглашаетесь на обработку персональных данных</div>
+                <button id="quizSubmit" type="submit" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-2.5 font-medium w-full">
+                  Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <div id="quizStatus" class="text-sm mt-2"></div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <button id="quizBack" type="button" class="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-white/80 hover:bg-white/15 hidden">Назад</button>
+                <button id="quizNext" type="button" class="rounded-xl bg-white text-black px-4 py-2 font-medium hover:bg-white/90">Далее</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) FAQ -->
+    <section id="faq" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Популярные вопросы</h3>
+        <div id="faqList" class="mt-4 space-y-2"></div>
+      </div>
+    </section>
+
+    <!-- 9) Контакты -->
+    <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
+      <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
+        <h3 class="text-2xl font-semibold text-white reveal">Остались вопросы ? Задайте их мне !</h3>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <a href="https://t.me/Spanchmachina" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
+          <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
+          <a href="https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
+          <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
+          <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
+          <a href="#quiz" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/20 reveal"><i data-lucide="arrow-right" class="w-5 h-5"></i> Первый урок бесплатно</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-white/10">
+      <div class="mx-auto container-xxl px-4 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-white/70">© 2025 T Be English. Все права защищены</p>
+          <p class="text-white/60 text-center md:text-right text-sm md:text-base">
+            *WhatsApp и Instagram (Meta, признана в РФ экстремистской организацией и запрещена)
+          </p>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <!-- Sticky CTA -->
   <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
     <a href="#quiz" class="bg-white text-black rounded-full px-6 py-3 shadow-deep font-medium flex items-center gap-2">
-      Бесплатный урок <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      Записаться на занятия <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
   </div>
 
   <!-- FAB contacts -->
   <div class="fixed bottom-4 right-4 z-40 flex flex-col gap-2">
-    <a href="https://t.me/m/mjPABJEtYTky" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
+    <a href="https://t.me/Spanchmachina" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
       <i data-lucide="send" class="w-5 h-5"></i>
     </a>
     <a href="https://wa.me/+79111880148" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
@@ -799,467 +1091,601 @@
     </button>
   </div>
 
-  <!-- SFX -->
-  <audio id="sfxCrack" preload="auto" src="/sfx/glass-crack.mp3"></audio>
-  <audio id="sfxShatter" preload="auto" src="/sfx/glass-shatter.mp3"></audio>
-
   <script>
     const FORM_ENDPOINT = 'https://formspree.io/f/mblkbjve';
     const SEATS = { group: 0, solo: 3, zero: 1 };
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuClose = document.getElementById('menuClose');
-    function openMenu(){ mobileMenu?.classList.remove('hidden'); }
-    function closeMenu(){ mobileMenu?.classList.add('hidden'); }
-    menuBtn?.addEventListener('click', openMenu);
-    menuClose?.addEventListener('click', closeMenu);
-    mobileMenu?.querySelector('.absolute.inset-0')?.addEventListener('click', closeMenu);
-    mobileMenu?.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => setTimeout(closeMenu, 100)));
+    function createIconsSafe(){
+      if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+    }
 
-    // Apply seats
+    // Mobile menu
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var menuClose = document.getElementById('menuClose');
+    function openMenu(){ if (mobileMenu) mobileMenu.classList.remove('hidden'); }
+    function closeMenu(){ if (mobileMenu) mobileMenu.classList.add('hidden'); }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (mobileMenu) {
+      var overlay = mobileMenu.querySelector('.absolute.inset-0');
+      if (overlay) overlay.addEventListener('click', closeMenu);
+      var mmAnchors = mobileMenu.querySelectorAll('a[href^="#"]');
+      mmAnchors.forEach(function(a){
+        a.addEventListener('click', function(){ setTimeout(closeMenu, 100); });
+      });
+    }
+
+    // Apply seats (CTA кликабельный даже если набор закрыт)
     (function applySeats(){
-      document.querySelectorAll('.format-card').forEach(card => {
-        const type = card.dataset.seatType;
-        const n = SEATS[type] ?? 0;
-        const textEl = card.querySelector('[data-seat-text]');
-        const cta = card.querySelector('[data-seat-cta]');
+      document.querySelectorAll('.format-card').forEach(function(card){
+        var type = card.dataset.seatType;
+        var n = SEATS[type] !== undefined ? SEATS[type] : 0;
+        var textEl = card.querySelector('[data-seat-text]');
+        var cta = card.querySelector('[data-seat-cta]');
         if (!textEl || !cta) return;
 
         if (n > 0) {
-          textEl.textContent = `Доступно мест: ${n}`;
+          textEl.textContent = 'Доступно мест: ' + n;
           cta.classList.remove('opacity-50','cursor-not-allowed');
           cta.setAttribute('aria-disabled','false');
           cta.href = '#quiz';
         } else {
-          textEl.textContent = 'Набор закрыт';
-          cta.classList.add('opacity-50','cursor-not-allowed');
-          cta.setAttribute('aria-disabled','true');
-          cta.href = '#types';
+          textEl.textContent = 'Набор закрыт (оставьте заявку — сообщу о старте)';
+          cta.classList.add('opacity-50');
+          cta.classList.remove('cursor-not-allowed');
+          cta.setAttribute('aria-disabled','false');
+          cta.href = '#quiz';
         }
       });
     })();
 
     // Back to top
-    const toTopBtn = document.getElementById('toTop');
-    toTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 800) toTopBtn?.classList.remove('hidden');
-      else toTopBtn?.classList.add('hidden');
+    var toTopBtn = document.getElementById('toTop');
+    if (toTopBtn) toTopBtn.addEventListener('click', function(){ window.scrollTo({ top: 0 }); });
+    window.addEventListener('scroll', function(){
+      if (!toTopBtn) return;
+      if (window.scrollY > 800) toTopBtn.classList.remove('hidden');
+      else toTopBtn.classList.add('hidden');
     });
 
-    // Icons
-    window.addEventListener('DOMContentLoaded', () => { if (window.lucide?.createIcons) lucide.createIcons(); });
+    // Icons initial
+    window.addEventListener('DOMContentLoaded', function(){ createIconsSafe(); });
 
-    // Reveal
-    (function setupReveal(){
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(ent=>{
-          if (ent.isIntersecting) {
-            ent.target.classList.add('show');
-            io.unobserve(ent.target);
-          }
-        });
-      }, { threshold:.2, rootMargin:'0px 0px -8% 0px' });
+    // Карусель кейсов с фильтром по режиму
+    var CasesUI = (function casesCarousel(){
+      var track = document.querySelector('[data-cases-track]');
+      if (!track) return null;
+      var prev = document.querySelector('[data-cases-prev]');
+      var next = document.querySelector('[data-cases-next]');
+      var dotsWrap = document.querySelector('[data-cases-dots]');
+      var index = 0;
 
-      document.querySelectorAll('.reveal').forEach(el=>{
-        const d = el.style.getPropertyValue('--delay');
-        if (d) el.style.setProperty('--delay', d);
-        io.observe(el);
-      });
-    })();
-
-    // ====== ПИН + Двойной удар с блокировкой прокрутки ======
-    (function twoHitPinnedSequence() {
-      const helpSection = document.getElementById('help');
-      const card = helpSection?.querySelector('.help-card');
-      const overlay = card?.querySelector('[data-glass]');
-      const helpContent = card?.querySelector('.help-content');
-      const resultsSrc = document.querySelector('#students [data-results]');
-      const crackAudio = document.getElementById('sfxCrack');
-      const shatterAudio = document.getElementById('sfxShatter');
-
-      if (!helpSection || !card || !overlay || !helpContent || !resultsSrc) return;
-
-      // Генерация осколков
-      function createPieces() {
-        const rect = overlay.getBoundingClientRect();
-        const w = rect.width, h = rect.height;
-        const cx = w/2, cy = h/2;
-        const R = Math.sqrt(w*w + h*h) * 1.1;
-        const count = Math.min(34, Math.max(22, Math.round((w*h) / 22000)));
-        let angle = -Math.PI / 2 + (Math.random() - .5) * .5;
-        const minArc = (Math.PI * 2) / (count + 6);
-
-        for (let i = 0; i < count; i++) {
-          const delta = minArc * (0.9 + Math.random() * 1.6);
-          const a1 = angle;
-          const a2 = angle + delta;
-          angle = a2;
-
-          const p1x = cx + R * Math.cos(a1), p1y = cy + R * Math.sin(a1);
-          const p2x = cx + R * Math.cos(a2), p2y = cy + R * Math.sin(a2);
-
-          const p = document.createElement('div');
-          p.className = 'piece';
-          p.style.clipPath = `polygon(${cx}px ${cy}px, ${p1x}px ${p1y}px, ${p2x}px ${p2y}px)`;
-
-          const edge = (0.30 + Math.random()*0.35).toFixed(2);
-          p.style.borderColor = `rgba(255,255,255,${edge})`;
-          if (Math.random() < .35) p.style.filter = 'brightness(1.08) saturate(1.05)';
-
-          const mid = (a1 + a2) / 2;
-          const distance = R * (0.45 + Math.random() * 0.7);
-          const dx = Math.cos(mid) * distance;
-          const dy = Math.sin(mid) * distance;
-          const rot = -60 + Math.random()*120;
-
-          p.dataset.dx = dx.toFixed(1);
-          p.dataset.dy = dy.toFixed(1);
-          p.dataset.rot = rot.toFixed(0);
-
-          overlay.appendChild(p);
-        }
+      var allSlides = Array.prototype.slice.call(track.children);
+      function visibleSlides(){
+        return Array.prototype.slice.call(track.querySelectorAll(':scope > .cases-slide:not(.hidden)'));
       }
-      window.addEventListener('load', createPieces);
 
-      // Вспомогательные
-      function play(aud, vol=0.7){ try{ if(aud){ aud.currentTime=0; aud.volume=vol; aud.play().catch(()=>{});} }catch(e){} }
-      function impactPing(host = overlay){
-        const ping = document.createElement('span');
-        ping.className = 'impact';
-        host.appendChild(ping);
-        setTimeout(()=> ping.remove(), 650);
-      }
-      function hit(){ card.classList.add('hit-anim'); setTimeout(()=>card.classList.remove('hit-anim'), 450); }
-      function strikeHammer(which, host = overlay){
-        const hammer = host.querySelector(`.hammer[data-hammer="${which}"]`);
-        if (!hammer) return;
-        hammer.classList.add('strike');
-        setTimeout(() => {
-          impactPing(host);
-          setTimeout(() => hammer.classList.add('fade'), 280);
-          setTimeout(() => hammer.classList.remove('strike','fade','show'), 900);
-        }, 160);
-      }
-      function showHammersIdle(){
-        overlay.querySelectorAll('.hammer').forEach(h => h.classList.add('show'));
-      }
-      function triggerCrack(){
-        const state = card.getAttribute('data-broken');
-        if (state === 'cracked' || state === 'smashed') return;
-        card.setAttribute('data-broken','cracked'); play(crackAudio, .55); hit();
-      }
-      function triggerSmash(){
-        const state = card.getAttribute('data-broken');
-        if (state === 'smashed') return;
-        if (state !== 'cracked') triggerCrack();
-        card.setAttribute('data-broken','smashed'); play(shatterAudio, .7); hit();
-        overlay.querySelectorAll('.piece').forEach(p => {
-          p.style.opacity = '1';
-          p.style.transform = `translate3d(${p.dataset.dx}px, ${p.dataset.dy}px, 0) rotate(${p.dataset.rot}deg)`;
-          p.style.filter = 'brightness(1.25)';
+      function rebuildDots(){
+        var slides = visibleSlides();
+        dotsWrap.innerHTML = '';
+        slides.forEach(function(_, i){
+          var b = document.createElement('button');
+          b.className = 'w-2.5 h-2.5 rounded-full bg-white ' + (i===index ? 'opacity-100' : 'opacity-50');
+          b.addEventListener('click', function(){ index=i; update(); });
+          dotsWrap.appendChild(b);
         });
       }
 
-      // Состояния
-      let locked = false;     // скролл заблокирован, секция закреплена по центру
-      let step = 0;           // 0 — ещё нет ударов; 1 — трещины; 2 — разбито; 3 — заменено
-      let progress = 0;       // прогресс вниз в заблокированном состоянии
-      let touchStartY = 0;
-      let pendingUnpin = false;
-
-      // Включить скролл-лок и "прилипнуть" по центру (снэп на центр)
-      function lockScrollToCenter() {
-        if (locked) return;
-
-        // Снэпим точно в центр, без smooth
-        const vh = window.innerHeight;
-        const r = card.getBoundingClientRect();
-        const target = window.scrollY + r.top + r.height/2 - vh/2;
-        const root = document.documentElement;
-        const prev = root.style.scrollBehavior;
-        root.style.scrollBehavior = 'auto';
-        window.scrollTo({ top: Math.max(0, target) });
-        root.style.scrollBehavior = prev;
-
-        document.body.classList.add('scroll-lock');
-        locked = true;
-        progress = 0;
-        showHammersIdle();
-        attachLockHandlers();
-      }
-      function unlockScroll() {
-        document.body.classList.remove('scroll-lock');
-        locked = false;
-        detachLockHandlers();
-      }
-
-      function attachLockHandlers(){
-        window.addEventListener('wheel', onWheel, { passive: false });
-        window.addEventListener('keydown', onKey, { passive: false });
-        window.addEventListener('touchstart', onTouchStart, { passive: false });
-        window.addEventListener('touchmove', onTouchMove, { passive: false });
-      }
-      function detachLockHandlers(){
-        window.removeEventListener('wheel', onWheel);
-        window.removeEventListener('keydown', onKey);
-        window.removeEventListener('touchstart', onTouchStart);
-        window.removeEventListener('touchmove', onTouchMove);
-      }
-
-      // Управляем ударами по прогрессу
-      function advance() {
-        if (step === 0 && progress > 140) {
-          strikeHammer('1'); setTimeout(triggerCrack, 160); step = 1; return;
-        }
-        if (step === 1 && progress > 280) {
-          strikeHammer('2'); setTimeout(() => { triggerSmash(); replaceWithResults(); }, 180); step = 2; return;
-        }
-      }
-
-      // События при локации
-      function onWheel(e){
-        if (!locked) return;
-        if (e.deltaY <= 0) { e.preventDefault(); return; }
-        e.preventDefault();
-        progress += e.deltaY;
-        advance();
-      }
-      function onKey(e){
-        if (!locked) return;
-        if (['ArrowDown','PageDown',' '].includes(e.key)) {
-          e.preventDefault(); progress += 60; advance();
-        } else if (['ArrowUp','PageUp'].includes(e.key)) {
-          e.preventDefault(); progress = Math.max(0, progress - 60);
-        }
-      }
-      function onTouchStart(e){ touchStartY = e.touches?.[0]?.clientY || 0; }
-      function onTouchMove(e){
-        if (!locked) return;
-        const y = e.touches?.[0]?.clientY || 0;
-        const dy = touchStartY - y;
-        if (dy > 4) {
-          e.preventDefault();
-          progress += dy * 2;
-          touchStartY = y;
-          advance();
-        } else {
-          e.preventDefault();
-        }
-      }
-
-      // Замена контента и плавный выход из пина без пустоты
-      function replaceWithResults() {
-        if (step >= 3) return;
-        step = 3;
-
-        // Клонируем "После занятий"
-        const cloned = resultsSrc.cloneNode(true);
-        cloned.classList.remove('hidden');
-        cloned.classList.add('pin-results');
-        cloned.style.animation = 'fadeUp .5s ease both';
-
-        // Небольшой "молоток CTA" сверху — один раз
-        const ctaHammer = document.createElement('div');
-        ctaHammer.className = 'hammer';
-        ctaHammer.dataset.hammer = 'cta';
-        ctaHammer.dataset.pos = 'top';
-        ctaHammer.innerHTML = `<i data-lucide="hammer"></i><span class="label">Занятия со мной</span>`;
-        cloned.appendChild(ctaHammer);
-
-        card.replaceWith(cloned);
-        if (window.lucide?.createIcons) lucide.createIcons();
-        setTimeout(() => {
-          const h = cloned.querySelector('[data-hammer="cta"]');
-          if (h) { h.classList.add('strike'); setTimeout(()=>h.classList.add('fade'), 360); }
-        }, 120);
-
-        // Разблокируем скролл, но оставляем "После занятий" в центре до первого действия
-        unlockScroll();
-        pendingUnpin = true;
-
-        const unpinOnce = () => {
-          if (!pendingUnpin) return;
-          pendingUnpin = false;
-          // Снимаем центрирование и убираем увеличенную высоту секции, чтобы не было пустоты
-          cloned.classList.remove('pin-results');
-          helpSection.style.minHeight = '0';
-          window.removeEventListener('wheel', unpinOnce);
-          window.removeEventListener('touchstart', unpinOnce);
-          window.removeEventListener('keydown', unpinOnce);
-        };
-
-        window.addEventListener('wheel', unpinOnce, { passive: true, once: true });
-        window.addEventListener('touchstart', unpinOnce, { passive: true, once: true });
-        window.addEventListener('keydown', unpinOnce, { passive: true, once: true });
-      }
-
-      // Запуск — как только карточка пересекает центральную линию вьюпорта
-      function onScrollCenterLock() {
-        if (locked || step > 0) return;
-        const r = card.getBoundingClientRect();
-        const vh = window.innerHeight;
-        if (r.top < vh/2 && r.bottom > vh/2) {
-          lockScrollToCenter();
-        }
-      }
-      window.addEventListener('scroll', onScrollCenterLock, { passive: true });
-      onScrollCenterLock(); // если сразу попали в центр при перезагрузке
-    })();
-
-    // Карусель кейсов
-    (function casesCarousel(){
-      const track = document.querySelector('[data-cases-track]');
-      if (!track) return;
-      const slides = Array.from(track.children);
-      const prev = document.querySelector('[data-cases-prev]');
-      const next = document.querySelector('[data-cases-next]');
-      const dotsWrap = document.querySelector('[data-cases-dots]');
-      let index = 0;
-
-      function update() {
-        track.style.transform = `translateX(${-index*100}%)`;
-        dotsWrap.querySelectorAll('button').forEach((d,i)=> {
+      function update(){
+        var slides = visibleSlides();
+        if (index >= slides.length) index = Math.max(0, slides.length - 1);
+        track.style.transform = 'translateX(' + (-index*100) + '%)';
+        var dots = dotsWrap.querySelectorAll('button');
+        dots.forEach(function(d, i){
           d.classList.toggle('opacity-100', i===index);
           d.classList.toggle('opacity-50', i!==index);
         });
-        prev.toggleAttribute('disabled', index===0);
-        next.toggleAttribute('disabled', index===slides.length-1);
+        if (prev) prev.toggleAttribute('disabled', index===0);
+        if (next) next.toggleAttribute('disabled', index===slides.length-1 || slides.length===0);
       }
 
-      // Dots
-      slides.forEach((_,i)=>{
-        const b = document.createElement('button');
-        b.className = 'w-2.5 h-2.5 rounded-full bg-white transition-opacity ' + (i===0 ? 'opacity-100' : 'opacity-50');
-        b.addEventListener('click', ()=>{ index=i; update(); });
-        dotsWrap.appendChild(b);
-      });
-
-      prev?.addEventListener('click', ()=>{ if(index>0){ index--; update(); } });
-      next?.addEventListener('click', ()=>{ if(index<slides.length-1){ index++; update(); } });
+      if (prev) prev.addEventListener('click', function(){ if(index>0){ index--; update(); } });
+      if (next) next.addEventListener('click', function(){ if(index<visibleSlides().length-1){ index++; update(); } });
 
       // Touch swipe
-      let startX=0, dx=0, isDown=false;
-      track.addEventListener('touchstart', e=>{ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
-      track.addEventListener('touchmove', e=>{ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
-      track.addEventListener('touchend', ()=>{ 
+      var startX=0, dx=0, isDown=false;
+      track.addEventListener('touchstart', function(e){ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchmove', function(e){ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
+      track.addEventListener('touchend', function(){ 
         if(!isDown) return; isDown=false;
-        if (Math.abs(dx)>50){ if(dx<0 && index<slides.length-1) index++; if(dx>0 && index>0) index--; update(); }
+        if (Math.abs(dx)>50){ 
+          if(dx<0 && index<visibleSlides().length-1) index++; 
+          if(dx>0 && index>0) index--; 
+          update(); 
+        }
         dx=0;
       });
 
       // Toggle "до/после"
-      track.addEventListener('click', (e)=>{
-        const btn = e.target.closest('[data-show]');
+      track.addEventListener('click', function(e){
+        var btn = e.target.closest('[data-show]');
         if (!btn) return;
-        const wrap = btn.closest('[data-toggle]');
-        const slide = btn.closest('.cases-slide');
-        const view = btn.dataset.show;
-        wrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b===btn));
-        slide.querySelectorAll('[data-view]').forEach(v=>v.classList.toggle('hidden', v.dataset.view !== view));
+        var wrap = btn.closest('[data-toggle]');
+        var slide = btn.closest('.cases-slide');
+        var view = btn.getAttribute('data-show');
+        wrap.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b===btn); });
+        slide.querySelectorAll('[data-view]').forEach(function(v){ v.classList.toggle('hidden', v.getAttribute('data-view') !== view); });
       });
 
+      // Фильтр по тегам
+      function filter(tagsArr){
+        var tags = new Set(tagsArr);
+        allSlides.forEach(function(sl){
+          var t = (sl.dataset.tags || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+          var show = t.some(function(x){ return tags.has(x); });
+          sl.classList.toggle('hidden', !show);
+        });
+        index = 0;
+        rebuildDots();
+        update();
+        createIconsSafe();
+      }
+
+      // Инициализация
+      rebuildDots();
       update();
+
+      return { filter: filter };
     })();
 
-    // QUIZ logic
-    (function quiz(){
-      const form = document.getElementById('quizForm');
-      if (!form) return;
-      const steps = Array.from(form.querySelectorAll('.quiz-step'));
-      const nextBtn = document.getElementById('quizNext');
-      const backBtn = document.getElementById('quizBack');
-      const submitBtn = document.getElementById('quizSubmit');
-      const status = document.getElementById('quizStatus');
-      const progress = document.getElementById('quizProgress');
-
-      let step = 1;
-      const answers = { level: '', goalChoice: '', format: '' };
-
-      function setStep(n){
-        step = n;
-        steps.forEach(s => s.classList.toggle('hidden', Number(s.dataset.step) !== step));
-        backBtn?.classList.toggle('hidden', step === 1);
-        nextBtn?.classList.toggle('hidden', step >= 4);
-        if (progress) progress.style.width = `${Math.min(100, step*25)}%`;
+    // ===== РЕЖИМЫ: Для себя / ОГЭ / ЕГЭ =====
+    const MODES = {
+      self: {
+        title: 'Английский — ключ к твоей цели!',
+        subtitle: 'Первые заметные результаты через 3 месяца.',
+        bullets: [
+          'Быстро заговорить на английском',
+          'Разобраться с грамматикой и временами',
+          'Начать понимать английскую речь и перестать забывать слова',
+          'Повысить свой уровень английского до C1+'
+        ],
+        pains: [
+          'Страшно говорить и не хватает слов',
+          'Путаетесь во временах и грамматике',
+          'Понимаете на слух только часть речи',
+          'Нет системы и регулярности'
+        ],
+        solutions: [
+          '80% урока — разговорная практика с обратной связью',
+          'Схемы по временам и грамматике без воды',
+          'Карточки и spaced repetition для слов, личные наборы',
+          'Аудио/видео-тренировки под ваши темы'
+        ],
+        dreams: [
+          'Свободно общаетесь в путешествиях и на работе',
+          'Понимаете речь на 80–90%',
+          'Дотягиваете уровень до B2–C1',
+          'Снимаете языковой барьер и говорите уверенно'
+        ],
+        caseTags: ['self'],
+        advantages: [
+          { icon: 'clock', text: '4+ лет практики преподавания' },
+          { icon: 'users', text: '100+ учеников и тысячи уроков' },
+          { icon: 'puzzle', text: 'Авторская система: простые схемы и чек‑листы' },
+          { icon: 'rocket', text: 'Реальные результаты через 3 месяца' },
+          { icon: 'badge-check', text: 'Международная квалификация: TEFL' },
+          { icon: 'languages', text: 'Подтверждённый уровень английского: C2' }
+        ]
+      },
+      oge: {
+        title: 'ОГЭ больше не проблема',
+        subtitle: 'Готовим по кодификатору ФИПИ. Без паники и авралов.',
+        bullets: [
+          'Без нервов сдать ОГЭ на 5',
+          'Разобраться с форматом экзамена',
+          'Понять времена и улучшить грамматику',
+          'Начать говорить на английском или улучшить разговорные навыки'
+        ],
+        pains: [
+          'Проблемы с writing и непонимание, что именно нужно писать',
+          'Нехватка словарного запаса',
+          'Ошибки в грамматике и трудности с временами',
+          'Тяжело понимать на слух',
+          'Понимание текстов на уровне 50–60% максимум',
+          'Не до конца понятен формат экзамена и что нужно делать в каждом задании'
+        ],
+        solutions: [
+          'Чёткий план подготовки на 5',
+          'Шаблоны и чек‑листы для устной части и письма',
+          'Тренажёры заданий формата ОГЭ + аудирование',
+          'Еженедельные мини‑пробники с разбором'
+        ],
+        dreams: [
+          'Оценка «5» на ОГЭ без стресса',
+          'Уверенность в каждом типе задания',
+          'Грамматика и времена — будут как 2+2',
+          'Сильную базу для 10–11 класса'
+        ],
+        caseTags: ['oge'],
+        advantages: [
+          { icon: 'trophy', text: 'Средний итог — «5» у выпускников' },
+          { icon: 'graduation-cap', text: '2 высших образования, аспирант' },
+          { icon: 'book-open-check', text: 'Автор пособий и гайдов для изучения английского' },
+          { icon: 'bot', text: 'Бот на ИИ для тренировки формата ОГЭ' },
+          { icon: 'badge-check', text: 'Международная квалификация: TEFL' },
+          { icon: 'languages', text: 'Подтверждённый уровень английского: C2' }
+        ]
+      },
+      ege: {
+        title: 'Поступи в вуз на бюджет',
+        subtitle: 'Стратегия под 80+ баллов и поступление на бюджет.',
+        bullets: [
+          'Без нервов сдать ЕГЭ на 80+ баллов',
+          'Разобраться с форматом экзамена',
+          'Понять времена и улучшить грамматику',
+          'Укрепить разговорную часть',
+          'Поступить в вуз на бюджет или на желаемую специальность'
+        ],
+        pains: [
+          'Сложности с writing: структура, аргументы, связки',
+          'Нехватка словарного запаса',
+          'Ошибки в грамматике , не знание разницы между временами',
+          'Listening/Reading — падает тайминг и концентрация',
+          'Нет стратегии решения на весь вариант',
+          'Недостаточно практики устной части , и при первой же ошибке все сыпится'
+        ],
+        solutions: [
+          'Стратегии решения для каждого задания ЕГЭ',
+          'Шаблоны эссе + чек‑лист самопроверки',
+          'Тематический словарь и коллокации под ЕГЭ',
+          'Пробники с таймингом и детальным разбором'
+        ],
+        dreams: [
+          '80+ баллов и поступление на бюджет',
+          'Сильный writing и уверенное говорение',
+          'Грамматика и лексика , больше не проблема',
+          'База для учёбы в вузе и для участия в олимпиадах'
+        ],
+        caseTags: ['ege'],
+        advantages: [
+          { icon: 'bar-chart-3', text: 'Средний балл выпускников — 80+' },
+          { icon: 'graduation-cap', text: '2 высших образования, аспирант' },
+          { icon: 'book-open-text', text: 'Автор методичек и гайдов по ЕГЭ' },
+          { icon: 'bot', text: 'Автор ИИ‑бота на базе Chat GPT4 для тренировки заданий ЕГЭ' },
+          { icon: 'smartphone', text: 'Автор приложения с ресурсами и материалами для подготовки к ЕГЭ' },
+          { icon: 'badge-check', text: 'Международная квалификация: TEFL' },
+          { icon: 'languages', text: 'Подтверждённый уровень английского: C2' }
+        ]
       }
-      setStep(1);
+    };
 
-      form.addEventListener('click', (e) => {
-        const btn = e.target.closest('.quiz-opt');
-        if (!btn) return;
-        const field = btn.dataset.field;
-        const val = btn.dataset.value;
-        if (!field || !val) return;
+    // Динамический FAQ под каждый режим
+    const FAQS = {
+      self: [
+        { q: 'За сколько я заговорю на английском?', a: 'В среднем за 12 недель при 2 занятиях в неделю и короткой ежедневной практике 15–20 минут. На уроках — 80% живого speaking с обратной связью.' },
+        { q: 'Если я с нуля — получится?', a: 'Да. Стартуем с базовых конструкций и фонетики, параллельно набираем активный словарь. Без перегруза правилами — только то, что даёт быстрый результат.' },
+        { q: 'Боюсь говорить и стесняюсь ошибок', a: 'Нормально. Даю безопасную среду, фиксирую ошибки в “лист наблюдений” и тут же превращаю их в мини‑тренажёры. Ошибаться — ок, важно быстро исправлять.' },
+        { q: 'Какие материалы и домашка?', a: 'Авторские карточки, схемы по временам, разговорные сценарии под ваши темы. Д/з: 2–3 коротких задания (15–25 минут), иногда аудио/видео‑практика.' },
+        { q: 'Онлайн‑формат удобен?', a: 'Да: Zoom/Meet, интерактивная доска/Notion, записи объяснений, чек‑листы. Всё в одном месте — видеть прогресс легко.' },
+        { q: 'Сколько стоит и есть ли рассрочка?', a: 'Стоимость завист от формата (индив./мини‑группа). Первый урок бесплатно. Есть помесячная оплата и пакетные скидки — обсудим на созвоне. Рассрочки к сожалению нет' },
+        { q: 'Есть ли гарантия результата?', a: 'Даём измеримые цели на 90 дней: словарь, скорость речи, понимание на слух, процент правильных ответов. При соблюдении плана вы увидите прогресс к 4–6 неделе.' },
+        { q: 'Смогу совмещать с работой/учёбой?', a: 'Да. Подбираем удобные слоты, переносы согласуем заранее. Практика — компактными блоками, чтобы вписывалась в график.' },
+        { q: 'Чем вы отличаетесь от школ и приложений?', a: 'Персональные сценарии под ваши задачи, фокус на разговорной практике и измеримом результате. Никакой воды и бессмысленных упражнений.' },
+        { q: 'Что будет на бесплатном уроке?', a: 'Диагностика вашего уровня и опредление целей и приоритетов, составлю индивидуальный план обучения, в подарок — гайд по временам и доступ к боту на основе ИИ для изучения английского.' }
+      ],
+      oge: [
+        { q: 'Реально ли поднять до “5”, если осталось 1–3 месяца?', a: 'Да, при регулярных занятиях 2–3 раза в неделю и фокусе на слабых блоках (аудирование/грамматика/письмо) это достижимо. План строим от текущего пробника.' },
+        { q: 'Какая частая причина потери баллов?', a: 'Нет стратегии и критериев: письмо без структуры, грамматика без алгоритмов, аудирование без тренировок тайминга. Мы закрываем это чек‑листами и тренажёрами.' },
+        { q: 'Как вы готовите к устной части?', a: 'По карточкам и шаблонам: тренируем вступление, связки, описание фото, ответы на вопросы. Даю чек‑лист и типовые фразы — заучивание не потребуется.' },
+        { q: 'Что по письму (задание 35)?', a: 'Шаблоны писем под критерии ФИПИ, список обязательных фраз, структура, словарь по темам. Делаем 2–3 письма в неделю с проверкой.' },
+        { q: 'Насколько много домашки?', a: 'Ровно столько, чтобы закрепить: 30–40 минут/день. Плюс короткие аудио/лексика в мобильном формате.' },
+        { q: 'Делаете пробники?', a: 'Да, раз в 1–2 недели с реальным таймингом. После — разбор ошибок и план на следующую неделю.' },
+        { q: 'Можно подтянуть только слабые темы?', a: 'Конечно. Сделаем диагностику и выстроим “ударные” недели по проблемным блокам — это экономит время и даёт быстрый рост баллов.' },
+        { q: 'Как вы держите мотивацию школьника?', a: 'Короткие цели на неделю, видимый прогресс, чек‑листы и понятные “критические точки”, за которые даём бонусы. Родителям — отчёт по занятиям.' },
+        { q: 'Сколько стоит и как оплачивать?', a: 'Формат — индивидуально или мини‑группа. Первый урок бесплатно. Работаю с помесячной / еженедельной оплатой.' },
+        { q: 'Что будет на бесплатном уроке?', a: 'Диагностика по заданиям ОГЭ , анализ сильных/слабых сторон, составлю персональный план подготовки, в подарок — гайд по временам и доступ к боту на основе ИИ для подготовки к ОГЭ по английскому .' }
+      ],
+      ege: [
+        { q: 'Сколько времени нужно на 80+?', a: 'Если старт 60–70 баллов: 2–4 месяца при 2–3 занятиях в неделю и системной домашке. С 40–50 до 80+: 4–6 месяцев. После первого урок будет яснее.' },
+        { q: 'Как вы учите писать эссе?', a: 'Шаблон под критерии, банк аргументов, связки, чек‑лист проверки, разбор типовых тем. Два эссе в неделю — с детальной правкой.' },
+        { q: 'Как натренировать listening и reading?', a: 'Стратегии сканирования/скамминга, тайминг, сценарии “что делать, если не понял”, разбор скриптов, наращиваем скорость и словарь.' },
+        { q: 'Грамматика и лексика: что делаете?', a: 'Алгоритмы решения, таблицы‑подсказки, тренажёры под каждый тип, подбор словам по темам ЕГЭ (семья , отдых и тп), регулярные мини‑контрольные.' },
+        { q: 'Устная часть: можно ли быстро прокачать?', a: 'Да. Делаем карточки, тренируем монолог и сравнение фото, даю речевые клише, критерии и чек‑лист самоконтроля.' },
+        { q: 'Как часто пробники?', a: 'Раз в 2 недели — полный вариант под таймер. После — анализ и корректировка плана.' },
+        { q: 'Если осталось 1–2 месяца — есть смысл?', a: 'Да, но работаем точечно: закрываем самые “дорогие” по баллам блоки и устраняем системные ошибки. Плотный график обсуждаем на первой встрече.' },
+        { q: 'Сколько стоит и есть ли рассрочка?', a: 'Индивидуально/мини‑группа, пакетные скидки, помесячная / еженедельная оплата. Первый урок бесплатно — после него точный план и смета подготовки. Рассрочки к сожалению нет' },
+        { q: 'Будет ли перегруз?', a: 'Нет. Планируем нагрузку под ваш график. Домашка делится на короткие блоки — легче держать темп и прогресс.' },
+        { q: 'Что будет на бесплатном уроке?', a: 'Диагностика по частям ЕГЭ, протестирую твой английский и составлю план на 3 месяца в подарок, подбор материалов (в т.ч. банк эссе/коллокаций), рекомендации по таймингу и стратегиям , в подарок — гайд по временам и доступ к боту на основе ИИ для подготовки к ЕГЭ по английскому и к приложению с материалами для подготовки к ЕГЭ.' }
+      ]
+    };
 
-        answers[field] = val;
-        form.querySelectorAll(`.quiz-opt[data-field="${field}"]`).forEach(el => {
-          el.classList.remove('ring-2','ring-emerald-300/40','bg-white/15');
+    function renderList(ul, items, icon='check', iconColor='text-emerald-300') {
+      if (!ul) return;
+      ul.innerHTML = items.map(function(it){
+        return '<li class="flex items-start gap-2"><i data-lucide="'+icon+'" class="w-5 h-5 '+iconColor+'"></i> '+it+'</li>';
+      }).join('');
+      createIconsSafe();
+    }
+
+    function renderAdvantages(container, items){
+      if (!container) return;
+      container.innerHTML = items.map(function(it){
+        return '<div class="adv-card"><div class="adv-emoji"><i data-lucide="'+it.icon+'" class="w-5 h-5 text-emerald-300"></i></div><div class="adv-text">'+it.text+'</div></div>';
+      }).join('');
+      createIconsSafe();
+    }
+
+    function renderFAQ(container, items){
+      if (!container) return;
+      container.innerHTML = items.map(function(it){
+        return '<details class="group rounded-xl border border-white/10 bg-white/5"><summary class="cursor-pointer px-4 py-3 flex items-center justify-between"><span>'+it.q+'</span><i data-lucide="chevron-down" class="w-4 h-4"></i></summary><div class="px-4 pb-4 text-white/90">'+it.a+'</div></details>';
+      }).join('');
+      createIconsSafe();
+    }
+
+    function setMode(mode) {
+      var m = MODES[mode] ? mode : 'self';
+      try { localStorage.setItem('mode', m); } catch(e){}
+      var url = new URL(window.location.href);
+      url.searchParams.set('mode', m);
+      history.replaceState(null, '', url.toString());
+
+      var conf = MODES[m];
+      document.querySelectorAll('#modeSwitch .mode-btn').forEach(function(btn){
+        var active = btn.dataset.mode === m;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      var t = document.getElementById('offerTitle');
+      var s = document.getElementById('offerSubtitle');
+      var b = document.getElementById('offerBullets');
+      if (t) t.textContent = conf.title;
+      if (s) s.textContent = conf.subtitle;
+      if (b) {
+        b.innerHTML = conf.bullets.map(function(x){
+          return '<li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> '+x+'</li>';
+        }).join('');
+      }
+
+      renderList(document.getElementById('helpList'), conf.pains, 'alert-circle', 'text-cyan-300');
+      renderList(document.getElementById('solutionsList'), conf.solutions, 'sparkles', 'text-emerald-300');
+      renderList(document.getElementById('resultsList'), conf.dreams, 'target', 'text-emerald-300');
+
+      renderAdvantages(document.getElementById('advantagesGrid'), conf.advantages);
+      renderFAQ(document.getElementById('faqList'), FAQS[m]);
+
+      if (CasesUI && conf.caseTags) CasesUI.filter(conf.caseTags);
+      createIconsSafe();
+
+      // Показ/скрытие ссылок "ОГЭ/ЕГЭ" в меню (только в режиме "Для себя")
+      var dLinks = document.getElementById('navModeLinksDesktop');
+      var mLinks = document.getElementById('navModeLinksMobile');
+      var showModeLinks = (m === 'self');
+      if (dLinks) dLinks.classList.toggle('hidden', !showModeLinks);
+      if (mLinks) mLinks.classList.toggle('hidden', !showModeLinks);
+    }
+
+    (function initMode(){
+      var qs = new URLSearchParams(location.search);
+      var fromQS = qs.get('mode');
+      var fromLS;
+      try { fromLS = localStorage.getItem('mode'); } catch(e){ fromLS = null; }
+      var initial = MODES[fromQS] ? fromQS : (MODES[fromLS] ? fromLS : 'self');
+      setMode(initial);
+      var modeSwitch = document.getElementById('modeSwitch');
+      if (modeSwitch) {
+        modeSwitch.addEventListener('click', function(e){
+          var btn = e.target.closest('button[data-mode]');
+          if (!btn) return;
+          setMode(btn.getAttribute('data-mode'));
         });
-        btn.classList.add('ring-2','ring-emerald-300/40','bg-white/15');
+      }
+    })();
 
-        if (step === 1 || step === 2) setStep(step + 1);
-        else if (step === 3) setStep(4);
+    // Переключение режима из ссылок меню (ОГЭ/ЕГЭ)
+    document.addEventListener('click', function(e){
+      var link = e.target.closest('[data-set-mode]');
+      if (!link) return;
+      e.preventDefault();
+      var newMode = link.getAttribute('data-set-mode');
+      setMode(newMode);
+      if (typeof closeMenu === 'function') closeMenu();
+      location.hash = '#offer';
+    });
+
+    // ===== Квиз: пошаговая логика + отправка =====
+    (function quizUI(){
+      var form = document.getElementById('quizForm');
+      if (!form) return;
+
+      var steps = Array.prototype.slice.call(form.querySelectorAll('.quiz-step'));
+      var progress = document.getElementById('quizProgress');
+      var nextBtn = document.getElementById('quizNext');
+      var backBtn = document.getElementById('quizBack');
+      var statusEl = document.getElementById('quizStatus');
+      var submitBtn = document.getElementById('quizSubmit');
+
+      var step = 1;
+      var total = steps.length;
+      var state = { level: '', goalChoice: '', format: '' };
+
+      // Выбор опций
+      form.addEventListener('click', function(e){
+        var opt = e.target.closest('.quiz-opt');
+        if (!opt) return;
+        var field = opt.getAttribute('data-field');
+        var value = opt.getAttribute('data-value');
+        var parent = opt.parentElement;
+        if (parent) parent.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'); });
+        opt.classList.add('ring-2', 'ring-emerald-300/40', 'bg-white/15');
+        state[field] = value;
+        var qGoal = document.getElementById('qGoal');
+        if (field === 'goalChoice' && qGoal && !qGoal.value) qGoal.value = 'Цель: ' + value;
       });
 
-      nextBtn?.addEventListener('click', () => {
-        if (step === 1 && !answers.level) return toast('Выберите уровень');
-        if (step === 2 && !answers.goalChoice) return toast('Выберите цель');
-        if (step === 3 && !answers.format) return toast('Выберите формат');
-        setStep(step + 1);
-      });
-
-      backBtn?.addEventListener('click', () => setStep(Math.max(1, step - 1)));
-
-      function toast(msg){
-        status.className='text-sm text-red-300';
-        status.textContent = msg;
-        setTimeout(()=>{ status.textContent=''; }, 2000);
+      function showStep(n){
+        step = Math.max(1, Math.min(total, n));
+        steps.forEach(function(s){ s.classList.toggle('hidden', s.getAttribute('data-step') != step); });
+        if (backBtn) backBtn.classList.toggle('hidden', step === 1);
+        if (nextBtn) nextBtn.classList.toggle('hidden', step === total);
+        if (progress) progress.style.width = ((step/total)*100) + '%';
+        if (statusEl) statusEl.textContent = '';
+        createIconsSafe();
       }
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        status.textContent = '';
-        const name = (document.getElementById('qName')?.value || '').trim();
-        const phone = (document.getElementById('qPhone')?.value || '').trim();
-        const goalText = (document.getElementById('qGoal')?.value || '').trim();
-        if (!name || !phone) return toast('Заполните имя и телефон');
+      if (nextBtn) nextBtn.addEventListener('click', function(){
+        if (step === 1 && !state.level)  { if (statusEl) statusEl.textContent = 'Выберите ваш уровень'; return; }
+        if (step === 2 && !state.goalChoice) { if (statusEl) statusEl.textContent = 'Выберите цель'; return; }
+        if (step === 3 && !state.format) { if (statusEl) statusEl.textContent = 'Выберите формат'; return; }
+        showStep(step + 1);
+      });
 
-        const payload = {
-          name, phone,
-          level: answers.level,
-          study_goal: answers.goalChoice,
-          format: answers.format,
-          goal: goalText,
-          summary: `Уровень: ${answers.level}; Цель: ${answers.goalChoice}; Формат: ${answers.format}; Комментарий: ${goalText || '-'}`,
-          page: document.title,
-          source: 'free_lesson'
+      if (backBtn) backBtn.addEventListener('click', function(){ showStep(step - 1); });
+
+      // Отправка формы
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if (statusEl) statusEl.textContent = '';
+        if (!form.checkValidity()) {
+          if (statusEl) statusEl.textContent = 'Проверьте поля формы';
+          return;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-60');
+          submitBtn.textContent = 'Отправка...';
+        }
+
+        var mode;
+        try { mode = localStorage.getItem('mode') || 'self'; } catch(e){ mode = 'self'; }
+        var payload = {
+          mode: mode,
+          level: state.level,
+          goalChoice: state.goalChoice,
+          format: state.format,
+          name: form.qName ? form.qName.value.trim() : '',
+          phone: form.qPhone ? form.qPhone.value.trim() : '',
+          goal: form.qGoal ? form.qGoal.value.trim() : ''
         };
-        submitBtn.disabled = true; submitBtn.classList.add('opacity-70','cursor-not-allowed');
+
         try {
-          const res = await fetch(FORM_ENDPOINT, {
-            method:'POST',
-            headers:{ 'Accept':'application/json', 'Content-Type':'application/json' },
+          var r = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(payload)
           });
-          if (res.ok) {
-            form.reset();
-            status.className='text-sm text-emerald-300';
-            status.textContent='Заявка отправлена! Я свяжусь с вами и пришлю бонус.';
-          } else {
-            status.className='text-sm text-red-300';
-            status.textContent='Не удалось отправить форму. Попробуйте позже.';
-          }
-        } catch {
-          status.className='text-sm text-red-300';
-          status.textContent='Ошибка сети. Проверьте соединение.';
+          if (!r.ok) throw new Error('Network');
+          if (statusEl) statusEl.textContent = 'Спасибо! Я свяжусь с вами в ближайшее время.';
+          form.reset();
+          Object.keys(state).forEach(function(k){ state[k]=''; });
+          form.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.remove('ring-2', 'ring-emerald-300/40', 'bg-white/15'); });
+          showStep(1);
+        } catch (err) {
+          if (statusEl) statusEl.textContent = 'Не удалось отправить. Проверьте интернет или напишите мне в Telegram/WhatsApp.';
         } finally {
-          submitBtn.disabled = false; submitBtn.classList.remove('opacity-70','cursor-not-allowed');
-          if (window.lucide?.createIcons) lucide.createIcons();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-60');
+            submitBtn.innerHTML = 'Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>';
+          }
+          createIconsSafe();
         }
       });
+
+      showStep(1);
+    })();
+
+    // ===== Боты на ChatGPT: данные из вашего Tilda + стеклянные карточки =====
+    const BOTS = {
+      ege: {
+        title: 'EGE ASSISTANT',
+        desc: 'ЭКСПЕРТ ЕГЭ ПО АНГЛИЙСКОМУ. Будет вашим личным репетитором; составит план подготовки; объяснит грамматику простым языком; расскажет, как выполнять задания ЕГЭ; проверит и оценит ваши задания (Speaking, Writing). Поможет сдать ЕГЭ на 80+ баллов.',
+        img: 'https://static.tildacdn.info/tild6436-3766-4232-b064-626263353832/____.jpg',
+        link: 'https://t.me/EGE_ENGLISH_GPT_bot'
+      },
+      oge: {
+        title: 'OGE HELPER',
+        desc: 'ЭКСПЕРТ ОГЭ ПО АНГЛИЙСКОМУ. Личный репетитор: план подготовки, объяснение грамматики простым языком, стратегии выполнения заданий, проверка Speaking и Writing. Поможет сдать ОГЭ на “5”.',
+        img: 'https://static.tildacdn.info/tild3932-6233-4638-a231-613534383636/12.jpg',
+        link: 'https://t.me/OGE_ENG_HELPER_BOT'
+      },
+      ielts: {
+        title: 'IELTS ЭКСПЕРТ',
+        desc: 'Эксперт IELTS (Academic/General). Ответит на любые вопросы по экзамену; оценит Speaking/Writing; составит план обучения; объяснит структуру экзамена; поделится лайфхаками. Цель — IELTS 7+.',
+        img: 'https://static.tildacdn.info/tild3532-3932-4635-a261-306563383261/11.jpg',
+        link: 'https://t.me/IELTS_berdiyev_bot'
+      },
+      toefl: {
+        title: 'TOEFL iBT ЭКСПЕРТ',
+        desc: 'Эксперт TOEFL iBT: личный план, ответы на вопросы по формату, проверка Speaking/Writing, разбор критериев и лайфхаки. Цель — TOEFL 120.',
+        img: 'https://static.tildacdn.info/tild3936-3366-4461-a139-656230353061/10.jpg',
+        link: 'https://t.me/TOBEENG_TOEFL_IBT_BOT'
+      },
+      materials: {
+        title: 'ЕГЭ МАТЕРИАЛЫ',
+        desc: 'Подборка лучших материалов для ЕГЭ в одном месте: лексика, грамматика, шаблоны, тренажёры. Не нужно ничего искать — всё под рукой в Telegram.',
+        img: 'https://static.tildacdn.info/tild6439-6435-4862-b137-346266376233/9.jpg',
+        link: 'https://t.me/tobeeng_ege_bot'
+      },
+      free: {
+        title: 'TO BE ENG GPT (бесплатный репетитор)',
+        desc: 'Ваш личный бесплатный репетитор: составит персональный план, исправит ошибки, даст задания на отработку, объяснит грамматику и попрактикует разговорную речь.',
+        img: 'https://static.tildacdn.info/tild3566-3038-4238-b863-343131373138/_____1.jpg',
+        link: 'https://t.me/Tobeeng_GPT_bot'
+      }
+    };
+
+    function botCardHTML(bot) {
+      return `
+        <article class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+          <div class="grid md:grid-cols-12 gap-5 items-stretch">
+            <div class="md:col-span-5 relative rounded-xl overflow-hidden border border-white/15 bg-white/5 min-h-[220px]">
+              <img src="${bot.img}" alt="${bot.title}" class="absolute inset-0 w-full h-full object-cover">
+            </div>
+            <div class="md:col-span-7 flex flex-col">
+              <div class="text-xl font-semibold flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-5 h-5 text-emerald-300"></i> ${bot.title}
+              </div>
+              <p class="mt-3 text-white/85">${bot.desc}</p>
+              <div class="mt-5">
+                <a href="${bot.link}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+                  Попробовать <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    (function initBotsSection(){
+      var tabs = document.getElementById('botsTabs');
+      var wrap = document.getElementById('botsCards');
+      if (!tabs || !wrap) return;
+
+      function setActive(key){
+        var bot = BOTS[key] ? BOTS[key] : BOTS['ege'];
+        wrap.innerHTML = botCardHTML(bot);
+        tabs.querySelectorAll('.mode-btn').forEach(function(b){
+          var active = b.getAttribute('data-bot') === key;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        createIconsSafe();
+        try { localStorage.setItem('botTab', key); } catch(e){}
+      }
+
+      tabs.addEventListener('click', function(e){
+        var btn = e.target.closest('[data-bot]');
+        if (!btn) return;
+        setActive(btn.getAttribute('data-bot'));
+      });
+
+      var initial = 'ege';
+      try { initial = localStorage.getItem('botTab') || 'ege'; } catch(e){}
+      setActive(initial);
     })();
   </script>
 </body>
