@@ -18,6 +18,7 @@
   <!-- Preconnects -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://static.tildacdn.info" crossorigin>
 
   <!-- Tailwind config BEFORE CDN -->
   <script>
@@ -61,9 +62,38 @@
     .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; }
     .adv-card { display: flex; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); }
     .adv-emoji { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; background: radial-gradient(60% 60% at 40% 35%, rgba(255,255,255,.22), rgba(255,255,255,.08)); border: 1px solid rgba(255,255,255,.18); }
+
+    /* Медиа-блоки с оптимизацией */
+    .media-frame{
+      position:relative;border-radius:16px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);
+      content-visibility:auto; contain-intrinsic-size: 520px 520px;
+    }
+    .media-fit{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.04));}
+    .media-img{max-width:100%;max-height:100%;object-fit:contain;}
+
+    /* Высота медиа для ботов: всегда видно целиком */
+    .bot-h{height:min(68vh,560px);}
+    @media (min-width:640px){ .bot-h{height:min(70vh,600px);} }
+    @media (min-width:1024px){ .bot-h{height:min(72vh,640px);} }
+
+    /* Табы */
+    .mode-switch { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mode-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color: #fff; opacity: .9; cursor: pointer; user-select: none;
+    }
+    .mode-btn:hover { background: rgba(255,255,255,.14); }
+    .mode-btn.active {
+      background: #fff; color: #000; border-color: transparent;
+      box-shadow: 0 12px 30px rgba(255,255,255,.12);
+    }
   </style>
 
-  <!-- Lucide -->
+  <!-- Lucide (fixed version) -->
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 
   <!-- Schema.org Person -->
@@ -91,7 +121,7 @@
   <header class="sticky top-2 md:top-6 z-50">
     <div class="mx-auto container-xxl px-4">
       <div class="flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
-        <a href="/" class="flex items-center gap-2 px-2 py-1">
+        <a href="/" class="flex items-center gap-2 px-2 py-1" aria-label="На главную">
           <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
             <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
           </div>
@@ -117,7 +147,7 @@
 
   <main class="mx-auto container-xxl px-4 py-10 md:py-14">
     <!-- Hero -->
-    <section class="grid md:grid-cols-12 gap-6 items-stretch">
+    <section class="grid md:grid-cols-12 gap-6 items-stretch" id="about">
       <div class="md:col-span-7 glass rounded-3xl p-6 sm:p-8 shadow-deep">
         <div class="flex items-center gap-4">
           <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden ring-2 ring-white/25 shadow-glass">
@@ -210,61 +240,48 @@
       <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
         <div class="grid md:grid-cols-2 gap-6 items-stretch">
           <div class="flex flex-col">
-            <h3 class="text-2xl md:text-3xl font-semibold">Моё приложение “To Be English”</h3>
+            <h3 class="text-2xl md:text-3xl font-semibold">Приложение B‑ENG</h3>
             <p class="mt-3 text-white/85">
-              Карманный тренажёр: ежедневные микро‑уроки, чек‑листы по временам, тренажёры listening/reading,
-              SRS‑карточки, трекер прогресса и шаблоны для writing (ЕГЭ/ОГЭ). Интеграция с моими ИИ‑ботами.
+              B‑ENG — бесплатный помощник для английского в одном приложении. Подойдёт для разговорной практики и подготовки к ЕГЭ/ОГЭ/IELTS/TOEFL.
             </p>
             <ul class="mt-4 space-y-2 text-white/90">
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Занятия по 10–15 минут в день</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> SRS‑карточки + свои наборы слов</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Чек‑листы ЕГЭ/ОГЭ и готовые клише</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Синхронизация с ботами и напоминания</li>
+              <li class="flex items-start gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-300"></i> ИИ‑репетиторы (ChatGPT 4o): план, объяснения, ответы на вопросы</li>
+              <li class="flex items-start gap-2"><i data-lucide="pencil-ruler" class="w-5 h-5 text-emerald-300"></i> Тренажёры: перевод предложений, грамматика, словарь</li>
+              <li class="flex items-start gap-2"><i data-lucide="book-open" class="w-5 h-5 text-emerald-300"></i> Погружение: книги/новости, фильмы/сериалы, мини‑уроки аудирования</li>
+              <li class="flex items-start gap-2"><i data-lucide="message-circle" class="w-5 h-5 text-emerald-300"></i> Разговорная практика: с людьми или с ИИ‑ботами</li>
+              <li class="flex items-start gap-2"><i data-lucide="badge-check" class="w-5 h-5 text-emerald-300"></i> Бесплатные курсы: от базового уровня до продвинутого</li>
             </ul>
-            <div class="mt-5 flex gap-3 flex-wrap">
+            <div class="mt-5 text-white/75 text-sm">Почему B‑ENG: всё в одном месте, полностью бесплатно, современно и удобно.</div>
+            <div class="mt-4 flex gap-3 flex-wrap">
               <a href="https://clck.ru/3MDn4t" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
                 Скачать приложение <i data-lucide="arrow-down-circle" class="w-5 h-5"></i>
               </a>
             </div>
           </div>
-          <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/15 min-h-[220px] bg-white/10">
-            <img src="https://berdiyev-eng.ru/app1.jpg" alt="Скриншот приложения To Be English" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+          <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/15 min-h-[240px] bg-white/10">
+            <img src="https://berdiyev-eng.ru/app1.jpg" alt="Скриншот приложения B‑ENG" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Боты -->
+    <!-- Боты: стиль «вкладки + карточка», фото видно целиком -->
     <section id="bots" class="mt-10">
       <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
         <div class="flex items-center justify-between flex-wrap gap-3">
           <h3 class="text-2xl md:text-3xl font-semibold">Мои боты на основе ChatGPT</h3>
+          <div id="botsTabs" class="mode-switch" role="tablist" aria-label="Выбор бота">
+            <button type="button" class="mode-btn active" data-bot="ege" role="tab" aria-pressed="true"><i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ</button>
+            <button type="button" class="mode-btn" data-bot="oge" role="tab" aria-pressed="false"><i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ</button>
+            <button type="button" class="mode-btn" data-bot="ielts" role="tab" aria-pressed="false"><i data-lucide="globe-2" class="w-4 h-4"></i> IELTS</button>
+            <button type="button" class="mode-btn" data-bot="toefl" role="tab" aria-pressed="false"><i data-lucide="globe" class="w-4 h-4"></i> TOEFL</button>
+            <button type="button" class="mode-btn" data-bot="materials" role="tab" aria-pressed="false"><i data-lucide="folder-kanban" class="w-4 h-4"></i> ЕГЭ материалы</button>
+            <button type="button" class="mode-btn" data-bot="free" role="tab" aria-pressed="false"><i data-lucide="bot" class="w-4 h-4"></i> Репетитор GPT</button>
+          </div>
         </div>
-        <div class="grid gap-4 mt-5 md:grid-cols-2">
-          <!-- EGE -->
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
-            <div class="flex items-center gap-2 text-xl font-semibold"><i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-300"></i> EGE ASSISTANT</div>
-            <p class="mt-2 text-white/85">Личный план, грамматика простым языком, стратегии, проверка Speaking/Writing. Поможет выйти на 80+.</p>
-            <a href="https://t.me/EGE_ENGLISH_GPT_bot" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">Открыть <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-          </article>
-          <!-- OGE -->
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
-            <div class="flex items-center gap-2 text-xl font-semibold"><i data-lucide="book-open" class="w-5 h-5 text-emerald-300"></i> OGE HELPER</div>
-            <p class="mt-2 text-white/85">План подготовки, алгоритмы заданий, проверка Speaking/Writing. Цель — «5».</p>
-            <a href="https://t.me/OGE_ENG_HELPER_BOT" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">Открыть <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-          </article>
-          <!-- IELTS -->
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
-            <div class="flex items-center gap-2 text-xl font-semibold"><i data-lucide="globe-2" class="w-5 h-5 text-emerald-300"></i> IELTS ЭКСПЕРТ</div>
-            <p class="mt-2 text-white/85">Academic/General: стратегия, критерии, проверка Speaking/Writing. Цель — 7+.</p>
-            <a href="https://t.me/IELTS_berdiyev_bot" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">Открыть <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-          </article>
-          <!-- TOEFL -->
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
-            <div class="flex items-center gap-2 text-xl font-semibold"><i data-lucide="globe" class="w-5 h-5 text-emerald-300"></i> TOEFL iBT ЭКСПЕРТ</div>
-            <p class="mt-2 text-white/85">План, практика, разбор критериев, проверка Speaking/Writing. Цель — максимальный балл.</p>
-            <a href="https://t.me/TOBEENG_TOEFL_IBT_BOT" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">Открыть <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-          </article>
+
+        <div id="botsCardWrap" class="mt-5">
+          <!-- Карточка активного бота сюда -->
         </div>
       </div>
     </section>
@@ -378,26 +395,161 @@
     }
     window.addEventListener('DOMContentLoaded', createIconsSafe);
 
-    // Отправка мини-формы записи
+    // ===== Боты (данные c твоего сайта) =====
+    const BOTS = {
+      ege: {
+        title: 'EGE ASSISTANT',
+        desc: 'ЭКСПЕРТ ЕГЭ: составит план, объяснит грамматику простым языком, подскажет стратегии и проверит Speaking/Writing. Поможет выйти на 80+.',
+        img: 'https://static.tildacdn.info/tild6436-3766-4232-b064-626263353832/____.jpg',
+        link: 'https://t.me/EGE_ENGLISH_GPT_bot'
+      },
+      oge: {
+        title: 'OGE HELPER',
+        desc: 'ЭКСПЕРТ ОГЭ: план подготовки, алгоритмы заданий, понятная грамматика, проверка Speaking/Writing. Цель — «5».',
+        img: 'https://static.tildacdn.info/tild3932-6233-4638-a231-613534383636/12.jpg',
+        link: 'https://t.me/OGE_ENG_HELPER_BOT'
+      },
+      ielts: {
+        title: 'IELTS ЭКСПЕРТ',
+        desc: 'Academic/General: стратегия, критерии, проверка Speaking/Writing, лайфхаки. Цель — 7+.',
+        img: 'https://static.tildacdn.info/tild3532-3932-4635-a261-306563383261/11.jpg',
+        link: 'https://t.me/IELTS_berdiyev_bot'
+      },
+      toefl: {
+        title: 'TOEFL iBT ЭКСПЕРТ',
+        desc: 'TOEFL iBT: план, практика, разбор критериев, проверка Speaking/Writing. Цель — высокий балл.',
+        img: 'https://static.tildacdn.info/tild3936-3366-4461-a139-656230353061/10.jpg',
+        link: 'https://t.me/TOBEENG_TOEFL_IBT_BOT'
+      },
+      materials: {
+        title: 'ЕГЭ МАТЕРИАЛЫ',
+        desc: 'Лучшие материалы: лексика, грамматика, шаблоны и тренажёры — всё под рукой в Telegram.',
+        img: 'https://static.tildacdn.info/tild6439-6435-4862-b137-346266376233/9.jpg',
+        link: 'https://t.me/tobeeng_ege_bot'
+      },
+      free: {
+        title: 'TO BE ENG GPT (бесплатный репетитор)',
+        desc: 'Ваш персональный помощник: план, исправление ошибок, задания на отработку, объяснения и speaking‑практика.',
+        img: 'https://static.tildacdn.info/tild3566-3038-4238-b863-343131373138/_____1.jpg',
+        link: 'https://t.me/Tobeeng_GPT_bot'
+      }
+    };
+
+    // Построение variant-URL для Tilda CDN: -/resize/Wx/ и -/format/webp/
+    function isTilda(url){ return /static\.tildacdn\.info/i.test(url); }
+    function tildaVariant(url, width, format){ // format = 'webp' | null
+      if (!url || typeof url !== 'string' || !isTilda(url)) return url;
+      if (url.includes('/-/')) return url; // уже с операторами — не трогаем
+      const i = url.lastIndexOf('/');
+      if (i < 0) return url;
+      const base = url.substring(0, i);
+      const file = url.substring(i + 1);
+      let ops = '-/resize/' + width + 'x/';
+      if (format === 'webp') ops += '-/format/webp/';
+      return base + '/' + ops + file;
+    }
+
+    function pictureHTML(src, alt, sizes, isFirst){
+      const safeAlt = (alt || '').replace(/"/g,'&quot;');
+      const attrs = isFirst ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async" fetchpriority="low"';
+      if (!isTilda(src)) {
+        // Для не‑Tilda просто отдадим <img>
+        return `<img src="${src}" alt="${safeAlt}" class="media-img" ${attrs}>`;
+      }
+      const widths = [800, 1200, 1600];
+      const webpSet = widths.map(w => tildaVariant(src, w, 'webp') + ' ' + w + 'w').join(', ');
+      const imgSet  = widths.map(w => tildaVariant(src, w, null)  + ' ' + w + 'w').join(', ');
+      const fallback = tildaVariant(src, 1200, null);
+      return `
+        <picture>
+          <source type="image/webp" srcset="${webpSet}" sizes="${sizes}">
+          <img src="${fallback}" srcset="${imgSet}" sizes="${sizes}" alt="${safeAlt}" class="media-img" ${attrs}>
+        </picture>
+      `;
+    }
+
+    function botCardHTML(bot, isFirst){
+      const sizes = '(min-width:1024px) 45vw, 100vw';
+      return `
+        <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+          <div class="grid md:grid-cols-12 gap-5 items-stretch">
+            <div class="md:col-span-5">
+              <div class="media-frame bot-h">
+                <div class="media-fit">
+                  <a href="${bot.img}" target="_blank" rel="noopener noreferrer" aria-label="Открыть изображение ${bot.title} в новой вкладке">
+                    ${pictureHTML(bot.img, bot.title, sizes, isFirst)}
+                  </a>
+                </div>
+              </div>
+              <div class="mt-2 text-xs text-white/60">Клик по фото — открыть в новой вкладке и рассмотреть детали</div>
+            </div>
+            <div class="md:col-span-7 flex flex-col">
+              <div class="text-xl font-semibold flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-5 h-5 text-emerald-300"></i> ${bot.title}
+              </div>
+              <p class="mt-3 text-white/85">${bot.desc}</p>
+              <div class="mt-5">
+                <a href="${bot.link}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+                  Попробовать <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // Рендер вкладок ботов
+    (function initBotsTabs(){
+      const tabs = document.getElementById('botsTabs');
+      const wrap = document.getElementById('botsCardWrap');
+      if (!tabs || !wrap) return;
+
+      function setActive(key){
+        const bot = BOTS[key] ? BOTS[key] : BOTS['ege'];
+        // isFirst=true — для приоритета первой картинки при первом рендере
+        const fromLS = (function(){ try { return localStorage.getItem('botTabInited') === '1'; } catch(e){ return false; }})();
+        wrap.innerHTML = botCardHTML(bot, !fromLS);
+        tabs.querySelectorAll('.mode-btn').forEach(b=>{
+          const active = b.getAttribute('data-bot') === key;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        createIconsSafe();
+        try { localStorage.setItem('botTab', key); localStorage.setItem('botTabInited', '1'); } catch(e){}
+      }
+
+      tabs.addEventListener('click', function(e){
+        const btn = e.target.closest('[data-bot]');
+        if (!btn) return;
+        setActive(btn.getAttribute('data-bot'));
+      });
+
+      let initial = 'ege';
+      try { initial = localStorage.getItem('botTab') || 'ege'; } catch(e){}
+      setActive(initial);
+    })();
+
+    // ===== Отправка мини-формы записи =====
     (function bookForm(){
-      var form = document.getElementById('bookForm');
-      var status = document.getElementById('bookStatus');
+      const form = document.getElementById('bookForm');
+      const status = document.getElementById('bookStatus');
       if (!form) return;
       form.addEventListener('submit', async function(e){
         e.preventDefault();
         status.textContent = '';
-        var data = {
+        const data = {
           source: 'about-page',
           name: form.name.value.trim(),
           phone: form.phone.value.trim(),
           goal: form.goal.value,
           contact: form.contact.value.trim()
         };
-        var btn = form.querySelector('button[type="submit"]');
-        var prev = btn.innerHTML;
+        const btn = form.querySelector('button[type="submit"]');
+        const prev = btn.innerHTML;
         btn.disabled = true; btn.classList.add('opacity-60'); btn.innerText = 'Отправка...';
         try {
-          var r = await fetch(FORM_ENDPOINT, {
+          const r = await fetch(FORM_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(data)
