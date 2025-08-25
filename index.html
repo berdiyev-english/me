@@ -104,7 +104,9 @@
     }
     .adv-text { color: rgba(255,255,255,.92); line-height: 1.35; }
   </style>
-  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Lucide с фиксированной версией и defer -->
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 
   <script type="application/ld+json">
   {
@@ -238,12 +240,19 @@
     <!-- 2) Боли -->
     <section id="help" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя ?</h3>
-        <ul id="helpList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90"></ul>
+        <h3 class="text-2xl md:text-3xl font-semibold reveal">Узнаете себя?</h3>
 
-        <!-- Мобильная CTA сразу после блока "Узнаете себя" -->
-        <div class="mt-4 sm:hidden">
-          <a href="#quiz" class="w-full inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-3 font-medium whitespace-nowrap">
+        <!-- Фоллбек, чтобы не было пусто до JS -->
+        <ul id="helpList" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/90">
+          <li class="flex items-start gap-2"><i data-lucide="alert-circle" class="w-5 h-5 text-cyan-300"></i> Страшно говорить и не хватает слов</li>
+          <li class="flex items-start gap-2"><i data-lucide="alert-circle" class="w-5 h-5 text-cyan-300"></i> Путаетесь во временах и грамматике</li>
+          <li class="flex items-start gap-2"><i data-lucide="alert-circle" class="w-5 h-5 text-cyan-300"></i> Понимаете на слух только часть речи</li>
+          <li class="flex items-start gap-2"><i data-lucide="alert-circle" class="w-5 h-5 text-cyan-300"></i> Нет системы и регулярности</li>
+        </ul>
+
+        <!-- CTA всегда видна -->
+        <div class="mt-4">
+          <a href="#quiz" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-4 py-3 font-medium whitespace-nowrap">
             Хочу избавиться от этого
             <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
@@ -282,11 +291,11 @@
         <div class="overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-2xl">
           <div class="cases-track" data-cases-track>
 
-            <!-- ===== SELF (минимум 5) ===== -->
+            <!-- ===== SELF ===== -->
             <article class="cases-slide" data-tags="self">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Анатолий, предприниматель</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Анатолий, предприниматель</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -315,7 +324,7 @@
             <article class="cases-slide" data-tags="self">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Дина, аспирант</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Дина, аспирант</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -342,7 +351,7 @@
             <article class="cases-slide" data-tags="self">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Илья, разработчик</div>
+                  <div class="text-white font_medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Илья, разработчик</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -368,8 +377,8 @@
 
             <article class="cases-slide" data-tags="self,travel">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Светлана, путешествия</div>
+                <div class="flex items-center justify_between gap-2">
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Светлана, путешествия</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -396,7 +405,7 @@
             <article class="cases-slide" data-tags="self">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Роман, менеджер</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Роман, менеджер</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -422,11 +431,11 @@
               </div>
             </article>
 
-            <!-- ===== EGE (минимум 5) ===== -->
+            <!-- ===== EGE ===== -->
             <article class="cases-slide" data-tags="ege">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Марина, ЕГЭ</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-cyan-300"></i> Марина, ЕГЭ</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -455,7 +464,7 @@
             <article class="cases-slide" data-tags="ege">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Данил, ЕГЭ</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-cyan-300"></i> Данил, ЕГЭ</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -482,9 +491,9 @@
             </article>
 
             <article class="cases-slide" data-tags="ege">
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="rounded-2xl border border_white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Полина, ЕГЭ</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-cyan-300"></i> Полина, ЕГЭ</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -513,7 +522,7 @@
             <article class="cases-slide" data-tags="ege">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Игорь, ЕГЭ</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-cyan-300"></i> Игорь, ЕГЭ</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -542,7 +551,7 @@
             <article class="cases-slide" data-tags="ege">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user-round" class="w-5 h-5 text-cyan-300"></i> Карина, ЕГЭ</div>
+                  <div class="text-white font-medium flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-cyan-300"></i> Карина, ЕГЭ</div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
                     <button type="button" data-show="after">После</button>
@@ -568,12 +577,12 @@
               </div>
             </article>
 
-            <!-- ===== OGE (минимум 5) ===== -->
+            <!-- ===== OGE ===== -->
             <article class="cases-slide" data-tags="oge">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
-                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Антон, 9 класс (ОГЭ)
+                    <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Антон, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
@@ -604,7 +613,7 @@
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
-                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Полина, 9 класс (ОГЭ)
+                    <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Полина, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
@@ -635,7 +644,7 @@
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
-                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Егор, 9 класс (ОГЭ)
+                    <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Егор, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
@@ -666,7 +675,7 @@
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
-                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Алина, 9 класс (ОГЭ)
+                    <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Алина, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
@@ -697,7 +706,7 @@
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
-                    <i data-lucide="user-round" class="w-5 h-5 text-emerald-300"></i> Никита, 9 класс (ОГЭ)
+                    <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Никита, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
                     <button type="button" class="active" data-show="before">До</button>
@@ -765,7 +774,7 @@
         </div>
 
         <div class="mt-6 reveal">
-          <a href="#contacts" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+          <a href="https://berdiyev-eng.ru/me" target="_self" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
             Узнать больше обо мне <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
         </div>
@@ -822,7 +831,7 @@
           </div>
 
           <div class="format-card rounded-2xl border border-white/15 bg-white/10 p-5 reveal" data-seat-type="zero">
-            <div class="text-lg font-semibold flex items-center gap-2">
+            <div class="text-lg font-semibold flex items_center gap-2">
               <i data-lucide="flame" class="w-5 h-5 text-cyan-300"></i> Английский с 0 за 3 месяца
             </div>
             <p class="mt-2 text-white/80">Погружение в язык для быстрых результатов</p>
@@ -905,9 +914,18 @@
                 <textarea id="qGoal" name="goal" rows="3" placeholder="Пара слов о цели (по желанию)"
                   class="w-full rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"></textarea>
                 <div class="text-xs text-white/60 mt-1">Отправляя, вы соглашаетесь на обработку персональных данных</div>
+
                 <button id="quizSubmit" type="submit" class="mt-3 inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-2.5 font-medium w-full">
                   Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </button>
+
+                <!-- Кнопка Telegram в пункте записи -->
+                <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noopener noreferrer"
+                   class="mt-2 inline-flex items-center gap-2 justify-center rounded-xl px-5 py-2.5 w-full font-medium bg-[#229ED9] text-white hover:bg-[#1f8dc3]">
+                  <i data-lucide="send" class="w-5 h-5"></i>
+                  Написать в Telegram
+                </a>
+
                 <div id="quizStatus" class="text-sm mt-2"></div>
               </div>
 
@@ -932,10 +950,10 @@
     <!-- 9) Контакты -->
     <section id="contacts" class="mx-auto container-xxl px-4 mt-16">
       <div class="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl">
-        <h3 class="text-2xl font-semibold text-white reveal">Остались вопросы ? Задайте их мне !</h3>
+        <h3 class="text-2xl font-semibold text-white reveal">Остались вопросы? Задайте их мне!</h3>
         <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <a href="https://t.me/m/mjPABJEtYTky" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
-          <a href="https://wa.me/+79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
+          <a href="https://wa.me/79111880148" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
           <a href="https://www.instagram.com/berdiyev_english?igsh=eHB6NHpiczg5eDVq&utm_source=qr" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
           <a href="https://www.youtube.com/channel/UCiNcS8LeiWCK99syKl897Ug" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</a>
           <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 bg-white/5 p-4 flex items-center gap-2 hover:bg-white/10 reveal"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
@@ -969,7 +987,7 @@
     <a href="https://t.me/m/mjPABJEtYTky" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
       <i data-lucide="send" class="w-5 h-5"></i>
     </a>
-    <a href="https://wa.me/+79111880148" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
+    <a href="https://wa.me/79111880148" target="_blank" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
       <i data-lucide="message-circle" class="w-5 h-5"></i>
     </a>
     <button id="toTop" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20 hidden z-[100]" aria-label="Back to top" type="button">
@@ -1049,7 +1067,9 @@
 
       var allSlides = Array.prototype.slice.call(track.children);
       function visibleSlides(){
-        return Array.prototype.slice.call(track.querySelectorAll(':scope > .cases-slide:not(.hidden)'));
+        // Без :scope — безопасно для всех браузеров
+        return Array.prototype.slice.call(track.children)
+          .filter(function(sl){ return !sl.classList.contains('hidden'); });
       }
 
       function rebuildDots(){
@@ -1083,12 +1103,12 @@
       var startX=0, dx=0, isDown=false;
       track.addEventListener('touchstart', function(e){ isDown=true; startX=e.touches[0].clientX; }, {passive:true});
       track.addEventListener('touchmove', function(e){ if(!isDown) return; dx=e.touches[0].clientX-startX; }, {passive:true});
-      track.addEventListener('touchend', function(){ 
+      track.addEventListener('touchend', function(){
         if(!isDown) return; isDown=false;
-        if (Math.abs(dx)>50){ 
-          if(dx<0 && index<visibleSlides().length-1) index++; 
-          if(dx>0 && index>0) index--; 
-          update(); 
+        if (Math.abs(dx)>50){
+          if(dx<0 && index<visibleSlides().length-1) index++;
+          if(dx>0 && index>0) index--;
+          update();
         }
         dx=0;
       });
@@ -1197,7 +1217,7 @@
         advantages: [
           { icon: 'trophy', text: 'Средний итог — «5» у выпускников' },
           { icon: 'graduation-cap', text: '2 высших образования, аспирант' },
-          { icon: 'book-open-check', text: 'Автор пособий и гайдов для изучения английского' },
+          { icon: 'book-open', text: 'Автор пособий и гайдов для изучения английского' },
           { icon: 'bot', text: 'Бот на ИИ для тренировки формата ОГЭ' },
           { icon: 'badge-check', text: 'Международная квалификация: TEFL' },
           { icon: 'languages', text: 'Подтверждённый уровень английского: C2' }
@@ -1237,7 +1257,7 @@
         advantages: [
           { icon: 'bar-chart-3', text: 'Средний балл выпускников — 80+' },
           { icon: 'graduation-cap', text: '2 высших образования, аспирант' },
-          { icon: 'book-open-text', text: 'Автор методичек и гайдов по ЕГЭ' },
+          { icon: 'book-open', text: 'Автор методичек и гайдов по ЕГЭ' },
           { icon: 'bot', text: 'Автор ИИ‑бота на базе Chat GPT4 для тренировки заданий ЕГЭ' },
           { icon: 'smartphone', text: 'Автор приложения с ресурсами и материалами для подготовки к ЕГЭ' },
           { icon: 'badge-check', text: 'Международная квалификация: TEFL' },
@@ -1291,7 +1311,6 @@
       ul.innerHTML = items.map(function(it){
         return '<li class="flex items-start gap-2"><i data-lucide="'+icon+'" class="w-5 h-5 '+iconColor+'"></i> '+it+'</li>';
       }).join('');
-      createIconsSafe();
     }
 
     function renderAdvantages(container, items){
@@ -1299,7 +1318,6 @@
       container.innerHTML = items.map(function(it){
         return '<div class="adv-card"><div class="adv-emoji"><i data-lucide="'+it.icon+'" class="w-5 h-5 text-emerald-300"></i></div><div class="adv-text">'+it.text+'</div></div>';
       }).join('');
-      createIconsSafe();
     }
 
     function renderFAQ(container, items){
@@ -1307,7 +1325,6 @@
       container.innerHTML = items.map(function(it){
         return '<details class="group rounded-xl border border-white/10 bg-white/5"><summary class="cursor-pointer px-4 py-3 flex items-center justify-between"><span>'+it.q+'</span><i data-lucide="chevron-down" class="w-4 h-4"></i></summary><div class="px-4 pb-4 text-white/90">'+it.a+'</div></details>';
       }).join('');
-      createIconsSafe();
     }
 
     function setMode(mode) {
