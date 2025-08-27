@@ -137,9 +137,8 @@
     <div class="mx-auto container-xxl px-4">
       <div class="mt-1 md:mt-2 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
         <a href="#top" class="flex items-center gap-2 px-2 py-1" aria-label="Home">
-          <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
-            <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
-          </div>
+          <!-- Убрана зелёная подложка, оставлена только иконка -->
+          <i data-lucide="home" class="w-5 h-5 text-white/90"></i>
           <span class="hidden sm:inline text-white/80">To Be English</span>
         </a>
         <nav class="hidden md:flex items-center gap-1 text-sm">
@@ -221,13 +220,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
           <div class="md:col-span-7">
-            <h1 id="offerTitle" class="text-3xl md:text-5xl font-bold tracking-tight text-white reveal">Через 3 месяца вы заговорите на английском без страха</h1>
-            <p id="offerSubtitle" class="mt-3 text-white/90 text-lg reveal">Даже если сейчас знаете только "Hello" и "Thank you"</p>
+            <h1 id="offerTitle" class="text-3xl md:text-5xl font-bold tracking-tight text-white reveal">Английский — ключ к твоей цели!</h1>
+            <p id="offerSubtitle" class="mt-3 text-white/90 text-lg reveal">Первые заметные результаты через 3 месяца.</p>
             <ul id="offerBullets" class="mt-4 space-y-2 text-white/90 reveal">
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Закажете кофе в Стамбуле и поболтаете с баристой о жизни</li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Проведёте рабочую встречу на английском без переводчика</li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Посмотрите любимый сериал без субтитров и всё поймёте</li>
-              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Напишете письмо партнёру и не будете час искать каждое слово</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Быстро заговорить на английском</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Разобраться с грамматикой и временами</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Начать понимать английскую речь и перестать забывать слова</li>
+              <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Повысить свой уровень английского до C1+</li>
             </ul>
             <div class="mt-6 reveal">
               <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
@@ -1178,13 +1177,13 @@
     // ===== РЕЖИМЫ: Для себя / ОГЭ / ЕГЭ =====
     const MODES = {
       self: {
-        title: 'Через 3 месяца вы заговорите на английском без страха',
-        subtitle: 'Даже если сейчас знаете только "Hello" и "Thank you"',
+        title: 'Английский — ключ к твоей цели!',
+        subtitle: 'Первые заметные результаты через 3 месяца.',
         bullets: [
-          'Закажете кофе в Стамбуле и поболтаете с баристой о жизни',
-          'Проведёте рабочую встречу на английском без переводчика',
-          'Посмотрите любимый сериал без субтитров и всё поймёте',
-          'Напишете письмо партнёру и не будете час искать каждое слово'
+          'Быстро заговорить на английском',
+          'Разобраться с грамматикой и временами',
+          'Начать понимать английскую речь и перестать забывать слова',
+          'Повысить свой уровень английского до C1+'
         ],
         pains: [
           'Хотите что-то сказать, но в голове пустота — слова куда-то пропали',
@@ -1216,13 +1215,13 @@
         ]
       },
       oge: {
-        title: 'Сдашь ОГЭ на 5 и будешь понимать английский, а не зубрить',
-        subtitle: 'Даже если сейчас в школе тройка и ничего не понятно',
+        title: 'ОГЭ больше не проблема',
+        subtitle: 'Готовим по кодификатору ФИПИ. Без паники и авралов.',
         bullets: [
-          'Напишешь письмо на ОГЭ за 15 минут и получишь максимальный балл',
-          'Услышишь диалог один раз и сразу ответишь на все вопросы',
-          'Прочитаешь текст и поймёшь его, а не будешь гадать',
-          'Расскажешь устную часть спокойно, как будто болтаешь с другом'
+          'Без нервов сдать ОГЭ на 5',
+          'Разобраться с форматом экзамена',
+          'Понять времена и улучшить грамматику',
+          'Начать говорить на английском или улучшить разговорные навыки'
         ],
         pains: [
           'В письме не знаешь, что писать — сидишь и смотришь на пустой лист',
@@ -1254,13 +1253,14 @@
         ]
       },
       ege: {
-        title: 'Получишь 80+ баллов и поступишь на бюджет',
-        subtitle: 'Даже если до экзамена 3 месяца, а пробник показал 50',
+        title: 'Поступи в вуз на бюджет',
+        subtitle: 'Стратегия под 80+ баллов и поступление на бюджет.',
         bullets: [
-          'Напишешь эссе на 14/14 баллов по готовому плану',
-          'Решишь грамматику на автомате — как таблицу умножения',
-          'Поймёшь любой текст, даже про квантовую физику на английском',
-          'Сравнишь фотографии так, что экзаменатор поставит максимум'
+          'Без нервов сдать ЕГЭ на 80+ баллов',
+          'Разобраться с форматом экзамена',
+          'Понять времена и улучшить грамматику',
+          'Укрепить разговорную часть',
+          'Поступить в вуз на бюджет и получить желаемую специальность'
         ],
         pains: [
           'В эссе не хватает аргументов — пишешь воду и теряешь баллы',
