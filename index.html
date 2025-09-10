@@ -108,10 +108,19 @@
     }
     .feat-text { color: rgba(255,255,255,.92); line-height: 1.35; }
 
-    /* FIX #1: стрелки слайдера не перекрывают текст (в конце, чтобы перекрыть предыдущие) */
-    .cases-slider { position: relative; padding: 0 56px; }
-    @media (max-width: 640px) { .cases-slider { padding: 0 48px; } }
-    @media (max-width: 420px) { .cases-slider { padding: 0 44px; } }
+    /* Фикс ширины кейсов на мобиле: убираем «карманы» и выносим стрелки за края */
+    .cases-slider { position: relative; padding: 0 56px; }        /* desktop pockets */
+    @media (max-width: 768px) {
+      .cases-slider { padding: 0; }                                /* full width on mobile */
+      .cases-arrow.prev { left: -6px; }                            /* move outside */
+      .cases-arrow.next { right: -6px; }
+      .cases-slide { padding: 16px 12px; }                         /* tighter inner padding */
+    }
+    @media (max-width: 420px) {
+      .toggle button { padding: 5px 8px; font-size: 12px; }        /* ensure "До/После" fits */
+    }
+
+    /* Чуть дальше от края на desktop */
     .cases-arrow.prev { left: 12px; }
     .cases-arrow.next { right: 12px; }
   </style>
@@ -136,6 +145,7 @@
   }
   </script>
 </head>
+
 <body class="min-h-screen text-white bg-[radial-gradient(1200px_700px_at_10%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
 
   <!-- Header / Nav -->
@@ -281,13 +291,19 @@
       </div>
     </section>
 
-    <!-- 2.1) Коротко о подходе (вместо «Как мы это исправим») -->
+    <!-- 2.1) Коротко о подходе -->
     <section id="approach" class="mx-auto container-xxl px-4 mt-6">
-      <div class="rounded-2xl border border-white/15 bg-white/10 p-4 sm:p-5 backdrop-blur-2xl">
-        <div class="flex items-start gap-2 text-white/90">
-          <i data-lucide="sparkles" class="w-5 h-5 text-emerald-300"></i>
-          <p>Никакой зубрёжки — практика с первого дня, интерактивные задания в стиле Гарри Поттера и видеодомашка с пересказом по теме. Длительность занятий — гибкая (до 60 минут).</p>
-        </div>
+      <div class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-emerald-300"></i> Что будем делать:
+        </h4>
+        <ul class="mt-3 space-y-2 text-white/90">
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Говорить с первого занятия, даже если знаете только "Hello"</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Разбирать грамматику через практику, а не зубрёжку правил</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Выполнять интерактивные задания в игровом формате</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Смотреть полезные видео и обсуждать их на английском</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-emerald-300"></i> Заниматься в комфортном для вас темпе</li>
+        </ul>
       </div>
     </section>
 
@@ -608,7 +624,7 @@
             <!-- ===== OGE ===== -->
             <article class="cases-slide" data-tags="oge">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center justify_between gap-2">
                   <div class="text-white font-medium flex items-center gap-2">
                     <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Антон, 9 класс (ОГЭ)
                   </div>
@@ -671,7 +687,7 @@
             <article class="cases-slide" data-tags="oge">
               <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div class="flex items-center justify-between gap-2">
-                  <div class="text-white font-medium flex items-center gap-2">
+                  <div class="text-white font-medium flex items_center gap-2">
                     <i data-lucide="user" class="w-5 h-5 text-emerald-300"></i> Егор, 9 класс (ОГЭ)
                   </div>
                   <div class="toggle" data-toggle>
@@ -1299,11 +1315,11 @@
     // Динамический FAQ под каждый режим
     const FAQS = {
       self: [
-        { q: 'За сколько я заговорю на английском?', a: 'В среднем за 12 недель при 2 занятиях в неделю и короткой ежедневной практике 15–20 минут. На уроках — 80% живого speaking с обратной связью.' },
+        { q: 'За сколько я заговорю на английском?', a: 'В среднем за 12 недель при 2 занятиях в неделю. На уроках — 80% живого speaking с обратной связью.' },
         { q: 'Если я с нуля — получится?', a: 'Да. Стартуем с базовых конструкций и фонетики, параллельно набираем активный словарь. Без перегруза правилами — только то, что даёт быстрый результат.' },
         { q: 'Боюсь говорить и стесняюсь ошибок', a: 'Нормально. Даю безопасную среду, фиксирую ошибки в “лист наблюдений” и тут же превращаю их в мини‑тренажёры. Ошибаться — ок, важно быстро исправлять.' },
-        { q: 'Какие материалы и домашка?', a: 'Авторские карточки, схемы по временам, разговорные сценарии под ваши темы. Д/з: 2–3 коротких задания (15–25 минут), иногда аудио/видео‑практика.' },
-        { q: 'Онлайн‑формат удобен?', a: 'Да: Zoom/Meet, интерактивная доска/Notion, записи объяснений, чек‑листы. Всё в одном месте — видеть прогресс легко.' },
+        { q: 'Какие материалы и домашка?', a: 'Индивидуальное дз для отработки слабых сторон в игровом формате / в стиле фильмов , сериалов и многое другого , Аудио/видео‑практика.' },
+        { q: 'Занятия онлайн?', a: 'Да: в Microsoft teams , интерактивная доска/игры/онлайн презентации, записи объяснений в формате pdf, чек‑листы. Всё в одном месте — видеть прогресс легко.' },
         { q: 'Сколько стоит и есть ли рассрочка?', a: 'Стоимость зависит от формата (индив./мини‑группа). Первый урок бесплатно. Есть помесячная оплата и пакетные скидки — обсудим на созвоне. Рассрочки, к сожалению, нет.' },
         { q: 'Есть ли гарантия результата?', a: 'Даём измеримые цели на 90 дней: словарь, скорость речи, понимание на слух, процент правильных ответов. При соблюдении плана вы увидите прогресс к 4–6 неделе.' },
         { q: 'Смогу совмещать с работой/учёбой?', a: 'Да. Подбираем удобные слоты, переносы согласуем заранее. Практика — компактными блоками, чтобы вписывалась в график.' },
@@ -1343,7 +1359,7 @@
       }).join('');
     }
 
-    // Обновлено под feat-*
+    // feat-* карточки преимуществ
     function renderAdvantages(container, items){
       if (!container) return;
       container.innerHTML = items.map(function(it){
@@ -1383,8 +1399,7 @@
       if (b) renderList(b, conf.bullets, 'check', 'text-emerald-300');
 
       renderList(document.getElementById('helpList'), conf.pains, 'alert-circle', 'text-cyan-300');
-      // Раздел «Как мы это исправим» удалён — рендер не требуется
-      // renderList(document.getElementById('solutionsList'), conf.solutions, 'sparkles', 'text-emerald-300');
+      // Раздел решений удалён
       renderList(document.getElementById('resultsList'), conf.dreams, 'target', 'text-emerald-300');
 
       var rt = document.getElementById('resultsTitle');
