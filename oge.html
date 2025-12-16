@@ -28,103 +28,50 @@
         }
 
         /* === DESKTOP OPTIMIZATION === */
-        
-        /* Блок с QR кодом (скрыт на телефоне) */
         .desktop-promo { display: none; }
 
-        /* Стили для больших экранов (ПК, Планшеты) */
         @media (min-width: 900px) {
             body {
-                /* Темный профессиональный фон для презентации */
                 background: radial-gradient(circle at center, #2b2b2b 0%, #1a1a1a 100%);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                padding: 40px;
+                display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px;
             }
-
-            .layout-container {
-                display: flex;
-                align-items: center;
-                gap: 60px;
-                max-width: 1000px;
-                margin: 0 auto;
-            }
-
+            .layout-container { display: flex; align-items: center; gap: 60px; max-width: 1000px; margin: 0 auto; }
             .app-wrapper {
-                /* Превращаем блок в "Телефон" */
-                border-radius: 40px !important;
-                border: 12px solid #000; /* Рамка телефона */
-                box-shadow: 0 0 0 2px #333, 0 30px 60px rgba(0,0,0,0.5); /* Блик и тень */
-                overflow: hidden;
-                max-height: 850px; /* Высота телефона */
-                overflow-y: auto; /* Скролл внутри телефона */
-                /* Скрываем скроллбар */
-                scrollbar-width: none; 
+                border-radius: 40px !important; border: 12px solid #000;
+                box-shadow: 0 0 0 2px #333, 0 30px 60px rgba(0,0,0,0.5);
+                overflow: hidden; max-height: 850px; overflow-y: auto; scrollbar-width: none; 
             }
             .app-wrapper::-webkit-scrollbar { display: none; }
-
-            /* Показываем блок слева */
-            .desktop-promo {
-                display: block;
-                color: white;
-                max-width: 300px;
-                animation: slideRight 0.8s ease-out;
-            }
-            
+            .desktop-promo { display: block; color: white; max-width: 300px; animation: slideRight 0.8s ease-out; }
             .desktop-promo h2 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
             .desktop-promo p { color: #aaa; margin-bottom: 30px; font-size: 16px; }
-            
-            .qr-box {
-                background: white;
-                padding: 15px;
-                border-radius: 20px;
-                display: inline-block;
-                text-align: center;
-            }
+            .qr-box { background: white; padding: 15px; border-radius: 20px; display: inline-block; text-align: center; }
             .qr-box img { width: 140px; height: 140px; display: block; margin-bottom: 10px; }
             .qr-box span { color: #333; font-size: 12px; font-weight: 600; }
         }
-
         @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-
-        /* === END DESKTOP OPTIMIZATION === */
-
+        /* === END DESKTOP === */
 
         .app-wrapper {
-            width: 100%;
-            max-width: 480px; /* Ширина мобильного приложения */
-            margin: 0 auto;
-            background: #F2F2F7;
-            min-height: 100vh;
-            position: relative;
-            padding-bottom: 20px;
+            width: 100%; max-width: 480px; margin: 0 auto; background: #F2F2F7;
+            min-height: 100vh; position: relative; padding-bottom: 20px;
         }
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px 60px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;
+            padding: 40px 20px 60px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+            text-align: center; position: relative; overflow: hidden;
         }
-
         .hero::before {
             content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px;
             background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);
         }
-
         .badge {
             display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
             padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 600;
             margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
         }
-
         h1 { font-size: 32px; font-weight: 800; margin-bottom: 15px; line-height: 1.1; }
         .hero p { font-size: 16px; opacity: 0.9; margin-bottom: 30px; }
 
@@ -133,22 +80,43 @@
             padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 18px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; width: 100%; max-width: 300px;
         }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); } /* Hover эффект */
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
         .cta-button:active { transform: scale(0.95); }
 
         /* SECTIONS */
         .section { padding: 40px 20px 10px; }
         .section-title { font-size: 24px; font-weight: 700; margin-bottom: 25px; padding-left: 10px; }
 
+        /* NEW: VS BLOCK (Comparison) */
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .vs-card {
+            padding: 15px; border-radius: 20px; font-size: 13px;
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .vs-bad { background: #FFF0F0; border: 1px solid #FFCDCD; color: #C62828; }
+        .vs-good { background: #E8F5E9; border: 1px solid #C8E6C9; color: #2E7D32; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1); }
+        .vs-good::after { content: '🏆'; position: absolute; top: -5px; right: -5px; font-size: 40px; opacity: 0.1; }
+
+        .vs-title { font-weight: 800; font-size: 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .vs-list li { list-style: none; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.3; }
+        
+        /* NEW: SMART PLAN CARD */
+        .smart-plan {
+            background: white; padding: 20px; border-radius: 24px; 
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 15px;
+        }
+        .sp-icon { font-size: 32px; background: #E3F2FD; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; color: #4A90E2; }
+        .sp-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .sp-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+
         /* FEATURES GRID */
         .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .feature-card {
             background: white; padding: 20px; border-radius: var(--radius); text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s;
         }
-        .feature-card:hover { transform: translateY(-5px); } /* Анимация на ПК */
-
+        .feature-card:hover { transform: translateY(-5px); }
         .feature-icon {
             font-size: 32px; margin-bottom: 15px;
             background: -webkit-linear-gradient(#667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -159,46 +127,24 @@
         /* DEMO CHAT */
         .demo-chat { background: #FFFFFF; border-radius: var(--radius); padding: 20px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         .message { margin-bottom: 15px; max-width: 90%; clear: both; }
-        
-        /* USER MESSAGE */
         .msg-user { 
-            float: right;
-            background: var(--primary); 
-            color: white; 
-            padding: 12px 15px; 
-            border-radius: 18px 18px 0 18px; 
-            font-size: 14px;
-            display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+            float: right; background: var(--primary); color: white; 
+            padding: 12px 15px; border-radius: 18px 18px 0 18px; font-size: 14px;
+            display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
         }
-
-        /* BOT MESSAGE */
         .msg-bot { 
-            float: left;
-            background: #F2F2F7; 
-            color: var(--text-main); 
-            padding: 12px 15px; 
-            border-radius: 18px 18px 18px 0; 
-            font-size: 14px; 
+            float: left; background: #F2F2F7; color: var(--text-main); 
+            padding: 12px 15px; border-radius: 18px 18px 18px 0; font-size: 14px; 
         }
-
         .clearfix::after { content: ""; clear: both; display: table; }
 
         /* COMPARISON TABLE */
-        .compare-card {
-            background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            margin-bottom: 20px;
-        }
-        .compare-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 20px; border-bottom: 1px solid #f0f0f0;
-        }
+        .compare-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
+        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; }
         .compare-row:last-child { border-bottom: none; }
         .compare-row.header { background: #fafafa; font-size: 13px; font-weight: 700; text-transform: uppercase; color: #888; }
-        
         .c-feature { flex: 2; font-size: 14px; font-weight: 500; }
         .c-val { flex: 1; text-align: center; font-size: 14px; }
-        
         .c-free { color: #888; }
         .c-pro { color: #4A90E2; font-weight: 800; }
 
@@ -206,19 +152,15 @@
         .premium-block {
             background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
             color: white; padding: 25px; border-radius: 24px; margin: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden;
-            transition: transform 0.3s;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; transition: transform 0.3s;
         }
-        .premium-block:hover { transform: scale(1.02); } /* Увеличение при наведении */
+        .premium-block:hover { transform: scale(1.02); }
         .premium-block::after { content: 'PRO'; position: absolute; right: -10px; bottom: -20px; font-size: 100px; font-weight: 900; color: white; opacity: 0.05; pointer-events: none; }
-        
         .prem-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .prem-title { font-size: 20px; font-weight: 700; }
         .prem-price { background: #FFD700; color: black; padding: 5px 10px; border-radius: 8px; font-weight: 800; font-size: 14px; }
-        
         .prem-features li { list-style: none; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
         .prem-features i { color: #4CD964; }
-
         .prem-btn { display: block; width: 100%; background: #4A90E2; color: white; text-align: center; padding: 14px; border-radius: 16px; text-decoration: none; font-weight: 700; margin-top: 20px; }
         .prem-btn:hover { background: #357ABD; }
 
@@ -241,22 +183,19 @@
 </head>
 <body>
 
-    <!-- Контейнер для выравнивания на ПК -->
     <div class="layout-container">
 
-        <!-- Левая часть (Видна только на ПК) -->
+        <!-- DESKTOP QR -->
         <div class="desktop-promo">
             <h2>Твой карманный<br>AI-Репетитор</h2>
             <p>Открой камеру телефона и сканируй код, чтобы запустить бота прямо сейчас.</p>
-            
             <div class="qr-box">
-                <!-- QR код ведет на твоего бота -->
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/OGE_ENG_HELPER_BOT" alt="QR Code">
                 <span>Сканируй для запуска</span>
             </div>
         </div>
 
-        <!-- Правая часть (Само приложение) -->
+        <!-- APP INTERFACE -->
         <div class="app-wrapper">
             
             <!-- Hero -->
@@ -267,6 +206,40 @@
                 <a href="https://t.me/OGE_ENG_HELPER_BOT" class="cta-button">
                     <i class="fab fa-telegram-plane"></i> Запустить Бота
                 </a>
+            </div>
+
+            <!-- NEW: TUTOR COMPARISON -->
+            <div class="section fade-in" style="padding-bottom: 0;">
+                <div class="section-title">Преимущества</div>
+                <div class="vs-grid">
+                    <!-- Bad Card -->
+                    <div class="vs-card vs-bad">
+                        <div class="vs-title"><i class="fas fa-times-circle"></i> Репетитор</div>
+                        <ul class="vs-list">
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Дорого (1000₽/час минимум)</li>
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Подстройка графика</li>
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Ожидание проверки</li>
+                        </ul>
+                    </div>
+                    <!-- Good Card -->
+                    <div class="vs-card vs-good">
+                        <div class="vs-title"><i class="fas fa-check-circle"></i> OGE GPT</div>
+                        <ul class="vs-list">
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> <b>299₽ / месяц</b></li>
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> 24/7 в телефоне</li>
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> Мгновенный ответ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- NEW: PERSONALIZED PLAN -->
+                <div class="smart-plan fade-in">
+                    <div class="sp-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="sp-content">
+                        <h3>Персональный план</h3>
+                        <p>Бот анализирует твои ошибки и составляет программу подготовки именно под твой уровень.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Features -->
@@ -281,7 +254,7 @@
                     <div class="feature-card fade-in">
                         <i class="fas fa-image feature-icon"></i>
                         <h3>Картинки</h3>
-                        <p>Понимаю фотографии , могу объяснить задание и оценить твой ответ по всем критериям</p>
+                        <p>Понимаю фото заданий, объясняю и оцениваю решение</p>
                     </div>
                     <div class="feature-card fade-in">
                         <i class="fas fa-pen-fancy feature-icon"></i>
@@ -302,7 +275,7 @@
                 <p style="color: var(--text-sec); margin-bottom: 20px; padding-left: 10px;">Просто общайся как с другом в Telegram.</p>
                 
                 <div class="demo-chat fade-in clearfix">
-                    <!-- User Voice Message -->
+                    <!-- User Voice -->
                     <div class="message msg-user">
                         <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                              <i class="fas fa-play" style="color: white; font-size: 14px; margin-left: 2px;"></i>
@@ -325,6 +298,21 @@
                         Отличная работа! Но в 3-м абзаце забыл артикль. Оценка: 9/10.
                     </div>
                 </div>
+            </div>
+            
+                        <!-- Premium Block -->
+            <div class="premium-block fade-in">
+                <div class="prem-top">
+                    <div class="prem-title">Premium Доступ</div>
+                    <div class="prem-price">299₽ / мес</div>
+                </div>
+                <ul class="prem-features">
+                    <li><i class="fas fa-check-circle"></i> <b>50 запросов</b>каждый день</li>
+                    <li><i class="fas fa-check-circle"></i> Приоритетная проверка эссе</li>
+                    <li><i class="fas fa-check-circle"></i> Экономия 100 тыс+ на репетиторах и курсах</li>
+                    <li><i class="fas fa-check-circle"></i> Полный доступ к OGE GPT</li>
+                </ul>
+                <a href="https://t.me/be_english_premium_bot" class="prem-btn">Оформить подписку</a>
             </div>
 
             <!-- COMPARISON TABLE -->
@@ -400,7 +388,7 @@
                             <div class="stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
-                    <p>По началу сомневалась брать ли Premium, но перед пробником взяла Премиум за 299р. Скидывала по 5 эссе в день, бот проверял за секунду , давал обратную свзяь. Очень помогл , сдала пробник на 5!</p>
+                    <p>По началу сомневалась брать ли Premium, но перед пробником взяла Премиум за 299р. Скидывала по 5 эссе в день, сдала пробник на 5!</p>
                     <div class="score-badge">Рекомендую Premium</div>
                 </div>
 
@@ -415,22 +403,6 @@
                     <p>Бот круто объясняет времена. Сфоткал сложный текст, он мне всё объяснил. Лучший)</p>
                     <div class="score-badge">Подтянул грамматику</div>
                 </div>
-
-            </div>
-            
-            <!-- Premium Block -->
-            <div class="premium-block fade-in">
-                <div class="prem-top">
-                    <div class="prem-title">Premium Доступ</div>
-                    <div class="prem-price">299₽ / мес</div>
-                </div>
-                <ul class="prem-features">
-                    <li><i class="fas fa-check-circle"></i> <b>50 запросов</b> каждый день</li>
-                    <li><i class="fas fa-check-circle"></i> Приоритетная проверка эссе</li>
-                    <li><i class="fas fa-check-circle"></i> Экономия 100 тыс+ на репетиторах</li>
-                    <li><i class="fas fa-check-circle"></i> Полный доступ к OGE GPT</li>
-                </ul>
-                <a href="https://t.me/be_english_premium_bot" class="prem-btn">Оформить подписку</a>
             </div>
 
             <div style="height: 80px;"></div>
