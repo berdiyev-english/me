@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGE English AI Tutor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Немного более строгий синий для ЕГЭ */
+            --primary: #2563EB; 
+            --accent: #4F46E5; 
+            --bg: #F2F2F7; 
+            --text-main: #1C1C1E;
+            --text-sec: #8E8E93;
+            --radius: 20px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e0e0e0;
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* === DESKTOP OPTIMIZATION === */
+        .desktop-promo { display: none; }
+
+        @media (min-width: 900px) {
+            body {
+                background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+                display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px;
+            }
+            .layout-container { display: flex; align-items: center; gap: 60px; max-width: 1000px; margin: 0 auto; }
+            .app-wrapper {
+                border-radius: 40px !important; border: 12px solid #000;
+                box-shadow: 0 0 0 2px #333, 0 30px 60px rgba(0,0,0,0.5);
+                overflow: hidden; max-height: 850px; overflow-y: auto; scrollbar-width: none; 
+            }
+            .app-wrapper::-webkit-scrollbar { display: none; }
+            .desktop-promo { display: block; color: white; max-width: 300px; animation: slideRight 0.8s ease-out; }
+            .desktop-promo h2 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
+            .desktop-promo p { color: #94a3b8; margin-bottom: 30px; font-size: 16px; }
+            .qr-box { background: white; padding: 15px; border-radius: 20px; display: inline-block; text-align: center; }
+            .qr-box img { width: 140px; height: 140px; display: block; margin-bottom: 10px; }
+            .qr-box span { color: #333; font-size: 12px; font-weight: 600; }
+        }
+        @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        /* === END DESKTOP === */
+
+        .app-wrapper {
+            width: 100%; max-width: 480px; margin: 0 auto; background: #F2F2F7;
+            min-height: 100vh; position: relative; padding-bottom: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #4338ca 100%); color: white;
+            padding: 40px 20px 60px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px;
+            background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);
+        }
+        .badge {
+            display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+            padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 600;
+            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 15px; line-height: 1.1; }
+        .hero p { font-size: 16px; opacity: 0.9; margin-bottom: 30px; }
+
+        .cta-button {
+            display: inline-block; background: white; color: var(--accent); text-decoration: none;
+            padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 18px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; width: 100%; max-width: 300px;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .cta-button:active { transform: scale(0.95); }
+
+        /* SECTIONS */
+        .section { padding: 40px 20px 10px; }
+        .section-title { font-size: 24px; font-weight: 700; margin-bottom: 25px; padding-left: 10px; }
+
+        /* VS BLOCK */
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .vs-card {
+            padding: 15px; border-radius: 20px; font-size: 13px;
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .vs-bad { background: #FFF0F0; border: 1px solid #FFCDCD; color: #C62828; }
+        .vs-good { background: #E8F5E9; border: 1px solid #C8E6C9; color: #2E7D32; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1); }
+        .vs-good::after { content: '🎓'; position: absolute; top: -5px; right: -5px; font-size: 40px; opacity: 0.1; }
+
+        .vs-title { font-weight: 800; font-size: 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .vs-list li { list-style: none; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.3; }
+        
+        /* SMART PLAN CARD */
+        .smart-plan {
+            background: white; padding: 20px; border-radius: 24px; 
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 15px;
+        }
+        .sp-icon { font-size: 32px; background: #E0E7FF; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; color: #4338ca; }
+        .sp-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .sp-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+
+        /* FEATURES GRID */
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .feature-card {
+            background: white; padding: 20px; border-radius: var(--radius); text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon {
+            font-size: 32px; margin-bottom: 15px;
+            background: -webkit-linear-gradient(#3b82f6, #4338ca); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .feature-card h3 { font-size: 16px; margin-bottom: 5px; }
+        .feature-card p { font-size: 13px; color: var(--text-sec); }
+
+        /* DEMO CHAT */
+        .demo-chat { background: #FFFFFF; border-radius: var(--radius); padding: 20px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .message { margin-bottom: 15px; max-width: 90%; clear: both; }
+        .msg-user { 
+            float: right; background: var(--primary); color: white; 
+            padding: 12px 15px; border-radius: 18px 18px 0 18px; font-size: 14px;
+            display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+        .msg-bot { 
+            float: left; background: #F2F2F7; color: var(--text-main); 
+            padding: 12px 15px; border-radius: 18px 18px 18px 0; font-size: 14px; 
+        }
+        .clearfix::after { content: ""; clear: both; display: table; }
+
+        /* COMPARISON TABLE */
+        .compare-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
+        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row.header { background: #fafafa; font-size: 13px; font-weight: 700; text-transform: uppercase; color: #888; }
+        .c-feature { flex: 2; font-size: 14px; font-weight: 500; }
+        .c-val { flex: 1; text-align: center; font-size: 14px; }
+        .c-free { color: #888; }
+        .c-pro { color: #2563EB; font-weight: 800; }
+
+        /* PREMIUM BLOCK */
+        .premium-block {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white; padding: 25px; border-radius: 24px; margin: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; transition: transform 0.3s;
+        }
+        .premium-block:hover { transform: scale(1.02); }
+        .premium-block::after { content: 'PRO'; position: absolute; right: -10px; bottom: -20px; font-size: 100px; font-weight: 900; color: white; opacity: 0.05; pointer-events: none; }
+        .prem-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .prem-title { font-size: 20px; font-weight: 700; }
+        .prem-price { background: #F59E0B; color: black; padding: 5px 10px; border-radius: 8px; font-weight: 800; font-size: 14px; }
+        .prem-features li { list-style: none; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+        .prem-features i { color: #4CD964; }
+        .prem-btn { display: block; width: 100%; background: #2563EB; color: white; text-align: center; padding: 14px; border-radius: 16px; text-decoration: none; font-weight: 700; margin-top: 20px; }
+        .prem-btn:hover { background: #1d4ed8; }
+
+        /* REVIEWS */
+        .result-card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
+        .user-info { display: flex; align-items: center; margin-bottom: 10px; }
+        .avatar { width: 40px; height: 40px; background: #ddd; border-radius: 50%; margin-right: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #555; }
+        .stars { color: #F59E0B; font-size: 14px; }
+        .score-badge { background: #E0E7FF; color: #3730A3; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; margin-top: 10px; display: inline-block; }
+
+        /* FIXED CTA */
+        .sticky-cta { position: sticky; bottom: 20px; margin: 0 20px; text-align: center; z-index: 100; }
+        .sticky-btn { background: #111; color: white; text-decoration: none; padding: 16px; border-radius: 18px; display: block; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .sticky-btn:hover { background: #000; transform: scale(1.02); }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+
+        <!-- DESKTOP QR -->
+        <div class="desktop-promo">
+            <h2>Твой карманный<br>EGE-Репетитор</h2>
+            <p>Открой камеру телефона и сканируй код, чтобы готовиться к ЕГЭ в Telegram.</p>
+            <div class="qr-box">
+                <!-- Вставь сюда ссылку на своего ЕГЭ бота -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/EGE_ENG_HELPER_BOT" alt="QR Code">
+                <span>Запуск Бота</span>
+            </div>
+        </div>
+
+        <!-- APP INTERFACE -->
+        <div class="app-wrapper">
+            
+            <!-- Hero -->
+            <div class="hero">
+                <div class="badge">🔥 Актуально для ЕГЭ 2025</div>
+                <h1>ЕГЭ по Английскому на 90+</h1>
+                <p>Твой личный AI-репетитор. Проверка эссе-проектов (38), устной части и грамматики уровня C1.</p>
+                <!-- Замени ссылку на своего бота -->
+                <a href="https://t.me/EGE_ENG_HELPER_BOT" class="cta-button">
+                    <i class="fab fa-telegram-plane"></i> Запустить Бота
+                </a>
+            </div>
+
+            <!-- VS BLOCK -->
+            <div class="section fade-in" style="padding-bottom: 0;">
+                <div class="section-title">Почему EGE GPT?</div>
+                <div class="vs-grid">
+                    <!-- Bad Card -->
+                    <div class="vs-card vs-bad">
+                        <div class="vs-title"><i class="fas fa-times-circle"></i> Репетитор</div>
+                        <ul class="vs-list">
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Дорого (от 2000₽/час)</li>
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Жесткий график</li>
+                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Долго ждать проверку</li>
+                        </ul>
+                    </div>
+                    <!-- Good Card -->
+                    <div class="vs-card vs-good">
+                        <div class="vs-title"><i class="fas fa-check-circle"></i> EGE GPT</div>
+                        <ul class="vs-list">
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> <b>299₽ / месяц</b></li>
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> 24/7 доступ</li>
+                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> Проверка за 3 сек</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PERSONALIZED PLAN -->
+                <div class="smart-plan fade-in">
+                    <div class="sp-icon"><i class="fas fa-brain"></i></div>
+                    <div class="sp-content">
+                        <h3>Банк Заданий ФИПИ</h3>
+                        <p>Бот генерирует варианты, похожие на реальный экзамен, и объясняет каждую ошибку.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="section">
+                <div class="section-title">Что я умею?</div>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-chart-pie feature-icon"></i>
+                        <h3>Задание 38</h3>
+                        <p>Проверка эссе по таблицам и диаграммам (Project)</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-microphone-alt feature-icon"></i>
+                        <h3>Устная часть</h3>
+                        <p>Оценка всех 4-х заданий Speaking по таймингу</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-image feature-icon"></i>
+                        <h3>По фото</h3>
+                        <p>Скинь скрин теста или страницы учебника — я решу</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-spell-check feature-icon"></i>
+                        <h3>Лексика C1</h3>
+                        <p>Подскажу синонимы высокого уровня для балла</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Chat -->
+            <div class="section">
+                <div class="section-title">Как это работает</div>
+                <p style="color: var(--text-sec); margin-bottom: 20px; padding-left: 10px;">Общение в формате Telegram, как с учителем.</p>
+                
+                <div class="demo-chat fade-in clearfix">
+                    <!-- User Voice -->
+                    <div class="message msg-user">
+                        <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                             <i class="fas fa-play" style="color: white; font-size: 14px; margin-left: 2px;"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 13px; font-weight: 600;">Speaking Task 4</div>
+                            <div style="font-size: 11px; opacity: 0.8;">2:50 • Голосовое</div>
+                        </div>
+                    </div>
+
+                    <div class="message msg-bot">
+                      Отличная структура ответа! Но ты превысил лимит времени на 10 сек. Лексика: 8/10. Итоговый балл: 7/10. ⚠️
+                    </div>
+
+                    <div class="message msg-user">
+                        Проверь описание таблицы (Project) 📊
+                    </div>
+
+                    <div class="message msg-bot">
+                        Структура соблюдена. В 3-м абзаце (Comparison) лучше использовать "It is noteworthy that...". Оценка: 13/14.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Premium Block -->
+            <div class="premium-block fade-in">
+                <div class="prem-top">
+                    <div class="prem-title">EGE PRO</div>
+                    <div class="prem-price">299₽ / мес</div>
+                </div>
+                <ul class="prem-features">
+                    <li><i class="fas fa-check-circle"></i> <b>Безлимит</b> на проверку Эссе (38)</li>
+                    <li><i class="fas fa-check-circle"></i> Тренажер Устной части (Tasks 1-4)</li>
+                    <li><i class="fas fa-check-circle"></i> Экономия ~150 тыс. на курсах</li>
+                    <li><i class="fas fa-check-circle"></i> Доступ к GPT-4 Turbo</li>
+                </ul>
+                <a href="https://t.me/ege_english_premium_bot" class="prem-btn">Оформить подписку</a>
+            </div>
+
+            <!-- COMPARISON TABLE -->
+            <div class="section fade-in">
+                <div class="section-title">Тарифы</div>
+                <div class="compare-card">
+                    <div class="compare-row header">
+                        <div class="c-feature">Функция</div>
+                        <div class="c-val">Free</div>
+                        <div class="c-val" style="color: #2563EB;">PRO</div>
+                    </div>
+                    <div class="compare-row">
+                        <div class="c-feature">Эссе в день</div>
+                        <div class="c-val c-free">2</div>
+                        <div class="c-val c-pro">∞</div>
+                    </div>
+                    <div class="compare-row">
+                        <div class="c-feature">Project (Задание 38)</div>
+                        <div class="c-val c-free"><i class="fas fa-check" style="font-size: 12px;"></i></div>
+                        <div class="c-val c-pro"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="compare-row">
+                        <div class="c-feature">Speaking 1-4</div>
+                        <div class="c-val c-free"><i class="fas fa-check" style="font-size: 12px;"></i></div>
+                        <div class="c-val c-pro"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="compare-row">
+                        <div class="c-feature">Модель AI</div>
+                        <div class="c-val c-free">Basic</div>
+                        <div class="c-val c-pro">GPT-4</div>
+                    </div>
+                     <div class="compare-row">
+                        <div class="c-feature">Экономия</div>
+                        <div class="c-val c-free">-</div>
+                        <div class="c-val c-pro">150к+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="section">
+                <div class="section-title">Поступили в ВУЗы</div>
+                
+                <div class="result-card fade-in">
+                    <div class="user-info">
+                        <div class="avatar" style="background: #FFE0B2; color: #F57C00;">А</div>
+                        <div>
+                            <div style="font-weight: 600;">Алина, 11 класс</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>Учитель в школе пугал эссе, говорил, что я не сдам. Тренировалась с ботом 3 месяца. Итог: 14/14 за письмо и 92 балла всего!</p>
+                    <div class="score-badge">Результат ЕГЭ: 92</div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="user-info">
+                        <div class="avatar" style="background: #E1BEE7; color: #8E24AA;">И</div>
+                        <div>
+                            <div style="font-weight: 600;">Илья М.</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>Готовился без репетитора. Бот идеально проверяет Task 4 в устной части, находит ошибки в сравнении картинок.</p>
+                    <div class="score-badge">Поступил в ВШЭ</div>
+                </div>
+
+                <div class="result-card fade-in">
+                    <div class="user-info">
+                        <div class="avatar" style="background: #BBDEFB; color: #1976D2;">С</div>
+                        <div>
+                            <div style="font-weight: 600;">Светлана</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>За 299р это просто подарок. Репетиторы берут столько за 10 минут урока. Бот объясняет грамматику понятнее учебников.</p>
+                    <div class="score-badge">Рекомендую Premium</div>
+                </div>
+            </div>
+
+            <div style="height: 80px;"></div>
+
+            <!-- Sticky Button -->
+            <div class="sticky-cta">
+                <a href="https://t.me/ege_english_premium_bot" class="sticky-btn">
+                    Сдать ЕГЭ на 90+ <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+
+        </div> <!-- End App Wrapper -->
+    </div> <!-- End Layout Container -->
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
