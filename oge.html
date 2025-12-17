@@ -3,429 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OGE English AI Tutor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>OGE HACK | Твой AI Репетитор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #4A90E2; 
-            --accent: #764BA2; 
-            --bg: #F2F2F7; 
-            --text-main: #1C1C1E;
-            --text-sec: #8E8E93;
-            --radius: 20px;
+            /* Оставил ту же цветовую гамму, она работает отлично */
+            --primary: #3B82F6; 
+            --accent: #8B5CF6; 
+            --danger: #EF4444;
+            --success: #10B981;
+            --dark-bg: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #F8FAFC;
+            --text-sec: #94A3B8;
+            --radius: 24px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #e0e0e0;
+            background-color: #000;
             color: var(--text-main);
             line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* === DESKTOP OPTIMIZATION === */
-        .desktop-promo { display: none; }
-
         @media (min-width: 900px) {
             body {
-                background: radial-gradient(circle at center, #2b2b2b 0%, #1a1a1a 100%);
-                display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px;
+                background: #050505;
+                display: flex; justify-content: center; padding: 40px;
             }
-            .layout-container { display: flex; align-items: center; gap: 60px; max-width: 1000px; margin: 0 auto; }
             .app-wrapper {
-                border-radius: 40px !important; border: 12px solid #000;
-                box-shadow: 0 0 0 2px #333, 0 30px 60px rgba(0,0,0,0.5);
-                overflow: hidden; max-height: 850px; overflow-y: auto; scrollbar-width: none; 
+                border-radius: 40px !important;
+                box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+                border: 8px solid #333;
+                max-width: 450px !important;
             }
-            .app-wrapper::-webkit-scrollbar { display: none; }
-            .desktop-promo { display: block; color: white; max-width: 300px; animation: slideRight 0.8s ease-out; }
-            .desktop-promo h2 { font-size: 36px; line-height: 1.1; margin-bottom: 20px; }
-            .desktop-promo p { color: #aaa; margin-bottom: 30px; font-size: 16px; }
-            .qr-box { background: white; padding: 15px; border-radius: 20px; display: inline-block; text-align: center; }
-            .qr-box img { width: 140px; height: 140px; display: block; margin-bottom: 10px; }
-            .qr-box span { color: #333; font-size: 12px; font-weight: 600; }
         }
-        @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-        /* === END DESKTOP === */
 
         .app-wrapper {
-            width: 100%; max-width: 480px; margin: 0 auto; background: #F2F2F7;
-            min-height: 100vh; position: relative; padding-bottom: 20px;
+            width: 100%; max-width: 100%; margin: 0 auto; 
+            background: var(--dark-bg);
+            min-height: 100vh; position: relative; padding-bottom: 110px;
         }
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;
-            padding: 40px 20px 60px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
-            text-align: center; position: relative; overflow: hidden;
+            background: radial-gradient(circle at top right, #4f46e5 0%, #0f172a 60%);
+            padding: 50px 20px 40px; text-align: center;
+            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+            overflow: hidden; position: relative;
         }
-        .hero::before {
-            content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px;
-            background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);
-        }
-        .badge {
-            display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
-            padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 600;
-            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
-        }
-        h1 { font-size: 32px; font-weight: 800; margin-bottom: 15px; line-height: 1.1; }
-        .hero p { font-size: 16px; opacity: 0.9; margin-bottom: 30px; }
-
-        .cta-button {
-            display: inline-block; background: white; color: var(--accent); text-decoration: none;
-            padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 18px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; width: 100%; max-width: 300px;
-        }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        .cta-button:active { transform: scale(0.95); }
-
-        /* SECTIONS */
-        .section { padding: 40px 20px 10px; }
-        .section-title { font-size: 24px; font-weight: 700; margin-bottom: 25px; padding-left: 10px; }
-
-        /* NEW: VS BLOCK (Comparison) */
-        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .vs-card {
-            padding: 15px; border-radius: 20px; font-size: 13px;
-            display: flex; flex-direction: column; height: 100%;
-        }
-        .vs-bad { background: #FFF0F0; border: 1px solid #FFCDCD; color: #C62828; }
-        .vs-good { background: #E8F5E9; border: 1px solid #C8E6C9; color: #2E7D32; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1); }
-        .vs-good::after { content: '🏆'; position: absolute; top: -5px; right: -5px; font-size: 40px; opacity: 0.1; }
-
-        .vs-title { font-weight: 800; font-size: 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-        .vs-list li { list-style: none; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.3; }
         
-        /* NEW: SMART PLAN CARD */
-        .smart-plan {
-            background: white; padding: 20px; border-radius: 24px; 
-            display: flex; align-items: center; gap: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 15px;
+        h1 { 
+            font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
+            background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .sp-icon { font-size: 32px; background: #E3F2FD; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; color: #4A90E2; }
-        .sp-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-        .sp-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+        
+        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
 
-        /* FEATURES GRID */
-        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .feature-card {
-            background: white; padding: 20px; border-radius: var(--radius); text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s;
+        .hero-badge {
+            background: linear-gradient(90deg, #F59E0B, #D97706);
+            color: white; padding: 6px 14px; border-radius: 20px;
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; display: inline-block; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            animation: pulse 2s infinite;
         }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon {
-            font-size: 32px; margin-bottom: 15px;
-            background: -webkit-linear-gradient(#667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .feature-card h3 { font-size: 16px; margin-bottom: 5px; }
-        .feature-card p { font-size: 13px; color: var(--text-sec); }
 
-        /* DEMO CHAT */
-        .demo-chat { background: #FFFFFF; border-radius: var(--radius); padding: 20px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .message { margin-bottom: 15px; max-width: 90%; clear: both; }
-        .msg-user { 
-            float: right; background: var(--primary); color: white; 
-            padding: 12px 15px; border-radius: 18px 18px 0 18px; font-size: 14px;
-            display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+        /* PAIN POINTS */
+        .pain-section { padding: 30px 20px; }
+        .pain-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; text-align: left; }
+        .pain-grid { display: grid; gap: 12px; }
+        .pain-card {
+            background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 15px; border-radius: 18px; display: flex; align-items: center; gap: 15px;
         }
-        .msg-bot { 
-            float: left; background: #F2F2F7; color: var(--text-main); 
-            padding: 12px 15px; border-radius: 18px 18px 18px 0; font-size: 14px; 
-        }
-        .clearfix::after { content: ""; clear: both; display: table; }
+        .pain-icon { font-size: 24px; color: var(--danger); min-width: 30px; text-align: center; }
+        .pain-text { font-size: 14px; color: #fca5a5; font-weight: 500; line-height: 1.3; }
 
-        /* COMPARISON TABLE */
-        .compare-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; }
-        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; }
-        .compare-row:last-child { border-bottom: none; }
-        .compare-row.header { background: #fafafa; font-size: 13px; font-weight: 700; text-transform: uppercase; color: #888; }
-        .c-feature { flex: 2; font-size: 14px; font-weight: 500; }
-        .c-val { flex: 1; text-align: center; font-size: 14px; }
-        .c-free { color: #888; }
-        .c-pro { color: #4A90E2; font-weight: 800; }
-
-        /* PREMIUM BLOCK */
-        .premium-block {
-            background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
-            color: white; padding: 25px; border-radius: 24px; margin: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden; transition: transform 0.3s;
+        /* SOLUTION */
+        .solution-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            margin: 10px 20px 30px; padding: 25px; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1); 
         }
-        .premium-block:hover { transform: scale(1.02); }
-        .premium-block::after { content: 'PRO'; position: absolute; right: -10px; bottom: -20px; font-size: 100px; font-weight: 900; color: white; opacity: 0.05; pointer-events: none; }
-        .prem-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .prem-title { font-size: 20px; font-weight: 700; }
-        .prem-price { background: #FFD700; color: black; padding: 5px 10px; border-radius: 8px; font-weight: 800; font-size: 14px; }
-        .prem-features li { list-style: none; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
-        .prem-features i { color: #4CD964; }
-        .prem-btn { display: block; width: 100%; background: #4A90E2; color: white; text-align: center; padding: 14px; border-radius: 16px; text-decoration: none; font-weight: 700; margin-top: 20px; }
-        .prem-btn:hover { background: #357ABD; }
+        .sol-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        
+        .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .feature-list-item:last-child { margin-bottom: 0; }
+        .f-icon-box {
+            background: rgba(59, 130, 246, 0.15); color: var(--primary);
+            width: 45px; height: 45px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .f-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: white; }
+        .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+
+        /* DEMO */
+        .demo-section { padding: 0 20px 30px; }
+        .chat-box {
+            background: #1E293B; border-radius: 24px; padding: 20px;
+            border: 1px solid #334155; position: relative;
+        }
+        .chat-label {
+            position: absolute; top: -12px; left: 20px; background: var(--accent);
+            color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 10px;
+        }
+        .msg { padding: 12px 16px; border-radius: 16px; font-size: 13px; margin-bottom: 12px; max-width: 85%; line-height: 1.4; }
+        .msg-u { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 4px; }
+        .msg-b { background: #334155; color: #e2e8f0; margin-right: auto; border-bottom-left-radius: 4px; }
+        .score-tag { display: inline-block; background: #10B981; color: #064E3B; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-top: 4px; }
+
+        /* PRICING */
+        .offer-section { padding: 0 20px 20px; }
+        .price-compare {
+            background: white; color: black; border-radius: 24px; padding: 25px;
+            position: relative; overflow: hidden; margin-bottom: 20px;
+        }
+        .price-compare::before {
+            content: "ВЫГОДНО"; position: absolute; top: 15px; right: -30px; background: #EF4444; color: white;
+            padding: 5px 30px; font-size: 10px; font-weight: 800; transform: rotate(45deg);
+        }
+        .pc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .pc-row:last-child { border: none; margin: 0; padding: 0; }
+        .pc-name { font-weight: 600; font-size: 15px; }
+        .pc-val { font-weight: 800; font-size: 16px; }
+        .strike { text-decoration: line-through; color: #999; font-size: 14px; }
+        .big-price { font-size: 32px; font-weight: 900; color: var(--primary); }
+
+        /* NO BRAINER BLOCK */
+        .no-brainer-block {
+            display: flex; align-items: center; justify-content: center;
+            gap: 15px; margin: 30px 20px; 
+            padding: 10px;
+        }
+        .nb-char-big { 
+            width: 110px; 
+            height: auto; 
+            flex-shrink: 0; 
+            transform: rotate(-5deg); 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+        .nb-text-big { 
+            font-size: 16px; 
+            font-weight: 800; 
+            line-height: 1.3; 
+            color: #E2E8F0; 
+        }
+        .nb-text-big span { color: #60A5FA; text-decoration: underline; text-decoration-color: rgba(96, 165, 250, 0.4); }
+
+        /* FLOW BUTTON */
+        .flow-btn {
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            width: 100%;
+            background: #2563EB;
+            color: white;
+            padding: 16px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: transform 0.2s;
+            margin-top: 15px;
+        }
+        .flow-btn:active { transform: scale(0.98); background: #1D4ED8; }
 
         /* REVIEWS */
-        .result-card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
-        .user-info { display: flex; align-items: center; margin-bottom: 10px; }
-        .avatar { width: 40px; height: 40px; background: #ddd; border-radius: 50%; margin-right: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #555; }
-        .stars { color: #FFD700; font-size: 14px; }
-        .score-badge { background: #E8F5E9; color: #2E7D32; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; margin-top: 10px; display: inline-block; }
+        .reviews-scroll {
+            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 40px;
+            scrollbar-width: none;
+        }
+        .review-card {
+            min-width: 280px; background: #1E293B; padding: 20px; border-radius: 20px;
+            border: 1px solid #334155;
+        }
+        .r-header { display: flex; align-items: center; margin-bottom: 12px; }
+        .r-avatar { width: 36px; height: 36px; background: linear-gradient(45deg, #3B82F6, #8B5CF6); border-radius: 50%; margin-right: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .r-stars { color: #F59E0B; font-size: 12px; }
 
-        /* FIXED CTA */
-        .sticky-cta { position: sticky; bottom: 20px; margin: 0 20px; text-align: center; z-index: 100; }
-        .sticky-btn { background: #111; color: white; text-decoration: none; padding: 16px; border-radius: 18px; display: block; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
-        .sticky-btn:hover { background: #000; transform: scale(1.02); }
-
-        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
+        /* STICKY BAR */
+        .sticky-bar {
+            position: fixed; bottom: 20px; left: 0; right: 0; margin: 0 auto;
+            width: calc(100% - 40px); max-width: 440px;
+            z-index: 100;
+        }
+        .btn-pulse {
+            background: linear-gradient(90deg, #2563EB, #4F46E5);
+            color: white; text-decoration: none; display: block;
+            padding: 16px; border-radius: 18px; text-align: center;
+            font-weight: 700; font-size: 18px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse-shadow 2s infinite;
+        }
+        @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
+        
+        .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="layout-container">
+    <div class="app-wrapper">
 
-        <!-- DESKTOP QR -->
-        <div class="desktop-promo">
-            <h2>Твой карманный<br>AI-Репетитор</h2>
-            <p>Открой камеру телефона и сканируй код, чтобы запустить бота прямо сейчас.</p>
-            <div class="qr-box">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/OGE_ENG_HELPER_BOT" alt="QR Code">
-                <span>Сканируй для запуска</span>
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-badge">⚡️ Экономия 100.000₽</div>
+            <h1>Хакни ОГЭ<br>на <span style="color: #60A5FA;">Оценку 5</span></h1>
+            <p class="hero-sub">AI-Репетитор в твоем кармане. Готовься к ОГЭ в формате переписки, без духоты и нудных учителей.</p>
+        </div>
+
+        <!-- PAIN -->
+        <div class="pain-section fade-up">
+            <div class="pain-title">Знакомая ситуация? 🤯</div>
+            <div class="pain-grid">
+                <!-- 1. Money -->
+                <div class="pain-card">
+                    <div class="pain-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="pain-text">Нет возможности заниматься с репетитором?</div>
+                </div>
+                <!-- 2. School -->
+                <div class="pain-card">
+                    <div class="pain-icon"><i class="fas fa-school"></i></div>
+                    <div class="pain-text">В школе готовят "для галочки", а не разбирают <b>твои</b> конкретные ошибки?</div>
+                </div>
+                <!-- 3. Courses (NEW) -->
+                <div class="pain-card">
+                    <div class="pain-icon"><i class="fas fa-users"></i></div>
+                    <div class="pain-text">На онлайн-курсах ты <b>просто один из толпы</b>? Всем плевать на твой прогресс?</div>
+                </div>
+                <!-- 4. Shame -->
+                <div class="pain-card">
+                    <div class="pain-icon"><i class="fas fa-comment-slash"></i></div>
+                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> преподу и просить объяснить еще раз?</div>
+                </div>
             </div>
         </div>
 
-        <!-- APP INTERFACE -->
-        <div class="app-wrapper">
+        <!-- SOLUTION -->
+<div class="solution-card fade-up">
+            <div class="sol-title">Есть решение проще 🔥</div>
+            <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Зачем усложнять, если можно готовиться легко?</p>
             
-            <!-- Hero -->
-            <div class="hero">
-                <div class="badge">🔥 На Базе CHAT GPT</div>
-                <h1>ОГЭ по Английскому на Максимум</h1>
-                <p>Твой личный AI-репетитор. Проверяет устную часть, эссе и грамматику за 3 секунды.</p>
-                <a href="https://t.me/OGE_ENG_HELPER_BOT" class="cta-button">
-                    <i class="fab fa-telegram-plane"></i> Запустить Бота
-                </a>
-            </div>
-
-            <!-- NEW: TUTOR COMPARISON -->
-            <div class="section fade-in" style="padding-bottom: 0;">
-                <div class="section-title">Преимущества</div>
-                <div class="vs-grid">
-                    <!-- Bad Card -->
-                    <div class="vs-card vs-bad">
-                        <div class="vs-title"><i class="fas fa-times-circle"></i> Репетитор</div>
-                        <ul class="vs-list">
-                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Дорого (1000₽/час минимум)</li>
-                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Подстройка графика</li>
-                            <li><i class="fas fa-minus" style="font-size:10px; margin-top:5px"></i> Ожидание проверки</li>
-                        </ul>
-                    </div>
-                    <!-- Good Card -->
-                    <div class="vs-card vs-good">
-                        <div class="vs-title"><i class="fas fa-check-circle"></i> OGE GPT</div>
-                        <ul class="vs-list">
-                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> <b>299₽ / месяц</b></li>
-                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> 24/7 в телефоне</li>
-                            <li><i class="fas fa-check" style="font-size:10px; margin-top:5px"></i> Мгновенный ответ</li>
-                        </ul>
+            <div class="feature-list">
+                <div class="feature-list-item">
+                    <div class="f-icon-box"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="f-content">
+                        <h4>Персональный план</h4>
+                        <p>Бот анализирует твои знания и дает задания именно на те темы, где ты "плаваешь".</p>
                     </div>
                 </div>
-
-                <!-- NEW: PERSONALIZED PLAN -->
-                <div class="smart-plan fade-in">
-                    <div class="sp-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="sp-content">
-                        <h3>Персональный план</h3>
-                        <p>Бот анализирует твои ошибки и составляет программу подготовки именно под твой уровень.</p>
+                <div class="feature-list-item">
+                    <div class="f-icon-box"><i class="fas fa-comments"></i></div>
+                    <div class="f-content">
+                        <h4>Объяснит на пальцах</h4>
+                        <p>Никакой заумной терминологии. Бот разжует сложную грамматику простым языком, как друг.</p>
+                    </div>
+                </div>
+                <div class="feature-list-item">
+                    <div class="f-icon-box"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="f-content">
+                        <h4>Учеба в кровати</h4>
+                        <p>Готовься к ОГЭ, пока едешь в автобусе или лежишь дома. Без давления и жесткого графика.</p>
+                    </div>
+                </div>
+                <div class="feature-list-item">
+                    <div class="f-icon-box"><i class="fas fa-user-graduate"></i></div>
+                    <div class="f-content">
+                        <h4>Карманный Эксперт</h4>
+                        <p>Оценит ответы на задания строго по всем критериям (Письмо + Устная часть).</p>
+                    </div>
+                </div>
+                  <div class="feature-list-item">
+                    <div class="f-icon-box"><i class="fas fa-brain"></i></div>
+                    <div class="f-content">
+                        <h4>Поймёт любой ответ</h4>
+                        <p>Скинь фото из тетради или голосовое сообщение — бот всё распознает и проверит мгновенно.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Features -->
-            <div class="section">
-                <div class="section-title">Что я умею?</div>
-                <div class="features-grid">
-                    <div class="feature-card fade-in">
-                        <i class="fas fa-microphone-alt feature-icon"></i>
-                        <h3>Устная часть</h3>
-                        <p>Оценка ваших заданий по критериям ФИПИ</p>
-                    </div>
-                    <div class="feature-card fade-in">
-                        <i class="fas fa-image feature-icon"></i>
-                        <h3>Картинки</h3>
-                        <p>Понимаю фото заданий, объясняю и оцениваю решение</p>
-                    </div>
-                    <div class="feature-card fade-in">
-                        <i class="fas fa-pen-fancy feature-icon"></i>
-                        <h3>Эссе</h3>
-                        <p>Проверка письма с оценкой по критериям</p>
-                    </div>
-                    <div class="feature-card fade-in">
-                        <i class="fas fa-robot feature-icon"></i>
-                        <h3>24/7</h3>
-                        <p>Отвечаю мгновенно в любое время суток</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Demo Chat -->
-            <div class="section">
-                <div class="section-title">Как это работает</div>
-                <p style="color: var(--text-sec); margin-bottom: 20px; padding-left: 10px;">Просто общайся как с другом в Telegram.</p>
+        </div>
+        <!-- DEMO (Adapted for OGE) -->
+        <div class="demo-section fade-up">
+            <div class="pain-title" style="margin-bottom: 15px;">Как это работает?</div>
+            <div class="chat-box">
+                <div class="chat-label">LIVE DEMO</div>
                 
-                <div class="demo-chat fade-in clearfix">
-                    <!-- User Voice -->
-                    <div class="message msg-user">
-                        <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                             <i class="fas fa-play" style="color: white; font-size: 14px; margin-left: 2px;"></i>
-                        </div>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 600;">Проверь задание...</div>
-                            <div style="font-size: 11px; opacity: 0.8;">0:15 • Голосовое</div>
-                        </div>
-                    </div>
+             <div class="msg msg-u">
+                    Я не понимаю разницу между Past Simple и Present Perfect 😭 Объясни просто!
+                </div>
 
-                    <div class="message msg-bot">
-                      У тебя все правильно, 7 баллов из 7, молодец! 🎉
-                    </div>
+                <div class="msg msg-b">
+                    Смотри, всё просто! 😎<br><br>
+                    🍕 <b>Past Simple</b> — это когда ты съел пиццу вчера (факт в прошлом, время истекло).<br>
+                    🤢 <b>Present Perfect</b> — это когда ты съел пиццу и тебя *до сих пор* тошнит (результат важен сейчас).
+                </div>
+                
+                <div class="msg msg-u">
+                    <i class="fas fa-pen-fancy"></i> <b>Текст:</b> Мой ответ на письмо другу (Email)
+                </div>
 
-                    <div class="message msg-user">
-                        Проверь мое письмо другу 📝
-                    </div>
+                <div class="msg msg-b">
+                    <b>Проверка Письма (Email) 📧</b><br><br>
+                    1. Решение коммуникативной задачи: 2/3 (⚠️ Ошибка)<br>
+                    2. Организация текста: 2/2 <br>
+                    3. Грамматика: 3/3 <br>
+                    <div class="score-tag" style="background: #F59E0B; color: #000;">Итог: 8/10 баллов</div>
+                    <br><br>
+                    <b>Что исправить:</b> Ты ответил только на 2 вопроса друга из 3-х. Забыл написать про любимые книги!
+                </div>
+            </div>
+        </div>
 
-                    <div class="message msg-bot">
-                        Отличная работа! Но в 3-м абзаце забыл артикль. Оценка: 9/10.
+        <!-- PRICING ANCHOR -->
+        <div id="pricing" class="offer-section fade-up">
+            <div class="pain-title">Цена вопроса 💸</div>
+            <div class="price-compare">
+                <div class="pc-row">
+                    <div class="pc-name">Репетитор (1 месяц)</div>
+                    <div class="pc-val strike">12 000₽</div>
+                </div>
+                <div class="pc-row">
+                    <div class="pc-name">Курсы (1 месяц)</div>
+                    <div class="pc-val strike">4 000₽</div>
+                </div>
+                <div class="pc-row" style="margin-top: 10px;">
+                    <div class="pc-name" style="font-size: 18px; color: #2563EB;">OGE AI BOT</div>
+                    <div class="pc-val big-price">299₽</div>
+                </div>
+            </div>
+
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
+                Оформить подписку <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <!-- BIG NO BRAINER BLOCK -->
+            <div class="no-brainer-block">
+                <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char-big">
+                <div class="nb-text-big">
+                    Ну серьезно, это<br>
+                    <span>цена шаурмы.</span><br>
+                    Только шаурма не поможет тебе получить "Пятёрку".
+                </div>
+            </div>
+
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn" style="background: #10B981;">
+                Начать подготовку сейчас <i class="fas fa-check"></i>
+            </a>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="pain-title" style="padding-left: 20px;">Ребята уже сдали 👇</div>
+        <div class="reviews-scroll fade-up">
+            <div class="review-card">
+                <div class="r-header">
+                    <div class="r-avatar">С</div>
+                    <div>
+                        <div style="font-weight: 700;">Саша, 9 "А"</div>
+                        <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
+                <p style="font-size: 13px; color: #cbd5e1;">Боялась Монолога (Задание 3) до жути. Бот научил говорить по шаблону. В итоге на экзамене получила максимум за говорение!</p>
             </div>
             
-                        <!-- Premium Block -->
-            <div class="premium-block fade-in">
-                <div class="prem-top">
-                    <div class="prem-title">Premium Доступ</div>
-                    <div class="prem-price">299₽ / мес</div>
+            <div class="review-card">
+                <div class="r-header">
+                    <div class="r-avatar">И</div>
+                    <div>
+                        <div style="font-weight: 700;">Ира К.</div>
+                        <div class="r-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
                 </div>
-                <ul class="prem-features">
-                    <li><i class="fas fa-check-circle"></i> <b>50 запросов</b>каждый день</li>
-                    <li><i class="fas fa-check-circle"></i> Приоритетная проверка эссе</li>
-                    <li><i class="fas fa-check-circle"></i> Экономия 100 тыс+ на репетиторах и курсах</li>
-                    <li><i class="fas fa-check-circle"></i> Полный доступ к OGE GPT</li>
-                </ul>
-                <a href="https://t.me/be_english_premium_bot" class="prem-btn">Оформить подписку</a>
+                <p style="font-size: 13px; color: #cbd5e1;">В школе училка говорила, что я не сдам. Купила бота, тренировала письмо каждый день. Сдала на 65 баллов ("5")!</p>
             </div>
 
-            <!-- COMPARISON TABLE -->
-            <div class="section fade-in">
-                <div class="section-title">Сравнение тарифов</div>
-                <div class="compare-card">
-                    <div class="compare-row header">
-                        <div class="c-feature">Возможности</div>
-                        <div class="c-val">Free</div>
-                        <div class="c-val" style="color: #4A90E2;">PRO</div>
-                    </div>
-                    <div class="compare-row">
-                        <div class="c-feature">Запросов в день</div>
-                        <div class="c-val c-free">5</div>
-                        <div class="c-val c-pro">50</div>
-                    </div>
-                    <div class="compare-row">
-                        <div class="c-feature">Проверка Эссе</div>
-                        <div class="c-val c-free"><i class="fas fa-check" style="font-size: 12px;"></i></div>
-                        <div class="c-val c-pro"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="compare-row">
-                        <div class="c-feature">Устная часть</div>
-                        <div class="c-val c-free"><i class="fas fa-check" style="font-size: 12px;"></i></div>
-                        <div class="c-val c-pro"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="compare-row">
-                        <div class="c-feature">Скорость</div>
-                        <div class="c-val c-free">Стандарт</div>
-                        <div class="c-val c-pro">MAX ⚡️</div>
-                    </div>
-                     <div class="compare-row">
-                        <div class="c-feature">Экономия на репетиторе</div>
-                        <div class="c-val c-free">-</div>
-                        <div class="c-val c-pro">100к+</div>
+             <div class="review-card">
+                <div class="r-header">
+                    <div class="r-avatar">D</div>
+                    <div>
+                        <div style="font-weight: 700;">Дима</div>
+                        <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
+                <p style="font-size: 13px; color: #cbd5e1;">Топ за свои деньги. Родители довольны, что не надо платить репетиторам. Бот объясняет понятнее учебника.</p>
             </div>
-
-            <!-- Reviews -->
-            <div class="section">
-                <div class="section-title">Результаты учеников</div>
-                
-                <div class="result-card fade-in">
-                    <div class="user-info">
-                        <div class="avatar" style="background: #FFE0B2; color: #F57C00;">А</div>
-                        <div>
-                            <div style="font-weight: 600;">Анна С.</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+            
+            <div class="review-card">
+                <div class="r-header">
+                    <div class="r-avatar">Л</div>
+                    <div>
+                        <div style="font-weight: 700;">Лена</div>
+                        <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
-                    <p>Раньше боялась устной части. Тренировалась с ботом месяц. В итоге 68 баллов за экзамен! Бот реально слышит ошибки.</p>
-                    <div class="score-badge">Результат: 68/68</div>
                 </div>
-
-                <div class="result-card fade-in">
-                    <div class="user-info">
-                        <div class="avatar" style="background: #E1BEE7; color: #8E24AA;">М</div>
-                        <div>
-                            <div style="font-weight: 600;">Максим</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                    <p>Удобно готовиться самому. Скинул фотку задания из сборника, бот сразу объяснил что и как делать. Дешевле репетитора в 10 раз.</p>
-                    <div class="score-badge">Экономия: 45 000₽</div>
-                </div>
-
-                <div class="result-card fade-in">
-                    <div class="user-info">
-                        <div class="avatar" style="background: #BBDEFB; color: #1976D2;">К</div>
-                        <div>
-                            <div style="font-weight: 600;">Катя, 9 класс</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                    <p>По началу сомневалась брать ли Premium, но перед пробником взяла Премиум за 299р. Скидывала по 5 эссе в день, сдала пробник на 5!</p>
-                    <div class="score-badge">Рекомендую Premium</div>
-                </div>
-
-                <div class="result-card fade-in">
-                    <div class="user-info">
-                        <div class="avatar" style="background: #C8E6C9; color: #388E3C;">Д</div>
-                        <div>
-                            <div style="font-weight: 600;">Дмитрий</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                    <p>Бот круто объясняет времена. Сфоткал сложный текст, он мне всё объяснил. Лучший)</p>
-                    <div class="score-badge">Подтянул грамматику</div>
-                </div>
+                <p style="font-size: 13px; color: #cbd5e1;">Очень удобно готовиться в телефоне. Еду в автобусе — решаю тесты. Бот сразу говорит, где ошибка.</p>
             </div>
+        </div>
 
-            <div style="height: 80px;"></div>
+        <div style="padding: 0 20px;">
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
+                Сдать на 5-ку <i class="fas fa-user-plus"></i>
+            </a>
+        </div>
 
-            <!-- Sticky Button -->
-            <div class="sticky-cta">
-                <a href="https://t.me/be_english_premium_bot" class="sticky-btn">
-                    Оформить подписку <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                </a>
-            </div>
+        <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
+            Оферта • Политика конфиденциальности
+        </div>
 
-        </div> <!-- End App Wrapper -->
-    </div> <!-- End Layout Container -->
+        <!-- STICKY BOTTOM BUTTON -->
+        <div class="sticky-bar">
+            <a href="#pricing" class="btn-pulse">
+                ХОЧУ ОЦЕНКУ 5 <i class="fas fa-bolt"></i>
+            </a>
+        </div>
+
+    </div>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
