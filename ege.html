@@ -71,7 +71,7 @@
             background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
-        .hero-sub { color: #cbd5e1; font-size: 16px; margin-bottom: 25px; font-weight: 500; }
+        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
 
         .cta-main {
             display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -93,7 +93,7 @@
         .pain-icon { font-size: 24px; color: var(--danger); min-width: 30px; text-align: center; }
         .pain-text { font-size: 14px; color: #fca5a5; font-weight: 500; line-height: 1.3; }
 
-        /* SOLUTION (UPDATED) */
+        /* SOLUTION */
         .solution-card {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             margin: 10px 20px 30px; padding: 25px; border-radius: 24px;
@@ -101,10 +101,7 @@
         }
         .sol-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
         
-        /* New Feature List Style */
-        .feature-list-item {
-            display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;
-        }
+        .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
         .feature-list-item:last-child { margin-bottom: 0; }
         .f-icon-box {
             background: rgba(59, 130, 246, 0.15); color: var(--primary);
@@ -114,7 +111,6 @@
         }
         .f-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: white; }
         .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
-
 
         /* DEMO */
         .demo-section { padding: 0 20px 30px; }
@@ -147,7 +143,15 @@
         .pc-val { font-weight: 800; font-size: 16px; }
         .strike { text-decoration: line-through; color: #999; font-size: 14px; }
         .big-price { font-size: 32px; font-weight: 900; color: var(--primary); }
-        .sub-text { font-size: 12px; color: #666; margin-top: 5px; }
+        
+        /* NEW: NO BRAINER BLOCK STYLE */
+        .no-brainer-row {
+            display: flex; align-items: center; gap: 15px; margin-top: 15px; padding-top: 15px;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .nb-char { width: 75px; height: auto; flex-shrink: 0; transform: rotate(-5deg); }
+        .nb-text { font-size: 13px; font-weight: 700; line-height: 1.35; color: #334155; }
+        .nb-text span { color: #2563EB; }
 
         /* REVIEWS */
         .reviews-scroll {
@@ -320,7 +324,17 @@
                     <div class="pc-name" style="font-size: 18px; color: #2563EB;">EGE AI BOT</div>
                     <div class="pc-val big-price">299₽</div>
                 </div>
-                <h4> 🤷 Цена чашки кофе. Но кофе не поможет поступить на бюджет.<h4>
+                
+                <!-- NO BRAINER BLOCK -->
+                <div class="no-brainer-row">
+                    <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char">
+                    <div class="nb-text">
+                        Ну серьезно, это <span>цена чашки кофе</span> ☕️<br>
+                        Только кофе не поможет тебе поступить на бюджет.
+                    </div>
+                </div>
+                <!-- END BLOCK -->
+
             </div>
         </div>
 
