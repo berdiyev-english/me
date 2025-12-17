@@ -22,6 +22,8 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #000;
@@ -46,7 +48,7 @@
         .app-wrapper {
             width: 100%; max-width: 100%; margin: 0 auto; 
             background: var(--dark-bg);
-            min-height: 100vh; position: relative; padding-bottom: 90px;
+            min-height: 100vh; position: relative; padding-bottom: 110px;
         }
 
         /* HERO */
@@ -57,6 +59,13 @@
             overflow: hidden; position: relative;
         }
         
+        h1 { 
+            font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
+            background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
+
         .hero-badge {
             background: linear-gradient(90deg, #F59E0B, #D97706);
             color: white; padding: 6px 14px; border-radius: 20px;
@@ -65,22 +74,6 @@
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
             animation: pulse 2s infinite;
         }
-
-        h1 { 
-            font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
-            background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
-
-        .cta-main {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: white; color: black; font-weight: 800; font-size: 18px;
-            padding: 18px; border-radius: 20px; text-decoration: none;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            transition: transform 0.2s; position: relative; z-index: 2;
-        }
-        .cta-main:active { transform: scale(0.96); }
 
         /* PAIN POINTS */
         .pain-section { padding: 30px 20px; }
@@ -128,10 +121,10 @@
         .score-tag { display: inline-block; background: #10B981; color: #064E3B; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-top: 4px; }
 
         /* PRICING */
-        .offer-section { padding: 0 20px 40px; }
+        .offer-section { padding: 0 20px 20px; }
         .price-compare {
             background: white; color: black; border-radius: 24px; padding: 25px;
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; margin-bottom: 20px;
         }
         .price-compare::before {
             content: "ВЫГОДНО"; position: absolute; top: 15px; right: -30px; background: #EF4444; color: white;
@@ -143,15 +136,44 @@
         .pc-val { font-weight: 800; font-size: 16px; }
         .strike { text-decoration: line-through; color: #999; font-size: 14px; }
         .big-price { font-size: 32px; font-weight: 900; color: var(--primary); }
-        
-        /* NEW: NO BRAINER BLOCK STYLE */
-        .no-brainer-row {
-            display: flex; align-items: center; gap: 15px; margin-top: 15px; padding-top: 15px;
-            border-top: 2px dashed #e2e8f0;
+
+        /* NO BRAINER BLOCK */
+        .no-brainer-block {
+            display: flex; align-items: center; justify-content: center;
+            gap: 15px; margin: 30px 20px; 
+            padding: 10px;
         }
-        .nb-char { width: 75px; height: auto; flex-shrink: 0; transform: rotate(-5deg); }
-        .nb-text { font-size: 13px; font-weight: 700; line-height: 1.35; color: #334155; }
-        .nb-text span { color: #2563EB; }
+        .nb-char-big { 
+            width: 110px; 
+            height: auto; 
+            flex-shrink: 0; 
+            transform: rotate(-5deg); 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+        .nb-text-big { 
+            font-size: 16px; 
+            font-weight: 800; 
+            line-height: 1.3; 
+            color: #E2E8F0; 
+        }
+        .nb-text-big span { color: #60A5FA; text-decoration: underline; text-decoration-color: rgba(96, 165, 250, 0.4); }
+
+        /* FLOW BUTTON */
+        .flow-btn {
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            width: 100%;
+            background: #2563EB;
+            color: white;
+            padding: 16px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: transform 0.2s;
+            margin-top: 15px;
+        }
+        .flow-btn:active { transform: scale(0.98); background: #1D4ED8; }
 
         /* REVIEWS */
         .reviews-scroll {
@@ -196,35 +218,41 @@
             <div class="hero-badge">⚡️ Экономия 150.000₽</div>
             <h1>Хакни ЕГЭ<br>на <span style="color: #60A5FA;">90+ баллов</span></h1>
             <p class="hero-sub">AI-Репетитор в твоем кармане. Готовься к ЕГЭ в формате переписки, без духоты и нудных учителей.</p>
-        
         </div>
 
-        <!-- PAIN (UPDATED) -->
+        <!-- PAIN -->
         <div class="pain-section fade-up">
             <div class="pain-title">Знакомая ситуация? 🤯</div>
             <div class="pain-grid">
+                <!-- 1. Money -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-wallet"></i></div>
-                    <div class="pain-text">Репетиторы просят <b>2000₽ за час</b>, а тебе жалко деньги родителей?</div>
+                    <div class="pain-text">Нет возможности заниматься с репетитором?</div>
                 </div>
+                <!-- 2. School -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-school"></i></div>
                     <div class="pain-text">В школе готовят "для галочки", а не разбирают <b>твои</b> конкретные ошибки?</div>
                 </div>
+                <!-- 3. Courses (NEW) -->
+                <div class="pain-card">
+                    <div class="pain-icon"><i class="fas fa-users"></i></div>
+                    <div class="pain-text">На онлайн-курсах ты <b>просто один из толпы</b>? Всем плевать на твой прогресс?</div>
+                </div>
+                <!-- 4. Shame -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-comment-slash"></i></div>
-                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> репетитору и просить объяснить еще раз?</div>
+                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> преподу и просить объяснить еще раз?</div>
                 </div>
             </div>
         </div>
 
-        <!-- SOLUTION (UPDATED - Personalization & Simplicity) -->
+        <!-- SOLUTION -->
         <div class="solution-card fade-up">
             <div class="sol-title">Есть решение проще 🔥</div>
             <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Зачем усложнять, если можно готовиться легко?</p>
             
             <div class="feature-list">
-                <!-- Feature 1 -->
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-clipboard-list"></i></div>
                     <div class="f-content">
@@ -232,7 +260,6 @@
                         <p>Бот анализирует твои знания и дает задания именно на те темы, где ты "плаваешь".</p>
                     </div>
                 </div>
-                <!-- Feature 2 -->
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-comments"></i></div>
                     <div class="f-content">
@@ -240,7 +267,6 @@
                         <p>Никакой заумной терминологии. Бот разжует сложную грамматику простым языком, как друг.</p>
                     </div>
                 </div>
-                <!-- Feature 3 -->
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-mobile-alt"></i></div>
                     <div class="f-content">
@@ -252,7 +278,7 @@
                     <div class="f-icon-box"><i class="fas fa-user-graduate"></i></div>
                     <div class="f-content">
                         <h4>Карманный Эксперт</h4>
-                        <p>Оценит ответы на твои задания строго по всем критериям включая письмо и устную часть. Найдет ошибки, которые не заметит учитель. Даст лайфхаки по улучшению</p>
+                        <p>Оценит ответы на задания строго по всем критериям (Письмо + Устная часть). Найдет ошибки, которые не заметит учитель.</p>
                     </div>
                 </div>
                   <div class="feature-list-item">
@@ -282,13 +308,6 @@
                 </div>
                 
                 <div class="msg msg-u">
-                    Ахаха, понял! Давай тест по этой теме?
-                </div>
-
-                <div class="msg msg-b">
-                    Держи 5 вопросов, чтобы закрепить 👇
-                </div>
-                                <div class="msg msg-u">
                     <i class="fas fa-image"></i> <b>Фото:</b> Моё эссе по графику (Project)
                 </div>
 
@@ -299,17 +318,13 @@
                     3. Лексика: 3/3 <br>
                     <div class="score-tag" style="background: #F59E0B; color: #000;">Итог: 13/14 баллов</div>
                     <br><br>
-                    <b>Лайфхак:</b> Ты забыл вводное слово в 3-м абзаце при сравнении. Используй <i>"It is worth noting that..."</i>, чтобы эксперт не снизил балл.
-                </div>
-                
-                <div class="msg msg-u">
-                    О, спасибо! А какие еще фразы можно туда вставить?
+                    <b>Лайфхак:</b> Ты забыл вводное слово в 3-м абзаце. Используй <i>"It is worth noting that..."</i>, чтобы эксперт не снизил балл.
                 </div>
             </div>
         </div>
 
         <!-- PRICING ANCHOR -->
-        <div class="offer-section fade-up">
+        <div id="pricing" class="offer-section fade-up">
             <div class="pain-title">Цена вопроса 💸</div>
             <div class="price-compare">
                 <div class="pc-row">
@@ -324,18 +339,25 @@
                     <div class="pc-name" style="font-size: 18px; color: #2563EB;">EGE AI BOT</div>
                     <div class="pc-val big-price">299₽</div>
                 </div>
-                
-                <!-- NO BRAINER BLOCK -->
-                <div class="no-brainer-row">
-                    <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char">
-                    <div class="nb-text">
-                        Ну серьезно, это <span>цена чашки кофе</span> ☕️<br>
-                        Только кофе не поможет тебе поступить на бюджет.
-                    </div>
-                </div>
-                <!-- END BLOCK -->
-
             </div>
+
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
+                Оформить подписку <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <!-- BIG NO BRAINER BLOCK -->
+            <div class="no-brainer-block">
+                <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char-big">
+                <div class="nb-text-big">
+                    Ну серьезно, это<br>
+                    <span>цена чашки кофе.</span><br>
+                    Только кофе не поможет тебе поступить на бюджет.
+                </div>
+            </div>
+
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn" style="background: #10B981;">
+                Начать подготовку сейчас <i class="fas fa-check"></i>
+            </a>
         </div>
 
         <!-- REVIEWS -->
@@ -374,9 +396,9 @@
                 <p style="font-size: 13px; color: #cbd5e1;">За 299р это просто подарок. Лучше чем платить репетитору 2к и краснеть за ошибки.</p>
             </div>
             
-                        <div class="review-card">
+            <div class="review-card">
                 <div class="r-header">
-                    <div class="r-avatar">М</div>
+                    <div class="r-avatar">О</div>
                     <div>
                         <div style="font-weight: 700;">Олег</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
@@ -395,16 +417,21 @@
                 </div>
                 <p style="font-size: 13px; color: #cbd5e1;">Очень круто проверяет Speaking. Засекает время, следит за паузами. Реально как на экзамене, только без стресса.</p>
             </div>
-            
         </div>
 
-        <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 10px; margin-bottom: 20px;">
+        <div style="padding: 0 20px;">
+            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
+                Присоединиться к ним <i class="fas fa-user-plus"></i>
+            </a>
+        </div>
+
+        <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
             Оферта • Политика конфиденциальности
         </div>
 
-        <!-- STICKY BOTTOM -->
+        <!-- STICKY BOTTOM BUTTON (SCROLLS TO PRICING) -->
         <div class="sticky-bar">
-            <a href="https://t.me/be_english_premium_bot" class="btn-pulse">
+            <a href="#pricing" class="btn-pulse">
                 ХОЧУ 90+ БАЛЛОВ <i class="fas fa-bolt"></i>
             </a>
         </div>
