@@ -10,7 +10,7 @@
     <style>
         :root {
             --primary: #3B82F6; 
-            --accent: #8B5CF6; 
+            --accent: #F59E0B; /* Orange for Bob */
             --danger: #EF4444;
             --success: #10B981;
             --dark-bg: #0F172A;
@@ -54,13 +54,28 @@
         /* HERO */
         .hero {
             background: radial-gradient(circle at top right, #4f46e5 0%, #0f172a 60%);
-            padding: 50px 20px 40px; text-align: center;
+            padding: 40px 20px 40px; text-align: center;
             border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
             overflow: hidden; position: relative;
         }
+
+        /* Bob Avatar Container */
+        .bob-avatar-container {
+            width: 130px; height: 130px; margin: 0 auto 20px;
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+            border: 4px solid #1E293B;
+            overflow: hidden; 
+        }
+        
+        .bob-avatar-img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
         
         h1 { 
-            font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
+            font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
             background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
@@ -91,10 +106,18 @@
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             margin: 10px 20px 30px; padding: 25px; border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.1); 
+            position: relative;
         }
+        /* Paw Decoration */
+        .solution-card::after {
+            content: '\f1b0'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; top: -10px; right: -10px; font-size: 100px;
+            color: rgba(255,255,255,0.03); transform: rotate(20deg);
+        }
+
         .sol-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
         
-        .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; position: relative; z-index: 2; }
         .feature-list-item:last-child { margin-bottom: 0; }
         .f-icon-box {
             background: rgba(59, 130, 246, 0.15); color: var(--primary);
@@ -117,25 +140,77 @@
         }
         .msg { padding: 12px 16px; border-radius: 16px; font-size: 13px; margin-bottom: 12px; max-width: 85%; line-height: 1.4; }
         .msg-u { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 4px; }
-        .msg-b { background: #334155; color: #e2e8f0; margin-right: auto; border-bottom-left-radius: 4px; }
+        
+        .msg-b-wrapper { display: flex; gap: 10px; margin-bottom: 12px; }
+        .bob-mini-avatar {
+            width: 30px; height: 30px; background: var(--accent); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;
+            flex-shrink: 0; border: 2px solid #fff;
+        }
+        .msg-b { background: #334155; color: #e2e8f0; border-bottom-left-radius: 4px; position: relative; }
+
         .score-tag { display: inline-block; background: #10B981; color: #064E3B; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-top: 4px; }
 
         /* PRICING */
         .offer-section { padding: 0 20px 20px; }
-        .price-compare {
-            background: white; color: black; border-radius: 24px; padding: 25px;
-            position: relative; overflow: hidden; margin-bottom: 20px;
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
         }
-        .price-compare::before {
-            content: "ВЫГОДНО"; position: absolute; top: 15px; right: -30px; background: #EF4444; color: white;
-            padding: 5px 30px; font-size: 10px; font-weight: 800; transform: rotate(45deg);
+
+        .price-card {
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 20px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
         }
-        .pc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .pc-row:last-child { border: none; margin: 0; padding: 0; }
-        .pc-name { font-weight: 600; font-size: 15px; }
-        .pc-val { font-weight: 800; font-size: 16px; }
-        .strike { text-decoration: line-through; color: #999; font-size: 14px; }
-        .big-price { font-size: 32px; font-weight: 900; color: var(--primary); }
+
+        .price-card.featured {
+            background: linear-gradient(160deg, #1E293B 0%, #291d0f 100%);
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+        }
+
+        .badge-best {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .pc-title { font-size: 14px; font-weight: 600; color: #94A3B8; margin-bottom: 5px; }
+        .pc-price { font-size: 20px; font-weight: 900; color: white; margin-bottom: 5px; }
+        .pc-sub { font-size: 11px; color: #64748B; margin-bottom: 10px; }
+        
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .btn-outline { background: transparent; border: 1px solid #475569; color: white; }
+        .btn-fill { background: var(--accent); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
 
         /* NO BRAINER BLOCK */
         .no-brainer-block {
@@ -207,6 +282,10 @@
         
         .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Footer Links Style */
+        .footer-links a { color: #64748B; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .footer-links a:hover { color: #94A3B8; border-bottom-color: #94A3B8; }
     </style>
 </head>
 <body>
@@ -216,25 +295,31 @@
         <!-- HERO -->
         <div class="hero">
             <div class="hero-badge">⚡️ Экономия 150.000₽</div>
+            
+             <!-- BOB AVATAR IMG -->
+            <div class="bob-avatar-container">
+                <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
+            </div>
+
             <h1>Хакни ЕГЭ<br>на <span style="color: #60A5FA;">90+ баллов</span></h1>
-            <p class="hero-sub">AI-Репетитор в твоем кармане. Готовься к ЕГЭ в формате переписки, без духоты и нудных учителей.</p>
+            <p class="hero-sub">Привет, я Кот Боб 😺! Твой AI-Репетитор. Готовься к ЕГЭ в формате переписки, без духоты и нудных учителей.</p>
         </div>
 
         <!-- PAIN -->
         <div class="pain-section fade-up">
-            <div class="pain-title">Знакомая ситуация? 🤯</div>
+            <div class="pain-title">Знакомая ситуация? 😿</div>
             <div class="pain-grid">
                 <!-- 1. Money -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-wallet"></i></div>
-                    <div class="pain-text">Нет возможности заниматься с репетитором?</div>
+                    <div class="pain-text">Нет возможности заниматься с репетитором за кучу денег?</div>
                 </div>
                 <!-- 2. School -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-school"></i></div>
-                    <div class="pain-text">В школе готовят "для галочки", а не разбирают <b>твои</b> конкретные ошибки?</div>
+                    <div class="pain-text">В школе готовят "для галочки", а не разбирают <b>твои</b> ошибки?</div>
                 </div>
-                <!-- 3. Courses (NEW) -->
+                <!-- 3. Courses -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-users"></i></div>
                     <div class="pain-text">На онлайн-курсах ты <b>просто один из толпы</b>? Всем плевать на твой прогресс?</div>
@@ -242,50 +327,50 @@
                 <!-- 4. Shame -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-comment-slash"></i></div>
-                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> преподу и просить объяснить еще раз?</div>
+                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> и просить объяснить еще раз?</div>
                 </div>
             </div>
         </div>
 
         <!-- SOLUTION -->
         <div class="solution-card fade-up">
-            <div class="sol-title">Есть решение проще 🔥</div>
-            <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Зачем усложнять, если можно готовиться легко?</p>
+            <div class="sol-title">Я сделаю проще 🔥</div>
+            <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Мяу, зачем усложнять, если можно готовиться легко?</p>
             
             <div class="feature-list">
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-clipboard-list"></i></div>
                     <div class="f-content">
                         <h4>Персональный план</h4>
-                        <p>Бот анализирует твои знания и дает задания именно на те темы, где ты "плаваешь".</p>
+                        <p>Я проанализирую твои знания и дам задания именно на те темы, где ты "плаваешь".</p>
                     </div>
                 </div>
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-comments"></i></div>
                     <div class="f-content">
-                        <h4>Объяснит на пальцах</h4>
-                        <p>Никакой заумной терминологии. Бот разжует сложную грамматику простым языком, как друг.</p>
+                        <h4>Объясню на лапках 🐾</h4>
+                        <p>Никакой заумной терминологии. Разжую сложную грамматику простым языком, как друг.</p>
                     </div>
                 </div>
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-mobile-alt"></i></div>
                     <div class="f-content">
                         <h4>Учеба в кровати</h4>
-                        <p>Готовься к ЕГЭ, пока едешь в автобусе или лежишь дома. Без давления и жесткого графика.</p>
+                        <p>Готовься к ЕГЭ, пока едешь в автобусе или лежишь дома. Без давления и графиков.</p>
                     </div>
                 </div>
                 <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-user-graduate"></i></div>
                     <div class="f-content">
                         <h4>Карманный Эксперт</h4>
-                        <p>Оценит ответы на задания строго по всем критериям (Письмо + Устная часть)*.</p>
+                        <p>Оценю ответы на задания строго по всем критериям (Письмо + Устная часть)*.</p>
                     </div>
                 </div>
                   <div class="feature-list-item">
                     <div class="f-icon-box"><i class="fas fa-brain"></i></div>
                     <div class="f-content">
-                        <h4>Поймёт любой ответ</h4>
-                        <p>Скинь фото эссе из тетради или голосовое сообщение — бот всё распознает и проверит мгновенно.</p>
+                        <h4>Пойму любой ответ</h4>
+                        <p>Скинь фото эссе из тетради или голосовое сообщение — я всё распознаю и проверю.</p>
                     </div>
                 </div>
             </div>
@@ -295,54 +380,76 @@
         <div class="demo-section fade-up">
             <div class="pain-title" style="margin-bottom: 15px;">Как это работает?</div>
             <div class="chat-box">
-                <div class="chat-label">LIVE DEMO</div>
+                <div class="chat-label">BOB DEMO</div>
                 
                 <div class="msg msg-u">
-                    Я не понимаю разницу между Past Simple и Present Perfect 😭 Объясни просто!
+                    Боб, я не понимаю Past Simple и Present Perfect 😭 Объясни просто!
                 </div>
 
-                <div class="msg msg-b">
-                    Смотри, всё просто! 😎<br><br>
-                    🍕 <b>Past Simple</b> — это когда ты съел пиццу вчера (факт в прошлом, время истекло).<br>
-                    🤢 <b>Present Perfect</b> — это когда ты съел пиццу и тебя *до сих пор* тошнит (результат важен сейчас).
+                <div class="msg-b-wrapper">
+                    <div class="bob-mini-avatar"><i class="fas fa-cat"></i></div>
+                    <div class="msg msg-b">
+                        Мур-р, всё просто! 😎<br><br>
+                        🍕 <b>Past Simple</b> — это когда ты съел пиццу вчера (факт в прошлом, время истекло).<br>
+                        🤢 <b>Present Perfect</b> — это когда ты съел пиццу и тебя *до сих пор* тошнит (результат важен сейчас).
+                    </div>
                 </div>
                 
                 <div class="msg msg-u">
                     <i class="fas fa-image"></i> <b>Фото:</b> Моё эссе по графику (Project)
                 </div>
 
-                <div class="msg msg-b">
-                    <b>Проверка Задания 38 🤖</b><br><br>
-                    1. РКЗ (Решение задачи): 3/3 <br>
-                    2. Организация: 2/3 (⚠️ Ошибка)<br>
-                    3. Лексика: 3/3 <br>
-                    <div class="score-tag" style="background: #F59E0B; color: #000;">Итог: 13/14 баллов</div>
-                    <br><br>
-                    <b>Лайфхак:</b> Ты забыл вводное слово в 3-м абзаце. Используй <i>"It is worth noting that..."</i>, чтобы эксперт не снизил балл.
+                <div class="msg-b-wrapper">
+                    <div class="bob-mini-avatar"><i class="fas fa-cat"></i></div>
+                    <div class="msg msg-b">
+                        <b>Проверяю Задание 38 🤖</b><br><br>
+                        1. РКЗ (Решение задачи): 3/3 <br>
+                        2. Организация: 2/3 (⚠️ Ошибка)<br>
+                        3. Лексика: 3/3 <br>
+                        <div class="score-tag" style="background: #F59E0B; color: #000;">Итог: 13/14 баллов</div>
+                        <br><br>
+                        <b>Совет кота:</b> Ты забыл вводное слово в 3-м абзаце. Используй <i>"It is worth noting that..."</i>, чтобы эксперт не снизил балл.
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- PRICING ANCHOR -->
         <div id="pricing" class="offer-section fade-up">
-            <div class="pain-title">Цена вопроса 💸</div>
-            <div class="price-compare">
-                <div class="pc-row">
-                    <div class="pc-name">Репетитор (1 месяц)</div>
-                    <div class="pc-val strike">16 000₽</div>
+            <div class="pain-title">Выбери свой план 🎫</div>
+            
+            <p style="font-size: 13px; color: #94A3B8; margin-bottom: 20px;">
+                Репетитор берет 1500₽ за час. <br>Со мной ты готовишься безлимитно.
+            </p>
+
+            <div class="pricing-grid">
+                <!-- Monthly Plan -->
+                <div class="price-card">
+                    <div class="pc-title">МЕСЯЦ</div>
+                    <div class="pc-price">1090₽</div>
+                    <div class="pc-sub">Интенсив</div>
+                    <!-- ТОЛЬКО ЭТА КНОПКА ВЕДЕТ В БОТА -->
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">
+                        Оформить
+                    </a>
                 </div>
-                <div class="pc-row">
-                    <div class="pc-name">Курсы (1 месяц)</div>
-                    <div class="pc-val strike">5 000₽</div>
-                </div>
-                <div class="pc-row" style="margin-top: 10px;">
-                    <div class="pc-name" style="font-size: 18px; color: #2563EB;">EGE AI BOT</div>
-                    <div class="pc-val big-price">299₽</div>
+
+                <!-- Yearly Plan -->
+                <div class="price-card featured">
+                    <div class="badge-best">ВЫГОДНО 🔥</div>
+                    <div class="pc-title" style="color: var(--accent);">ГОД</div>
+                    <div class="pc-price">3999₽</div>
+                    <div class="pc-sub">До самого ЕГЭ</div>
+                    <!-- ТОЛЬКО ЭТА КНОПКА ВЕДЕТ В БОТА -->
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">
+                        Оформить
+                    </a>
                 </div>
             </div>
-
-            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
-                Оформить подписку <i class="fas fa-chevron-right"></i>
+            
+             <!-- Кнопка ниже ведет ВВЕРХ к этому же блоку -->
+            <a href="#pricing" class="flow-btn">
+                Выбрать тариф <i class="fas fa-chevron-up"></i>
             </a>
 
             <!-- BIG NO BRAINER BLOCK -->
@@ -355,9 +462,6 @@
                 </div>
             </div>
 
-            <a href="https://t.me/be_english_premium_bot" class="flow-btn" style="background: #10B981;">
-                Начать подготовку сейчас <i class="fas fa-check"></i>
-            </a>
         </div>
 
         <!-- REVIEWS -->
@@ -393,7 +497,7 @@
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">За 299р это просто подарок. Лучше чем платить репетитору 2к и краснеть за ошибки.</p>
+                <p style="font-size: 13px; color: #cbd5e1;">За такие деньги это подарок. Лучше чем платить репетитору 2к и краснеть за ошибки.</p>
             </div>
             
             <div class="review-card">
@@ -404,7 +508,7 @@
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Раньше писал эссе на 8 баллов, учительница вечно придиралась. Бот дал шаблоны, объяснил логику. Вчера написал пробник на 14/14!</p>
+                <p style="font-size: 13px; color: #cbd5e1;">Раньше писал эссе на 8 баллов. Бот дал шаблоны, объяснил логику. Вчера написал пробник на 14/14!</p>
             </div>
             
             <div class="review-card">
@@ -420,18 +524,19 @@
         </div>
 
         <div style="padding: 0 20px;">
-            <a href="https://t.me/be_english_premium_bot" class="flow-btn">
+            <a href="#pricing" class="flow-btn">
                 Присоединиться к ним <i class="fas fa-user-plus"></i>
             </a>
         </div>
 
-        <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            Оферта • Политика конфиденциальности
+        <div class="footer-links" style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
+            <a href="https://berdiyev-eng.ru/offerta_ege" target="_blank">Публичная оферта</a> • 
+            <a href="https://berdiyev-eng.ru/use_ege" target="_blank">Политика конфиденциальности</a>
         </div>
         
          <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            *Бот может иногда ошибаться проверяйте важное <br>
-             Мы постоянно работаем над его улучшением спасибо вам за доверие
+            *Кот Боб может иногда ошибаться, проверяйте важное. <br>
+             Мы постоянно работаем над его улучшением.
         </div>
 
         <!-- STICKY BOTTOM BUTTON (SCROLLS TO PRICING) -->
