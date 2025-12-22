@@ -154,6 +154,39 @@
         /* PRICING */
         .offer-section { padding: 0 20px 20px; }
         
+        /* NEW COMPARISON BLOCK STYLE */
+        .comparison-wrapper {
+            background: #1E293B;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .comp-col { text-align: center; flex: 1; }
+        .comp-title { font-size: 14px; color: #94A3B8; font-weight: 700; margin-bottom: 5px; }
+        .comp-val { font-size: 24px; font-weight: 900; color: white; line-height: 1; margin-bottom: 5px; }
+        .comp-sub { font-size: 11px; color: #64748B; }
+        
+        .comp-vs {
+            background: #0F172A;
+            color: #64748B;
+            font-weight: 800;
+            font-size: 12px;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #334155;
+            z-index: 2;
+        }
+
+        .comp-pro .comp-title { color: var(--accent); }
+        .comp-pro .comp-val { color: var(--accent); text-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+        .comp-pro .comp-sub { color: #cbd5e1; }
+
         .pricing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -422,6 +455,21 @@
                 Репетитор берет 1500₽ за час. <br>Со мной ты готовишься безлимитно.
             </p>
 
+            <!-- COMPARISON BLOCK -->
+            <div class="comparison-wrapper">
+                <div class="comp-col">
+                    <div class="comp-title">FREE</div>
+                    <div class="comp-val">5</div>
+                    <div class="comp-sub">запросов в день</div>
+                </div>
+                <div class="comp-vs">VS</div>
+                <div class="comp-col comp-pro">
+                    <div class="comp-title">PRO <i class="fas fa-crown"></i></div>
+                    <div class="comp-val">50</div>
+                    <div class="comp-sub">запросов в день<br>(Хватит с головой)</div>
+                </div>
+            </div>
+
             <div class="pricing-grid">
                 <!-- Monthly Plan -->
                 <div class="price-card">
@@ -529,9 +577,10 @@
             </a>
         </div>
 
+        <!-- Убрал target="_blank", теперь ссылки открываются внутри -->
         <div class="footer-links" style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            <a href="https://berdiyev-eng.ru/offerta_ege" target="_blank">Публичная оферта</a> • 
-            <a href="https://berdiyev-eng.ru/use_ege" target="_blank">Политика конфиденциальности</a>
+            <a href="https://berdiyev-eng.ru/offerta_ege">Публичная оферта</a> • 
+            <a href="https://berdiyev-eng.ru/use_ege">Политика конфиденциальности</a>
         </div>
         
          <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
