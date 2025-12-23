@@ -152,10 +152,37 @@
         }
         .msg-b { background: #334155; color: #e2e8f0; border-bottom-left-radius: 4px; position: relative; }
         
-        /* PRICING */
+        /* PRICING & LIMITS */
         .offer-section { padding: 0 20px 20px; }
         
-        /* New Pricing Grid */
+        /* New Comparison Box */
+        .comparison-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .c-row { margin-bottom: 15px; }
+        .c-row:last-child { margin-bottom: 0; }
+        
+        .c-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .c-title { font-size: 14px; font-weight: 700; color: #cbd5e1; }
+        .c-count { font-size: 14px; font-weight: 800; color: white; }
+        
+        .c-bar-bg { width: 100%; height: 10px; background: #334155; border-radius: 10px; overflow: hidden; }
+        .c-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; }
+        
+        /* Basic Style */
+        .basic .c-bar-fill { width: 10%; background: #94A3B8; }
+        /* Premium Style */
+        .premium .c-title { color: var(--accent); }
+        .premium .c-count { color: var(--success); }
+        .premium .c-bar-fill { width: 100%; background: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+        
+        .c-note { font-size: 11px; color: var(--success); font-weight: 700; margin-top: 6px; text-align: right; }
+
+        /* Pricing Grid */
         .pricing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -292,7 +319,6 @@
         <div class="hero">
             <div class="hero-badge">⚡️ Уверенный English за 90 дней</div>
             
-            <!-- BOB AVATAR IMG -->
             <div class="bob-avatar-container">
                 <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
             </div>
@@ -305,17 +331,14 @@
         <div class="pain-section fade-up">
             <div class="pain-title">Узнаешь себя? 😿</div>
             <div class="pain-grid">
-                <!-- 1. Dog Syndrome -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-dog"></i></div>
                     <div class="pain-text"><b>Синдром собаки:</b> всё понимаешь, а сказать ничего не можешь?</div>
                 </div>
-                <!-- 2. Boring -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-book-dead"></i></div>
                     <div class="pain-text">Учебники и зубрежка вызывают тоску и желание спать?</div>
                 </div>
-                <!-- 3. Shame -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-plane-slash"></i></div>
                     <div class="pain-text">Стыдно за свой акцент в путешествиях или на созвонах?</div>
@@ -400,8 +423,35 @@
             <div class="pain-title">Выбери свой план 🗺️</div>
             
             <p style="font-size: 13px; color: #94A3B8; margin-bottom: 20px;">
-                Репетитор берет 1500₽ за час. <br>С Бобом ты учишься безлимитно.
+                Почувствуй разницу между бесплатным стартом и свободой общения:
             </p>
+
+            <!-- НОВЫЙ БЛОК СРАВНЕНИЯ -->
+            <div class="comparison-box">
+                <!-- Basic Row -->
+                <div class="c-row basic">
+                    <div class="c-header">
+                        <span class="c-title">Базовая версия</span>
+                        <span class="c-count">5 запросов</span>
+                    </div>
+                    <div class="c-bar-bg">
+                        <div class="c-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Premium Row -->
+                <div class="c-row premium">
+                    <div class="c-header">
+                        <span class="c-title">PREMIUM</span>
+                        <span class="c-count">50 запросов 🔥</span>
+                    </div>
+                    <div class="c-bar-bg">
+                        <div class="c-bar-fill"></div>
+                    </div>
+                    <div class="c-note">Этого хватит с головой!</div>
+                </div>
+            </div>
+            <!-- КОНЕЦ БЛОКА СРАВНЕНИЯ -->
 
             <div class="pricing-grid">
                 <!-- Monthly Plan -->
@@ -409,7 +459,6 @@
                     <div class="pc-title">МЕСЯЦ</div>
                     <div class="pc-price">650₽</div>
                     <div class="pc-sub">Просто попробовать</div>
-                    <!-- ТОЛЬКО ЭТА КНОПКА ВЕДЕТ В БОТА -->
                     <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">
                         Оформить
                     </a>
@@ -421,21 +470,16 @@
                     <div class="pc-title" style="color: var(--accent);">ГОД</div>
                     <div class="pc-price">3890₽</div>
                     <div class="pc-save">~320₽ / мес</div>
-                    <!-- ТОЛЬКО ЭТА КНОПКА ВЕДЕТ В БОТА -->
                     <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">
                         Оформить
                     </a>
                 </div>
             </div>
 
-            <!-- Scroll Button to Pricing (Visual only, creates loop if clicked here, but keeps consistency) -->
-            <!-- Кнопка ниже ведет ВВЕРХ к этому же блоку (если пользователь проскроллил дальше), 
-                 чтобы он выбрал тариф, а не уходил в бот без выбора -->
             <a href="#pricing" class="flow-btn">
                 Выбрать тариф <i class="fas fa-chevron-up"></i>
             </a>
 
-            <!-- BIG NO BRAINER BLOCK -->
             <div class="no-brainer-block">
                 <div class="bob-reaction-img">☕</div> 
                 <div class="nb-text-big">
@@ -485,7 +529,6 @@
         </div>
 
         <div style="padding: 0 20px;">
-            <!-- ВЕДЕТ К ЦЕНАМ -->
             <a href="#pricing" class="flow-btn">
                 Хочу так же! <i class="fas fa-user-plus"></i>
             </a>
@@ -499,7 +542,6 @@
             *Кот Боб — умный бот, но он все еще учится быть человеком. <br> Результат зависит от твоей регулярности!
         </div>
 
-        <!-- STICKY BOTTOM BUTTON - ВЕДЕТ К ЦЕНАМ -->
         <div class="sticky-bar">
             <a href="#pricing" class="btn-pulse">
                 ВЫБРАТЬ ПОДПИСКУ <i class="fas fa-cat"></i>
