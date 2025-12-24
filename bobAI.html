@@ -4,310 +4,344 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кот Боб | Английский для жизни</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Шрифт Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #3B82F6; 
-            --accent: #F59E0B; /* Orange for Bob */
-            --accent-glow: #fbbf24;
-            --danger: #EF4444;
-            --success: #10B981;
-            --dark-bg: #0F172A;
-            --card-bg: #1E293B;
-            --text-main: #F8FAFC;
-            --text-sec: #94A3B8;
+            /* --- ПАЛИТРА (СВЕТЛАЯ) --- */
+            --primary: #2A9D8F;       
+            --primary-dark: #218276;
+            --bg-body: #FDF6E8;       
+            --bg-card: #FFFFFF;
+            --accent: #E76F51;        
+            
+            /* Темные цвета для текста */
+            --text-main: #2D2420;     
+            --text-sec: #5D4D44;      
+            
+            --shadow-soft: 0 8px 24px rgba(74, 59, 50, 0.08);
             --radius: 24px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
+            background-image: radial-gradient(circle at top left, #FFF8E1 0%, transparent 40%);
         }
 
         @media (min-width: 900px) {
-            body {
-                background: #050505;
-                display: flex; justify-content: center; padding: 40px;
-            }
+            body { display: flex; justify-content: center; padding: 40px; }
             .app-wrapper {
                 border-radius: 40px !important;
-                box-shadow: 0 0 50px rgba(245, 158, 11, 0.2);
-                border: 8px solid #333;
-                max-width: 450px !important;
+                box-shadow: 0 20px 60px rgba(74, 59, 50, 0.15);
+                max-width: 480px !important;
+                border: 8px solid #FFF;
             }
         }
 
         .app-wrapper {
             width: 100%; max-width: 100%; margin: 0 auto; 
-            background: var(--dark-bg);
-            min-height: 100vh; position: relative; padding-bottom: 110px;
+            background: var(--bg-body);
+            min-height: 100vh; position: relative; padding-bottom: 120px;
         }
 
-        /* HERO */
-        .hero {
-            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 70%);
-            padding: 40px 20px 40px; text-align: center;
-            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
-            overflow: hidden; position: relative;
+        /* --- HERO СЕКЦИЯ --- */
+        .hero { 
+            padding: 30px 20px 20px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Bob Avatar Container */
-        .bob-avatar-container {
-            width: 130px; height: 130px; margin: 0 auto 20px;
-            background: linear-gradient(135deg, #F59E0B, #D97706);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
-            border: 4px solid #1E293B;
-            overflow: hidden; 
+        .hero-bg-icons {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none;
         }
-        
-        .bob-avatar-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .bg-icon {
+            position: absolute; color: var(--primary); opacity: 0.07;
+            font-size: 40px; transform: rotate(-15deg);
         }
-        
-        h1 { 
-            font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
-            color: white;
+        .bg-i-1 { top: 10%; left: 10%; font-size: 50px; transform: rotate(10deg); }
+        .bg-i-2 { top: 20%; right: 5%; font-size: 30px; transform: rotate(-20deg); }
+        .bg-i-3 { bottom: 30%; left: -5%; font-size: 60px; transform: rotate(45deg); opacity: 0.05;}
+        .bg-i-4 { bottom: 10%; right: 10%; font-size: 40px; transform: rotate(-10deg); }
+        .bg-i-5 { top: 50%; left: 80%; font-size: 25px; transform: rotate(15deg); }
+
+        .hero::before {
+            content: ''; position: absolute; top: -50px; left: -50px;
+            width: 250px; height: 250px; background: #C4E4E0;
+            filter: blur(80px); opacity: 0.6; z-index: -1; border-radius: 50%;
         }
-        
-        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
+        .hero::after {
+            content: ''; position: absolute; top: 50px; right: -50px;
+            width: 200px; height: 200px; background: #FFCCBC;
+            filter: blur(70px); opacity: 0.5; z-index: -1; border-radius: 50%;
+        }
 
         .hero-badge {
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid rgba(245, 158, 11, 0.5);
-            color: var(--accent); padding: 6px 14px; border-radius: 20px;
-            font-size: 11px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; display: inline-block; margin-bottom: 15px;
+            background: var(--accent); color: #FFF; 
+            padding: 6px 16px; border-radius: 50px;
+            font-size: 12px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; display: inline-block; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* PAIN POINTS */
-        .pain-section { padding: 30px 20px; }
-        .pain-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; text-align: left; }
-        .pain-grid { display: grid; gap: 12px; }
-        .pain-card {
-            background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 15px; border-radius: 18px; display: flex; align-items: center; gap: 15px;
+        .avatar-wrapper-decorated {
+            position: relative;
+            width: 180px; height: 180px;
+            margin: 0 auto 25px;
+            display: flex; justify-content: center; align-items: center;
         }
-        .pain-icon { font-size: 24px; color: var(--danger); min-width: 30px; text-align: center; }
-        .pain-text { font-size: 14px; color: #fca5a5; font-weight: 500; line-height: 1.3; }
+
+        .bob-avatar-container {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            border: 5px solid #FFF; outline: 3px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden; background: #FFF;
+            position: relative; z-index: 2;
+        }
+        .bob-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .float-bubble {
+            position: absolute;
+            background: #FFF;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px; font-weight: 800; color: var(--text-sec);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid #EAE0D5;
+            z-index: 3;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .bubble-left {
+            top: 20px; left: -10px; transform: rotate(-8deg);
+            animation: float 4s ease-in-out infinite;
+        }
+        .bubble-right {
+            bottom: 20px; right: -15px; transform: rotate(8deg);
+            animation: float 4s ease-in-out infinite 1.5s;
+        }
+        .bubble-icon { color: var(--primary); font-size: 14px; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(var(--rot)); } 50% { transform: translateY(-6px) rotate(var(--rot)); } 100% { transform: translateY(0px) rotate(var(--rot)); } }
+
+        h1 { font-size: 28px; font-weight: 900; line-height: 1.15; margin-bottom: 12px; color: var(--text-main); }
+        .hero-sub { color: var(--text-sec); font-size: 16px; margin-bottom: 15px; font-weight: 700; max-width: 320px; margin-left: auto; margin-right: auto;}
+
+        /* --- КАРТОЧКИ --- */
+        .pain-card, .solution-card, .chat-box, .comp-horizontal-wrapper, .price-card, .review-card, .faq-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+            border: 2px solid #F5EFE6;
+            transition: transform 0.2s;
+        }
+        
+        /* PAIN */
+        .pain-section { padding: 10px 20px 30px; }
+        .pain-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+        .pain-grid { display: grid; gap: 12px; }
+        .pain-card { padding: 16px; display: flex; align-items: center; gap: 15px; }
+        .pain-icon { 
+            font-size: 20px; color: var(--accent); 
+            background: #FFF5F2; width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .pain-text { font-size: 14px; color: var(--text-main); font-weight: 700; line-height: 1.3; }
 
         /* SOLUTION */
         .solution-card {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            margin: 10px 20px 30px; padding: 25px; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.1); 
-            position: relative;
-            overflow: hidden;
+            background: #E8F5F3; border: 2px solid #C4E4E0;
+            margin: 0 20px 30px; padding: 25px; position: relative;
         }
         .solution-card::after {
             content: '\f1b0'; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            position: absolute; top: -10px; right: -10px; font-size: 100px;
-            color: rgba(255,255,255,0.03); transform: rotate(20deg);
+            position: absolute; top: -10px; right: -10px; font-size: 80px;
+            color: var(--primary); opacity: 0.1; transform: rotate(20deg); pointer-events: none;
         }
-
-        .sol-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
-        
+        .sol-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; text-align: center; color: var(--primary-dark); }
         .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; position: relative; z-index: 2; }
-        .feature-list-item:last-child { margin-bottom: 0; }
         .f-icon-box {
-            background: rgba(59, 130, 246, 0.15); color: var(--primary);
-            width: 45px; height: 45px; border-radius: 12px;
+            background: #FFF; color: var(--primary);
+            width: 45px; height: 45px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             font-size: 20px; flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.15);
         }
-        .f-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: white; }
-        .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+        .f-content h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
+        .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; font-weight: 700; }
 
         /* DEMO */
         .demo-section { padding: 0 20px 30px; }
         .chat-box {
-            background: #1E293B; border-radius: 24px; padding: 20px;
-            border: 1px solid #334155; position: relative;
+            padding: 25px 20px 20px; background: #FFFFFF; border: 2px solid #EAE0D5;
+            position: relative; margin-top: 15px;
         }
         .chat-label {
-            position: absolute; top: -12px; left: 20px; background: var(--accent);
-            color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+            background: var(--text-main); color: white; font-size: 11px; font-weight: 800; 
+            padding: 4px 16px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 5; white-space: nowrap;
         }
-        .msg { padding: 12px 16px; border-radius: 16px; font-size: 13px; margin-bottom: 12px; max-width: 85%; line-height: 1.4; }
+        .msg { padding: 12px 16px; border-radius: 18px; font-size: 13px; margin-bottom: 12px; max-width: 88%; line-height: 1.5; font-weight: 700;}
         .msg-u { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 4px; }
-        
         .msg-b-wrapper { display: flex; gap: 10px; margin-bottom: 12px; }
         .bob-mini-avatar {
-            width: 30px; height: 30px; background: var(--accent); border-radius: 50%;
+            width: 34px; height: 34px; background: var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;
-            flex-shrink: 0; border: 2px solid #fff;
+            flex-shrink: 0; border: 2px solid #FFF; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .msg-b { background: #334155; color: #e2e8f0; border-bottom-left-radius: 4px; position: relative; }
-        
-        /* PRICING & LIMITS */
+        .msg-b { background: #F4F1EA; color: var(--text-main); border-bottom-left-radius: 4px; }
+        .score-tag { display: inline-block; background: #D4EDDA; color: #155724; font-weight: 800; padding: 4px 8px; border-radius: 8px; font-size: 11px; margin-top: 6px; }
+
+        /* OFFER & TIMER (NEW) */
         .offer-section { padding: 0 20px 20px; }
         
-        /* New Comparison Box */
-        .comparison-box {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px;
+        .sale-timer {
+            background: #FFF5F2; border: 2px solid #FFCCBC;
+            border-radius: var(--radius); padding: 12px; text-align: center;
+            margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .c-row { margin-bottom: 15px; }
-        .c-row:last-child { margin-bottom: 0; }
-        
-        .c-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .c-title { font-size: 14px; font-weight: 700; color: #cbd5e1; }
-        .c-count { font-size: 14px; font-weight: 800; color: white; }
-        
-        .c-bar-bg { width: 100%; height: 10px; background: #334155; border-radius: 10px; overflow: hidden; }
-        .c-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; }
-        
-        /* Basic Style */
-        .basic .c-bar-fill { width: 10%; background: #94A3B8; }
-        /* Premium Style */
-        .premium .c-title { color: var(--accent); }
-        .premium .c-count { color: var(--success); }
-        .premium .c-bar-fill { width: 100%; background: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
-        
-        .c-note { font-size: 11px; color: var(--success); font-weight: 700; margin-top: 6px; text-align: right; }
+        .timer-icon { color: var(--accent); animation: pulse 1.5s infinite; }
+        .timer-text { color: var(--accent); font-size: 13px; font-weight: 800; }
+        .timer-digits { font-family: monospace; font-size: 18px; font-weight: 800; color: #BF360C; background: #FFF; padding: 2px 6px; border-radius: 6px; }
 
-        /* Pricing Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
+        /* COMPARISON */
+        .comp-horizontal-wrapper { padding: 25px 20px; margin-bottom: 25px; background: #fff; }
+        .c-row { margin-bottom: 25px; } .c-row:last-child { margin-bottom: 0; }
+        .c-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .c-title { font-size: 14px; font-weight: 800; color: var(--text-sec); }
+        .c-val { font-size: 14px; font-weight: 900; color: var(--text-main); }
+        .c-bar-track { background: #F0F0F0; height: 18px; border-radius: 10px; width: 100%; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+        .c-fill-free { width: 15%; background: #B0BEC5; height: 100%; border-radius: 10px; }
+        .c-fill-pro { 
+            width: 100%; height: 100%; border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary), #4DB6AC);
+            box-shadow: 0 0 15px rgba(42, 157, 143, 0.5);
+            position: relative; overflow: hidden;
         }
+        .c-fill-pro::after {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%); animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
 
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .price-card {
-            background: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 20px 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
+            padding: 20px 10px; text-align: center;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; background: #FFF;
         }
-
-        .price-card.featured {
-            background: linear-gradient(160deg, #1E293B 0%, #291d0f 100%);
-            border: 2px solid var(--accent);
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
-        }
-
+        .price-card.featured { border: 3px solid var(--primary); background: #F0FDFA; }
         .badge-best {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 12px;
-            white-space: nowrap;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: white; font-size: 11px; font-weight: 900;
+            padding: 6px 14px; border-radius: 20px; white-space: nowrap;
         }
-
-        .pc-title { font-size: 14px; font-weight: 600; color: #94A3B8; margin-bottom: 5px; }
-        .pc-price { font-size: 22px; font-weight: 900; color: white; margin-bottom: 5px; }
-        .pc-sub { font-size: 11px; color: #64748B; text-decoration: line-through; }
-        .pc-save { color: var(--success); font-size: 11px; font-weight: 700; margin-bottom: 10px; }
-
-        .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 0;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            text-align: center;
-            margin-top: auto;
-        }
+        .pc-title { font-size: 14px; font-weight: 800; color: var(--text-sec); margin-bottom: 5px; text-transform: uppercase; }
+        .pc-old-price { font-size: 14px; color: #BCAAA4; text-decoration: line-through; font-weight: 700; }
+        .pc-price { font-size: 24px; font-weight: 900; color: var(--text-main); }
         
-        .btn-outline { background: transparent; border: 1px solid #475569; color: white; }
-        .btn-fill { background: var(--accent); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+        /* ЦЕНА ЗА ДЕНЬ */
+        .pc-day {
+            font-size: 12px; font-weight: 700; background: #F5F5F5; color: var(--text-sec);
+            display: inline-block; padding: 4px 10px; border-radius: 12px; margin-bottom: 12px;
+        }
+        .featured .pc-day { background: #CCFBF1; color: #0F766E; }
+        
+        .pc-sub { font-size: 12px; color: var(--text-sec); margin-bottom: 15px; font-weight: 700; }
+        .buy-btn {
+            display: block; width: 100%; padding: 12px 0; border-radius: 14px;
+            font-size: 14px; font-weight: 800; text-decoration: none; text-align: center; transition: 0.2s;
+        }
+        .btn-outline { background: transparent; border: 2px solid #E0E0E0; color: var(--text-sec); }
+        .btn-fill { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3); }
 
-        /* NO BRAINER BLOCK */
+        /* --- NO BRAINER (Текст белый) --- */
         .no-brainer-block {
-            display: flex; align-items: center; justify-content: center;
-            gap: 15px; margin: 30px 20px; 
-            padding: 10px;
+            background: #3D312A; border-radius: var(--radius); margin: 30px 20px;
+            padding: 20px 15px; display: flex; align-items: flex-start; gap: 15px;
+            color: white; border: none; box-shadow: 0 8px 20px rgba(61, 49, 42, 0.3);
         }
-        .bob-reaction-img {
-            font-size: 80px; transform: rotate(-10deg); text-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+        .nb-char-big { width: 75px; height: auto; flex-shrink: 0; transform: rotate(-5deg); filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3)); }
+        .nb-title { font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 8px; line-height: 1.4; }
+        .nb-green { color: #69F0AE; }
+        .nb-desc { font-size: 13px; color: rgba(255, 255, 255, 0.9); line-height: 1.5; font-weight: 600;}
 
-        .nb-text-big { 
-            font-size: 15px; 
-            font-weight: 800; 
-            line-height: 1.3; 
-            color: #E2E8F0; 
-        }
-        .nb-text-big span { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(245, 158, 11, 0.4); }
-
-        /* FLOW BUTTON */
         .flow-btn {
             display: flex; justify-content: center; align-items: center; gap: 10px;
-            width: 100%;
-            background: #2563EB;
-            color: white;
-            padding: 16px;
-            border-radius: 18px;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            transition: transform 0.2s;
-            margin-top: 15px;
+            background: #E0F2F1; color: var(--primary-dark);
+            padding: 16px; border-radius: 18px;
+            font-weight: 800; font-size: 16px; text-decoration: none;
+            transition: 0.3s; margin-top: 15px;
         }
-        .flow-btn:active { transform: scale(0.98); background: #1D4ED8; }
 
         /* REVIEWS */
         .reviews-scroll {
-            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 40px;
-            scrollbar-width: none;
+            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 40px; scrollbar-width: none;
         }
         .review-card {
-            min-width: 280px; background: #1E293B; padding: 20px; border-radius: 20px;
-            border: 1px solid #334155;
+            min-width: 280px; padding: 20px; background: #FFF; border: 2px solid #EEE;
         }
         .r-header { display: flex; align-items: center; margin-bottom: 12px; }
-        .r-avatar { width: 36px; height: 36px; background: linear-gradient(45deg, #3B82F6, #8B5CF6); border-radius: 50%; margin-right: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .r-stars { color: #F59E0B; font-size: 12px; }
+        .r-avatar { 
+            width: 40px; height: 40px; background: var(--accent); 
+            border-radius: 50%; margin-right: 12px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-weight: 800; color: white; font-size: 16px;
+        }
+        .r-stars { color: #FFB300; font-size: 12px; }
+        .review-text { font-size: 14px; color: #333; line-height: 1.5; font-weight: 700; }
+
+        /* FAQ */
+        .faq-section { padding: 0 20px 30px; }
+        .faq-item { 
+            margin-bottom: 15px; background: #fff;
+            border: 1px solid #EAE0D5; border-radius: 18px; overflow: hidden; 
+        }
+        .faq-q {
+            padding: 20px; font-size: 16px; font-weight: 800; color: var(--text-main);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-q i { color: #BCAAA4; transition: transform 0.3s; }
+        .faq-item.open .faq-q i { transform: rotate(180deg); color: var(--primary); }
+        .faq-a { 
+            color: var(--text-sec); font-size: 15px; line-height: 1.6; padding: 0 20px; 
+            max-height: 0; overflow: hidden; transition: 0.3s; font-weight: 600;
+        }
+        .faq-item.open .faq-a { padding-bottom: 25px; max-height: 400px; }
 
         /* STICKY BAR */
         .sticky-bar {
-            position: fixed; bottom: 20px; left: 0; right: 0; margin: 0 auto;
-            width: calc(100% - 40px); max-width: 440px;
-            z-index: 100;
+            position: fixed; bottom: 25px; left: 0; right: 0; margin: 0 auto;
+            width: calc(100% - 40px); max-width: 440px; z-index: 100;
         }
         .btn-pulse {
-            background: linear-gradient(90deg, #F59E0B, #D97706); /* Bob's Orange */
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white; text-decoration: none; display: block;
-            padding: 16px; border-radius: 18px; text-align: center;
-            font-weight: 700; font-size: 18px;
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: pulse-shadow 2s infinite;
+            padding: 16px; border-radius: 20px; text-align: center;
+            font-weight: 800; font-size: 17px;
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
         }
-        @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
-        
-        .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
+        .btn-pulse:active { transform: scale(0.96); }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+
+        .footer-links a { color: #8D7B6F; text-decoration: none; transition: 0.3s; font-weight: 700; margin: 0 5px;}
+        .fade-up { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -315,15 +349,33 @@
 
     <div class="app-wrapper">
 
-        <!-- HERO -->
+        <!-- HERO СЕКЦИЯ -->
         <div class="hero">
-            <div class="hero-badge">⚡️ Уверенный English за 90 дней</div>
-            
-            <div class="bob-avatar-container">
-                <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
+            <!-- Фоновые легкие иконки -->
+            <div class="hero-bg-icons">
+                <i class="fas fa-paw bg-icon bg-i-1"></i>
+                <i class="fas fa-coffee bg-icon bg-i-2"></i>
+                <i class="fas fa-plane bg-icon bg-i-3"></i>
+                <i class="fas fa-cat bg-icon bg-i-4"></i>
+                <i class="fas fa-globe bg-icon bg-i-5"></i>
             </div>
 
-            <h1>Заговори на английском<br>за <span style="color: #60A5FA;">3 месяца</span></h1>
+            <div class="hero-badge">⚡️ Уверенный English за 90 дней</div>
+            
+            <div class="avatar-wrapper-decorated">
+                <div class="float-bubble bubble-left" style="--rot: -8deg;">
+                    <i class="fas fa-robot bubble-icon"></i> AI
+                </div>
+                <div class="float-bubble bubble-right" style="--rot: 8deg;">
+                    <i class="fas fa-bolt bubble-icon"></i> 24/7
+                </div>
+
+                <div class="bob-avatar-container">
+                    <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
+                </div>
+            </div>
+
+            <h1>Заговори на английском<br>за <span style="color: var(--primary);">3 месяца</span></h1>
             <p class="hero-sub">Привет, я Кот Боб 😺! Твой AI-репетитор в Телеграме. Сломаю твой языковой барьер, научу понимать сериалы и болтать без стеснения.</p>
         </div>
 
@@ -349,11 +401,11 @@
         <!-- SOLUTION -->
         <div class="solution-card fade-up">
             <div class="sol-title">Боб научит говорить 🔥</div>
-            <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Никаких скучных парт. Только живой язык.</p>
+            <p style="font-size: 15px; color: var(--text-sec); margin-bottom: 25px; text-align: center; font-weight: 700;">Никаких скучных парт. Только живой язык.</p>
             
             <div class="feature-list">
                 <div class="feature-list-item">
-                    <div class="f-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B;"><i class="fas fa-microphone-alt"></i></div>
+                    <div class="f-icon-box"><i class="fas fa-microphone-alt"></i></div>
                     <div class="f-content">
                         <h4>Разговорная практика</h4>
                         <p>Присылай голосовые сообщения. Я послушаю, поправлю произношение и научу звучать как нейтив.</p>
@@ -385,7 +437,7 @@
 
         <!-- DEMO -->
         <div class="demo-section fade-up">
-            <div class="pain-title" style="margin-bottom: 15px;">Как мы будем общаться:</div>
+            <div class="pain-title" style="margin-bottom: 10px;">Как мы будем общаться:</div>
             <div class="chat-box">
                 <div class="chat-label">BOB DEMO</div>
                 
@@ -420,74 +472,85 @@
 
         <!-- PRICING ANCHOR -->
         <div id="pricing" class="offer-section fade-up">
-            <div class="pain-title">Выбери свой план 🗺️</div>
+            <div class="pain-title">Выбери свой план 🎫</div>
             
-            <p style="font-size: 13px; color: #94A3B8; margin-bottom: 20px;">
-                Почувствуй разницу между бесплатным стартом и свободой общения:
+            <!-- TIMER BLOCK -->
+            <div class="sale-timer">
+                <i class="fas fa-fire timer-icon"></i>
+                <div class="timer-text">Скидка сгорит через:</div>
+                <div class="timer-digits" id="countdown">04:00:00</div>
+            </div>
+            
+            <p style="font-size: 14px; color: var(--text-sec); margin-bottom: 20px; font-weight: 700;">
+                Курсы стоят 5000₽ в месяц. <br>Со мной ты учишься за 11 рублей в день.
             </p>
 
-            <!-- НОВЫЙ БЛОК СРАВНЕНИЯ -->
-            <div class="comparison-box">
-                <!-- Basic Row -->
-                <div class="c-row basic">
+            <!-- COMPARISON -->
+            <div class="comp-horizontal-wrapper">
+                <div class="c-row">
                     <div class="c-header">
-                        <span class="c-title">Базовая версия</span>
-                        <span class="c-count">5 запросов</span>
+                        <div class="c-title">Базовая версия</div>
+                        <div class="c-val">5 запросов</div>
                     </div>
-                    <div class="c-bar-bg">
-                        <div class="c-bar-fill"></div>
+                    <div class="c-bar-track">
+                        <div class="c-fill-free"></div>
                     </div>
                 </div>
 
-                <!-- Premium Row -->
-                <div class="c-row premium">
+                <div class="c-row">
                     <div class="c-header">
-                        <span class="c-title">PREMIUM</span>
-                        <span class="c-count">50 запросов 🔥</span>
+                        <div class="c-title" style="color: var(--primary);">PREMIUM <i class="fas fa-crown"></i></div>
+                        <div class="c-val" style="color: var(--primary);">50 запросов</div>
                     </div>
-                    <div class="c-bar-bg">
-                        <div class="c-bar-fill"></div>
+                    <div class="c-bar-track">
+                        <div class="c-fill-pro"></div>
                     </div>
-                    <div class="c-note">Этого хватит с головой!</div>
                 </div>
             </div>
-            <!-- КОНЕЦ БЛОКА СРАВНЕНИЯ -->
 
             <div class="pricing-grid">
                 <!-- Monthly Plan -->
                 <div class="price-card">
                     <div class="pc-title">МЕСЯЦ</div>
-                    <div class="pc-price">650₽</div>
-                    <div class="pc-sub">Просто попробовать</div>
-                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">
-                        Оформить
-                    </a>
+                    <div class="price-wrapper">
+                        <div class="pc-price">650₽</div>
+                    </div>
+                    <!-- Цена за день -->
+                    <div class="pc-day">~22₽ в день</div>
+                    <div class="pc-sub">Доступ ко всем функциям</div>
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">Оформить</a>
                 </div>
 
                 <!-- Yearly Plan -->
                 <div class="price-card featured">
                     <div class="badge-best">ВЫГОДНО -50%</div>
-                    <div class="pc-title" style="color: var(--accent);">ГОД</div>
-                    <div class="pc-price">3890₽</div>
-                    <div class="pc-save">~320₽ / мес</div>
-                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">
-                        Оформить
-                    </a>
+                    <div class="pc-title" style="color: var(--primary);">ГОД</div>
+                    <div class="price-wrapper">
+                        <div class="pc-price">3890₽</div>
+                    </div>
+                    <!-- Цена за день -->
+                    <div class="pc-day">~11₽ в день</div>
+                    <div class="pc-sub">Максимальная выгода</div>
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">Оформить</a>
                 </div>
             </div>
-
+            
             <a href="#pricing" class="flow-btn">
                 Выбрать тариф <i class="fas fa-chevron-up"></i>
             </a>
 
+            <!-- NO BRAINER -->
             <div class="no-brainer-block">
-                <div class="bob-reaction-img">☕</div> 
-                <div class="nb-text-big">
-                    Подписка на месяц<br>
-                    <span>дешевле латте.</span><br>
-                    Но кофе не научит тебя болтать с иностранцами.
-                </div>
-            </div>
+    <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char-big">
+    <div class="nb-content">
+        <div class="nb-title">
+            Свобода общения стоит <span class="nb-green">11 рублей</span>.
+        </div>
+        <div class="nb-desc">
+           Ты покупаешь не бота, а навык говорить свободно. Это навык, который останется с тобой навсегда.
+        </div>
+    </div>
+</div>
 
         </div>
 
@@ -498,53 +561,72 @@
                 <div class="r-header">
                     <div class="r-avatar">М</div>
                     <div>
-                        <div style="font-weight: 700;">Марина, 24 года</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Марина, 24 года</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Всегда боялась открыть рот за границей. С Бобом тренировала диалоги про отель и ресторан. В отпуске впервые сама всё решала без мужа!</p>
+                <p class="review-text">Всегда боялась открыть рот за границей. С Бобом тренировала диалоги про отель и ресторан. В отпуске впервые сама всё решала без мужа!</p>
             </div>
             
             <div class="review-card">
                 <div class="r-header">
                     <div class="r-avatar">A</div>
                     <div>
-                        <div style="font-weight: 700;">Alex, IT-шник</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Alex, IT-шник</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Мне нужен был английский для работы. Боб помог подтянуть грамматику и сленг. Прошел собеседование в международную компанию!</p>
+                <p class="review-text">Мне нужен был английский для работы. Боб помог подтянуть грамматику и сленг. Прошел собеседование в международную компанию!</p>
             </div>
 
              <div class="review-card">
                 <div class="r-header">
                     <div class="r-avatar">К</div>
                     <div>
-                        <div style="font-weight: 700;">Катя</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Катя</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Удобно, что не нужно никуда ехать. Занимаюсь пока еду в метро. За 2 месяца начала смотреть "Друзей" в оригинале.</p>
+                <p class="review-text">Удобно, что не нужно никуда ехать. Занимаюсь пока еду в метро. За 2 месяца начала смотреть "Друзей" в оригинале.</p>
             </div>
         </div>
-
+        
         <div style="padding: 0 20px;">
             <a href="#pricing" class="flow-btn">
                 Хочу так же! <i class="fas fa-user-plus"></i>
             </a>
         </div>
 
-        <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            Cat Bob English AI © 2024
-        </div>
-        
-         <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            *Кот Боб — умный бот, но он все еще учится быть человеком. <br> Результат зависит от твоей регулярности!
+     <!-- FAQ SECTION -->
+     <div class="faq-section fade-up" style="margin-top: 30px;">
+            <div class="pain-title">Частые вопросы ❓</div>
+            
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    Это подходит новичкам?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">
+                    Да! Если ты знаешь алфавит и пару слов — Боб подстроится под твой уровень и будет объяснять всё максимально просто.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    Как быстро будет результат?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">
+                    Если заниматься каждый день хотя бы по 10-15 минут, уже через месяц ты почувствуешь уверенность в простых диалогах.
+                </div>
+            </div>
+
         </div>
 
+        <!-- STICKY BUTTON -->
         <div class="sticky-bar">
             <a href="#pricing" class="btn-pulse">
-                ВЫБРАТЬ ПОДПИСКУ <i class="fas fa-cat"></i>
+                ВЫБРАТЬ ПОДПИСКУ <i class="fas fa-bolt"></i>
             </a>
         </div>
 
@@ -557,6 +639,37 @@
             });
         });
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('open');
+        }
+
+        // TIMER SCRIPT
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration; 
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fourHours = 60 * 60 * 4; 
+            var display = document.querySelector('#countdown');
+            startTimer(fourHours, display);
+        };
     </script>
 </body>
 </html>
