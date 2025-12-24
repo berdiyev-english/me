@@ -4,411 +4,407 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OGE HACK | Твой AI Репетитор</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #3B82F6; 
-            --accent: #F59E0B; /* Orange for Bob */
-            --danger: #EF4444;
-            --success: #10B981;
-            --dark-bg: #0F172A;
-            --card-bg: #1E293B;
-            --text-main: #F8FAFC;
-            --text-sec: #94A3B8;
+            --primary: #2A9D8F;       
+            --primary-dark: #218276;
+            --bg-body: #FDF6E8;       
+            --bg-card: #FFFFFF;
+            --accent: #E76F51;        
+            
+            --text-main: #2D2420;     
+            --text-sec: #5D4D44;      
+            
+            --shadow-soft: 0 8px 24px rgba(74, 59, 50, 0.08);
+            --radius: 24px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
+            background-image: radial-gradient(circle at top left, #FFF8E1 0%, transparent 40%);
         }
 
         @media (min-width: 900px) {
-            body {
-                background: #050505;
-                display: flex; justify-content: center; padding: 40px;
-            }
+            body { display: flex; justify-content: center; padding: 40px; }
             .app-wrapper {
                 border-radius: 40px !important;
-                box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
-                border: 8px solid #333;
-                max-width: 450px !important;
+                box-shadow: 0 20px 60px rgba(74, 59, 50, 0.15);
+                max-width: 480px !important;
+                border: 8px solid #FFF;
             }
         }
 
         .app-wrapper {
             width: 100%; max-width: 100%; margin: 0 auto; 
-            background: var(--dark-bg);
-            min-height: 100vh; position: relative; padding-bottom: 110px;
+            background: var(--bg-body);
+            min-height: 100vh; position: relative; padding-bottom: 120px;
         }
 
-        /* HERO */
-        .hero {
-            background: radial-gradient(circle at top right, #4f46e5 0%, #0f172a 60%);
-            padding: 40px 20px 40px; text-align: center;
-            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
-            overflow: hidden; position: relative;
+        /* --- ОБНОВЛЕННАЯ HERO СЕКЦИЯ (Background: Cats) --- */
+        .hero { 
+            padding: 30px 20px 20px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Bob Avatar Container */
-        .bob-avatar-container {
-            width: 130px; height: 130px; margin: 0 auto 20px;
-            background: linear-gradient(135deg, #F59E0B, #D97706);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
-            border: 4px solid #1E293B;
-            overflow: hidden; 
+        /* Фоновые иконки (Кошачья тема) */
+        .hero-bg-icons {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none;
         }
-        
-        .bob-avatar-img {
-            width: 100%; height: 100%; object-fit: cover;
+        .bg-icon {
+            position: absolute; color: var(--primary); opacity: 0.07;
+            font-size: 40px; transform: rotate(-15deg);
         }
-        
-        h1 { 
-            font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 15px; 
-            background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        /* Расставляем лапки и рыбки */
+        .bg-i-1 { top: 10%; left: 10%; font-size: 50px; transform: rotate(10deg); }
+        .bg-i-2 { top: 20%; right: 5%; font-size: 30px; transform: rotate(-20deg); }
+        .bg-i-3 { bottom: 30%; left: -5%; font-size: 60px; transform: rotate(45deg); opacity: 0.05;}
+        .bg-i-4 { bottom: 10%; right: 10%; font-size: 40px; transform: rotate(-10deg); }
+        .bg-i-5 { top: 50%; left: 80%; font-size: 25px; transform: rotate(15deg); }
+
+        /* Цветные пятна (Blobs) */
+        .hero::before {
+            content: ''; position: absolute; top: -50px; left: -50px;
+            width: 250px; height: 250px; background: #C4E4E0;
+            filter: blur(80px); opacity: 0.6; z-index: -1; border-radius: 50%;
         }
-        
-        .hero-sub { color: #cbd5e1; font-size: 15px; margin-bottom: 25px; font-weight: 500; }
+        .hero::after {
+            content: ''; position: absolute; top: 50px; right: -50px;
+            width: 200px; height: 200px; background: #FFCCBC;
+            filter: blur(70px); opacity: 0.5; z-index: -1; border-radius: 50%;
+        }
 
         .hero-badge {
-            background: linear-gradient(90deg, #F59E0B, #D97706);
-            color: white; padding: 6px 14px; border-radius: 20px;
-            font-size: 11px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; display: inline-block; margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-            animation: pulse 2s infinite;
+            background: var(--accent); color: #FFF; 
+            padding: 6px 16px; border-radius: 50px;
+            font-size: 12px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; display: inline-block; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* PAIN POINTS */
-        .pain-section { padding: 30px 20px; }
-        .pain-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; text-align: left; }
-        .pain-grid { display: grid; gap: 12px; }
-        .pain-card {
-            background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 15px; border-radius: 18px; display: flex; align-items: center; gap: 15px;
+        .avatar-wrapper-decorated {
+            position: relative;
+            width: 180px; height: 180px;
+            margin: 0 auto 25px;
+            display: flex; justify-content: center; align-items: center;
         }
-        .pain-icon { font-size: 24px; color: var(--danger); min-width: 30px; text-align: center; }
-        .pain-text { font-size: 14px; color: #fca5a5; font-weight: 500; line-height: 1.3; }
+
+        .bob-avatar-container {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            border: 5px solid #FFF; outline: 3px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden; background: #FFF;
+            position: relative; z-index: 2;
+        }
+        .bob-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .float-bubble {
+            position: absolute;
+            background: #FFF;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px; font-weight: 800; color: var(--text-sec);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid #EAE0D5;
+            z-index: 3;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .bubble-left {
+            top: 20px; left: -10px; transform: rotate(-8deg);
+            animation: float 4s ease-in-out infinite;
+        }
+        .bubble-right {
+            bottom: 20px; right: -15px; transform: rotate(8deg);
+            animation: float 4s ease-in-out infinite 1.5s;
+        }
+        .bubble-icon { color: var(--primary); font-size: 14px; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(var(--rot)); } 50% { transform: translateY(-6px) rotate(var(--rot)); } 100% { transform: translateY(0px) rotate(var(--rot)); } }
+
+        h1 { font-size: 28px; font-weight: 900; line-height: 1.15; margin-bottom: 12px; color: var(--text-main); }
+        .hero-sub { color: var(--text-sec); font-size: 16px; margin-bottom: 15px; font-weight: 700; max-width: 320px; margin-left: auto; margin-right: auto;}
+
+        /* --- КАРТОЧКИ --- */
+        .pain-card, .solution-card, .chat-box, .comp-horizontal-wrapper, .price-card, .review-card, .faq-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+            border: 2px solid #F5EFE6;
+            transition: transform 0.2s;
+        }
+        
+        /* PAIN */
+        .pain-section { padding: 10px 20px 30px; }
+        .pain-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+        .pain-grid { display: grid; gap: 12px; }
+        .pain-card { padding: 16px; display: flex; align-items: center; gap: 15px; }
+        .pain-icon { 
+            font-size: 20px; color: var(--accent); 
+            background: #FFF5F2; width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .pain-text { font-size: 14px; color: var(--text-main); font-weight: 700; line-height: 1.3; }
 
         /* SOLUTION */
         .solution-card {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            margin: 10px 20px 30px; padding: 25px; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.1); 
-            position: relative;
+            background: #E8F5F3; border: 2px solid #C4E4E0;
+            margin: 0 20px 30px; padding: 25px; position: relative;
         }
-        /* Paw Decoration */
         .solution-card::after {
             content: '\f1b0'; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            position: absolute; top: -10px; right: -10px; font-size: 100px;
-            color: rgba(255,255,255,0.03); transform: rotate(20deg);
+            position: absolute; top: -10px; right: -10px; font-size: 80px;
+            color: var(--primary); opacity: 0.1; transform: rotate(20deg); pointer-events: none;
         }
-
-        .sol-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; }
-        
+        .sol-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; text-align: center; color: var(--primary-dark); }
         .feature-list-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; position: relative; z-index: 2; }
-        .feature-list-item:last-child { margin-bottom: 0; }
         .f-icon-box {
-            background: rgba(59, 130, 246, 0.15); color: var(--primary);
-            width: 45px; height: 45px; border-radius: 12px;
+            background: #FFF; color: var(--primary);
+            width: 45px; height: 45px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             font-size: 20px; flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.15);
         }
-        .f-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: white; }
-        .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; }
+        .f-content h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
+        .f-content p { font-size: 13px; color: var(--text-sec); line-height: 1.4; font-weight: 700; }
 
         /* DEMO */
         .demo-section { padding: 0 20px 30px; }
         .chat-box {
-            background: #1E293B; border-radius: 24px; padding: 20px;
-            border: 1px solid #334155; position: relative;
+            padding: 25px 20px 20px; background: #FFFFFF; border: 2px solid #EAE0D5;
+            position: relative; margin-top: 15px;
         }
         .chat-label {
-            position: absolute; top: -12px; left: 20px; background: var(--accent);
-            color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 10px;
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+            background: var(--text-main); color: white; font-size: 11px; font-weight: 800; 
+            padding: 4px 16px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 5; white-space: nowrap;
         }
-        .msg { padding: 12px 16px; border-radius: 16px; font-size: 13px; margin-bottom: 12px; max-width: 85%; line-height: 1.4; }
+        .msg { padding: 12px 16px; border-radius: 18px; font-size: 13px; margin-bottom: 12px; max-width: 88%; line-height: 1.5; font-weight: 700;}
         .msg-u { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 4px; }
-        
         .msg-b-wrapper { display: flex; gap: 10px; margin-bottom: 12px; }
         .bob-mini-avatar {
-            width: 30px; height: 30px; background: var(--accent); border-radius: 50%;
+            width: 34px; height: 34px; background: var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;
-            flex-shrink: 0; border: 2px solid #fff;
+            flex-shrink: 0; border: 2px solid #FFF; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .msg-b { background: #334155; color: #e2e8f0; border-bottom-left-radius: 4px; position: relative; }
+        .msg-b { background: #F4F1EA; color: var(--text-main); border-bottom-left-radius: 4px; }
+        .score-tag { display: inline-block; background: #D4EDDA; color: #155724; font-weight: 800; padding: 4px 8px; border-radius: 8px; font-size: 11px; margin-top: 6px; }
 
-        .score-tag { display: inline-block; background: #10B981; color: #064E3B; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-top: 4px; }
-
-        /* OFFER SECTION */
+        /* OFFER */
         .offer-section { padding: 0 20px 20px; }
+        .sale-timer {
+            background: #FFF5F2; border: 2px solid #FFCCBC;
+            border-radius: var(--radius); padding: 12px; text-align: center;
+            margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .timer-icon { color: var(--accent); animation: pulse 1.5s infinite; }
+        .timer-text { color: var(--accent); font-size: 13px; font-weight: 800; }
+        .timer-digits { font-family: monospace; font-size: 18px; font-weight: 800; color: #BF360C; background: #FFF; padding: 2px 6px; border-radius: 6px; }
 
-        /* PSYCH BOX UPDATED */
-        .psych-box {
-            background: #172033;
-            border: 1px solid #2d3748;
-            border-left: 4px solid var(--accent);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-        .psych-icon { font-size: 28px; padding-top: 3px; }
-        .psych-text { font-size: 14px; line-height: 1.5; color: #E2E8F0; font-weight: 500; }
-        .psych-highlight { color: var(--accent); font-weight: 800; }
-        .psych-green { color: #10B981; font-weight: 800; text-decoration: underline; text-decoration-color: rgba(16, 185, 129, 0.4); }
-
-        /* NEW HORIZONTAL COMPARISON */
-        .comp-horizontal-wrapper {
-            background: #1E293B;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid #334155;
-        }
-        
-        .c-row { margin-bottom: 20px; }
-        .c-row:last-child { margin-bottom: 0; }
-        
-        .c-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .c-title { font-size: 13px; font-weight: 700; color: #94A3B8; }
-        .c-val { font-size: 13px; font-weight: 800; color: white; }
-        
-        .c-bar-track {
-            background: #0F172A;
-            height: 14px;
-            border-radius: 10px;
-            width: 100%;
-            overflow: hidden;
-            border: 1px solid #334155;
-        }
-        
-        .c-bar-fill { height: 100%; border-radius: 10px; animation: widthGrow 1.5s ease-out forwards; }
-        
-        .c-fill-free { width: 10%; background: #64748B; }
-        
+        /* COMPARISON */
+        .comp-horizontal-wrapper { padding: 25px 20px; margin-bottom: 25px; background: #fff; }
+        .c-row { margin-bottom: 25px; } .c-row:last-child { margin-bottom: 0; }
+        .c-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .c-title { font-size: 14px; font-weight: 800; color: var(--text-sec); }
+        .c-val { font-size: 14px; font-weight: 900; color: var(--text-main); }
+        .c-bar-track { background: #F0F0F0; height: 18px; border-radius: 10px; width: 100%; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
+        .c-fill-free { width: 15%; background: #B0BEC5; height: 100%; border-radius: 10px; }
         .c-fill-pro { 
-            width: 100%; 
-            background: linear-gradient(90deg, var(--accent), #d97706); 
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-            position: relative;
+            width: 100%; height: 100%; border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary), #4DB6AC);
+            box-shadow: 0 0 15px rgba(42, 157, 143, 0.5);
+            position: relative; overflow: hidden;
         }
-        /* Shine effect on pro bar */
         .c-fill-pro::after {
             content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: translateX(-100%);
-            animation: shine 2s infinite;
+            transform: translateX(-100%); animation: shimmer 2s infinite;
         }
-        
-        @keyframes widthGrow { from { width: 0; } }
-        @keyframes shine { 100% { transform: translateX(100%); } }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
 
-        /* PRICING GRID */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .price-card {
-            background: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 20px 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
+            padding: 20px 10px; text-align: center;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; background: #FFF;
         }
-
-        .price-card.featured {
-            background: linear-gradient(160deg, #1E293B 0%, #291d0f 100%);
-            border: 2px solid var(--accent);
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
-        }
-
+        .price-card.featured { border: 3px solid var(--primary); background: #F0FDFA; }
         .badge-best {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 12px;
-            white-space: nowrap;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: white; font-size: 11px; font-weight: 900;
+            padding: 6px 14px; border-radius: 20px; white-space: nowrap;
         }
-
-        .pc-title { font-size: 14px; font-weight: 600; color: #94A3B8; margin-bottom: 5px; }
-        .pc-price { font-size: 20px; font-weight: 900; color: white; margin-bottom: 2px; }
-        
+        .pc-title { font-size: 14px; font-weight: 800; color: var(--text-sec); margin-bottom: 5px; text-transform: uppercase; }
+        .pc-old-price { font-size: 14px; color: #BCAAA4; text-decoration: line-through; font-weight: 700; }
+        .pc-price { font-size: 24px; font-weight: 900; color: var(--text-main); }
         .pc-day {
-            font-size: 12px; font-weight: 700; 
-            background: rgba(255,255,255,0.1); 
-            display: inline-block; padding: 2px 8px; border-radius: 8px;
-            margin-bottom: 10px; color: #cbd5e1;
+            font-size: 12px; font-weight: 700; background: #F5F5F5; color: var(--text-sec);
+            display: inline-block; padding: 4px 10px; border-radius: 12px; margin-bottom: 12px;
         }
-        .featured .pc-day {
-            background: rgba(245, 158, 11, 0.2); color: #F59E0B;
-        }
-        
-        .pc-sub { font-size: 11px; color: #64748B; margin-bottom: 10px; line-height: 1.2; }
-
+        .featured .pc-day { background: #CCFBF1; color: #0F766E; }
+        .pc-sub { font-size: 12px; color: var(--text-sec); margin-bottom: 15px; font-weight: 700; }
         .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 0;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            text-align: center;
-            margin-top: auto;
+            display: block; width: 100%; padding: 12px 0; border-radius: 14px;
+            font-size: 14px; font-weight: 800; text-decoration: none; text-align: center; transition: 0.2s;
         }
-        
-        .btn-outline { background: transparent; border: 1px solid #475569; color: white; }
-        .btn-fill { background: var(--accent); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+        .btn-outline { background: transparent; border: 2px solid #E0E0E0; color: var(--text-sec); }
+        .btn-fill { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3); }
 
-        /* NO BRAINER BLOCK */
+        /* --- NO BRAINER --- */
         .no-brainer-block {
-            display: flex; align-items: center; justify-content: center;
-            gap: 15px; margin: 30px 20px; 
-            padding: 10px;
+            background: #3D312A; border-radius: var(--radius); margin: 30px 20px;
+            padding: 20px 15px; display: flex; align-items: flex-start; gap: 15px;
+            color: white; border: none; box-shadow: 0 8px 20px rgba(61, 49, 42, 0.3);
         }
-        .nb-char-big { 
-            width: 110px; 
-            height: auto; 
-            flex-shrink: 0; 
-            transform: rotate(-5deg); 
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-        }
-        .nb-text-big { 
-            font-size: 16px; 
-            font-weight: 800; 
-            line-height: 1.3; 
-            color: #E2E8F0; 
-        }
-        .nb-text-big span { color: #60A5FA; text-decoration: underline; text-decoration-color: rgba(96, 165, 250, 0.4); }
+        .nb-char-big { width: 75px; height: auto; flex-shrink: 0; transform: rotate(-5deg); filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3)); }
+        .nb-title { font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 8px; line-height: 1.4; }
+        .nb-green { color: #69F0AE; }
+        
+        /* ТЕКСТ БЕЛЫЙ */
+        .nb-desc { font-size: 13px; color: rgba(255, 255, 255, 0.9); line-height: 1.5; font-weight: 600;}
 
-        /* FLOW BUTTON */
         .flow-btn {
             display: flex; justify-content: center; align-items: center; gap: 10px;
-            width: 100%;
-            background: #2563EB;
-            color: white;
-            padding: 16px;
-            border-radius: 18px;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            transition: transform 0.2s;
-            margin-top: 15px;
+            background: #E0F2F1; color: var(--primary-dark);
+            padding: 16px; border-radius: 18px;
+            font-weight: 800; font-size: 16px; text-decoration: none;
+            transition: 0.3s; margin-top: 15px;
         }
-        .flow-btn:active { transform: scale(0.98); background: #1D4ED8; }
 
         /* REVIEWS */
         .reviews-scroll {
-            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 40px;
-            scrollbar-width: none;
+            display: flex; overflow-x: auto; gap: 15px; padding: 0 20px 40px; scrollbar-width: none;
         }
         .review-card {
-            min-width: 280px; background: #1E293B; padding: 20px; border-radius: 20px;
-            border: 1px solid #334155;
+            min-width: 280px; padding: 20px; background: #FFF; border: 2px solid #EEE;
         }
         .r-header { display: flex; align-items: center; margin-bottom: 12px; }
-        .r-avatar { width: 36px; height: 36px; background: linear-gradient(45deg, #3B82F6, #8B5CF6); border-radius: 50%; margin-right: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .r-stars { color: #F59E0B; font-size: 12px; }
+        .r-avatar { 
+            width: 40px; height: 40px; background: var(--accent); 
+            border-radius: 50%; margin-right: 12px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-weight: 800; color: white; font-size: 16px;
+        }
+        .r-stars { color: #FFB300; font-size: 12px; }
+        .review-text { font-size: 14px; color: #333; line-height: 1.5; font-weight: 700; }
+
+        /* FAQ */
+        .faq-section { padding: 0 20px 30px; }
+        .faq-item { 
+            margin-bottom: 15px; background: #fff;
+            border: 1px solid #EAE0D5; border-radius: 18px; overflow: hidden; 
+        }
+        .faq-q {
+            padding: 20px; font-size: 16px; font-weight: 800; color: var(--text-main);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-q i { color: #BCAAA4; transition: transform 0.3s; }
+        .faq-item.open .faq-q i { transform: rotate(180deg); color: var(--primary); }
+        .faq-a { 
+            color: var(--text-sec); font-size: 15px; line-height: 1.6; padding: 0 20px; 
+            max-height: 0; overflow: hidden; transition: 0.3s; font-weight: 600;
+        }
+        .faq-item.open .faq-a { padding-bottom: 25px; max-height: 400px; }
 
         /* STICKY BAR */
         .sticky-bar {
-            position: fixed; bottom: 20px; left: 0; right: 0; margin: 0 auto;
-            width: calc(100% - 40px); max-width: 440px;
-            z-index: 100;
+            position: fixed; bottom: 25px; left: 0; right: 0; margin: 0 auto;
+            width: calc(100% - 40px); max-width: 440px; z-index: 100;
         }
         .btn-pulse {
-            background: linear-gradient(90deg, #2563EB, #4F46E5);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white; text-decoration: none; display: block;
-            padding: 16px; border-radius: 18px; text-align: center;
-            font-weight: 700; font-size: 18px;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: pulse-shadow 2s infinite;
+            padding: 16px; border-radius: 20px; text-align: center;
+            font-weight: 800; font-size: 17px;
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
         }
-        @keyframes pulse-shadow { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
-        
-        .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
+        .btn-pulse:active { transform: scale(0.96); }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+
+        .footer-links a { color: #8D7B6F; text-decoration: none; transition: 0.3s; font-weight: 700; margin: 0 5px;}
+        .fade-up { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        
-        .footer-links a { color: #64748B; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
-        .footer-links a:hover { color: #94A3B8; border-bottom-color: #94A3B8; }
     </style>
 </head>
 <body>
 
     <div class="app-wrapper">
 
-        <!-- HERO -->
+        <!-- ОБНОВЛЕННАЯ HERO СЕКЦИЯ (ЛЕГКАЯ КОШАЧЬЯ) -->
         <div class="hero">
-            <div class="hero-badge">⚡️ Экономия 100.000₽</div>
-            
-             <!-- BOB AVATAR IMG -->
-            <div class="bob-avatar-container">
-                <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
+            <!-- Фоновые легкие иконки -->
+            <div class="hero-bg-icons">
+                <i class="fas fa-paw bg-icon bg-i-1"></i>
+                <i class="fas fa-fish bg-icon bg-i-2"></i>
+                <i class="fas fa-paw bg-icon bg-i-3"></i>
+                <i class="fas fa-cat bg-icon bg-i-4"></i>
+                <i class="fas fa-paw bg-icon bg-i-5"></i>
             </div>
 
-            <h1>Хакни ОГЭ<br>на <span style="color: #60A5FA;">Оценку 5</span></h1>
-            <p class="hero-sub">Привет, я Кот Боб 😺! Твой AI-Репетитор. Готовься к ОГЭ в формате переписки, без духоты и нудных учителей.</p>
+            <div class="hero-badge">⚡️ Экономия 100.000₽</div>
+            
+            <div class="avatar-wrapper-decorated">
+                <div class="float-bubble bubble-left" style="--rot: -8deg;">
+                    <i class="fas fa-robot bubble-icon"></i> AI
+                </div>
+                <div class="float-bubble bubble-right" style="--rot: 8deg;">
+                    <i class="fas fa-bolt bubble-icon"></i> 24/7
+                </div>
+
+                <div class="bob-avatar-container">
+                    <img src="http://berdiyev-eng.ru/Bob_tutor_avatarka.jpg" alt="Кот Боб" class="bob-avatar-img">
+                </div>
+            </div>
+
+            <h1>Хакни ОГЭ<br>на <span style="color: var(--primary);">Оценку 5</span></h1>
+            <p class="hero-sub">Привет, я Кот Боб 😺! Твой AI-Репетитор. Учимся уютно, без духоты и стресса.</p>
         </div>
 
-        <!-- PAIN -->
+        <!-- PAIN (ВСЕ 4 ПУНКТА) -->
         <div class="pain-section fade-up">
             <div class="pain-title">Знакомая ситуация? 😿</div>
             <div class="pain-grid">
-                <!-- 1. Money -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-wallet"></i></div>
                     <div class="pain-text">Нет возможности заниматься с репетитором?</div>
                 </div>
-                <!-- 2. School -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-school"></i></div>
                     <div class="pain-text">В школе готовят "для галочки", а не разбирают <b>твои</b> ошибки?</div>
                 </div>
-                <!-- 3. Courses -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-users"></i></div>
                     <div class="pain-text">На онлайн-курсах ты <b>просто один из толпы</b>? Всем плевать на твой прогресс?</div>
                 </div>
-                <!-- 4. Shame -->
+                <!-- ДОБАВЛЕН ПРОПУЩЕННЫЙ ПУНКТ -->
                 <div class="pain-card">
                     <div class="pain-icon"><i class="fas fa-comment-slash"></i></div>
-                    <div class="pain-text"><b>Стыдно задавать глупые вопросы</b> и просить объяснить еще раз?</div>
+                    <div class="pain-text">Стыдно задавать глупые вопросы и просить объяснить еще раз?</div>
                 </div>
             </div>
         </div>
 
-        <!-- SOLUTION -->
+        <!-- SOLUTION (ОБНОВЛЕННЫЕ ТЕКСТЫ) -->
         <div class="solution-card fade-up">
             <div class="sol-title">Я сделаю проще 🔥</div>
-            <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 25px; text-align: center;">Мяу, зачем усложнять, если можно готовиться легко?</p>
+            <p style="font-size: 15px; color: var(--text-sec); margin-bottom: 25px; text-align: center; font-weight: 700;">Мяу, зачем усложнять, если можно готовиться легко?</p>
             
             <div class="feature-list">
                 <div class="feature-list-item">
@@ -451,7 +447,7 @@
 
         <!-- DEMO -->
         <div class="demo-section fade-up">
-            <div class="pain-title" style="margin-bottom: 15px;">Как это работает?</div>
+            <div class="pain-title" style="margin-bottom: 10px;">Как это работает?</div>
             <div class="chat-box">
                 <div class="chat-label">BOB DEMO</div>
                 
@@ -463,7 +459,7 @@
                     <div class="bob-mini-avatar"><i class="fas fa-cat"></i></div>
                     <div class="msg msg-b">
                         Мур-р, всё просто! 😎<br><br>
-                        🍕 <b>Past Simple</b> — это когда ты съел пиццу вчера (факт в прошлом, время истекло).<br>
+                        🍕 <b>Past Simple</b> — это когда ты съел пиццу вчера (факт в прошлом).<br>
                         🤢 <b>Present Perfect</b> — это когда ты съел пиццу и тебя *до сих пор* тошнит (результат важен сейчас).
                     </div>
                 </div>
@@ -476,12 +472,12 @@
                     <div class="bob-mini-avatar"><i class="fas fa-cat"></i></div>
                     <div class="msg msg-b">
                         <b>Проверяю Задание 35 (Email) 🤖</b><br><br>
-                        1. РКЗ (Решение задачи): 2/3 (⚠️ Ошибка)<br>
+                        1. РКЗ: 2/3 (⚠️ Ошибка)<br>
                         2. Организация: 2/2 <br>
                         3. Грамматика: 3/3 <br>
-                        <div class="score-tag" style="background: #F59E0B; color: #000;">Итог: 8/10 баллов</div>
+                        <div class="score-tag">Итог: 8/10 баллов</div>
                         <br><br>
-                        <b>Совет кота:</b> Ты ответил только на 2 вопроса друга из 3-х. Забыл написать про любимые книги! Исправь это, чтобы получить 10/10.
+                        <b>Совет кота:</b> Ты ответил только на 2 вопроса друга из 3-х. Забыл про книги!
                     </div>
                 </div>
             </div>
@@ -491,81 +487,78 @@
         <div id="pricing" class="offer-section fade-up">
             <div class="pain-title">Выбери свой план 🎫</div>
             
-            <!-- OPTIMIZED PSYCH BLOCK -->
-            <div class="psych-box">
-                <div class="psych-icon">🤔</div>
-                <div class="psych-text">
-                    Если бы тебе предложили заплатить <span class="psych-highlight">4000₽</span> и гарантировали <span class="psych-green">оценку "5"</span> на ОГЭ...
-                    <br><br>
-                    Ты бы согласился?
-                </div>
+            <div class="sale-timer">
+                <i class="fas fa-fire timer-icon"></i>
+                <div class="timer-text">Скидка сгорит через:</div>
+                <div class="timer-digits" id="countdown">04:00:00</div>
             </div>
+            
+            <p style="font-size: 14px; color: var(--text-sec); margin-bottom: 20px; font-weight: 700;">
+                Репетитор берет 1500₽ за час. <br>Со мной ты готовишься за 11 рублей в день.
+            </p>
 
-            <!-- HORIZONTAL COMPARISON BLOCK -->
+            <!-- COMPARISON -->
             <div class="comp-horizontal-wrapper">
-                
-                <!-- Free Row -->
                 <div class="c-row">
                     <div class="c-header">
                         <div class="c-title">FREE</div>
                         <div class="c-val">5 запросов</div>
                     </div>
                     <div class="c-bar-track">
-                        <div class="c-bar-fill c-fill-free"></div>
+                        <div class="c-fill-free"></div>
                     </div>
                 </div>
 
-                <!-- Pro Row -->
                 <div class="c-row">
                     <div class="c-header">
-                        <div class="c-title" style="color: var(--accent);">PRO <i class="fas fa-crown"></i></div>
-                        <div class="c-val" style="color: var(--accent);">50 запросов</div>
+                        <div class="c-title" style="color: var(--primary);">PRO <i class="fas fa-crown"></i></div>
+                        <div class="c-val" style="color: var(--primary);">50 запросов</div>
                     </div>
-                    <div class="c-bar-track" style="border-color: rgba(245, 158, 11, 0.3);">
-                        <div class="c-bar-fill c-fill-pro"></div>
+                    <div class="c-bar-track">
+                        <div class="c-fill-pro"></div>
                     </div>
                 </div>
             </div>
 
             <div class="pricing-grid">
-                <!-- Monthly Plan -->
                 <div class="price-card">
                     <div class="pc-title">МЕСЯЦ</div>
-                    <div class="pc-price">1090₽</div>
+                    <div class="price-wrapper">
+                        <div class="pc-old-price">2180₽</div>
+                        <div class="pc-price">1090₽</div>
+                    </div>
                     <div class="pc-day">~36₽ в день</div>
                     <div class="pc-sub">Интенсив</div>
-                    
-                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">
-                        Оформить
-                    </a>
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-outline">Оформить</a>
                 </div>
 
-                <!-- Yearly Plan -->
                 <div class="price-card featured">
                     <div class="badge-best">ВЫГОДНО 🔥</div>
-                    <div class="pc-title" style="color: var(--accent);">ГОД</div>
-                    <div class="pc-price">3999₽</div>
+                    <div class="pc-title" style="color: var(--primary);">ГОД</div>
+                    <div class="price-wrapper">
+                        <div class="pc-old-price">7998₽</div>
+                        <div class="pc-price">3999₽</div>
+                    </div>
                     <div class="pc-day">~11₽ в день</div>
                     <div class="pc-sub">Спокойно до ОГЭ</div>
-                    
-                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">
-                        Оформить
-                    </a>
+                    <a href="https://t.me/be_english_premium_bot" class="buy-btn btn-fill">Оформить</a>
                 </div>
             </div>
             
-             <!-- Кнопка ниже ведет ВВЕРХ к этому же блоку -->
             <a href="#pricing" class="flow-btn">
                 Выбрать тариф <i class="fas fa-chevron-up"></i>
             </a>
 
-            <!-- BIG NO BRAINER BLOCK -->
+            <!-- NO BRAINER (ОБНОВЛЕННЫЙ ТЕКСТ + БЕЛЫЙ) -->
             <div class="no-brainer-block">
                 <img src="https://berdiyev-eng.ru/no_brainer.png" alt="No Brainer" class="nb-char-big">
-                <div class="nb-text-big">
-                    Ну серьезно, это<br>
-                    <span>цена шаурмы.</span><br>
-                    Только шаурма не поможет получить "Пятёрку".
+                <div class="nb-content">
+                    <div class="nb-title">
+                        Сколько стоит твое <span class="nb-green">спокойствие</span> на экзамене?
+                    </div>
+                    <div class="nb-desc">
+                       Всего 11 рублей в день отделяют тебя от стресса до уверенной "5". Это меньше, чем пол пачки сухариков.
+                    </div>
                 </div>
             </div>
 
@@ -578,64 +571,88 @@
                 <div class="r-header">
                     <div class="r-avatar">С</div>
                     <div>
-                        <div style="font-weight: 700;">Саша, 9 "А"</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Саша, 9 "А"</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Боялась Монолога до жути. Бот научил говорить по шаблону. В итоге на экзамене получила максимум за говорение!</p>
+                <p class="review-text">Боялась Монолога до жути. Бот научил говорить по шаблону. В итоге на экзамене получила максимум за говорение!</p>
             </div>
             
             <div class="review-card">
                 <div class="r-header">
                     <div class="r-avatar">И</div>
                     <div>
-                        <div style="font-weight: 700;">Ира К.</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Ира К.</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">В школе училка говорила, что я не сдам. Купила бота, тренировала письмо каждый день. Сдала на 65 баллов ("5")!</p>
+                <p class="review-text">В школе училка говорила, что я не сдам. Купила бота, тренировала письмо каждый день. Сдала на 65 баллов ("5")!</p>
             </div>
 
              <div class="review-card">
                 <div class="r-header">
                     <div class="r-avatar">D</div>
                     <div>
-                        <div style="font-weight: 700;">Дима</div>
+                        <div style="font-weight: 800; color: var(--text-main);">Дима</div>
                         <div class="r-stars">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Топ за свои деньги. Родители довольны, что не надо платить репетиторам. Бот объясняет понятнее учебника.</p>
-            </div>
-            
-            <div class="review-card">
-                <div class="r-header">
-                    <div class="r-avatar">Л</div>
-                    <div>
-                        <div style="font-weight: 700;">Лена</div>
-                        <div class="r-stars">⭐⭐⭐⭐⭐</div>
-                    </div>
-                </div>
-                <p style="font-size: 13px; color: #cbd5e1;">Очень удобно готовиться в телефоне. Еду в автобусе — решаю тесты. Бот сразу говорит, где ошибка.</p>
+                <p class="review-text">Топ за свои деньги. Родители довольны, что не надо платить репетиторам. Бот объясняет понятнее учебника.</p>
             </div>
         </div>
-
+        
         <div style="padding: 0 20px;">
             <a href="#pricing" class="flow-btn">
                 Присоединиться к ним <i class="fas fa-user-plus"></i>
             </a>
         </div>
 
-        <div class="footer-links" style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
-            <a href="https://berdiyev-eng.ru/offerta_ege">Публичная оферта</a> • 
-            <a href="https://berdiyev-eng.ru/use_ege">Политика конфиденциальности</a>
+     <!-- FAQ SECTION -->
+     <div class="faq-section fade-up" style="margin-top: 30px;">
+            <div class="pain-title">Частые вопросы ❓</div>
+            
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    Это реально работает?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">
+                    Да! Боб специально обучен для ОГЭ и проверяет по официальным критериям. Попробуй бесплатно и убедись сам.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    Как быстро будет результат?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">
+                    В среднем ученики прибавляют +5-12 баллов за первый месяц. Чем больше практикуешься — тем быстрее результат.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q" onclick="toggleFaq(this)">
+                    Можно вернуть деньги?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">
+                    Если сервис не сработал по нашей вине — напиши в поддержку, мы разберемся. Мы нацелены на твой результат.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-links" style="text-align: center; color: var(--text-sec); font-size: 13px; margin-top: 30px; margin-bottom: 20px;">
+            <a href="https://berdiyev-eng.ru/offerta_ege">Оферта</a> • 
+            <a href="https://berdiyev-eng.ru/use_ege">Конфиденциальность</a>
         </div>
         
-         <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; margin-bottom: 20px;">
+         <div style="text-align: center; color: var(--text-sec); font-size: 12px; margin-top: 20px; margin-bottom: 20px; font-weight: 600;">
             *Кот Боб может иногда ошибаться, проверяйте важное. <br>
              Мы постоянно работаем над его улучшением.
         </div>
 
-        <!-- STICKY BOTTOM BUTTON (SCROLLS TO PRICING) -->
+        <!-- STICKY BUTTON -->
         <div class="sticky-bar">
             <a href="#pricing" class="btn-pulse">
                 ХОЧУ ОЦЕНКУ 5 <i class="fas fa-bolt"></i>
@@ -651,6 +668,33 @@
             });
         });
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('open');
+        }
+
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = duration; 
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fourHours = 60 * 60 * 4; 
+            var display = document.querySelector('#countdown');
+            startTimer(fourHours, display);
+        };
     </script>
 </body>
 </html>
