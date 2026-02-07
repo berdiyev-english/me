@@ -1,21 +1,893 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Английский без страха | ToBe English</title>
-  <meta name="description" content="Английский язык с преподавателем уровня C2. Говорите свободно через 3 месяца. Подготовка к ЕГЭ/ОГЭ на высокие баллы.">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="canonical" href="https://berdiyev-eng.ru/">
-  <meta property="og:url" content="https://berdiyev-eng.ru/">
-  <meta property="og:title" content="Английский без страха | ToBe English">
-  <meta property="og:description" content="Индивидуальный план. Разговорная практика. Результат через 3 месяца.">
-  <meta property="og:image" content="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg">
-  <meta property="og:type" content="website">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇬🇧</text></svg>">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Английский — без страха за 3 месяца | Абдуррахим Бердиев</title>
+  <meta name="description" content="Говорите на английском без страха за 3 месяца. Простые объяснения, разговорная практика и понятный план.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇬🇧</text></svg>" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+            blue: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            emerald: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669' },
+          },
+          borderRadius: {
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+            '5xl': '2.5rem', 
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Animations */
+    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    
+    /* Glassmorphism utility */
+    .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
+    
+    /* Mobile Menu Overlay */
+    #mobileMenu { transition: opacity 0.3s ease, visibility 0.3s; }
+    #mobileMenu.hidden { opacity: 0; visibility: hidden; pointer-events: none; display: flex; } /* override display:none to allow transitions, but use visibility */
+    #mobileMenu:not(.hidden) { opacity: 1; visibility: visible; pointer-events: auto; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900">
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+
+  <!-- Background Blobs -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[100px] opacity-60"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-indigo-100/50 rounded-full blur-[100px] opacity-60"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-[100]">
+    <div class="absolute inset-0 glass border-b border-slate-200 shadow-sm"></div>
+    <div class="container mx-auto max-w-7xl px-4 relative h-16 sm:h-20 flex items-center justify-between z-[101]">
+      <!-- Home Button -->
+      <a href="#" onclick="window.scrollTo(0,0); return false;" class="group p-2">
+        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm border border-slate-200">
+          <i data-lucide="home" class="w-5 h-5"></i>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-100/50 p-1 rounded-xl border border-slate-200/50 backdrop-blur-sm">
+        <a href="#help" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-all">Проблемы</a>
+        <a href="#students" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-all">Результаты</a>
+        <a href="#cases" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-all">Кейсы</a>
+        <a href="#types" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-all">Форматы</a>
+        <a href="#about" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-all">Обо мне</a>
+        
+        <div id="desktopModeSwitch" class="hidden flex items-center gap-1 ml-2 pl-2 border-l border-slate-300">
+          <button data-set-mode="oge" class="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">ОГЭ</button>
+          <button data-set-mode="ege" class="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">ЕГЭ</button>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <a href="#quiz" class="hidden sm:flex bg-slate-900 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/10">
+          Записаться
+        </a>
+        <button id="menuBtn" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg relative z-[102]" aria-label="Меню">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenu" class="hidden fixed inset-0 z-[90] bg-white/95 backdrop-blur-xl flex-col pt-24 px-6 md:hidden overflow-y-auto">
+    <nav class="flex flex-col gap-4">
+      <a href="#help" class="mobile-link text-2xl font-bold text-slate-900 py-3 border-b border-slate-100">Проблемы</a>
+      <a href="#students" class="mobile-link text-2xl font-bold text-slate-900 py-3 border-b border-slate-100">Результаты</a>
+      <a href="#cases" class="mobile-link text-2xl font-bold text-slate-900 py-3 border-b border-slate-100">Кейсы</a>
+      <a href="#types" class="mobile-link text-2xl font-bold text-slate-900 py-3 border-b border-slate-100">Форматы</a>
+      <a href="#about" class="mobile-link text-2xl font-bold text-slate-900 py-3 border-b border-slate-100">Обо мне</a>
+    </nav>
+    <div class="mt-8">
+       <p class="text-sm text-slate-400 mb-4 font-bold uppercase tracking-wider">Выберите цель</p>
+       <div class="grid grid-cols-1 gap-3">
+        <button data-set-mode="self" class="mode-select-btn p-4 rounded-xl text-left text-lg font-bold border transition-colors flex items-center justify-between">
+          Для себя <i data-lucide="check" class="w-5 h-5 hidden check-icon"></i>
+        </button>
+        <button data-set-mode="oge" class="mode-select-btn p-4 rounded-xl text-left text-lg font-bold border transition-colors flex items-center justify-between">
+          ОГЭ <i data-lucide="check" class="w-5 h-5 hidden check-icon"></i>
+        </button>
+        <button data-set-mode="ege" class="mode-select-btn p-4 rounded-xl text-left text-lg font-bold border transition-colors flex items-center justify-between">
+          ЕГЭ <i data-lucide="check" class="w-5 h-5 hidden check-icon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mt-8 pb-10">
+       <a href="#quiz" class="mobile-link block w-full text-center bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-blue-200">
+         Записаться на урок
+       </a>
+    </div>
+  </div>
+
+  <main class="relative z-10 pt-28 pb-20 space-y-24 sm:space-y-32">
+    
+    <!-- OFFER SECTION -->
+    <section id="offer" class="container mx-auto max-w-7xl px-4">
+      <div class="bg-white/80 backdrop-blur-md rounded-[3rem] p-6 sm:p-10 lg:p-14 shadow-2xl shadow-slate-200 border border-slate-100/50 relative overflow-hidden min-h-[600px] sm:min-h-0 flex flex-col md:block">
+        
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-80 pointer-events-none"></div>
+
+        <!-- PHOTO: Desktop Top-Right Absolute -->
+        <div class="order-first md:order-none flex justify-center md:block md:absolute md:top-10 md:right-10 lg:top-14 lg:right-14 z-30 mb-8 md:mb-0">
+          <div class="relative group w-48 h-48 sm:w-64 sm:h-64 md:w-56 md:h-56 lg:w-72 lg:h-72 transition-transform duration-500 hover:scale-105">
+            <div class="relative w-full h-full rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl shadow-blue-900/10 rotate-3 group-hover:rotate-0 transition-transform duration-500">
+              <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Teacher" class="w-full h-full object-cover">
+            </div>
+            <!-- Badge -->
+            <div class="absolute -bottom-4 -left-4 bg-white p-3 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 max-w-[200px] -rotate-3 group-hover:rotate-0 transition-transform duration-500 delay-75">
+              <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0 text-xs">TEFL</div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Teacher</div>
+                <div class="text-xs md:text-sm font-bold text-slate-900 leading-tight">Абдуррахим Бердиев</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="relative z-20 md:max-w-[65%] lg:max-w-[60%]">
+          <!-- Mode Switcher -->
+          <div class="inline-flex p-1.5 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm mb-8">
+            <button data-mode="self" class="mode-btn flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+              <i data-lucide="user" class="w-4 h-4"></i> Для себя
+            </button>
+            <button data-mode="oge" class="mode-btn flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+              <i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ
+            </button>
+            <button data-mode="ege" class="mode-btn flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ
+            </button>
+          </div>
+
+          <!-- Dynamic Text -->
+          <div id="offerContent" class="fade-in-up">
+            <h1 id="offerTitle" class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]"></h1>
+            <p id="offerSubtitle" class="mt-5 text-lg sm:text-xl text-slate-600 leading-relaxed font-medium"></p>
+            
+            <div class="mt-8 flex flex-col sm:flex-row gap-6 lg:gap-10">
+              <ul id="offerBullets1" class="space-y-3"></ul>
+              <ul id="offerBullets2" class="space-y-3"></ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-10">
+            <a href="#quiz" class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
+              Бесплатный урок <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="https://t.me/m/mjPABJEtYTky" target="_blank" class="bg-white text-blue-600 border-2 border-blue-50 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all flex items-center gap-2">
+              <i data-lucide="send" class="w-5 h-5"></i> Telegram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAINS -->
+    <section id="help" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <div class="text-center mb-16">
+        <span class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block">Проблемы</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Знакомые ситуации?</h2>
+      </div>
+      <div id="painsGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/30 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col lg:flex-row items-center gap-12 justify-between">
+          <div class="lg:w-1/3">
+            <h3 class="text-3xl font-bold mb-4 flex items-center gap-3">
+              <i data-lucide="sparkles" class="text-yellow-400 fill-yellow-400 w-8 h-8"></i> Мой подход
+            </h3>
+            <p class="text-slate-300 text-lg leading-relaxed">Никакой воды. Только то, что дает результат здесь и сейчас. Простые схемы и много практики.</p>
+          </div>
+          <div class="lg:w-2/3 grid sm:grid-cols-2 gap-4 w-full">
+            <div class="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-blue-100 text-blue-600"><i data-lucide="message-circle" class="w-5 h-5"></i></div>
+              <span class="font-bold text-lg">Говорим с 1-го урока</span>
+            </div>
+            <div class="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-indigo-100 text-indigo-600"><i data-lucide="puzzle" class="w-5 h-5"></i></div>
+              <span class="font-bold text-lg">Грамматика без зубрежки</span>
+            </div>
+            <div class="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-orange-100 text-orange-600"><i data-lucide="flame" class="w-5 h-5"></i></div>
+              <span class="font-bold text-lg">Игровой формат</span>
+            </div>
+            <div class="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-red-100 text-red-600"><i data-lucide="youtube" class="w-5 h-5"></i></div>
+              <span class="font-bold text-lg">Разбор видео</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="students" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <div class="text-center mb-16">
+        <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm mb-2 block">Результат</span>
+        <h2 id="resultsTitle" class="text-3xl md:text-4xl font-bold text-slate-900">Через 3 месяца вы сможете:</h2>
+      </div>
+      <div id="resultsGrid" class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <!-- JS -->
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section id="cases" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="text-3xl font-bold text-slate-900">Кейсы учеников</h2>
+        <div class="flex gap-2">
+          <button id="casePrev" class="w-12 h-12 rounded-full flex items-center justify-center border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+          <button id="caseNext" class="w-12 h-12 rounded-full flex items-center justify-center border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+        </div>
+      </div>
+      
+      <div class="relative overflow-hidden rounded-[2.5rem] min-h-[450px] bg-white shadow-xl border border-slate-100 p-8 md:p-12">
+        <div id="caseContent" class="h-full flex flex-col lg:flex-row gap-12 transition-opacity duration-300">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section id="about" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">Почему я?</h2>
+      <div id="advantagesGrid" class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- JS -->
+      </div>
+      <div class="text-center mt-12">
+        <a href="https://berdiyev-eng.ru/me" class="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium transition-colors group">
+          Подробнее обо мне <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- TYPES -->
+    <section id="types" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">Форматы занятий</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Group -->
+        <div class="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <div class="p-3 rounded-2xl bg-slate-100 text-slate-900"><i data-lucide="users" class="w-6 h-6"></i></div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">Мест нет</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-slate-900">Группы</h3>
+          <p class="text-slate-500 mb-8 leading-relaxed flex-grow">Мини-группы 3-5 человек. Драйв и общение.</p>
+          <a href="#quiz" class="w-full py-4 rounded-xl font-bold text-center transition-all bg-slate-100 text-slate-400 cursor-not-allowed">Лист ожидания</a>
+        </div>
+        <!-- Solo -->
+        <div class="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <div class="p-3 rounded-2xl bg-slate-100 text-slate-900"><i data-lucide="user" class="w-6 h-6"></i></div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Места: 3</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-slate-900">Индивидуально</h3>
+          <p class="text-slate-500 mb-8 leading-relaxed flex-grow">Персональная программа под ваш запрос и темп.</p>
+          <a href="#quiz" class="w-full py-4 rounded-xl font-bold text-center transition-all bg-slate-900 text-white hover:bg-blue-600 hover:shadow-lg">Записаться</a>
+        </div>
+        <!-- Zero -->
+        <div class="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all flex flex-col">
+          <div class="flex items-center justify-between mb-6">
+            <div class="p-3 rounded-2xl bg-slate-100 text-slate-900"><i data-lucide="flame" class="w-6 h-6"></i></div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Места: 1</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-slate-900">С нуля за 3 мес.</h3>
+          <p class="text-slate-500 mb-8 leading-relaxed flex-grow">Интенсив для быстрого старта.</p>
+          <a href="#quiz" class="w-full py-4 rounded-xl font-bold text-center transition-all bg-slate-900 text-white hover:bg-blue-600 hover:shadow-lg">Записаться</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <div id="quizContainer" class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-slate-200 border border-slate-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-emerald-500"></div>
+        
+        <!-- SUCCESS STATE -->
+        <div id="quizSuccess" class="hidden text-center py-10">
+           <div class="inline-flex p-5 rounded-full bg-emerald-50 mb-6 text-emerald-600"><i data-lucide="check" class="w-10 h-10"></i></div>
+           <h3 class="text-3xl font-bold text-slate-900 mb-2">Заявка отправлена!</h3>
+           <p class="text-slate-500 text-lg">Я свяжусь с вами в ближайшее время.</p>
+        </div>
+
+        <!-- FORM STATE -->
+        <div id="quizMain" class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Бесплатный первый урок</h2>
+            <p class="text-slate-600 text-lg mb-8 leading-relaxed">Оставьте заявку — я свяжусь с вами, мы проведем диагностику и я составлю для вас персональный план обучения.</p>
+            <div class="bg-slate-50 rounded-2xl p-6 space-y-4">
+              <div class="flex gap-4 items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><i data-lucide="check" class="w-4 h-4"></i></div>
+                <span class="font-medium text-slate-700">Диагностика уровня языка</span>
+              </div>
+              <div class="flex gap-4 items-center">
+                <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600"><i data-lucide="check" class="w-4 h-4"></i></div>
+                <span class="font-medium text-slate-700">Персональный план на 3 месяца</span>
+              </div>
+              <div class="flex gap-4 items-center">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600"><i data-lucide="check" class="w-4 h-4"></i></div>
+                <span class="font-medium text-slate-700">Бонус: Гайд по временам</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="quizForm" class="flex flex-col justify-center">
+             <div class="mb-8">
+               <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                 <span id="stepLabel">Шаг 1 из 4</span>
+                 <span id="stepPercent">25%</span>
+               </div>
+               <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                 <div id="progressBar" class="h-full bg-blue-600 transition-all duration-300" style="width: 25%"></div>
+               </div>
+             </div>
+             
+             <div class="min-h-[250px]">
+               <!-- STEP 1 -->
+               <div data-step="1" class="quiz-step space-y-4">
+                 <label class="text-xl font-bold text-slate-900">Ваш примерный уровень?</label>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                   <button type="button" class="quiz-opt p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="level" data-val="A0">A0 (Нулевой)</button>
+                   <button type="button" class="quiz-opt p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="level" data-val="A1-A2">A1-A2 (База)</button>
+                   <button type="button" class="quiz-opt p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="level" data-val="B1-B2">B1-B2 (Средний)</button>
+                   <button type="button" class="quiz-opt p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="level" data-val="C1+">C1+ (Продвинутый)</button>
+                 </div>
+               </div>
+               
+               <!-- STEP 2 -->
+               <div data-step="2" class="quiz-step space-y-4 hidden">
+                 <label class="text-xl font-bold text-slate-900">Какая у вас цель?</label>
+                 <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="goal" data-val="Для себя">Для себя / Путешествия</button>
+                 <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="goal" data-val="ОГЭ/ЕГЭ">Сдать ОГЭ / ЕГЭ</button>
+                 <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="goal" data-val="Работа">Работа / Карьера</button>
+               </div>
+
+               <!-- STEP 3 -->
+               <div data-step="3" class="quiz-step space-y-4 hidden">
+                  <label class="text-xl font-bold text-slate-900">Удобный формат?</label>
+                  <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="format" data-val="Индивидуально">Индивидуально</button>
+                  <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="format" data-val="Мини-группа">Мини-группа</button>
+                  <button type="button" class="quiz-opt w-full p-4 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-left text-slate-700 font-medium transition-all" data-key="format" data-val="Не знаю">Не знаю, посоветуйте</button>
+               </div>
+
+               <!-- STEP 4 -->
+               <div data-step="4" class="quiz-step space-y-4 hidden">
+                 <label class="text-xl font-bold text-slate-900">Как с вами связаться?</label>
+                 <input type="text" name="name" required placeholder="Ваше имя" class="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all font-medium">
+                 <input type="tel" name="phone" required placeholder="Телефон или WhatsApp" class="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all font-medium">
+                 <button type="submit" id="submitBtn" class="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-blue-600 shadow-lg shadow-blue-900/10 transition-all flex items-center justify-center gap-2 mt-2">
+                   Получить план и гайд
+                 </button>
+               </div>
+             </div>
+
+             <button type="button" id="quizBack" class="mt-6 text-sm font-semibold text-slate-400 hover:text-slate-600 flex items-center gap-1 transition-colors hidden w-max">
+               <i data-lucide="chevron-left" class="w-4 h-4"></i> Назад
+             </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="container mx-auto max-w-7xl px-4 fade-in-up">
+      <h2 class="text-3xl font-bold mb-10 text-center text-slate-900">Частые вопросы</h2>
+      <div id="faqList" class="max-w-3xl mx-auto space-y-4">
+        <!-- JS -->
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="container mx-auto max-w-7xl px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-slate-900">Связь со мной</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://t.me/m/mjPABJEtYTky" target="_blank" class="flex items-center gap-3 px-6 py-4 rounded-2xl transition-all font-bold text-blue-500 bg-blue-50 hover:bg-blue-100"><i data-lucide="send" class="w-5 h-5"></i> Telegram</a>
+        <a href="https://wa.me/79111880148" target="_blank" class="flex items-center gap-3 px-6 py-4 rounded-2xl transition-all font-bold text-emerald-500 bg-emerald-50 hover:bg-emerald-100"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a>
+        <a href="https://www.instagram.com/berdiyev_english" target="_blank" class="flex items-center gap-3 px-6 py-4 rounded-2xl transition-all font-bold text-pink-500 bg-pink-50 hover:bg-pink-100"><i data-lucide="instagram" class="w-5 h-5"></i> Instagram</a>
+        <a href="mailto:abdurrahimberdiev@gmail.com" class="flex items-center gap-3 px-6 py-4 rounded-2xl transition-all font-bold text-slate-600 bg-slate-100 hover:bg-slate-200"><i data-lucide="mail" class="w-5 h-5"></i> Email</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-20 border-t border-slate-200 py-12 text-center text-slate-400 text-sm bg-slate-50">
+    <div class="container mx-auto max-w-7xl px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+         <div class="font-bold text-slate-900 text-lg">ToBe English</div>
+         <p>© 2025 All rights reserved.</p>
+      </div>
+      <p class="mt-4 text-xs opacity-60 max-w-lg mx-auto">*Instagram и WhatsApp принадлежат компании Meta, признанной экстремистской организацией в РФ.</p>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA -->
+  <div id="stickyCTA" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-auto hidden opacity-0 transition-opacity duration-300">
+    <a href="#quiz" class="flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white font-bold rounded-full shadow-2xl hover:scale-105 transition-transform whitespace-nowrap">
+      Бесплатный урок <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+  </div>
+
+  <!-- FAB -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+    <a href="https://t.me/m/mjPABJEtYTky" target="_blank" class="p-3.5 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors">
+      <i data-lucide="send" class="w-5 h-5"></i>
+    </a>
+    <button id="scrollToTop" class="hidden p-3.5 rounded-full bg-white text-slate-600 shadow-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+      <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+  </div>
+
+  <!-- JS LOGIC -->
+  <script>
+    // --- DATA ---
+    const MODES = {
+      self: {
+        title: 'Английский — ключ к твоей цели!',
+        subtitle: 'Первые заметные результаты через 3 месяца.',
+        bullets: ['Быстро заговорить на английском', 'Разобраться с грамматикой', 'Понимать речь и не забывать слова', 'Повысить уровень до C1+'],
+        pains: [
+          { text: 'Хотите сказать, но в голове пустота', icon: 'message-square-dashed', color: 'text-red-500 bg-red-50' },
+          { text: 'Времена кажутся бесконечным хаосом', icon: 'history', color: 'text-red-500 bg-red-50' },
+          { text: 'В фильмах понимаете только "Hello"', icon: 'ear-off', color: 'text-red-500 bg-red-50' },
+          { text: 'Много раз начинали и бросали', icon: 'rotate-ccw', color: 'text-red-500 bg-red-50' }
+        ],
+        dreams: [
+          { title: 'Свобода передвижения', text: 'Решать любые вопросы в путешествиях: от отеля до общения с полицией или врачом.', icon: 'globe' },
+          { title: 'Карьера и доход', text: 'Проходить собеседования в международные компании и вести переговоры без переводчика.', icon: 'briefcase' },
+          { title: 'Контент без границ', text: 'Смотреть Netflix, YouTube и профессиональные лекции в оригинале.', icon: 'play' },
+          { title: 'Живое общение', text: 'Поддерживать беседу с иностранцами, понимая сленг, шутки и акценты.', icon: 'message-circle' }
+        ],
+        resultsTitle: 'Через 3 месяца вы сможете:',
+        caseTags: ['self'],
+        advantages: [
+          { icon: 'clock', text: 'Результат через 3 месяца' },
+          { icon: 'users', text: '100+ учеников' },
+          { icon: 'puzzle', text: 'Авторская система схем' },
+          { icon: 'rocket', text: 'Свои гайды и боты' },
+          { icon: 'badge-check', text: 'Квалификация TEFL' },
+          { icon: 'languages', text: 'Уровень C2' }
+        ]
+      },
+      oge: {
+        title: 'ОГЭ больше не проблема',
+        subtitle: 'Готовим по кодификатору ФИПИ. Без паники.',
+        bullets: ['Сдать ОГЭ на 5 без нервов', 'Разобраться с форматом экзамена', 'Понять времена и грамматику', 'Улучшить разговорные навыки'],
+        pains: [
+          { text: 'В письме ступор перед пустым листом', icon: 'file-question', color: 'text-red-500 bg-red-50' },
+          { text: 'Слов не хватает даже для простых тем', icon: 'frown', color: 'text-red-500 bg-red-50' },
+          { text: 'Аудио звучит как просто шум', icon: 'ear-off', color: 'text-red-500 bg-red-50' },
+          { text: 'Времена путаются на экзамене', icon: 'history', color: 'text-red-500 bg-red-50' }
+        ],
+        dreams: [
+          { title: 'Сдача на «Отлично»', text: 'Уверенно набрать максимальный балл для поступления в профильный класс или колледж.', icon: 'award' },
+          { title: 'Устная часть без страха', text: 'Говорить свободно и по критериям, не впадая в ступор перед микрофоном.', icon: 'mic' },
+          { title: 'Понимание на слух', text: 'Слышать ключевую информацию в аудировании с первого раза.', icon: 'brain' },
+          { title: 'Письмо на автомате', text: 'Писать личное письмо за 15 минут по четким шаблонам без грамматических ошибок.', icon: 'pen-tool' }
+        ],
+        resultsTitle: 'Через 3 месяца ты сможешь:',
+        caseTags: ['oge'],
+        advantages: [
+          { icon: 'trophy', text: 'Средний балл — «5»' },
+          { icon: 'graduation-cap', text: '2 высших образования' },
+          { icon: 'book-open', text: 'Автор пособий' },
+          { icon: 'bot', text: 'Бот на ИИ для ОГЭ' },
+          { icon: 'badge-check', text: 'Квалификация TEFL' },
+          { icon: 'languages', text: 'Уровень C2' }
+        ]
+      },
+      ege: {
+        title: 'Поступи в вуз на бюджет',
+        subtitle: 'Стратегия под 80+ баллов.',
+        bullets: ['Сдать ЕГЭ на 80+ баллов', 'Понять формат и ловушки', 'Разобраться с грамматикой', 'Укрепить Speaking'],
+        pains: [
+          { text: 'В эссе "вода" и потеря баллов', icon: 'message-square-dashed', color: 'text-red-500 bg-red-50' },
+          { text: 'Тексты C1 — китайская грамота', icon: 'help-circle', color: 'text-red-500 bg-red-50' },
+          { text: 'Listening слишком быстрый', icon: 'ear-off', color: 'text-red-500 bg-red-50' },
+          { text: 'Ошибки в заданиях 32–38', icon: 'alert-circle', color: 'text-red-500 bg-red-50' }
+        ],
+        dreams: [
+          { title: 'Поступление на бюджет', text: 'Результат 85+ баллов открывает двери топовых вузов страны.', icon: 'graduation-cap' },
+          { title: 'Идеальное Эссе', text: 'Аргументировать позицию и строить логику текста на уровне C1.', icon: 'file-text' },
+          { title: 'Тайм-менеджмент', text: 'Решать тестовую часть за 20 минут, оставляя максимум времени на сложные задания.', icon: 'zap' },
+          { title: 'Сложные задания', text: 'Алгоритмы решения заданий 30–36 и 38, где теряют баллы 90% выпускников.', icon: 'trending-up' }
+        ],
+        resultsTitle: 'Через 3 месяца ты сможешь:',
+        caseTags: ['ege'],
+        advantages: [
+          { icon: 'bar-chart-3', text: 'Средний балл — 80+' },
+          { icon: 'graduation-cap', text: '2 высших образования' },
+          { icon: 'book-open', text: 'Автор методик ЕГЭ' },
+          { icon: 'bot', text: 'ИИ-бот для ЕГЭ' },
+          { icon: 'smartphone', text: 'Свое приложение' },
+          { icon: 'badge-check', text: 'Квалификация TEFL' },
+          { icon: 'languages', text: 'Уровень C2' }
+        ]
+      }
+    };
+
+    const CASES = [
+      { tags: ['self'], name: 'Анатолий', desc: 'Предприниматель', before: ['Боялся созвонов', 'Паузы в речи', 'Понимал 50%'], after: ['Звонки без переводчика', 'Беглый диалог', 'Понимает 90%'], note: '8 недель' },
+      { tags: ['self'], name: 'Дина', desc: 'Аспирант', before: ['Понимала 45% лекций', 'Путаница времен'], after: ['Понимает 90%', 'Времена в системе'], note: '7 недель' },
+      { tags: ['self'], name: 'Илья', desc: 'Разработчик', before: ['Заваливал интервью', 'Мало слов'], after: ['Оффер в международную компанию', 'Свободный технический English'], note: '6 недель' },
+      { tags: ['self', 'travel'], name: 'Светлана', desc: 'Путешествия', before: ['Страх в отелях', 'Языковой барьер'], after: ['Решает все вопросы', 'Свободное общение'], note: '4 недели' },
+      { tags: ['self'], name: 'Роман', desc: 'Менеджер', before: ['Барьер с коллегами', 'Ошибки в грамматике'], after: ['Ведёт демо на англ.', 'Минимум ошибок'], note: '6 недель' },
+      { tags: ['ege'], name: 'Марина', desc: 'ЕГЭ', before: ['Пробник: 62', 'Слабый Writing'], after: ['Итог: 86', 'Эссе по шаблону'], note: '3 месяца' },
+      { tags: ['ege'], name: 'Данил', desc: 'ЕГЭ', before: ['Сложный Reading', 'Проблемы с Listening'], after: ['Reading 90%', 'Listening 80%+'], note: '7 недель' },
+      { tags: ['ege'], name: 'Полина', desc: 'ЕГЭ', before: ['Мало лексики', 'Путаница времен'], after: ['Словарь C1', 'Времена ОК'], note: '6 недель' },
+      { tags: ['ege'], name: 'Игорь', desc: 'ЕГЭ', before: ['Ошибки 32-38', 'Страх Speaking'], after: ['Алгоритмы решения', 'Уверенная речь'], note: '8 недель' },
+      { tags: ['ege'], name: 'Карина', desc: 'ЕГЭ', before: ['Writing структура', 'Плохой тайминг'], after: ['Чёткий план', 'Успевает всё'], note: '5 недель' },
+      { tags: ['oge'], name: 'Антон', desc: 'ОГЭ', before: ['«4» на грани', 'Ошибки'], after: ['Итог: «5»', 'Грамматика ОК'], note: '8 недель' },
+      { tags: ['oge'], name: 'Полина', desc: 'ОГЭ', before: ['Не знала письмо', 'Мало слов'], after: ['Письмо на макс.', 'Рост словаря'], note: '6 недель' },
+      { tags: ['oge'], name: 'Егор', desc: 'ОГЭ', before: ['Грамматика 0', 'Нет системы'], after: ['Понял времена', 'Есть план'], note: '5 недель' },
+      { tags: ['oge'], name: 'Алина', desc: 'ОГЭ', before: ['Понимание 50%', 'Страх устной'], after: ['Стратегии чтения', 'Говорит уверенно'], note: '6 недель' },
+      { tags: ['oge'], name: 'Никита', desc: 'ОГЭ', before: ['Ошибки', 'Нет плана'], after: ['Орфография ОК', 'Чёткий график'], note: '8 недель' }
+    ];
+
+    const FAQS = {
+      self: [
+        { q: 'За сколько я заговорю?', a: 'В среднем 12 недель. 80% урока — это Speaking.' },
+        { q: 'Я с нуля. Получится?', a: 'Да. Начинаем с базы, без лишней теории.' },
+        { q: 'Боюсь говорить', a: 'Создаю комфортную среду, ошибки исправляем мягко.' },
+        { q: 'Какая домашка?', a: 'Интерактив, видео, аудио. Без скучных учебников.' },
+        { q: 'Где проходят уроки?', a: 'Teams + интерактивная доска. Всё в одном месте.' },
+        { q: 'Стоимость?', a: 'Зависит от формата. Первый урок бесплатно.' }
+      ],
+      oge: [
+        { q: 'Реально ли сдать на 5 за 3 месяца?', a: 'Да, если заниматься регулярно и бить в слабые места.' },
+        { q: 'Почему теряют баллы?', a: 'Нет стратегии. Мы это исправим чек-листами.' },
+        { q: 'Как готовим Speaking?', a: 'Шаблоны, клише, тренировка с таймером.' },
+        { q: 'А письмо?', a: 'Дам готовые конструкции, напишем 20+ писем.' },
+        { q: 'Много домашки?', a: '30-40 минут в день. Главное — регулярность.' },
+        { q: 'Есть пробники?', a: 'Каждые 2 недели полный прогон.' }
+      ],
+      ege: [
+        { q: 'Сколько нужно на 80+?', a: 'Обычно 4-6 месяцев, но за 3 можно сделать рывок.' },
+        { q: 'Как писать эссе?', a: 'Строго по критериям. Дам банк аргументов.' },
+        { q: 'Listening сложный', a: 'Учимся слышать ключи и отсекать лишнее.' },
+        { q: 'Грамматика', a: 'Алгоритмы для каждого типа заданий.' },
+        { q: 'Устная часть', a: 'Отработаем до автоматизма по шаблонам.' },
+        { q: 'Есть пробники?', a: 'Раз в 2 недели с полным разбором.' }
+      ]
+    };
+
+    // --- LOGIC ---
+    let currentMode = localStorage.getItem('mode') || 'self';
+    if (!MODES[currentMode]) currentMode = 'self';
+
+    // 1. Set Mode
+    function setMode(mode) {
+      if (!MODES[mode]) return;
+      currentMode = mode;
+      localStorage.setItem('mode', mode);
+      const conf = MODES[mode];
+
+      // Update UI Buttons
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        const active = btn.dataset.mode === mode;
+        btn.className = active 
+          ? 'mode-btn flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all bg-white text-slate-900 shadow-md ring-1 ring-slate-100' 
+          : 'mode-btn flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-500 hover:text-slate-900 hover:bg-white/50';
+      });
+
+      // Update Mobile Menu Checks
+      document.querySelectorAll('.mode-select-btn').forEach(btn => {
+        const isTarget = btn.dataset.setMode === mode;
+        btn.className = isTarget 
+          ? "mode-select-btn p-4 rounded-xl text-left text-lg font-bold border transition-colors flex items-center justify-between bg-slate-900 text-white border-slate-900" 
+          : "mode-select-btn p-4 rounded-xl text-left text-lg font-bold border transition-colors flex items-center justify-between bg-white text-slate-600 border-slate-200";
+        btn.querySelector('.check-icon').classList.toggle('hidden', !isTarget);
+      });
+
+      // Show/Hide Desktop Nav Switch
+      document.getElementById('desktopModeSwitch').classList.toggle('hidden', mode !== 'self');
+
+      // Update Content
+      document.getElementById('offerTitle').textContent = conf.title;
+      document.getElementById('offerSubtitle').textContent = conf.subtitle;
+      
+      const bullets1 = document.getElementById('offerBullets1');
+      const bullets2 = document.getElementById('offerBullets2');
+      bullets1.innerHTML = '';
+      bullets2.innerHTML = '';
+      conf.bullets.forEach((b, i) => {
+        const li = `<li class="flex items-start gap-3 text-slate-700 max-w-xs fade-in-up" style="animation-delay: ${i*100}ms">
+          <div class="mt-1 w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i data-lucide="check" class="w-3 h-3"></i></div>
+          <span class="font-medium text-sm sm:text-base leading-tight">${b}</span>
+        </li>`;
+        if (i < Math.ceil(conf.bullets.length/2)) bullets1.innerHTML += li;
+        else bullets2.innerHTML += li;
+      });
+
+      // Pains
+      const painsGrid = document.getElementById('painsGrid');
+      painsGrid.innerHTML = conf.pains.map(p => `
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all h-full flex flex-col items-start">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-6 text-red-500 shrink-0">
+            <i data-lucide="${p.icon}" class="w-7 h-7"></i>
+          </div>
+          <p class="text-slate-700 font-bold text-lg leading-snug">${p.text}</p>
+        </div>
+      `).join('');
+
+      // Results
+      document.getElementById('resultsTitle').textContent = conf.resultsTitle;
+      const resultsGrid = document.getElementById('resultsGrid');
+      resultsGrid.innerHTML = conf.dreams.map(d => `
+        <div class="flex items-start gap-5 p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-emerald-100 transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors text-emerald-600">
+            <i data-lucide="${d.icon}" class="w-7 h-7"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-xl text-slate-900 mb-2">${d.title}</h4>
+            <p class="text-slate-600 leading-relaxed font-medium">${d.text}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Advantages
+      const advGrid = document.getElementById('advantagesGrid');
+      advGrid.innerHTML = conf.advantages.map(a => `
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm flex flex-col items-center text-center gap-4 hover:shadow-lg transition-all">
+          <div class="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-900">
+            <i data-lucide="${a.icon}" class="w-6 h-6"></i>
+          </div>
+          <p class="text-slate-700 font-semibold">${a.text}</p>
+        </div>
+      `).join('');
+
+      // FAQ
+      const faqList = document.getElementById('faqList');
+      faqList.innerHTML = FAQS[mode].map(f => `
+        <details class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm open:shadow-md transition-all">
+          <summary class="cursor-pointer p-6 font-semibold flex items-center justify-between select-none text-slate-800">
+            ${f.q}
+            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+            ${f.a}
+          </div>
+        </details>
+      `).join('');
+
+      // Refresh Icons
+      if (window.lucide) lucide.createIcons();
+      
+      // Update Cases
+      updateCases(0);
+    }
+
+    // 2. Carousel Logic
+    let caseIndex = 0;
+    function updateCases(newIndex) {
+      const filteredCases = CASES.filter(c => c.tags.includes(currentMode));
+      if (filteredCases.length === 0) return;
+      
+      // Wrap index
+      if (newIndex < 0) caseIndex = filteredCases.length - 1;
+      else if (newIndex >= filteredCases.length) caseIndex = 0;
+      else caseIndex = newIndex;
+
+      const c = filteredCases[caseIndex];
+      const container = document.getElementById('caseContent');
+      
+      // Simple fade out/in effect manually
+      container.style.opacity = 0;
+      setTimeout(() => {
+        container.innerHTML = `
+          <div class="lg:w-1/3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-100 pb-8 lg:pb-0 lg:pr-8">
+            <div>
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center bg-slate-100 text-slate-600">
+                  <i data-lucide="user" class="w-8 h-8"></i>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-bold text-slate-900">${c.name}</h4>
+                  <p class="text-slate-500 font-medium">${c.desc}</p>
+                </div>
+              </div>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-bold text-sm">
+                <i data-lucide="clock" class="w-4 h-4"></i> ${c.note}
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-2/3 grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="text-slate-400 uppercase text-xs font-bold tracking-wider flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-red-400"></div> Было</div>
+              <ul class="space-y-3">
+                ${c.before.map(txt => `<li class="flex items-start gap-3 text-slate-600">${txt}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="space-y-4">
+              <div class="text-emerald-600 uppercase text-xs font-bold tracking-wider flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> Стало</div>
+              <ul class="space-y-3">
+                ${c.after.map(txt => `<li class="flex items-start gap-3 text-slate-900 font-medium bg-emerald-50/50 p-3 rounded-xl"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> ${txt}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        container.style.opacity = 1;
+      }, 150);
+    }
+
+    // 3. Quiz Logic
+    let quizStep = 1;
+    const quizData = {};
+    
+    function setQuizStep(s) {
+      quizStep = s;
+      document.querySelectorAll('.quiz-step').forEach(el => {
+        el.classList.toggle('hidden', el.dataset.step != quizStep);
+      });
+      document.getElementById('stepLabel').textContent = `Шаг ${quizStep} из 4`;
+      const pct = Math.round((quizStep/4)*100);
+      document.getElementById('stepPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      
+      const backBtn = document.getElementById('quizBack');
+      if (quizStep > 1) {
+        backBtn.classList.remove('hidden');
+        backBtn.classList.add('flex');
+      } else {
+        backBtn.classList.add('hidden');
+        backBtn.classList.remove('flex');
+      }
+    }
+
+    // 4. Init Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mode Buttons
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('[data-mode]');
+        if (btn) setMode(btn.dataset.mode);
+        
+        const setModeBtn = e.target.closest('[data-set-mode]');
+        if (setModeBtn) {
+           setMode(setModeBtn.dataset.setMode);
+           document.getElementById('mobileMenu').classList.add('hidden');
+           document.body.style.overflow = '';
+           window.location.hash = '#offer';
+        }
+      });
+
+      // Carousel Buttons
+      document.getElementById('casePrev').addEventListener('click', () => updateCases(caseIndex - 1));
+      document.getElementById('caseNext').addEventListener('click', () => updateCases(caseIndex + 1));
+
+      // Quiz Interaction
+      document.querySelectorAll('.quiz-opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.key;
+          const val = btn.dataset.val;
+          quizData[key] = val;
+          // Visual selection
+          btn.parentElement.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('bg-blue-50', 'border-blue-500'));
+          btn.classList.add('bg-blue-50', 'border-blue-500');
+          setQuizStep(quizStep + 1);
+        });
+      });
+
+      document.getElementById('quizBack').addEventListener('click', () => setQuizStep(quizStep - 1));
+
+      // Quiz Submit
+      const form = document.getElementById('quizForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.innerHTML = 'Отправка...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+        quizData.name = formData.get('name');
+        quizData.phone = formData.get('phone');
+        quizData.mode = currentMode;
+
+        try {
+          await fetch('https://formspree.io/f/mblkbjve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(quizData)
+          });
+          document.getElementById('quizMain').classList.add('hidden');
+          document.getElementById('quizSuccess').classList.remove('hidden');
+        } catch (err) {
+          alert('Ошибка соединения. Напишите мне в Telegram.');
+          submitBtn.innerHTML = 'Попробовать снова';
+          submitBtn.disabled = false;
+        }
+      });
+
+      // Mobile Menu
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+          document.body.style.overflow = 'hidden';
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+          document.body.style.overflow = '';
+        }
+        if (window.lucide) lucide.createIcons();
+      });
+
+      document.querySelectorAll('.mobile-link').forEach(l => {
+        l.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+          document.body.style.overflow = '';
+          if (window.lucide) lucide.createIcons();
+        });
+      });
+
+      // Scroll handlers
+      const stickyCTA = document.getElementById('stickyCTA');
+      const scrollToTop = document.getElementById('scrollToTop');
+      
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 800) {
+          stickyCTA.classList.remove('hidden', 'opacity-0');
+          stickyCTA.classList.add('opacity-100');
+        } else {
+          stickyCTA.classList.add('opacity-0');
+          setTimeout(() => stickyCTA.classList.add('hidden'), 300);
+        }
+
+        if (y > 500) scrollToTop.classList.remove('hidden');
+        else scrollToTop.classList.add('hidden');
+      });
+
+      scrollToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // Init
+      setMode(currentMode);
+      lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
