@@ -381,16 +381,43 @@ function OfferSection({ mode, config, setMode }: any) {
   return (
     <section id="offer" className="container-xxl px-4">
       {/* Container Card */}
-      <div className="bg-white/80 backdrop-blur-md rounded-[3rem] p-6 sm:p-10 lg:p-14 shadow-2xl shadow-slate-200 border border-slate-100/50 relative overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-md rounded-[3rem] p-6 sm:p-10 lg:p-14 shadow-2xl shadow-slate-200 border border-slate-100/50 relative overflow-hidden min-h-[600px] sm:min-h-0 flex flex-col md:block">
+        
         {/* Decorative Background inside card */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-80 pointer-events-none"></div>
 
-        <div className="relative z-10 grid md:grid-cols-12 gap-10 lg:gap-16 items-start">
-          
-          {/* Left: Text Content */}
-          <div className="md:col-span-7 lg:col-span-8 space-y-8 relative z-20">
+        {/* Right: Photo Absolute Top-Right on Desktop/Tablet */}
+        <div className="order-first md:order-none flex justify-center md:block md:absolute md:top-10 md:right-10 lg:top-14 lg:right-14 z-30 mb-8 md:mb-0">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative group w-48 h-48 sm:w-64 sm:h-64 md:w-56 md:h-56 lg:w-72 lg:h-72"
+          >
+            {/* Photo container */}
+            <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl shadow-blue-900/10 rotate-3 group-hover:rotate-0 transition-transform duration-500">
+              <img 
+                src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" 
+                alt="Абдуррахим Бердиев" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Badge attached to photo */}
+            <div className="absolute -bottom-4 -left-4 md:-bottom-4 md:-left-4 bg-white p-3 md:p-3 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 max-w-[200px] -rotate-3 group-hover:rotate-0 transition-transform duration-500 delay-75">
+              <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0 text-xs">TEFL</div>
+              <div>
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Teacher</div>
+                <div className="text-xs md:text-sm font-bold text-slate-900 leading-tight">Абдуррахим Бердиев</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Left: Text Content - with Padding Right on Desktop to avoid overlap */}
+        <div className="relative z-20 md:max-w-[65%] lg:max-w-[60%]">
             {/* Mode Switcher */}
-            <div className="inline-flex p-1.5 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm">
+            <div className="inline-flex p-1.5 bg-white/50 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm mb-8">
               {[
                 { id: 'self', label: 'Для себя', icon: User },
                 { id: 'oge', label: 'ОГЭ', icon: BookOpen },
@@ -419,7 +446,7 @@ function OfferSection({ mode, config, setMode }: any) {
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
                 {config.title}
               </h1>
-              <p className="mt-5 text-lg sm:text-xl text-slate-600 max-w-lg leading-relaxed font-medium">
+              <p className="mt-5 text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
                 {config.subtitle}
               </p>
               
@@ -439,7 +466,7 @@ function OfferSection({ mode, config, setMode }: any) {
 
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-4 pt-10"
             >
               <a href="#quiz" className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
                 Бесплатный урок <ArrowRight className="w-5 h-5" />
@@ -448,37 +475,8 @@ function OfferSection({ mode, config, setMode }: any) {
                 <Send className="w-5 h-5" /> Telegram
               </a>
             </motion.div>
-          </div>
-
-          {/* Right: Photo Integrated into the card - Top Right Alignment for Desktop/Tablet */}
-          <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-start items-center md:items-end pt-4 md:pt-0">
-             <motion.div
-               initial={{ opacity: 0, scale: 0.95 }}
-               animate={{ opacity: 1, scale: 1 }}
-               transition={{ duration: 0.6 }}
-               className="relative group"
-             >
-                {/* Photo container */}
-                <div className="relative w-64 h-64 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl shadow-blue-900/10 rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                   <img 
-                      src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" 
-                      alt="Абдуррахим Бердиев" 
-                      className="w-full h-full object-cover"
-                   />
-                </div>
-
-                {/* Badge attached to photo - Adjusted for smaller size on tablet */}
-                <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 max-w-[200px] md:max-w-[220px] -rotate-3 group-hover:rotate-0 transition-transform duration-500 delay-75">
-                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0 text-xs md:text-base">TEFL</div>
-                   <div>
-                     <div className="text-[10px] md:text-xs text-slate-400 font-bold uppercase tracking-wider">Преподаватель</div>
-                     <div className="text-xs md:text-sm font-bold text-slate-900 leading-tight">Абдуррахим Бердиев</div>
-                   </div>
-                </div>
-             </motion.div>
-          </div>
-
         </div>
+
       </div>
     </section>
   );
