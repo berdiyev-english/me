@@ -1,19 +1,17 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import { viteSingleFile } from "vite-plugin-singlefile";
+import { defineConfig } from 'vite'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), viteSingleFile()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
+  // Ensure relative paths for assets so it works on GitHub Pages subdirectories
+  base: './',
+  build: {
+    // Ensure the output directory is 'dist'
+    outDir: 'dist',
+    // Since we are using a raw index.html, we don't strictly need a rollup input, 
+    // but Vite needs to know what to build.
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+      },
     },
   },
-});
+})
