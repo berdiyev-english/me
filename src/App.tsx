@@ -11,7 +11,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from './utils/cn';
 
-// --- DATA ---
+// --- DATA --
 
 const SEATS = { group: 0, solo: 3, zero: 1 };
 
