@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="format-detection" content="telephone=no"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="format-detection" content="telephone=no">
   <title>Абдуррахим Бердиев — обо мне | To Be English</title>
-  <meta name="description" content="Абдуррахим Бердиев — репетитор английского языка. TEFL, уровень C2. 100+ учеников, автор приложения, гайдов и ИИ‑ботов. Готовлю к ЕГЭ/ОГЭ/IELTS/TOEFL. Первый урок бесплатно.">
-  <link rel="canonical" href="https://berdiyev-eng.ru/me"/>
+  <meta name="description" content="Абдуррахим Бердиев — репетитор английского языка. TEFL, уровень C2. 100+ учеников, автор приложений, гайдов и ИИ‑ботов. Готовлю к ЕГЭ/ОГЭ/IELTS/TOEFL. Первый урок бесплатно.">
+  <link rel="canonical" href="https://berdiyev-eng.ru/me">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Абдуррахим Бердиев — обо мне | To Be English">
-  <meta property="og:description" content="TEFL, C2. Автор приложения, гайдов и ИИ‑ботов. Готовлю к ЕГЭ/ОГЭ/IELTS/TOEFL. Первый урок бесплатно.">
+  <meta property="og:description" content="TEFL, C2. Автор приложений, гайдов и ИИ‑ботов. Готовлю к ЕГЭ/ОГЭ/IELTS/TOEFL. Первый урок бесплатно.">
   <meta property="og:image" content="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://berdiyev-eng.ru/me">
@@ -26,16 +26,18 @@
       theme: {
         extend: {
           colors: {
-            border: 'hsl(var(--border))',
-            input: 'hsl(var(--input))',
-            ring: 'hsl(var(--ring))',
-            background: 'hsl(var(--background))',
-            foreground: 'hsl(var(--foreground))',
+            slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+            emerald: { 50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 300: '#6ee7b7', 400: '#34d399', 500: '#10b981', 600: '#059669' },
+            sky: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+            amber: { 50: '#fffbeb', 100: '#fef3c7', 400: '#fbbf24', 500: '#f59e0b' },
+            rose: { 50: '#fff1f2', 100: '#ffe4e6', 400: '#fb7185', 500: '#f43f5e' },
           },
-          borderRadius: { lg: '0.75rem', xl: '1.25rem', '2xl': '1.5rem', '3xl': '2rem' },
+          borderRadius: { lg: '0.75rem', xl: '1rem', '2xl': '1.25rem', '3xl': '1.5rem' },
           boxShadow: {
-            glass: '0 8px 40px rgba(0,0,0,0.25)',
-            deep: '0 20px 60px rgba(0,0,0,0.45)'
+            soft: '0 1px 3px rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06)',
+            card: '0 2px 8px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.08)',
+            hover: '0 4px 12px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.10)',
+            deep: '0 20px 60px rgba(0,0,0,0.12)'
           }
         }
       }
@@ -45,62 +47,197 @@
 
   <style>
     :root {
-      --background: 0 0% 100%;
-      --foreground: 0 0% 3.9%;
-      --border: 0 0% 16%;
-      --input: 0 0% 16%;
-      --ring: 0 0% 3.9%;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-raised: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --accent: #059669;
+      --accent-light: #ecfdf5;
+      --accent-soft: #d1fae5;
     }
-    /* Без анимаций и плавностей */
-    html, body { scroll-behavior: auto; }
+    html, body { scroll-behavior: smooth; }
     * { transition: none !important; animation: none !important; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-    .container-xxl { max-width: 1100px; }
-    .glass { border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.08); backdrop-filter: blur(16px); }
-    .btn-glass { border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1); }
-    .btn-glass:hover { background: rgba(255,255,255,.16); }
-    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; }
-    .adv-card { display: flex; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); }
-    .adv-emoji { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; background: radial-gradient(60% 60% at 40% 35%, rgba(255,255,255,.22), rgba(255,255,255,.08)); border: 1px solid rgba(255,255,255,.18); }
+    .container-xxl { max-width: 1100px; margin-left: auto; margin-right: auto; }
 
-    /* Медиа-блоки: рамка подстраивается под фото, без пустот */
-    .media-frame{
-      position: relative;
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .card-hover:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05), 0 16px 48px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--text);
+      color: #fff;
+      border: 1px solid var(--text);
+    }
+    .btn-primary:hover { background: #1e293b; }
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { background: var(--border-light); border-color: #cbd5e1; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--border-light); }
+
+    /* Tags */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--border-light);
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+    }
+    .tag svg { color: var(--accent); }
+
+    /* Feature cards */
+    .feature-card {
+      display: flex; gap: 14px; padding: 16px;
       border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.15);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      background: var(--surface);
     }
-    /* Высота контейнера идёт от содержимого (картинки) */
-    .media-fit{
-      position: static;
-      display: block;
-      line-height: 0; /* убираем «белую строку» под <img> */
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-soft);
+      flex-shrink: 0;
     }
-    .media-img{
-      display: block;
-      width: 100%;
-      height: auto;      /* показываем целиком, без обрезки */
-      object-fit: contain;
+    .feature-icon svg { color: var(--accent); }
+
+    /* App cards */
+    .app-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 20px; padding: 24px;
+      display: flex; flex-direction: column; height: 100%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .app-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: grid; place-items: center; font-size: 24px;
+      flex-shrink: 0; border: 1px solid var(--border);
+    }
+    .app-icon.bewords { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+    .app-icon.bemat   { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .app-icon.bemem   { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 5px 0; color: var(--text-secondary);
+      font-size: 0.875rem; line-height: 1.6;
+    }
+    .feature-list li svg {
+      width: 16px; height: 16px; margin-top: 3px;
+      color: var(--accent); flex-shrink: 0;
     }
 
-    /* Табы */
-    .mode-switch { display: flex; gap: 8px; flex-wrap: wrap; }
-    .mode-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 14px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.08);
-      color: #fff; opacity: .9; cursor: pointer; user-select: none;
+    /* Media */
+    .media-frame {
+      position: relative; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--border-light);
     }
-    .mode-btn:hover { background: rgba(255,255,255,.14); }
+    .media-fit { position: static; display: block; line-height: 0; }
+    .media-img { display: block; width: 100%; height: auto; object-fit: contain; }
+
+    /* Tabs */
+    .mode-switch { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      cursor: pointer; user-select: none;
+      font-size: 0.8125rem;
+    }
+    .mode-btn:hover { background: var(--border-light); }
     .mode-btn.active {
-      background: #fff; color: #000; border-color: transparent;
-      box-shadow: 0 12px 30px rgba(255,255,255,.12);
+      background: var(--text); color: #fff; border-color: var(--text);
+    }
+
+    /* Inputs */
+    .input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .input:focus { outline: none; border-color: #94a3b8; box-shadow: 0 0 0 3px rgba(148,163,184,0.15); }
+    .input::placeholder { color: var(--text-muted); }
+
+    /* Scroll offset */
+    [id] { scroll-margin-top: 90px; }
+
+    /* Focus */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid rgba(5,150,105,0.4);
+      outline-offset: 2px;
+    }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      background: var(--text);
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .sticky-cta:hover { background: #1e293b; }
+
+    /* FAB */
+    .fab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .fab:hover { background: var(--border-light); }
+
+    /* Guide cards */
+    .guide-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 16px rgba(0,0,0,0.03);
+    }
+    .guide-card:hover { border-color: #cbd5e1; }
+
+    @media (max-width: 640px) {
+      .container-xxl { padding-left: 16px; padding-right: 16px; }
+      .card { border-radius: 16px; }
+      .app-card { padding: 20px; border-radius: 16px; }
+      .mode-btn { padding: 7px 11px; font-size: 0.75rem; }
+      .feature-card { padding: 12px; gap: 10px; }
+      .feature-icon { width: 38px; height: 38px; }
+      .guide-card { padding: 16px; }
     }
   </style>
 
-  <!-- Lucide (fixed version) -->
+  <!-- Lucide -->
   <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 
   <!-- Schema.org Person -->
@@ -120,56 +257,54 @@
     "email":"mailto:abdurrahimberdiev@gmail.com"
   }
   </script>
+<base target="_blank">
 </head>
 
-<body class="min-h-screen text-white bg-[radial-gradient(1100px_650px_at_15%_-10%,rgba(34,211,238,0.22),transparent_60%),radial-gradient(900px_600px_at_100%_10%,rgba(16,185,129,0.18),transparent_60%),linear-gradient(180deg,#0b1020,#05070f)]">
+<body>
 
   <!-- Header -->
-  <header class="sticky top-2 md:top-6 z-50">
-    <div class="mx-auto container-xxl px-4">
-      <div class="flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-2 backdrop-blur-xl shadow-glass">
+  <header class="sticky top-3 z-50">
+    <div class="container-xxl px-4">
+      <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-xl p-2 shadow-soft">
         <a href="/" class="flex items-center gap-2 px-2 py-1" aria-label="На главную">
-          <div class="relative h-9 w-9 rounded-xl bg-gradient-to-br from-cyan-400/80 to-emerald-300/80 shadow-inner grid place-items-center">
-            <i data-lucide="home" class="w-4 h-4 text-white/95"></i>
+          <div class="relative h-9 w-9 rounded-xl bg-slate-900 grid place-items-center">
+            <i data-lucide="home" class="w-4 h-4 text-white"></i>
           </div>
-          <span class="hidden sm:inline text-white/85">To Be English</span>
+          <span class="hidden sm:inline text-slate-700 font-medium text-sm">To Be English</span>
         </a>
 
         <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-1 text-sm">
-          <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Обо мне</a>
-          <a href="#edu" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Образование</a>
-          <a href="#app" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Приложение</a>
-          <a href="#bots" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Боты</a>
-          <a href="#guides" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Гайды</a>
-          <a href="#book" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Запись</a>
-          <a href="#contacts" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10">Контакты</a>
+        <nav class="hidden lg:flex items-center gap-1 text-sm">
+          <a href="#about" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Обо мне</a>
+          <a href="#edu" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Образование</a>
+          <a href="#apps" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Приложения</a>
+          <a href="#bots" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Боты</a>
+          <a href="#guides" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Гайды</a>
+          <a href="#book" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Запись</a>
+          <a href="#contacts" class="px-3 py-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100">Контакты</a>
         </nav>
 
-        <!-- Right side: desktop CTA + mobile burger -->
         <div class="flex items-center gap-2">
-          <a href="#book" class="hidden md:inline-flex bg-white text-black hover:bg-white/90 rounded-xl px-4 py-2 font-medium">
+          <a href="#book" class="hidden md:inline-flex btn-primary rounded-xl px-4 py-2.5 font-medium text-sm">
             Первый урок бесплатно
           </a>
-          <!-- Кнопка меню на мобильных -->
-          <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 btn-glass rounded-xl px-3 py-2"
-                  aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+          <button id="menuBtn" class="lg:hidden inline-flex items-center gap-2 btn-secondary rounded-xl px-3 py-2" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mobile menu panel -->
-      <div id="mobileMenu" class="md:hidden mt-2 hidden">
-        <nav class="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl p-2 shadow-glass">
-          <a href="#about" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Обо мне</a>
-          <a href="#edu" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Образование</a>
-          <a href="#app" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Мое приложение</a>
-          <a href="#bots" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Боты</a>
-          <a href="#guides" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Гайды</a>
-          <a href="#book" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Запись</a>
-          <a href="#contacts" class="block px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">Контакты</a>
-          <a href="#book" class="mt-1 block bg-white text-black hover:bg-white/90 rounded-xl px-3 py-2 font-medium text-center">
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="lg:hidden mt-2 hidden">
+        <nav class="rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-xl p-2 shadow-card max-h-[70vh] overflow-y-auto">
+          <a href="#about" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Обо мне</a>
+          <a href="#edu" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Образование</a>
+          <a href="#apps" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Приложения</a>
+          <a href="#bots" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Боты</a>
+          <a href="#guides" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Гайды</a>
+          <a href="#book" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Запись</a>
+          <a href="#contacts" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">Контакты</a>
+          <a href="#book" class="mt-1 block btn-primary rounded-xl px-3 py-2.5 font-medium text-center text-sm">
             Первый урок бесплатно
           </a>
         </nav>
@@ -177,285 +312,322 @@
     </div>
   </header>
 
-  <main class="mx-auto container-xxl px-4 py-10 md:py-14">
+  <main class="container-xxl px-4 py-8 md:py-14">
     <!-- Hero -->
-    <section class="grid md:grid-cols-12 gap-6 items-stretch" id="about">
-      <div class="md:col-span-7 glass rounded-3xl p-6 sm:p-8 shadow-deep">
+    <section class="grid md:grid-cols-12 gap-5 items-stretch" id="about">
+      <div class="md:col-span-7 card p-5 sm:p-8">
         <div class="flex items-center gap-4">
-          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden ring-2 ring-white/25 shadow-glass">
-            <img
-              src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg"
-              alt="Абдуррахим Бердиев"
-              width="512" height="512"
-              fetchpriority="high" decoding="async"
-              class="w-full h-full object-cover object-center">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden ring-2 ring-slate-200 shadow-soft flex-shrink-0">
+            <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев" width="512" height="512" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-center">
           </div>
           <div>
-            <h1 class="text-2xl sm:text-3xl font-semibold">Абдуррахим Бердиев</h1>
-            <div class="text-white/80">Репетитор английского • To Be English</div>
+            <h1 class="text-2xl sm:text-3xl font-semibold leading-tight text-slate-900">Абдуррахим Бердиев</h1>
+            <div class="text-slate-500 text-sm sm:text-base mt-1">Репетитор английского • To Be English</div>
           </div>
         </div>
 
-        <p class="mt-4 text-white/85">
+        <p class="mt-5 text-slate-600 text-base sm:text-lg leading-relaxed">
           Помогаю заговорить на английском, снимаю языковой барьер и упрощаю грамматику до понятных схем.
           Готовлю к ЕГЭ/ОГЭ и международным экзаменам (IELTS/TOEFL). Реальные результаты — к 3‑му месяцу занятий.
         </p>
 
-        <div class="mt-4 flex flex-wrap gap-2">
-          <span class="tag"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-300"></i> TEFL</span>
-          <span class="tag"><i data-lucide="languages" class="w-4 h-4 text-emerald-300"></i> Уровень C2</span>
-          <span class="tag"><i data-lucide="users" class="w-4 h-4 text-emerald-300"></i> 100+ учеников</span>
-          <span class="tag"><i data-lucide="rocket" class="w-4 h-4 text-emerald-300"></i> Автор приложения и гайдов</span>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag"><i data-lucide="badge-check" class="w-4 h-4"></i> TEFL</span>
+          <span class="tag"><i data-lucide="languages" class="w-4 h-4"></i> Уровень C2</span>
+          <span class="tag"><i data-lucide="users" class="w-4 h-4"></i> 100+ учеников</span>
+          <span class="tag"><i data-lucide="rocket" class="w-4 h-4"></i> Автор приложений и гайдов</span>
         </div>
 
         <div class="mt-6 flex gap-3 flex-wrap">
-          <a href="#book" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+          <a href="#book" class="inline-flex items-center gap-2 btn-primary rounded-xl px-5 py-3 font-medium text-sm sm:text-base">
             Записаться на занятие <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
-          <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-glass rounded-xl px-5 py-3">
+          <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-secondary rounded-xl px-5 py-3 text-sm sm:text-base">
             Написать в Telegram <i data-lucide="send" class="w-5 h-5"></i>
           </a>
         </div>
       </div>
 
-      <div class="md:col-span-5 glass rounded-3xl p-6 shadow-deep">
-        <h3 class="text-xl font-semibold">Чем я помогу</h3>
-        <ul class="mt-3 space-y-2 text-white/90">
-          <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Разговорный английский и уверенность в речи</li>
-          <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Грамматика по простым схемам (без воды)</li>
-          <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> Подготовка к ЕГЭ/ОГЭ на высокий балл</li>
-          <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-300"></i> IELTS/TOEFL: speaking, writing, стратегии</li>
+      <div class="md:col-span-5 card p-5 sm:p-8 flex flex-col">
+        <h3 class="text-xl sm:text-2xl font-semibold text-slate-900">Чем я помогу</h3>
+        <ul class="mt-4 space-y-3 text-slate-600">
+          <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0"></i> Разговорный английский и уверенность в речи</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0"></i> Грамматика по простым схемам (без воды)</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0"></i> Подготовка к ЕГЭ/ОГЭ на высокий балл</li>
+          <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0"></i> IELTS/TOEFL: speaking, writing, стратегии</li>
         </ul>
-        <div class="mt-4 text-white/70 text-sm">Первый урок бесплатно — диагностика и персональный план на 90 дней.</div>
+        <div class="mt-auto pt-5 text-slate-400 text-sm">Первый урок бесплатно — диагностика и персональный план на 90 дней.</div>
       </div>
     </section>
 
-    <!-- Образование и квалификации -->
-    <section id="edu" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <h2 class="text-2xl md:text-3xl font-semibold">Образование и квалификации</h2>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2">
-          <div class="adv-card">
-            <div class="adv-emoji"><i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-300"></i></div>
+    <!-- Образование -->
+    <section id="edu" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-900">Образование и квалификации</h2>
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
             <div>
-              <div class="text-white/90">Два высших образования</div>
-              <div class="text-white/60 text-sm">Гуманитарные направления, язык и педагогика</div>
+              <div class="text-slate-800 font-medium">Два высших образования</div>
+              <div class="text-slate-400 text-sm mt-0.5">Гуманитарные направления, язык и педагогика</div>
             </div>
           </div>
-          <div class="adv-card">
-            <div class="adv-emoji"><i data-lucide="library" class="w-5 h-5 text-emerald-300"></i></div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="library" class="w-5 h-5"></i></div>
             <div>
-              <div class="text-white/90">Аспирантура</div>
-              <div class="text-white/60 text-sm">Научные интересы: методика преподавания языка</div>
+              <div class="text-slate-800 font-medium">Аспирантура</div>
+              <div class="text-slate-400 text-sm mt-0.5">Научные интересы: методика преподавания языка</div>
             </div>
           </div>
-          <div class="adv-card">
-            <div class="adv-emoji"><i data-lucide="badge-check" class="w-5 h-5 text-emerald-300"></i></div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="badge-check" class="w-5 h-5"></i></div>
             <div>
-              <div class="text-white/90">Международный сертификат TEFL</div>
-              <div class="text-white/60 text-sm">Подтверждённая квалификация преподавателя английского</div>
+              <div class="text-slate-800 font-medium">Международный сертификат TEFL</div>
+              <div class="text-slate-400 text-sm mt-0.5">Подтверждённая квалификация преподавателя английского</div>
             </div>
           </div>
-          <div class="adv-card">
-            <div class="adv-emoji"><i data-lucide="languages" class="w-5 h-5 text-emerald-300"></i></div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="languages" class="w-5 h-5"></i></div>
             <div>
-              <div class="text-white/90">CEFR: уровень C2</div>
-              <div class="text-white/60 text-sm">Свободное владение, академический и разговорный регистр</div>
+              <div class="text-slate-800 font-medium">CEFR: уровень C2</div>
+              <div class="text-slate-400 text-sm mt-0.5">Свободное владение, академический и разговорный регистр</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Приложение -->
-    <section id="app" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <div class="grid md:grid-cols-2 gap-6 items-stretch">
-          <div class="flex flex-col">
-            <h3 class="text-2xl md:text-3xl font-semibold">Мое приложение</h3>
-            <p class="mt-3 text-white/85">
-              B‑ENG — бесплатный помощник для английского в одном приложении. Подойдёт для разговорной практики и подготовки к ЕГЭ/ОГЭ/IELTS/TOEFL.
+    <!-- Приложения -->
+    <section id="apps" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center">
+            <i data-lucide="smartphone" class="w-5 h-5 text-white"></i>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-slate-900">Мои приложения</h2>
+        </div>
+        <p class="mt-3 text-slate-500 text-base max-w-2xl">
+          Три разных подхода к изучению английского — выбирайте тот, что ближе по духу, или комбинируйте все три.
+        </p>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- BeWords -->
+          <article class="app-card">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="app-icon bewords">🧠</div>
+              <div>
+                <h4 class="text-lg font-semibold text-slate-900">BeWords</h4>
+                <div class="text-xs text-slate-400 mt-0.5">bewords.ru</div>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+              Умное запоминание слов по карточкам. Интервальные повторения по кривой забывания Эббингауза, аудио от носителей, геймификация и статистика прогресса.
             </p>
-            <ul class="mt-4 space-y-2 text-white/90">
-              <li class="flex items-start gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-300"></i> ИИ‑репетиторы (ChatGPT 4o): план, объяснения, ответы на вопросы</li>
-              <li class="flex items-start gap-2"><i data-lucide="pencil-ruler" class="w-5 h-5 text-emerald-300"></i> Тренажёры: перевод предложений, грамматика, словарь</li>
-              <li class="flex items-start gap-2"><i data-lucide="book-open" class="w-5 h-5 text-emerald-300"></i> Погружение: книги/новости, фильмы/сериалы, мини‑уроки аудирования</li>
-              <li class="flex items-start gap-2"><i data-lucide="message-circle" class="w-5 h-5 text-emerald-300"></i> Разговорная практика: с людьми или с ИИ‑ботами</li>
-              <li class="flex items-start gap-2"><i data-lucide="badge-check" class="w-5 h-5 text-emerald-300"></i> Бесплатные курсы: от базового уровня до продвинутого</li>
+            <ul class="feature-list mb-5">
+              <li><i data-lucide="check" class="w-4 h-4"></i> Уровни от A1 до Advanced</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Интервальные повторения</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Озвучка носителей языка</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Игры, очки и достижения</li>
             </ul>
-            <div class="mt-5 text-white/75 text-sm">Почему B‑ENG: всё в одном месте, полностью бесплатно, современно и удобно.</div>
-            <div class="mt-4 flex gap-3 flex-wrap">
-              <a href="https://clck.ru/3MDn4t" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
-                Скачать приложение <i data-lucide="arrow-down-circle" class="w-5 h-5"></i>
+            <div class="mt-auto">
+              <a href="https://bewords.ru/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-primary rounded-xl px-4 py-2.5 font-medium text-sm w-full justify-center">
+                Перейти на сайт <i data-lucide="external-link" class="w-4 h-4"></i>
               </a>
             </div>
-          </div>
-          <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/15 min-h-[240px] bg-white/10">
-            <img src="https://berdiyev-eng.ru/app1.jpg" alt="Скриншот приложения B‑ENG" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
-          </div>
+          </article>
+
+          <!-- BEMAT -->
+          <article class="app-card">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="app-icon bemat">🐱</div>
+              <div>
+                <h4 class="text-lg font-semibold text-slate-900">BEMAT</h4>
+                <div class="text-xs text-slate-400 mt-0.5">bemat.ru</div>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+              Комплексный ИИ‑комбайн «всё в одном». Фильмы и сериалы с переводом, книги, ИИ‑репетиторы, тренажёры грамматики и мини‑уроки аудирования. Полностью бесплатно, без рекламы, с офлайн‑режимом.
+            </p>
+            <ul class="feature-list mb-5">
+              <li><i data-lucide="check" class="w-4 h-4"></i> Просмотр фильмов/сериалов в оригинале</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Интерактивные ИИ‑репетиторы</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Подготовка к ЕГЭ/ОГЭ/IELTS</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Офлайн‑режим и нет рекламы</li>
+            </ul>
+            <div class="mt-auto">
+              <a href="https://bemat.ru/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-primary rounded-xl px-4 py-2.5 font-medium text-sm w-full justify-center">
+                Перейти на сайт <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- BeMem -->
+          <article class="app-card">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="app-icon bemem">😂</div>
+              <div>
+                <h4 class="text-lg font-semibold text-slate-900">BeMem</h4>
+                <div class="text-xs text-slate-400 mt-0.5">bemem.ru</div>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+              Английский через юмор и мемы. Более 300 мемов с переводом, разбором сленга и контекста. Мозг лучше запоминает информацию, подкреплённую эмоциями и смехом.
+            </p>
+            <ul class="feature-list mb-5">
+              <li><i data-lucide="check" class="w-4 h-4"></i> 300+ мемов с разбором</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Словарь на 1500+ слов</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Озвучка произношения</li>
+              <li><i data-lucide="check" class="w-4 h-4"></i> Квиз‑тесты и фильтр по уровню</li>
+            </ul>
+            <div class="mt-auto">
+              <a href="https://bemem.ru/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-primary rounded-xl px-4 py-2.5 font-medium text-sm w-full justify-center">
+                Перейти на сайт <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-5 p-4 rounded-2xl border border-slate-200 bg-slate-50">
+          <p class="text-slate-600 text-sm sm:text-base">
+            <strong class="text-slate-900">Какой формат вам ближе?</strong> Классические карточки слов, просмотр фильмов с ИИ‑помощником или разбор смешных мемов? Я могу подсказать, с какого приложения лучше начать под ваш уровень — напишите мне в Telegram.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Боты: фото видно целиком, без пустот сверху/снизу -->
-    <section id="bots" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <div class="flex items-center justify-between flex-wrap gap-3">
-          <h3 class="text-2xl md:text-3xl font-semibold">Мои боты на основе ChatGPT</h3>
-          <div id="botsTabs" class="mode-switch" role="tablist" aria-label="Выбор бота">
-            <button type="button" class="mode-btn active" data-bot="ege" role="tab" aria-pressed="true"><i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ</button>
-            <button type="button" class="mode-btn" data-bot="oge" role="tab" aria-pressed="false"><i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ</button>
-            <button type="button" class="mode-btn" data-bot="ielts" role="tab" aria-pressed="false"><i data-lucide="globe-2" class="w-4 h-4"></i> IELTS</button>
-            <button type="button" class="mode-btn" data-bot="toefl" role="tab" aria-pressed="false"><i data-lucide="globe" class="w-4 h-4"></i> TOEFL</button>
-            <button type="button" class="mode-btn" data-bot="materials" role="tab" aria-pressed="false"><i data-lucide="folder-kanban" class="w-4 h-4"></i> ЕГЭ материалы</button>
-            <button type="button" class="mode-btn" data-bot="free" role="tab" aria-pressed="false"><i data-lucide="bot" class="w-4 h-4"></i> Репетитор GPT</button>
-          </div>
+    <!-- Боты -->
+    <section id="bots" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-1">
+          <h3 class="text-2xl sm:text-3xl font-semibold text-slate-900">Мои боты на основе ChatGPT</h3>
+        </div>
+        <div id="botsTabs" class="mode-switch mt-4" role="tablist" aria-label="Выбор бота">
+          <button type="button" class="mode-btn active" data-bot="ege" role="tab" aria-pressed="true"><i data-lucide="graduation-cap" class="w-4 h-4"></i> ЕГЭ</button>
+          <button type="button" class="mode-btn" data-bot="oge" role="tab" aria-pressed="false"><i data-lucide="book-open" class="w-4 h-4"></i> ОГЭ</button>
+          <button type="button" class="mode-btn" data-bot="ielts" role="tab" aria-pressed="false"><i data-lucide="globe-2" class="w-4 h-4"></i> IELTS</button>
+          <button type="button" class="mode-btn" data-bot="toefl" role="tab" aria-pressed="false"><i data-lucide="globe" class="w-4 h-4"></i> TOEFL</button>
+          <button type="button" class="mode-btn" data-bot="materials" role="tab" aria-pressed="false"><i data-lucide="folder-kanban" class="w-4 h-4"></i> ЕГЭ материалы</button>
+          <button type="button" class="mode-btn" data-bot="free" role="tab" aria-pressed="false"><i data-lucide="bot" class="w-4 h-4"></i> Репетитор GPT</button>
         </div>
 
-        <div id="botsCardWrap" class="mt-5">
-          <!-- Карточка активного бота сюда -->
-        </div>
+        <div id="botsCardWrap" class="mt-5"></div>
       </div>
     </section>
 
-    <!-- Гайды / материалы -->
-    <section id="guides" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <h3 class="text-2xl md:text-3xl font-semibold">Мои гайды и материалы</h3>
+    <!-- Гайды -->
+    <section id="guides" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-slate-900">Мои гайды и материалы</h3>
         <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold"><i data-lucide="file-text" class="w-5 h-5 text-emerald-300"></i> Гайд по временам</div>
-            <p class="mt-2 text-white/85">Схемы, примеры и тренажёры — чтобы разложить времена «как 2+2».</p>
-            <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">Получить <i data-lucide="send" class="w-5 h-5"></i></a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="file-text" class="w-5 h-5 text-emerald-500"></i> Гайд по временам</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Схемы, примеры и тренажёры — чтобы разложить времена «как 2+2».</p>
+            <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Получить <i data-lucide="send" class="w-4 h-4"></i></a>
           </article>
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold"><i data-lucide="files" class="w-5 h-5 text-emerald-300"></i> Шаблоны эссе (ЕГЭ)</div>
-            <p class="mt-2 text-white/85">Структура, связки, чек‑лист самопроверки + примеры по критериям.</p>
-            <a href="https://t.me/tobeeng_ege_bot" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">Скачать <i data-lucide="external-link" class="w-5 h-5"></i></a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="files" class="w-5 h-5 text-emerald-500"></i> Шаблоны эссе (ЕГЭ)</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Структура, связки, чек‑лист самопроверки + примеры по критериям.</p>
+            <a href="https://t.me/tobeeng_ege_bot" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Скачать <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold"><i data-lucide="mic" class="w-5 h-5 text-emerald-300"></i> ОГЭ: устная часть</div>
-            <p class="mt-2 text-white/85">Фразы‑клише, карточки, чек‑лист — чтобы говорить уверенно и по критериям.</p>
-            <a href="https://t.me/OGE_ENG_HELPER_BOT" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">Скачать <i data-lucide="external-link" class="w-5 h-5"></i></a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="mic" class="w-5 h-5 text-emerald-500"></i> ОГЭ: устная часть</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Фразы‑клише, карточки, чек‑лист — чтобы говорить уверенно и по критериям.</p>
+            <a href="https://t.me/OGE_ENG_HELPER_BOT" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Скачать <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
-
-          <!-- Новые 4 гайда -->
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold">
-              <i data-lucide="book" class="w-5 h-5 text-emerald-300"></i> Основы грамматики английского языка
-            </div>
-            <p class="mt-2 text-white/85">База по грамматике: простые объяснения + наглядные схемы.</p>
-            <a href="https://t.me/to_be_eng/109" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">
-              Открыть <i data-lucide="external-link" class="w-5 h-5"></i>
-            </a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="book" class="w-5 h-5 text-emerald-500"></i> Основы грамматики</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">База по грамматике: простые объяснения + наглядные схемы.</p>
+            <a href="https://t.me/to_be_eng/109" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Открыть <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
-
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold">
-              <i data-lucide="languages" class="w-5 h-5 text-emerald-300"></i> Тысячи слов в английском
-            </div>
-            <p class="mt-2 text-white/85">Как легко «трансформировать» русские слова в английские — практические приёмы.</p>
-            <a href="https://t.me/to_be_eng/84" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">
-              Открыть <i data-lucide="external-link" class="w-5 h-5"></i>
-            </a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="languages" class="w-5 h-5 text-emerald-500"></i> Тысячи слов</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Как легко «трансформировать» русские слова в английские.</p>
+            <a href="https://t.me/to_be_eng/84" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Открыть <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
-
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold">
-              <i data-lucide="message-square" class="w-5 h-5 text-emerald-300"></i> 101 нужная фраза в английском
-            </div>
-            <p class="mt-2 text-white/85">Самые ходовые фразы: для общения, путешествий и работы.</p>
-            <a href="https://t.me/to_be_eng/161" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">
-              Открыть <i data-lucide="external-link" class="w-5 h-5"></i>
-            </a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="message-square" class="w-5 h-5 text-emerald-500"></i> 101 нужная фраза</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Самые ходовые фразы: для общения, путешествий и работы.</p>
+            <a href="https://t.me/to_be_eng/161" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Открыть <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
-
-          <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5">
-            <div class="flex items-center gap-2 text-lg font-semibold">
-              <i data-lucide="quote" class="w-5 h-5 text-emerald-300"></i> Топ фразы и поговорок в английском языке
-            </div>
-            <p class="mt-2 text-white/85">Идиомы и поговорки — говорим как носители.</p>
-            <a href="https://t.me/to_be_eng/58" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-glass rounded-xl px-4 py-2">
-              Открыть <i data-lucide="external-link" class="w-5 h-5"></i>
-            </a>
+          <article class="guide-card">
+            <div class="flex items-center gap-2 text-base font-semibold text-slate-800"><i data-lucide="quote" class="w-5 h-5 text-emerald-500"></i> Фразы и поговорки</div>
+            <p class="mt-2 text-slate-500 text-sm leading-relaxed">Идиомы и поговорки — говорим как носители.</p>
+            <a href="https://t.me/to_be_eng/58" target="_blank" rel="noreferrer" class="mt-3 inline-flex items-center gap-2 btn-ghost rounded-xl px-4 py-2 text-sm">Открыть <i data-lucide="external-link" class="w-4 h-4"></i></a>
           </article>
         </div>
-        <div class="text-sm text-white/70 mt-3">На бесплатном уроке — гайд по временам и персональный план на 90 дней в подарок.</div>
+        <div class="text-sm text-slate-400 mt-4">На бесплатном уроке — гайд по временам и персональный план на 90 дней в подарок.</div>
       </div>
     </section>
 
-    <!-- Запись (мини-форма) -->
-    <section id="book" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <h3 class="text-2xl md:text-3xl font-semibold">Записаться на занятие</h3>
-        <p class="mt-2 text-white/80">Оставьте контакты — свяжусь с вами и подберу удобный формат. Первый урок бесплатно.</p>
-        <form id="bookForm" class="mt-4 grid gap-3 sm:grid-cols-2">
-          <input name="name" type="text" required minlength="2" placeholder="Имя" autocomplete="name"
-            class="rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40">
-          <input name="phone" type="tel" required pattern="^[0-9+() \\-]{6,}$" placeholder="+7 (___) ___‑__‑__" autocomplete="tel" inputmode="tel"
-            class="rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40">
-          <select name="goal" class="rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40">
+    <!-- Запись -->
+    <section id="book" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-slate-900">Записаться на занятие</h3>
+        <p class="mt-2 text-slate-500">Оставьте контакты — свяжусь с вами и подберу удобный формат. Первый урок бесплатно.</p>
+        <form id="bookForm" class="mt-5 grid gap-3 sm:grid-cols-2">
+          <input name="name" type="text" required minlength="2" placeholder="Имя" autocomplete="name" class="input rounded-xl px-4 py-3 text-sm sm:text-base">
+          <input name="phone" type="tel" required pattern="^[0-9+() \-]{6,}$" placeholder="+7 (___) ___‑__‑__" autocomplete="tel" inputmode="tel" class="input rounded-xl px-4 py-3 text-sm sm:text-base">
+          <select name="goal" class="input rounded-xl px-4 py-3 text-sm sm:text-base">
             <option value="Разговорный">Цель: Разговорный</option>
             <option value="ЕГЭ">Цель: ЕГЭ</option>
             <option value="ОГЭ">Цель: ОГЭ</option>
             <option value="IELTS">Цель: IELTS</option>
             <option value="TOEFL">Цель: TOEFL</option>
           </select>
-          <input name="contact" type="text" placeholder="Удобный контакт (Telegram/WhatsApp)" autocomplete="off"
-            class="rounded-xl bg-white/10 border border-white/20 px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/40">
+          <input name="contact" type="text" placeholder="Удобный контакт (Telegram/WhatsApp)" autocomplete="off" class="input rounded-xl px-4 py-3 text-sm sm:text-base">
           <div class="sm:col-span-2 flex flex-col sm:flex-row gap-3">
-            <button type="submit" class="inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+            <button type="submit" class="inline-flex items-center justify-center gap-2 btn-primary rounded-xl px-6 py-3 font-medium text-sm sm:text-base">
               Отправить заявку <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
-            <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-2 btn-glass rounded-xl px-5 py-3">
+            <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-2 btn-secondary rounded-xl px-6 py-3 text-sm sm:text-base">
               Написать в Telegram <i data-lucide="send" class="w-5 h-5"></i>
             </a>
           </div>
-          <div id="bookStatus" class="sm:col-span-2 text-sm text-white/85" aria-live="polite"></div>
+          <div id="bookStatus" class="sm:col-span-2 text-sm text-slate-600 min-h-[1.5em]" aria-live="polite"></div>
         </form>
-        <div class="text-xs text-white/60 mt-2">Отправляя, вы соглашаетесь на обработку персональных данных</div>
+        <div class="text-xs text-slate-400 mt-3">Отправляя, вы соглашаетесь на обработку персональных данных</div>
       </div>
     </section>
 
     <!-- Контакты -->
-    <section id="contacts" class="mt-10">
-      <div class="glass rounded-3xl p-6 sm:p-8 shadow-deep">
-        <h3 class="text-xl font-semibold mb-3">Контакты</h3>
+    <section id="contacts" class="mt-8 md:mt-12">
+      <div class="card p-5 sm:p-8">
+        <h3 class="text-xl font-semibold text-slate-900 mb-4">Контакты</h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="btn-glass rounded-xl px-4 py-3 flex items-center gap-2 justify-center">
-            <i data-lucide="send" class="w-5 h-5"></i> Telegram
+          <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="btn-secondary rounded-xl px-4 py-3 flex items-center gap-2 justify-center text-sm sm:text-base">
+            <i data-lucide="send" class="w-5 h-5"></i> <span class="hidden sm:inline">Telegram</span><span class="sm:hidden">TG</span>
           </a>
-          <a href="https://wa.me/79111880148" target="_blank" rel="noreferrer" class="btn-glass rounded-xl px-4 py-3 flex items-center gap-2 justify-center">
+          <a href="https://wa.me/79111880148" target="_blank" rel="noreferrer" class="btn-secondary rounded-xl px-4 py-3 flex items-center gap-2 justify-center text-sm sm:text-base">
             <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
           </a>
-          <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" class="btn-glass rounded-xl px-4 py-3 flex items-center gap-2 justify-center">
+          <a href="mailto:abdurrahimberdiev@gmail.com?subject=Здравствуйте, хочу записаться на занятие" class="btn-secondary rounded-xl px-4 py-3 flex items-center gap-2 justify-center text-sm sm:text-base">
             <i data-lucide="mail" class="w-5 h-5"></i> Email
           </a>
-          <a href="#book" class="btn-glass rounded-xl px-4 py-3 flex items-center gap-2 justify-center">
+          <a href="#book" class="btn-secondary rounded-xl px-4 py-3 flex items-center gap-2 justify-center text-sm sm:text-base">
             <i data-lucide="calendar" class="w-5 h-5"></i> Запись
           </a>
         </div>
       </div>
     </section>
 
-    <footer class="text-center text-white/60 text-sm mt-10">
+    <footer class="text-center text-slate-400 text-sm mt-10 pb-24 sm:pb-10">
       © 2025 To Be English. Все права защищены. WhatsApp и Instagram (Meta, признана в РФ экстремистской организацией и запрещена)
     </footer>
   </main>
 
   <!-- Sticky CTA -->
   <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
-    <a href="#book" class="bg-white text-black rounded-full px-6 py-3 shadow-deep font-medium flex items-center gap-2">
+    <a href="#book" class="sticky-cta rounded-full px-6 py-3 font-medium flex items-center gap-2 text-sm sm:text-base">
       Бесплатный урок <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
   </div>
 
   <!-- FAB -->
   <div class="fixed bottom-4 right-4 z-40 flex flex-col gap-2">
-    <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
+    <a href="https://t.me/Berdiyev_eng" target="_blank" rel="noreferrer" class="fab rounded-full p-3 grid place-items-center" aria-label="Telegram">
       <i data-lucide="send" class="w-5 h-5"></i>
     </a>
-    <a href="https://wa.me/79111880148" target="_blank" rel="noreferrer" class="rounded-full p-3 bg-white/10 border border-white/20 hover:bg-white/20">
+    <a href="https://wa.me/79111880148" target="_blank" rel="noreferrer" class="fab rounded-full p-3 grid place-items-center" aria-label="WhatsApp">
       <i data-lucide="message-circle" class="w-5 h-5"></i>
     </a>
   </div>
@@ -468,7 +640,7 @@
     }
     window.addEventListener('DOMContentLoaded', createIconsSafe);
 
-    // ===== Боты (данные) =====
+    // ===== Боты =====
     const BOTS = {
       ege: {
         title: 'EGE ASSISTANT',
@@ -508,11 +680,10 @@
       }
     };
 
-    // Построение variant-URL для Tilda CDN: -/resize/Wx/ и -/format/webp/
     function isTilda(url){ return /static\.tildacdn\.info/i.test(url); }
-    function tildaVariant(url, width, format){ // format = 'webp' | null
+    function tildaVariant(url, width, format){
       if (!url || typeof url !== 'string' || !isTilda(url)) return url;
-      if (url.includes('/-/')) return url; // уже с операторами — не трогаем
+      if (url.includes('/-/')) return url;
       const i = url.lastIndexOf('/');
       if (i < 0) return url;
       const base = url.substring(0, i);
@@ -543,7 +714,7 @@
     function botCardHTML(bot, isFirst){
       const sizes = '(min-width:1024px) 45vw, 100vw';
       return `
-        <article class="rounded-2xl ring-1 ring-white/15 bg-white/10 p-5 backdrop-blur-2xl">
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
           <div class="grid md:grid-cols-12 gap-5 items-stretch">
             <div class="md:col-span-5">
               <div class="media-frame">
@@ -553,15 +724,15 @@
                   </a>
                 </div>
               </div>
-              <div class="mt-2 text-xs text-white/60">Клик по фото — открыть в новой вкладке и рассмотреть детали</div>
+              <div class="mt-2 text-xs text-slate-400">Клик по фото — открыть в новой вкладке</div>
             </div>
             <div class="md:col-span-7 flex flex-col">
-              <div class="text-xl font-semibold flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-5 h-5 text-emerald-300"></i> ${bot.title}
+              <div class="text-xl font-semibold text-slate-900 flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-5 h-5 text-emerald-500"></i> ${bot.title}
               </div>
-              <p class="mt-3 text-white/85">${bot.desc}</p>
+              <p class="mt-3 text-slate-600 leading-relaxed">${bot.desc}</p>
               <div class="mt-5">
-                <a href="${bot.link}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 rounded-xl px-5 py-3 font-medium">
+                <a href="${bot.link}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 btn-primary rounded-xl px-5 py-3 font-medium text-sm sm:text-base">
                   Попробовать <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
               </div>
@@ -571,7 +742,6 @@
       `;
     }
 
-    // Рендер вкладок ботов
     (function initBotsTabs(){
       const tabs = document.getElementById('botsTabs');
       const wrap = document.getElementById('botsCardWrap');
@@ -601,7 +771,7 @@
       setActive(initial);
     })();
 
-    // ===== Отправка мини-формы записи =====
+    // ===== Форма =====
     (function bookForm(){
       const form = document.getElementById('bookForm');
       const status = document.getElementById('bookStatus');
@@ -645,8 +815,7 @@
 
       function setIcon(name){
         const icon = btn.querySelector('i[data-lucide]');
-        if (icon) icon.setAttribute('data-lucide', name);
-        createIconsSafe();
+        if (icon) { icon.setAttribute('data-lucide', name); createIconsSafe(); }
       }
 
       btn.addEventListener('click', () => {
