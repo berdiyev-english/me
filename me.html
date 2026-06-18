@@ -19,6 +19,9 @@
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preconnect" href="https://static.tildacdn.info" crossorigin>
+  <link rel="preconnect" href="https://bewords.ru" crossorigin>
+  <link rel="preconnect" href="https://bemem.ru" crossorigin>
+  <link rel="preconnect" href="https://bemat.ru" crossorigin>
 
   <!-- Tailwind config BEFORE CDN -->
   <script>
@@ -49,7 +52,6 @@
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
-      --surface-raised: #ffffff;
       --text: #0f172a;
       --text-secondary: #475569;
       --text-muted: #94a3b8;
@@ -138,14 +140,13 @@
       display: flex; flex-direction: column; height: 100%;
       box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 4px 20px rgba(0,0,0,0.04);
     }
-    .app-icon {
+    .app-icon-img {
       width: 52px; height: 52px; border-radius: 14px;
-      display: grid; place-items: center; font-size: 24px;
-      flex-shrink: 0; border: 1px solid var(--border);
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: var(--border-light);
     }
-    .app-icon.bewords { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
-    .app-icon.bemat   { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
-    .app-icon.bemem   { background: linear-gradient(135deg, #fef3c7, #fde68a); }
 
     .feature-list li {
       display: flex; align-items: flex-start; gap: 10px;
@@ -226,6 +227,89 @@
     }
     .guide-card:hover { border-color: #cbd5e1; }
 
+    /* ===== TAPLINK NAV CARDS ===== */
+    .taplink-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .taplink-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    }
+
+    .taplink-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 4px 20px rgba(0,0,0,0.04);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .taplink-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .taplink-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .taplink-card:hover::before { opacity: 1; }
+
+    .taplink-card .tl-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    .taplink-card .tl-icon svg { width: 22px; height: 22px; }
+    .taplink-card .tl-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .taplink-card .tl-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: none;
+    }
+    @media (min-width: 640px) {
+      .taplink-card .tl-desc { display: block; }
+      .taplink-card { padding: 28px 20px; }
+    }
+
+    /* Color variants */
+    .tl-green .tl-icon { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+    .tl-green .tl-icon svg { color: #059669; }
+    .tl-green::before { background: #10b981; }
+
+    .tl-blue .tl-icon { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); }
+    .tl-blue .tl-icon svg { color: #0284c7; }
+    .tl-blue::before { background: #0ea5e9; }
+
+    .tl-amber .tl-icon { background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+    .tl-amber .tl-icon svg { color: #d97706; }
+    .tl-amber::before { background: #f59e0b; }
+
+    .tl-rose .tl-icon { background: linear-gradient(135deg, #fff1f2, #ffe4e6); }
+    .tl-rose .tl-icon svg { color: #e11d48; }
+    .tl-rose::before { background: #f43f5e; }
+
     @media (max-width: 640px) {
       .container-xxl { padding-left: 16px; padding-right: 16px; }
       .card { border-radius: 16px; }
@@ -234,6 +318,10 @@
       .feature-card { padding: 12px; gap: 10px; }
       .feature-icon { width: 38px; height: 38px; }
       .guide-card { padding: 16px; }
+      .taplink-card { padding: 20px 12px; border-radius: 16px; }
+      .taplink-card .tl-icon { width: 40px; height: 40px; }
+      .taplink-card .tl-icon svg { width: 20px; height: 20px; }
+      .taplink-card .tl-title { font-size: 0.8125rem; }
     }
   </style>
 
@@ -270,7 +358,7 @@
           <div class="relative h-9 w-9 rounded-xl bg-slate-900 grid place-items-center">
             <i data-lucide="home" class="w-4 h-4 text-white"></i>
           </div>
-          <span class="hidden sm:inline text-slate-700 font-medium text-sm">На главную</span>
+          <span class="hidden sm:inline text-slate-700 font-medium text-sm">To Be English</span>
         </a>
 
         <!-- Desktop nav -->
@@ -313,6 +401,44 @@
   </header>
 
   <main class="container-xxl px-4 py-8 md:py-14">
+
+    <!-- ===== TAPLINK NAV ===== -->
+    <section class="mb-8 md:mb-12">
+      <div class="taplink-grid">
+        <a href="#book" class="taplink-card tl-green">
+          <div class="tl-icon">
+            <i data-lucide="calendar-check"></i>
+          </div>
+          <div class="tl-title">Запись на занятия</div>
+          <div class="tl-desc">Первый урок бесплатно</div>
+        </a>
+
+        <a href="#apps" class="taplink-card tl-blue">
+          <div class="tl-icon">
+            <i data-lucide="smartphone"></i>
+          </div>
+          <div class="tl-title">Приложения и боты</div>
+          <div class="tl-desc">3 приложения + 6 ИИ‑ботов</div>
+        </a>
+
+        <a href="#guides" class="taplink-card tl-amber">
+          <div class="tl-icon">
+            <i data-lucide="book-open"></i>
+          </div>
+          <div class="tl-title">Книги и гайды</div>
+          <div class="tl-desc">7 бесплатных материалов</div>
+        </a>
+
+        <a href="#about" class="taplink-card tl-rose">
+          <div class="tl-icon">
+            <i data-lucide="user"></i>
+          </div>
+          <div class="tl-title">Обо мне</div>
+          <div class="tl-desc">TEFL, C2, 100+ учеников</div>
+        </a>
+      </div>
+    </section>
+
     <!-- Hero -->
     <section class="grid md:grid-cols-12 gap-5 items-stretch" id="about">
       <div class="md:col-span-7 card p-5 sm:p-8">
@@ -414,7 +540,7 @@
           <!-- BeWords -->
           <article class="app-card">
             <div class="flex items-start gap-4 mb-4">
-              <div class="app-icon bewords">🧠</div>
+              <img src="https://bewords.ru/icon-512.png" alt="BeWords" class="app-icon-img" width="52" height="52" loading="lazy" decoding="async">
               <div>
                 <h4 class="text-lg font-semibold text-slate-900">BeWords</h4>
                 <div class="text-xs text-slate-400 mt-0.5">bewords.ru</div>
@@ -439,7 +565,7 @@
           <!-- BEMAT -->
           <article class="app-card">
             <div class="flex items-start gap-4 mb-4">
-              <div class="app-icon bemat">🐱</div>
+              <img src="https://bemat.ru/assets/logo-C-l1sjaG.png" alt="BEMAT" class="app-icon-img" width="52" height="52" loading="lazy" decoding="async">
               <div>
                 <h4 class="text-lg font-semibold text-slate-900">BEMAT</h4>
                 <div class="text-xs text-slate-400 mt-0.5">bemat.ru</div>
@@ -464,7 +590,7 @@
           <!-- BeMem -->
           <article class="app-card">
             <div class="flex items-start gap-4 mb-4">
-              <div class="app-icon bemem">😂</div>
+              <img src="https://bemem.ru/icon-512.png" alt="BeMem" class="app-icon-img" width="52" height="52" loading="lazy" decoding="async">
               <div>
                 <h4 class="text-lg font-semibold text-slate-900">BeMem</h4>
                 <div class="text-xs text-slate-400 mt-0.5">bemem.ru</div>
