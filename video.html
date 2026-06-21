@@ -1,0 +1,333 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимация Чата с Котом - Английский для себя</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .phone-screen {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 800px;
+            position: relative;
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            z-index: 10;
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #fcfcfc;
+            gap: 15px;
+            scroll-behavior: smooth;
+        }
+
+        /* Анимация появления */
+        .message-row {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .message-row.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .user-row {
+            justify-content: flex-end;
+        }
+
+        .bot-row {
+            justify-content: flex-start;
+        }
+
+        /* --- Аватарка КОТА --- */
+        .avatar {
+            width: 38px;
+            height: 38px;
+            background-color: #e75a4d; /* Тот самый рыже-красный цвет */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            color: white;
+            box-shadow: 0 2px 5px rgba(231, 90, 77, 0.3);
+        }
+
+        .avatar svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        /* Пузыри сообщений */
+        .bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .user-msg {
+            background-color: #29A19C; /* Зеленый Teal */
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-msg {
+            background-color: #F7F7F7;
+            color: #1f1f1f;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        /* Декор текста */
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .highlight-green {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .warning-text {
+            color: #d97706;
+            font-weight: bold;
+        }
+        
+        .strike-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* Индикатор печати */
+        .typing-indicator {
+            background-color: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 18px;
+            display: none;
+            align-self: flex-start;
+            margin-left: 50px; /* Отступ под аватар */
+            margin-bottom: 10px;
+            width: fit-content;
+            transition: all 0.3s;
+        }
+
+        .dot {
+            height: 7px;
+            width: 7px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.3s linear infinite;
+        }
+        .dot:nth-child(2) { animation-delay: 0.15s; }
+        .dot:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        .restart-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .restart-btn.show { opacity: 1; pointer-events: auto; }
+
+    </style>
+</head>
+<body>
+
+<div class="phone-screen">
+    <div class="header">Bob AI Tutor 🐱</div>
+    
+    <!-- Пустой контейнер, наполняется через JS -->
+    <div class="chat-area" id="chatArea"></div>
+
+    <div class="typing-indicator" id="typingIndicator">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+
+    <button class="restart-btn" id="restartBtn" onclick="startChat()">↻ Повторить</button>
+</div>
+
+<script>
+    const chatArea = document.getElementById('chatArea');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const restartBtn = document.getElementById('restartBtn');
+
+    // Новый сценарий: изучение для себя
+    const messages = [
+        {
+            type: 'user',
+            text: 'Боб, я хочу подтянуть английский чисто для себя. Чтобы смотреть сериалы в оригинале и уверенно чувствовать себя в отпуске. Составь мне план!'
+        },
+        {
+            type: 'bot',
+            text: `Мяу! Отличная цель 🐾 Вот твой чилловый план на неделю:<br><br>
+            📺 <b>Сериалы:</b> Начинаем с ситкомов. 2 серии "Friends" или "The Office" с англ. субтитрами.<br>
+            🗣 <b>Разговор:</b> 10 минут в день Shadowing (повторяй интонацию за героями).<br>
+            ✈️ <b>Слова:</b> Учим по 5 полезных фраз для путешествий в день (аэропорт, отель, кафе).<br><br>
+            <span class="highlight-green">План сохранен в твоем профиле! ✅</span><br>
+            С чего начнем сегодня?`
+        },
+        {
+            type: 'user',
+            text: 'Давай начнем с кафе. Как мне вежливо заказать кофе на вынос за границей?'
+        },
+        {
+            type: 'bot',
+            text: `Мур-р, легко! ☕️ Забудь про грубое <span class="strike-text">"I want coffee"</span>.<br><br>
+            Используй эту конструкцию:<br>
+            ✨ <i>"Can I get a cappuccino <b>to go</b>, please?"</i><br>
+            ✨ <i>"I'd like a latte <b>to take away</b>, please."</i><br><br>
+            <b>Совет кота:</b> "To go" чаще говорят в США, а "to take away" — в Британии и Европе. Попробуй произнести это вслух прямо сейчас!`
+        }
+    ];
+
+    // Иконка кота (векторная графика)
+    const catIcon = `
+    <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 0"/>
+        <path d="M19.5 18.5l-2-6-1.5 2.5h-8L6.5 12.5l-2 6H19.5z" opacity="0"/> 
+        <!-- Рисуем мордочку кота -->
+        <path d="M12,7c-2.76,0-5,2.24-5,5c0,0.64,0.13,1.25,0.35,1.82l-1.85,3.68l3.68-1.85C9.75,15.87,10.36,16,11,16
+        c0.64,0,1.25-0.13,1.82-0.35l3.68,1.85l-1.85-3.68C14.87,13.25,15,12.64,15,12C15,9.24,12.76,7,12,7z M10,11
+        c-0.55,0-1-0.45-1-1s0.45-1,1-1s1,0.45,1,1S10.55,11,10,11z M14,11c-0.55,0-1-0.45-1-1s0.45-1,1-1s1,0.45,1,1S14.55,11,14,11z"/>
+    </svg>
+    `;
+
+    function createMessageElement(msg) {
+        const row = document.createElement('div');
+        row.classList.add('message-row');
+        
+        if (msg.type === 'user') {
+            row.classList.add('user-row');
+            row.innerHTML = `<div class="bubble user-msg">${msg.text}</div>`;
+        } else {
+            row.classList.add('bot-row');
+            row.innerHTML = `
+                <div class="avatar">${catIcon}</div>
+                <div class="bubble bot-msg">${msg.text}</div>
+            `;
+        }
+        return row;
+    }
+
+    async function wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Вспомогательная функция для прокрутки чата
+    function scrollToBottom() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    async function startChat() {
+        // Очищаем чат перед стартом
+        chatArea.innerHTML = ''; 
+        restartBtn.classList.remove('show');
+        typingIndicator.style.display = 'none';
+
+        // 1. Сообщение пользователя (Вопрос про план)
+        await wait(600);
+        let msg1 = createMessageElement(messages[0]);
+        chatArea.appendChild(msg1);
+        setTimeout(() => { msg1.classList.add('visible'); scrollToBottom(); }, 50);
+
+        // 2. Бот печатает большой план
+        await wait(800);
+        typingIndicator.style.display = 'block';
+        scrollToBottom();
+
+        await wait(2500); // Кот "думает" над планом
+        typingIndicator.style.display = 'none';
+        let msg2 = createMessageElement(messages[1]);
+        chatArea.appendChild(msg2);
+        setTimeout(() => { msg2.classList.add('visible'); scrollToBottom(); }, 50);
+
+        // 3. Сообщение пользователя (Вопрос про кофе)
+        await wait(2000);
+        let msg3 = createMessageElement(messages[2]);
+        chatArea.appendChild(msg3);
+        setTimeout(() => { msg3.classList.add('visible'); scrollToBottom(); }, 50);
+
+        // 4. Бот печатает ответ про кофе
+        await wait(1000);
+        typingIndicator.style.display = 'block';
+        scrollToBottom();
+
+        await wait(2200);
+        typingIndicator.style.display = 'none';
+        let msg4 = createMessageElement(messages[3]);
+        chatArea.appendChild(msg4);
+        setTimeout(() => { msg4.classList.add('visible'); scrollToBottom(); }, 50);
+
+        // Показываем кнопку перезапуска в конце
+        await wait(1500);
+        restartBtn.classList.add('show');
+    }
+
+    window.onload = startChat;
+</script>
+
+</body>
+</html>
